@@ -1,0 +1,748 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="search" title="Search" href="../../../../search/" />
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
+        <title>rubato.utils.color - rubato docs</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  --font-stack: Fredoka, sans-serif;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+    }
+  }
+</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WM5S826BXJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-WM5S826BXJ");
+</script>
+</head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../"><div class="brand">rubato docs</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand centered" href="https://www.rubato.app">
+    
+    <div class="sidebar-logo-container">
+        <img
+            class="sidebar-logo"
+            src="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png"
+            alt="Logo"
+            width="240"
+            draggable="false"
+            style="user-select: none; -moz-user-select: none; -webkit-user-select: none; -webkit-user-drag: none"
+        />
+    </div>
+    
+</a><form class="sidebar-search-container" method="get" action="../../../../search/" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../intro/">Getting Started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../events/">Event Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../key-names/">Key Names</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../defaults/">Default Options</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
+</ul>
+
+</div><div class="sidebar-tree">
+    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
+    <ul id="versions" class="current"></ul>
+    <script>
+        // Add any branches to appear in the side pane here, tags will be added below
+        // Will only appear if docs are built and pushed in gh-pages
+        var versions = ["nightly"];
+        var dirs = new Set();
+        window.latest = "";
+
+        function addVersion(name) {
+            if (dirs.has(name)) {
+                var li = document.createElement("li");
+                li.classList.add("toctree-l1");
+                var a = document.createElement("a");
+                a.classList.add("reference", "internal");
+                window.current = window.location.pathname.split("/")[1];
+                if (name == current || (current == "latest" && name == latest)) {
+                    a.classList.add("current");
+                    li.classList.add("current", "current-page");
+                }
+
+                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
+
+                reader = new XMLHttpRequest();
+                reader.open("get", ideal, false);
+
+                reader.onreadystatechange = () => {
+                    if (reader.readyState === 4) {
+                        //check to see whether request for the file failed or succeeded
+                        if (reader.status == 200 || reader.status == 0) {
+                            a.href = ideal;
+                            return;
+                        } else {
+                            a.href = `/${name}/intro`;
+                            return;
+                        }
+                    }
+                };
+
+                try {
+                    reader.send();
+                } catch (e) {}
+
+                if (name == "nightly") {
+                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
+                } else if (name == latest) {
+                    a.innerText = `${name} (Latest)`;
+                } else {
+                    a.innerText = name;
+                }
+                li.appendChild(a);
+                document.getElementById("versions").appendChild(li);
+            }
+        }
+        Promise.all([
+            // Find gh-pages directories and populate `dirs`
+            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
+                .then((response) => response.json())
+                .then((data) =>
+                    data.forEach(function (e) {
+                        if (e.type == "dir") dirs.add(e.name);
+                    }),
+                ),
+            // Add tags to `versions`
+            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
+                .then((response) => response.json())
+                .then((data) =>
+                    data.forEach(function (e) {
+                        if (e.name > latest) {
+                            window.latest = e.name;
+                        }
+                        versions.push(e.name);
+                    }),
+                ),
+        ]).then((_) => {
+            versions.forEach(addVersion);
+            genWarning();
+        });
+    </script>
+</div></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<div id="topWarning"></div>
+
+<script>
+    function genWarning() {
+        if (window.current != window.latest && window.current != "latest") {
+            div = document.getElementById("topWarning");
+            div.classList.add("admonition", "warning");
+            let title = document.createElement("p");
+            title.classList.add("admonition-title");
+            title.innerText = "Warning";
+
+            let content = document.createElement("p");
+            if (current == "nightly") {
+                content.innerText = "You're reading the documentation for a development version. For the latest released version, ";
+            } else {
+                content.innerText = "You're reading an old version of this documentation. If you want up-to-date information, ";
+            }
+            content.innerHTML += `please have a look at <a href='/latest'>${window.latest}</a>.`;
+
+            div.appendChild(title);
+            div.appendChild(content);
+        }
+    }
+</script>
+<h1>Source code for rubato.utils.color</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">This color module contains the Color class, which is used to represent colors in the game.</span>
+<span class="sd">"""</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">import</span> <span class="nn">sdl2</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Defaults</span><span class="p">,</span> <span class="n">Display</span>
+
+
+<div class="viewcode-block" id="Color"><a class="viewcode-back" href="../../../../api/#rubato.game.Color">[docs]</a><span class="k">class</span> <span class="nc">Color</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    An RGBA color.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        r: The red value. Defaults to 0.</span>
+<span class="sd">        g: The green value. Defaults to 0.</span>
+<span class="sd">        b: The blue value. Defaults to 0.</span>
+<span class="sd">        a: The alpha value. Defaults to 255.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        r (int): The red value.</span>
+<span class="sd">        g (int): The green value.</span>
+<span class="sd">        b (int): The blue value.</span>
+<span class="sd">        a (int): The alpha value.</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">255</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Color(r=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="si">}</span><span class="s2">, g=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="si">}</span><span class="s2">, b=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="si">}</span><span class="s2">, a=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Color</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Color</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">r</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">b</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">g</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">a</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rgba32</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">"""The RGBA32 representation of the color."""</span>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MapRGBA</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
+
+<div class="viewcode-block" id="Color.darker"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.darker">[docs]</a>    <span class="k">def</span> <span class="nf">darker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        Returns a darker copy of the color. It subtracts ``amount`` from the RGB values.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            amount: How much darker. Defaults to 20.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Color: The resultant color.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">-</span> <span class="n">amount</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">-</span> <span class="n">amount</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">-</span> <span class="n">amount</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Color.lighter"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.lighter">[docs]</a>    <span class="k">def</span> <span class="nf">lighter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        Returns a lighter copy of the color. It adds ``amount`` to the RGB values.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            amount: How much lighter. Defaults to 20.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Color: The resultant color.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="n">amount</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">+</span> <span class="n">amount</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">+</span> <span class="n">amount</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Color.mix"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.mix">[docs]</a>    <span class="k">def</span> <span class="nf">mix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Color</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"mix"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        Mix two colors together.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            other: The other color.</span>
+<span class="sd">            t: The interpolation amount (0 to 1).</span>
+<span class="sd">                Defaults to 0.5.</span>
+<span class="sd">            mode: The blending mode ("linear", "mix", "blend"). Linear is the linear interpolation between the two</span>
+<span class="sd">                colors. Mix and Blend are 2 different algorithms to mix colors. They tend to look better then linear.</span>
+<span class="sd">                Defaults to "mix".</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Color: The resultant color.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"linear"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Color</span><span class="p">(</span>
+                <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">b</span><span class="p">,</span>
+                <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">a</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"blend"</span><span class="p">:</span>
+            <span class="n">alpha_a</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha_a</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span> <span class="mi">255</span><span class="p">))</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span> <span class="mi">255</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha_a</span><span class="p">)</span> <span class="o">/</span> <span class="n">a</span>
+            <span class="k">return</span> <span class="n">Color</span><span class="p">(</span>
+                <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">**</span><span class="mf">2.2</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">r</span><span class="o">**</span><span class="mf">2.2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">2.2</span><span class="p">),</span>
+                <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">**</span><span class="mf">2.2</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">g</span><span class="o">**</span><span class="mf">2.2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">2.2</span><span class="p">),</span>
+                <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">**</span><span class="mf">2.2</span><span class="p">)</span> <span class="o">+</span> <span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">b</span><span class="o">**</span><span class="mf">2.2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">2.2</span><span class="p">),</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">255</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span>
+            <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="o">**</span><span class="mf">2.2</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">r</span><span class="o">**</span><span class="mf">2.2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">2.2</span><span class="p">),</span>
+            <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="o">**</span><span class="mf">2.2</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">g</span><span class="o">**</span><span class="mf">2.2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">2.2</span><span class="p">),</span>
+            <span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="o">**</span><span class="mf">2.2</span><span class="p">)</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">b</span><span class="o">**</span><span class="mf">2.2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">2.2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">a</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Color.to_tuple"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.to_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">to_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="sd">"""</span>
+<span class="sd">        Converts the Color to a tuple.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple(int, int, int, int): The tuple representing the color.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Color.to_hex"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.to_hex">[docs]</a>    <span class="k">def</span> <span class="nf">to_hex</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        Converts the Color to a hexadecimal string.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The hexadecimal output in lowercase. (i.e. ffffffff)</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="si">:</span><span class="s2">02x</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="si">:</span><span class="s2"> 02x</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="si">:</span><span class="s2"> 02x</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="si">:</span><span class="s2"> 02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Color.to_hsv"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.to_hsv">[docs]</a>    <span class="k">def</span> <span class="nf">to_hsv</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="sd">"""</span>
+<span class="sd">        Converts the Color to a tuple containing its HSV values.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            tuple[int]: The Color values as HSV in the form of a tuple.</span>
+<span class="sd">        """</span>
+        <span class="n">rp</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">bp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">/</span> <span class="mi">255</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">/</span> <span class="mi">255</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">/</span> <span class="mi">255</span>
+        <span class="n">c_max</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">rp</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">bp</span><span class="p">)</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">c_max</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">rp</span><span class="p">,</span> <span class="n">gp</span><span class="p">,</span> <span class="n">bp</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">delta</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">c_max</span> <span class="o">==</span> <span class="n">rp</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="p">(((</span><span class="n">gp</span> <span class="o">-</span> <span class="n">bp</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span> <span class="o">%</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">c_max</span> <span class="o">==</span> <span class="n">gp</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="p">(((</span><span class="n">bp</span> <span class="o">-</span> <span class="n">rp</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">c_max</span> <span class="o">==</span> <span class="n">bp</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="p">(((</span><span class="n">rp</span> <span class="o">-</span> <span class="n">gp</span><span class="p">)</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">c_max</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">/</span> <span class="n">c_max</span>
+
+        <span class="n">v</span> <span class="o">=</span> <span class="n">c_max</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Color.from_rgba32"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.from_rgba32">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_rgba32</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">rgba32</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        Creates a Color object from an RGBA32 representation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rgba32: The RGBA32 representation as an int.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Color: The color object from the RGBA32.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">rgba32</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">rgba_str</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">rgba32</span><span class="p">,</span> <span class="s2">"#034b"</span><span class="p">)</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgba_str</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgba_str</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">18</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgba_str</span><span class="p">[</span><span class="mi">18</span><span class="p">:</span><span class="mi">26</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgba_str</span><span class="p">[</span><span class="mi">26</span><span class="p">:</span><span class="mi">34</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new</span></div>
+
+<div class="viewcode-block" id="Color.from_hex"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.from_hex">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_hex</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        Creates a Color object from a hex string.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            h: The hexadecimal value in the format "RRGGBBAA".</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Color: The Color object.</span>
+<span class="sd">        """</span>
+        <span class="n">lv</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">lv</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid hex string: </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">lv</span> <span class="o">//</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">16</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lv</span><span class="p">,</span> <span class="n">lv</span> <span class="o">//</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid hex string: </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">ValueError</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">h</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">h</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.from_hsv"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.from_hsv">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_hsv</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        Creates a Color object from HSV values.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            h: The hue degree (0 to 360).</span>
+<span class="sd">            s: The saturation proportion (0 to 1).</span>
+<span class="sd">            v: The value proportion (0 to 1).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Color: The Color object.</span>
+<span class="sd">        """</span>
+        <span class="n">hh</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">60</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hh</span><span class="p">)</span>
+        <span class="n">ff</span> <span class="o">=</span> <span class="n">hh</span> <span class="o">-</span> <span class="n">i</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">v</span> <span class="o">*</span> <span class="mi">255</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">s</span><span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">ff</span><span class="p">))</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ff</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(((</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">),</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">))[</span><span class="n">i</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.random"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.random">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">random</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""A random color."""</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Color.clear"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.clear">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""A transparent color object."""</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Color.black"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.black">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">black</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default black color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">grayscale_defaults</span><span class="p">[</span><span class="s2">"black"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.white"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.white">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">white</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default white color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">grayscale_defaults</span><span class="p">[</span><span class="s2">"white"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.night"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.night">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">night</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default night color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">grayscale_defaults</span><span class="p">[</span><span class="s2">"night"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.darkgray"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.darkgray">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">darkgray</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default darkgray color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">grayscale_defaults</span><span class="p">[</span><span class="s2">"darkgray"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.gray"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.gray">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gray</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default gray color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">grayscale_defaults</span><span class="p">[</span><span class="s2">"gray"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.lightgray"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.lightgray">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lightgray</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default lightgray color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">grayscale_defaults</span><span class="p">[</span><span class="s2">"lightgray"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.snow"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.snow">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">snow</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default snow color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">grayscale_defaults</span><span class="p">[</span><span class="s2">"snow"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.yellow"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.yellow">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">yellow</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default yellow color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"yellow"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.orange"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.orange">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">orange</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default orange color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"orange"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.red"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.red">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">red</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default red color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"red"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.scarlet"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.scarlet">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">scarlet</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default scarlet color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"scarlet"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.magenta"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.magenta">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">magenta</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default magenta color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"magenta"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.purple"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.purple">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">purple</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default purple color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"purple"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.violet"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.violet">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">violet</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default violet color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"violet"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.blue"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.blue">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">blue</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default blue color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"blue"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.cyan"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.cyan">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">cyan</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default cyan color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"cyan"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.turquoize"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.turquoize">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">turquoize</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default turquoize color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"turquoize"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.green"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.green">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">green</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default green color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"green"</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.lime"><a class="viewcode-back" href="../../../../api/#rubato.game.Color.lime">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lime</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">"""</span>
+<span class="sd">        The default lime color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Defaults</span><span class="o">.</span><span class="n">color_defaults</span><span class="p">[</span><span class="s2">"lime"</span><span class="p">])</span></div></div>
+</pre></div> 
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave |
+          Created using <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/scripts/furo.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/design-tabs.js"></script>
+    </body>
+</html>
