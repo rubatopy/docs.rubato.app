@@ -359,9 +359,7 @@ character with rudimentary physics.</p>
 through it). rubato has 4 different levels: Scenes, Groups, Game Objects, and Components.</p>
 <p><a class="reference internal" href="../../../api/#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> hold a collection of Game Objects and Groups. It also manages a
 <a class="reference internal" href="../../../api/#rubato.utils.camera.Camera" title="rubato.utils.camera.Camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code></a>. Scenes are used to compartmentalize code. For example,
-you could have each level of your game on a different scene. Then to switch levels you would switch scenes.
-Every game has a <a class="reference internal" href="../../../api/#rubato.struct.scene_manager.SceneManager" title="rubato.struct.scene_manager.SceneManager"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scene</span> <span class="pre">Manager</span></code></a> which helps you switch between scenes
-easily.</p>
+you could have each level of your game on a different scene. Then to switch levels you would switch scenes.</p>
 <p><a class="reference internal" href="../../../api/#rubato.struct.group.Group" title="rubato.struct.group.Group"><code class="xref py py-func docutils literal notranslate"><span class="pre">Groups</span></code></a> also hold a collection of Game Objects and other Groups. Their main purpose is to
 further compartmentalize items. For example, items in 2 different groups won’t collide with each other. In this tutorial,
 we won’t be using Groups as we don’t need this functionality here.</p>
@@ -374,11 +372,9 @@ Game Object’s position.</p>
 call to <code class="code docutils literal notranslate"><span class="pre">rb.begin()</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scene</span>
 <span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">()</span>
-<span class="c1"># Add the scene to the scene manager and give it a name</span>
-<span class="n">rb</span><span class="o">.</span><span class="n">Game</span><span class="o">.</span><span class="n">scenes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="s2">&quot;main&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><code class="code docutils literal notranslate"><span class="pre">rb.Game.scenes</span></code> is a reference to our Scene Manager. Next, we need to create a player and add it to the scene.</p>
+<p>Next, we need to create a player and add it to the scene.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the player</span>
 <span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">({</span>
     <span class="s2">&quot;pos&quot;</span><span class="p">:</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1"># Set the starting position of the player</span>

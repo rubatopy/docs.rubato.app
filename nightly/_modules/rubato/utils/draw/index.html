@@ -368,13 +368,13 @@
     <span class="n">_queue</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DrawTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="Draw.clear"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.clear">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span><span class="p">,</span> <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">white</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Clears the renderer and draws the background of the frame.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            border_color (Color): The border color.</span>
+<span class="sd">            border_color (Color): The border color. Defaults to black.</span>
 <span class="sd">                Shown when the aspect ratio of the game does not match the aspect ratio of the window.</span>
-<span class="sd">            background_color (Color): The background color.</span>
+<span class="sd">            background_color (Color): The background color. Defaults to white.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">clear</span><span class="p">(</span><span class="n">border_color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
         <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>

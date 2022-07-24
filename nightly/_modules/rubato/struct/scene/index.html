@@ -357,7 +357,8 @@
 <span class="sd">    A scene is a collection of groups.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        name: The name of the scene. This is used to reference the scene from the scene manager. Defaults to &quot;default&quot;.</span>
+<span class="sd">        name: The name of the scene. This is used to reference the scene. Automatically set if not assigned.</span>
+<span class="sd">            Once this is set, it cannot be changed.</span>
 <span class="sd">        background_color: The color of the background of the window. Defaults to Color(255, 255, 255).</span>
 <span class="sd">        border_color: The color of the border of the window. Defaults to Color(0, 0, 0).</span>
 
@@ -366,14 +367,13 @@
 <span class="sd">        ui (Group): The ui elements of this scene. These are drawn on top of everything else and do not interact with</span>
 <span class="sd">            the other game objects.</span>
 <span class="sd">        camera (Camera): The camera of this scene.</span>
-<span class="sd">        id (str): The id of this scene.</span>
 <span class="sd">        border_color: The color of the border of the window.</span>
 <span class="sd">        background_color: The color of the background of the window.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
         <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(),</span>
     <span class="p">):</span>
@@ -381,12 +381,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="p">:</span> <span class="n">Group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ui&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ui_cam</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">border_color</span> <span class="o">=</span> <span class="n">border_color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="n">background_color</span>
 
-        <span class="n">Game</span><span class="o">.</span><span class="n">scenes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">Game</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The name of this scene. Read-only.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span>
+
+<div class="viewcode-block" id="Scene.switch"><a class="viewcode-back" href="../../../../api/#rubato.struct.scene.Scene.switch">[docs]</a>    <span class="k">def</span> <span class="nf">switch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Switches to this scene on the next frame.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Game</span><span class="o">.</span><span class="n">set_scene</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Scene.add"><a class="viewcode-back" href="../../../../api/#rubato.struct.scene.Scene.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">GameObject</span> <span class="o">|</span> <span class="n">Group</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -434,7 +447,7 @@
 <span class="sd">            This is a relatively expensive operation as it clones every group in the scene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">new_scene</span> <span class="o">=</span> <span class="n">Scene</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> (clone)&quot;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (clone)&quot;</span><span class="p">,</span>
             <span class="n">background_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">background_color</span><span class="p">,</span>
             <span class="n">border_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">border_color</span>
         <span class="p">)</span>
@@ -455,6 +468,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">private_paused_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">started</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">private_setup</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">paused_update</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">private_fixed_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>

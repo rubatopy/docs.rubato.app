@@ -348,13 +348,12 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Dict</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Debug</span><span class="p">,</span> <span class="n">Radio</span><span class="p">,</span> <span class="n">Events</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">Camera</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Debug</span><span class="p">,</span> <span class="n">Radio</span><span class="p">,</span> <span class="n">Events</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">IdError</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">SceneManager</span>
-
+    <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Scene</span>
 
 <div class="viewcode-block" id="GameProperties"><a class="viewcode-back" href="../../../api/#rubato.game.GameProperties">[docs]</a><span class="k">class</span> <span class="nc">GameProperties</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -394,12 +393,12 @@
 <span class="sd">        Note:</span>
 <span class="sd">            Returns a pointer to the current camera object.</span>
 <span class="sd">            This is so you can access/change the current camera properties faster, but you&#39;d still need to</span>
-<span class="sd">            use :func:`Game.scenes.current.camera &lt;rubato.struct.scene.Scene.camera&gt;` to access the camera directly.</span>
+<span class="sd">            use :func:`Game.current.camera &lt;rubato.struct.scene.Scene.camera&gt;` to access the camera directly.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Camera: The current scene&#39;s camera</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">scenes</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">camera</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">camera</span></div>
 
 
 <span class="c1"># THIS IS A STATIC CLASS</span>
@@ -409,8 +408,9 @@
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        name (str): The title of the game window.</span>
-<span class="sd">        scenes (SceneManager): The global scene manager.</span>
-<span class="sd">        debug (bool): Turn on debug rendering for everything in the game.</span>
+<span class="sd">        debug (bool): Whether to use debug-mode.</span>
+<span class="sd">        show_fps (bool): Whether to show fps.</span>
+<span class="sd">        debug_font (Font): What font to draw debug text in.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">RUNNING</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">STOPPED</span> <span class="o">=</span> <span class="mi">2</span>
@@ -423,9 +423,57 @@
     <span class="n">debug_font</span><span class="p">:</span> <span class="n">Font</span>
 
     <span class="n">_state</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">STOPPED</span>
-    <span class="n">scenes</span><span class="p">:</span> <span class="n">SceneManager</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="n">initialized</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">_initialized</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">_scenes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Scene</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_scene_id</span> <span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">_current</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Scene</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The current scene. Get-only.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The current scene.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_current</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Game.set_scene"><a class="viewcode-back" href="../../../api/#rubato.game.Game.set_scene">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">set_scene</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">scene_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Changes the current scene. Takes effect on the next frame.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            scene_id (str): The id of the new scene.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_current</span> <span class="o">=</span> <span class="n">scene_id</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a scene to the game. Also set the current scene if this is the first added scene.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            scene (Scene): The scene to add.</span>
+<span class="sd">            scene_id (str): The id of the scene.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            IdError: The given scene id is already used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">scene</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">scene</span><span class="o">.</span><span class="n">_id</span> <span class="o">=</span> <span class="s2">&quot;scene&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_scene_id</span><span class="p">)</span> <span class="c1"># pylint: disable=protected-access</span>
+
+        <span class="k">if</span> <span class="n">scene</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">IdError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A scene with name &#39;</span><span class="si">{</span><span class="n">scene</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; has already been added.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">set_scene</span><span class="p">(</span><span class="n">scene</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="p">[</span><span class="n">scene</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">scene</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_scene_id</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <div class="viewcode-block" id="Game.quit"><a class="viewcode-back" href="../../../api/#rubato.game.Game.quit">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
@@ -477,22 +525,25 @@
             <span class="c1"># process delayed calls</span>
             <span class="n">Time</span><span class="o">.</span><span class="n">process_calls</span><span class="p">()</span>
 
-            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">Game</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">:</span>
-                <span class="c1"># process user set pause update</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">scenes</span><span class="o">.</span><span class="n">paused_update</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">curr</span> <span class="o">:=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">Game</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">:</span>
+                    <span class="c1"># process user set pause update</span>
+                    <span class="n">curr</span><span class="o">.</span><span class="n">private_paused_update</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># normal update</span>
+                    <span class="n">curr</span><span class="o">.</span><span class="n">private_update</span><span class="p">()</span>
+
+                    <span class="c1"># fixed update</span>
+                    <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">+=</span> <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span>
+
+                    <span class="k">while</span> <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">&gt;=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="n">Game</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">:</span>
+                            <span class="n">curr</span><span class="o">.</span><span class="n">private_fixed_update</span><span class="p">()</span>
+                        <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">-=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
+
+                <span class="n">curr</span><span class="o">.</span><span class="n">private_draw</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># normal update</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">scenes</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-
-                <span class="c1"># fixed update</span>
-                <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">+=</span> <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span>
-
-                <span class="k">while</span> <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">&gt;=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">!=</span> <span class="n">Game</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">:</span>
-                        <span class="bp">cls</span><span class="o">.</span><span class="n">scenes</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
-                    <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">-=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
-
-            <span class="bp">cls</span><span class="o">.</span><span class="n">scenes</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+                <span class="n">Draw</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
             <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">show_fps</span><span class="p">:</span>
                 <span class="n">Debug</span><span class="o">.</span><span class="n">draw_fps</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">debug_font</span><span class="p">)</span>
