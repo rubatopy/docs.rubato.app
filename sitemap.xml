@@ -106,9 +106,6 @@
         <loc>https://docs.rubato.app/latest/intro/</loc>
     </url>
     <url>
-        <loc>https://docs.rubato.app/latest/defaults/</loc>
-    </url>
-    <url>
         <loc>https://docs.rubato.app/latest/py-modindex/</loc>
     </url>
 </urlset>
