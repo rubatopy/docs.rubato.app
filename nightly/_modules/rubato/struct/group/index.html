@@ -309,17 +309,23 @@
 <span class="sd">            items: The item(s) you wish to add to the group</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            Error: The item being added is the group itself. A group cannot be</span>
-<span class="sd">                added to itself.</span>
+<span class="sd">            Error: The item being added is already in the group.</span>
 <span class="sd">            ValueError: The group can only hold game objects or other groups.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Group: This group.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">Error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The group </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> already contains </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">GameObject</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">add_game_obj</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
             <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Group</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">add_group</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The group </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> can only hold game objects/groups.&quot;</span><span class="p">)</span></div>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The group </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> can only hold game objects/groups.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="Group.add_group"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.add_group">[docs]</a>    <span class="k">def</span> <span class="nf">add_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="n">Group</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a group to the group.&quot;&quot;&quot;</span>
@@ -400,11 +406,11 @@
 
 <div class="viewcode-block" id="Group.count"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.count">[docs]</a>    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Counts all the GameObjects in this group and all groups it contains.</span>
+<span class="sd">        Counts all the GameObjects and subgroups in this group.</span>
 <span class="sd">        Returns:</span>
-<span class="sd">            int: The number of GameObjects in a group</span>
+<span class="sd">            int: The total number of GameObjects and subgroups contained in this group.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="Group.clone"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -421,7 +427,25 @@
         <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
             <span class="n">new_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">game_obj</span><span class="o">.</span><span class="n">clone</span><span class="p">())</span>
 
-        <span class="k">return</span> <span class="n">new_group</span></div></div>
+        <span class="k">return</span> <span class="n">new_group</span></div>
+
+<div class="viewcode-block" id="Group.contains"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.contains">[docs]</a>    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">GameObject</span> <span class="o">|</span> <span class="n">Group</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the group contains the given object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            other: The object to check for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the group contains the object or not.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">GameObject</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">other</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span> <span class="ow">or</span> <span class="nb">sum</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Group</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">other</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="ow">or</span> <span class="nb">sum</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="kc">False</span></div></div>
 </pre></div> 
         </article>
       </div>

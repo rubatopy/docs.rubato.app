@@ -839,10 +839,15 @@ Items only render if their z-index is not more than that of the camera’s.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="#rubato.utils.error.Error" title="rubato.utils.error.Error"><strong>Error</strong></a> – The item being added is the group itself. A group cannot be
-    added to itself.</p></li>
+<li><p><a class="reference internal" href="#rubato.utils.error.Error" title="rubato.utils.error.Error"><strong>Error</strong></a> – The item being added is already in the group.</p></li>
 <li><p><strong>ValueError</strong> – The group can only hold game objects or other groups.</p></li>
 </ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This group.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#rubato.struct.group.Group" title="rubato.struct.group.Group">Group</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -889,8 +894,8 @@ Called automatically by rubato as long as the group is added to a scene.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.group.Group.count">
 <span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/group/#Group.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.group.Group.count" title="Permalink to this definition">#</a></dt>
-<dd><p>Counts all the GameObjects in this group and all groups it contains.
-:returns: The number of GameObjects in a group
+<dd><p>Counts all the GameObjects and subgroups in this group.
+:returns: The total number of GameObjects and subgroups contained in this group.
 :rtype: int</p>
 </dd></dl>
 
@@ -905,6 +910,23 @@ Called automatically by rubato as long as the group is added to a scene.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.struct.group.Group" title="rubato.struct.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.struct.group.Group.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/group/#Group.contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.group.Group.contains" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks if the group contains the given object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<a class="reference internal" href="#rubato.struct.gameobject.game_object.GameObject" title="rubato.struct.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>, <a class="reference internal" href="#rubato.struct.group.Group" title="rubato.struct.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]) – The object to check for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the group contains the object or not.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -997,17 +1019,17 @@ Game Object’s position.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.game_object.GameObject.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/game_object/#GameObject.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.game_object.GameObject.add" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">components</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/game_object/#GameObject.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.game_object.GameObject.add" title="Permalink to this definition">#</a></dt>
 <dd><p>Add a component to the game object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>component</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code>) – The component to add.</p>
+<dd class="field-odd"><p><strong>components</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code>) – The component(s) to add.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.DuplicateComponentError" title="rubato.utils.error.DuplicateComponentError"><strong>DuplicateComponentError</strong></a> – Raised when there is already a component of the same type on the game object.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The current game object</p>
+<dd class="field-odd"><p>This GameObject.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.struct.gameobject.game_object.GameObject" title="rubato.struct.gameobject.game_object.GameObject">GameObject</a></p>
