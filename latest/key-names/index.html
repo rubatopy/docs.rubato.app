@@ -1,26 +1,26 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Key Names" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rubato.app/key-names.html" />
+  <meta property="og:url" content="https://docs.rubato.app/key-names.html" />
   <meta property="og:site_name" content="rubato docs" />
   <meta property="og:description" content="Here is the list of all of the available key names. These names are used by rubato to identify pressed keys and are passed to the key parameter for key events. Note that names are case-sensitive. Mouse Buttons: Common: Modifier Keys: Numbers: Letters: Function Keys: Special Characters: Numerical ..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="next" title="Pixel Mutation" href="../tutorials/advanced/pixel_mutation/" /><link rel="prev" title="Event Details" href="../events/" />
-        <link rel="canonical" href="https://rubato.app/key-names.html" />
+        <link rel="canonical" href="https://docs.rubato.app/key-names.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.06.04.1"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
         <title>Key Names - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     
@@ -69,6 +69,11 @@
 
     gtag("config", "G-WM5S826BXJ");
 </script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
 </head>
   <body>
     
@@ -212,87 +217,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
-</div><div class="sidebar-tree">
-    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-    <ul id="versions" class="current"></ul>
-    <script>
-        // Add any branches to appear in the side pane here, tags will be added below
-        // Will only appear if docs are built and pushed in gh-pages
-        var versions = ["nightly"];
-        var dirs = new Set();
-        window.latest = "";
-
-        function addVersion(name) {
-            if (dirs.has(name)) {
-                var li = document.createElement("li");
-                li.classList.add("toctree-l1");
-                var a = document.createElement("a");
-                a.classList.add("reference", "internal");
-                window.current = window.location.pathname.split("/")[1];
-                if (name == current || (current == "latest" && name == latest)) {
-                    a.classList.add("current");
-                    li.classList.add("current", "current-page");
-                }
-
-                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
-
-                reader = new XMLHttpRequest();
-                reader.open("get", ideal, false);
-
-                reader.onreadystatechange = () => {
-                    if (reader.readyState === 4) {
-                        //check to see whether request for the file failed or succeeded
-                        if (reader.status == 200 || reader.status == 0) {
-                            a.href = ideal;
-                            return;
-                        } else {
-                            a.href = `/${name}/intro`;
-                            return;
-                        }
-                    }
-                };
-
-                try {
-                    reader.send();
-                } catch (e) {}
-
-                if (name == "nightly") {
-                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                } else if (name == latest) {
-                    a.innerText = `${name} (Latest)`;
-                } else {
-                    a.innerText = name;
-                }
-                li.appendChild(a);
-                document.getElementById("versions").appendChild(li);
-            }
-        }
-        Promise.all([
-            // Find gh-pages directories and populate `dirs`
-            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.type == "dir") dirs.add(e.name);
-                    }),
-                ),
-            // Add tags to `versions`
-            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.name > latest) {
-                            window.latest = e.name;
-                        }
-                        versions.push(e.name);
-                    }),
-                ),
-        ]).then((_) => {
-            versions.forEach(addVersion);
-            genWarning();
-        });
-    </script>
-</div></div>
+</div><div id="versionSidebarInclude"></div>
+<script>
+    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+</script></div>
       </div>
       
     </div>
@@ -349,11 +277,11 @@
     }
 </script>
 <section id="key-names">
-<h1>Key Names<a class="headerlink" href="#key-names" title="Permalink to this headline">#</a></h1>
+<h1>Key Names<a class="headerlink" href="#key-names" title="Permalink to this heading">#</a></h1>
 <p>Here is the list of all of the available key names. These names are used by rubato to identify pressed keys and are passed to the key parameter for <a class="reference internal" href="../events/"><span class="doc">key events</span></a>.
 Note that names are case-sensitive.</p>
 <section id="mouse-buttons">
-<h2>Mouse Buttons<a class="headerlink" href="#mouse-buttons" title="Permalink to this headline">#</a></h2>
+<h2>Mouse Buttons<a class="headerlink" href="#mouse-buttons" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="s2">&quot;mouse 1&quot;</span>  <span class="c1"># left mouse button</span>
 <span class="linenos">2</span><span class="s2">&quot;mouse 2&quot;</span>  <span class="c1"># middle mouse button</span>
 <span class="linenos">3</span><span class="s2">&quot;mouse 3&quot;</span>  <span class="c1"># right mouse button</span>
@@ -363,7 +291,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="common">
-<h2>Common<a class="headerlink" href="#common" title="Permalink to this headline">#</a></h2>
+<h2>Common<a class="headerlink" href="#common" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">&quot;up&quot;</span>  <span class="c1"># the up arrow key</span>
 <span class="linenos"> 2</span><span class="s2">&quot;down&quot;</span> <span class="c1"># the down arrow key</span>
 <span class="linenos"> 3</span><span class="s2">&quot;left&quot;</span>  <span class="c1"># the left arrow key</span>
@@ -379,7 +307,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="modifier-keys">
-<h2>Modifier Keys<a class="headerlink" href="#modifier-keys" title="Permalink to this headline">#</a></h2>
+<h2>Modifier Keys<a class="headerlink" href="#modifier-keys" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">&quot;shift&quot;</span> <span class="c1"># any shift is down</span>
 <span class="linenos"> 2</span><span class="s2">&quot;left shift&quot;</span>
 <span class="linenos"> 3</span><span class="s2">&quot;right shift&quot;</span>
@@ -404,7 +332,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="numbers">
-<h2>Numbers<a class="headerlink" href="#numbers" title="Permalink to this headline">#</a></h2>
+<h2>Numbers<a class="headerlink" href="#numbers" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">&quot;0&quot;</span>
 <span class="linenos"> 2</span><span class="s2">&quot;1&quot;</span>
 <span class="linenos"> 3</span><span class="s2">&quot;2&quot;</span>
@@ -419,7 +347,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="letters">
-<h2>Letters<a class="headerlink" href="#letters" title="Permalink to this headline">#</a></h2>
+<h2>Letters<a class="headerlink" href="#letters" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Test case sensitive</span>
 <span class="linenos"> 2</span><span class="s2">&quot;a&quot;</span>
 <span class="linenos"> 3</span><span class="s2">&quot;b&quot;</span>
@@ -451,7 +379,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="function-keys">
-<h2>Function Keys<a class="headerlink" href="#function-keys" title="Permalink to this headline">#</a></h2>
+<h2>Function Keys<a class="headerlink" href="#function-keys" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">&quot;f1&quot;</span>
 <span class="linenos"> 2</span><span class="s2">&quot;f2&quot;</span>
 <span class="linenos"> 3</span><span class="s2">&quot;f3&quot;</span>
@@ -480,7 +408,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="special-characters">
-<h2>Special Characters<a class="headerlink" href="#special-characters" title="Permalink to this headline">#</a></h2>
+<h2>Special Characters<a class="headerlink" href="#special-characters" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">&quot;&#39;&quot;</span>
 <span class="linenos"> 2</span><span class="s2">&quot;</span><span class="se">\&quot;</span>
 <span class="linenos"> 3</span><span class="s2">&quot;,&quot;</span>
@@ -496,7 +424,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="numerical-keypad">
-<h2>Numerical Keypad<a class="headerlink" href="#numerical-keypad" title="Permalink to this headline">#</a></h2>
+<h2>Numerical Keypad<a class="headerlink" href="#numerical-keypad" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">&quot;keypad -&quot;</span>
 <span class="linenos"> 2</span><span class="s2">&quot;keypad ,&quot;</span>
 <span class="linenos"> 3</span><span class="s2">&quot;keypad :&quot;</span>
@@ -561,7 +489,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="application-control-keypad">
-<h2>Application Control Keypad<a class="headerlink" href="#application-control-keypad" title="Permalink to this headline">#</a></h2>
+<h2>Application Control Keypad<a class="headerlink" href="#application-control-keypad" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="s2">&quot;ac back&quot;</span>
 <span class="linenos">2</span><span class="s2">&quot;ac bookmarks&quot;</span>
 <span class="linenos">3</span><span class="s2">&quot;ac forward&quot;</span>
@@ -573,7 +501,7 @@ Note that names are case-sensitive.</p>
 </div>
 </section>
 <section id="uncommon">
-<h2>Uncommon<a class="headerlink" href="#uncommon" title="Permalink to this headline">#</a></h2>
+<h2>Uncommon<a class="headerlink" href="#uncommon" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">&quot;audiomute&quot;</span>
 <span class="linenos"> 2</span><span class="s2">&quot;audionext&quot;</span>
 <span class="linenos"> 3</span><span class="s2">&quot;audioplay&quot;</span>
@@ -727,6 +655,7 @@ Note that names are case-sensitive.</p>
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>

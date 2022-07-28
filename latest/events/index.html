@@ -1,26 +1,26 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Event Details" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rubato.app/events.html" />
+  <meta property="og:url" content="https://docs.rubato.app/events.html" />
   <meta property="og:site_name" content="rubato docs" />
   <meta property="og:description" content="Events can be broadcast with rb.Radio.broadcast():>>> rb.Radio.broadcast(&quot;EVENT_NAME&quot;, {data}) rubato broadcasts some events already, but you can also define your own events using this function! These events can also be listened to with rb.Radio.listen(). Here is an example of how you can listen ..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="next" title="Key Names" href="../key-names/" /><link rel="prev" title="Full API Documentation" href="../api/" />
-        <link rel="canonical" href="https://rubato.app/events.html" />
+        <link rel="canonical" href="https://docs.rubato.app/events.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.06.04.1"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
         <title>Event Details - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     
@@ -69,6 +69,11 @@
 
     gtag("config", "G-WM5S826BXJ");
 </script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
 </head>
   <body>
     
@@ -212,87 +217,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
-</div><div class="sidebar-tree">
-    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-    <ul id="versions" class="current"></ul>
-    <script>
-        // Add any branches to appear in the side pane here, tags will be added below
-        // Will only appear if docs are built and pushed in gh-pages
-        var versions = ["nightly"];
-        var dirs = new Set();
-        window.latest = "";
-
-        function addVersion(name) {
-            if (dirs.has(name)) {
-                var li = document.createElement("li");
-                li.classList.add("toctree-l1");
-                var a = document.createElement("a");
-                a.classList.add("reference", "internal");
-                window.current = window.location.pathname.split("/")[1];
-                if (name == current || (current == "latest" && name == latest)) {
-                    a.classList.add("current");
-                    li.classList.add("current", "current-page");
-                }
-
-                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
-
-                reader = new XMLHttpRequest();
-                reader.open("get", ideal, false);
-
-                reader.onreadystatechange = () => {
-                    if (reader.readyState === 4) {
-                        //check to see whether request for the file failed or succeeded
-                        if (reader.status == 200 || reader.status == 0) {
-                            a.href = ideal;
-                            return;
-                        } else {
-                            a.href = `/${name}/intro`;
-                            return;
-                        }
-                    }
-                };
-
-                try {
-                    reader.send();
-                } catch (e) {}
-
-                if (name == "nightly") {
-                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                } else if (name == latest) {
-                    a.innerText = `${name} (Latest)`;
-                } else {
-                    a.innerText = name;
-                }
-                li.appendChild(a);
-                document.getElementById("versions").appendChild(li);
-            }
-        }
-        Promise.all([
-            // Find gh-pages directories and populate `dirs`
-            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.type == "dir") dirs.add(e.name);
-                    }),
-                ),
-            // Add tags to `versions`
-            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.name > latest) {
-                            window.latest = e.name;
-                        }
-                        versions.push(e.name);
-                    }),
-                ),
-        ]).then((_) => {
-            versions.forEach(addVersion);
-            genWarning();
-        });
-    </script>
-</div></div>
+</div><div id="versionSidebarInclude"></div>
+<script>
+    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+</script></div>
       </div>
       
     </div>
@@ -349,7 +277,7 @@
     }
 </script>
 <section id="event-details">
-<h1>Event Details<a class="headerlink" href="#event-details" title="Permalink to this headline">#</a></h1>
+<h1>Event Details<a class="headerlink" href="#event-details" title="Permalink to this heading">#</a></h1>
 <p>Events can be broadcast with <a class="reference internal" href="../api/#rubato.utils.radio.Radio.broadcast" title="rubato.utils.radio.Radio.broadcast"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Radio.broadcast()</span></code></a>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rb</span><span class="o">.</span><span class="n">Radio</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="s2">&quot;EVENT_NAME&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">data</span><span class="p">})</span>
 </pre></div>
@@ -366,7 +294,7 @@ of how you can listen for a key down event:</p>
 </div>
 <p>Below is a list of all the events that are broadcast by rubato:</p>
 <section id="key-events">
-<h2>Key Events<a class="headerlink" href="#key-events" title="Permalink to this headline">#</a></h2>
+<h2>Key Events<a class="headerlink" href="#key-events" title="Permalink to this heading">#</a></h2>
 <p>There are 3 key events that are broadcast.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;KEYUP&quot;</span> <span class="c1"># Fired when a key is released</span>
 <span class="s2">&quot;KEYDOWN&quot;</span> <span class="c1"># Fired when a key is pressed</span>
@@ -384,7 +312,7 @@ of how you can listen for a key down event:</p>
 </div>
 </section>
 <section id="window-events">
-<h2>Window Events<a class="headerlink" href="#window-events" title="Permalink to this headline">#</a></h2>
+<h2>Window Events<a class="headerlink" href="#window-events" title="Permalink to this heading">#</a></h2>
 <p>There is 1 window event that is broadcast.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;RESIZE&quot;</span> <span class="c1"># Fired when the window is resized</span>
 </pre></div>
@@ -400,7 +328,7 @@ of how you can listen for a key down event:</p>
 </div>
 </section>
 <section id="camera-events">
-<h2>Camera Events<a class="headerlink" href="#camera-events" title="Permalink to this headline">#</a></h2>
+<h2>Camera Events<a class="headerlink" href="#camera-events" title="Permalink to this heading">#</a></h2>
 <p>There is 1 camera event that is broadcast.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;ZOOM&quot;</span> <span class="c1"># Fired when the camera zoom changes</span>
 </pre></div>
@@ -408,7 +336,7 @@ of how you can listen for a key down event:</p>
 <p>No additional information is given.</p>
 </section>
 <section id="system-events">
-<h2>System Events<a class="headerlink" href="#system-events" title="Permalink to this headline">#</a></h2>
+<h2>System Events<a class="headerlink" href="#system-events" title="Permalink to this heading">#</a></h2>
 <p>There is 1 system event that is broadcast</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;EXIT&quot;</span> <span class="c1"># Fires right before the program exit</span>
 </pre></div>
@@ -493,6 +421,7 @@ of how you can listen for a key down event:</p>
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>

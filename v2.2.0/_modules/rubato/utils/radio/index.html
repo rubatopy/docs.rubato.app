@@ -1,17 +1,17 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="search" title="Search" href="../../../../search/" />
-        <link rel="canonical" href="https://rubato.app/_modules/rubato/utils/radio.html" />
+        <link rel="canonical" href="https://docs.rubato.app/_modules/rubato/utils/radio.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.06.04.1"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
         <title>rubato.utils.radio - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
     
@@ -60,6 +60,11 @@
 
     gtag("config", "G-WM5S826BXJ");
 </script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
 </head>
   <body>
     
@@ -203,87 +208,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
-</div><div class="sidebar-tree">
-    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-    <ul id="versions" class="current"></ul>
-    <script>
-        // Add any branches to appear in the side pane here, tags will be added below
-        // Will only appear if docs are built and pushed in gh-pages
-        var versions = ["nightly"];
-        var dirs = new Set();
-        window.latest = "";
-
-        function addVersion(name) {
-            if (dirs.has(name)) {
-                var li = document.createElement("li");
-                li.classList.add("toctree-l1");
-                var a = document.createElement("a");
-                a.classList.add("reference", "internal");
-                window.current = window.location.pathname.split("/")[1];
-                if (name == current || (current == "latest" && name == latest)) {
-                    a.classList.add("current");
-                    li.classList.add("current", "current-page");
-                }
-
-                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
-
-                reader = new XMLHttpRequest();
-                reader.open("get", ideal, false);
-
-                reader.onreadystatechange = () => {
-                    if (reader.readyState === 4) {
-                        //check to see whether request for the file failed or succeeded
-                        if (reader.status == 200 || reader.status == 0) {
-                            a.href = ideal;
-                            return;
-                        } else {
-                            a.href = `/${name}/intro`;
-                            return;
-                        }
-                    }
-                };
-
-                try {
-                    reader.send();
-                } catch (e) {}
-
-                if (name == "nightly") {
-                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                } else if (name == latest) {
-                    a.innerText = `${name} (Latest)`;
-                } else {
-                    a.innerText = name;
-                }
-                li.appendChild(a);
-                document.getElementById("versions").appendChild(li);
-            }
-        }
-        Promise.all([
-            // Find gh-pages directories and populate `dirs`
-            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.type == "dir") dirs.add(e.name);
-                    }),
-                ),
-            // Add tags to `versions`
-            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.name > latest) {
-                            window.latest = e.name;
-                        }
-                        versions.push(e.name);
-                    }),
-                ),
-        ]).then((_) => {
-            versions.forEach(addVersion);
-            genWarning();
-        });
-    </script>
-</div></div>
+</div><div id="versionSidebarInclude"></div>
+<script>
+    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+</script></div>
       </div>
       
     </div>
@@ -507,6 +435,7 @@
 </div><script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/scripts/furo.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>

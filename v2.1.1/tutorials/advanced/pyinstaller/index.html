@@ -1,26 +1,27 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Bundling to an Application" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rubato.app/tutorials/advanced/pyinstaller.html" />
+  <meta property="og:url" content="https://docs.rubato.app/tutorials/advanced/pyinstaller.html" />
   <meta property="og:site_name" content="rubato docs" />
   <meta property="og:description" content="Say you’ve just made an amazing game in Python and you want to share it with the world. You would need to share the Python file, make sure you add all of your sprites and tell your users to install python and the needed dependencies. This isn’t very user friendly. Instead with rubato, you can bun..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="prev" title="Pixel Mutation" href="../pixel_mutation/" />
+        <link rel="canonical" href="https://docs.rubato.app/tutorials/advanced/pyinstaller.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
         <title>Bundling to an Application - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
     
     
@@ -36,22 +37,24 @@
   --font-stack: Fredoka, sans-serif;
   
   }
-  body[data-theme="dark"] {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  --color-brand-primary: #ff9484;
-  --color-brand-content: #ff9484;
-  --color-api-name: #ff9484;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) {
+  @media not print {
+    body[data-theme="dark"] {
       --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
   --color-brand-primary: #ff9484;
   --color-brand-content: #ff9484;
   --color-api-name: #ff9484;
   
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+      }
     }
   }
 </style>
@@ -66,26 +69,29 @@
 
     gtag("config", "G-WM5S826BXJ");
 </script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
 </head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" />
-      <line x1="4" y1="6" x2="20" y2="6" />
-      <line x1="10" y1="12" x2="20" y2="12" />
-      <line x1="6" y1="18" x2="20" y2="18" />
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
     </svg>
   </symbol>
   <symbol id="svg-menu" viewBox="0 0 24 24">
     <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
       <line x1="3" y1="12" x2="21" y2="12"></line>
       <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -94,14 +100,14 @@
   </symbol>
   <symbol id="svg-arrow-right" viewBox="0 0 24 24">
     <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>
   </symbol>
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -116,7 +122,7 @@
   </symbol>
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
@@ -124,7 +130,7 @@
   </symbol>
   <symbol id="svg-sun-half" viewBox="0 0 24 24">
     <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <circle cx="12" cy="12" r="9" />
@@ -212,87 +218,10 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Bundling to an Application</a></li>
 </ul>
 
-</div><div class="sidebar-tree">
-    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-    <ul id="versions" class="current"></ul>
-    <script>
-        // Add any branches to appear in the side pane here, tags will be added below
-        // Will only appear if docs are built and pushed in gh-pages
-        var versions = ["nightly"];
-        var dirs = new Set();
-        window.latest = "";
-
-        function addVersion(name) {
-            if (dirs.has(name)) {
-                var li = document.createElement("li");
-                li.classList.add("toctree-l1");
-                var a = document.createElement("a");
-                a.classList.add("reference", "internal");
-                window.current = window.location.pathname.split("/")[1];
-                if (name == current || (current == "latest" && name == latest)) {
-                    a.classList.add("current");
-                    li.classList.add("current", "current-page");
-                }
-
-                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
-
-                reader = new XMLHttpRequest();
-                reader.open("get", ideal, false);
-
-                reader.onreadystatechange = () => {
-                    if (reader.readyState === 4) {
-                        //check to see whether request for the file failed or succeeded
-                        if (reader.status == 200 || reader.status == 0) {
-                            a.href = ideal;
-                            return;
-                        } else {
-                            a.href = `/${name}/intro`;
-                            return;
-                        }
-                    }
-                };
-
-                try {
-                    reader.send();
-                } catch (e) {}
-
-                if (name == "nightly") {
-                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                } else if (name == latest) {
-                    a.innerText = `${name} (Latest)`;
-                } else {
-                    a.innerText = name;
-                }
-                li.appendChild(a);
-                document.getElementById("versions").appendChild(li);
-            }
-        }
-        Promise.all([
-            // Find gh-pages directories and populate `dirs`
-            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.type == "dir") dirs.add(e.name);
-                    }),
-                ),
-            // Add tags to `versions`
-            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.name > latest) {
-                            window.latest = e.name;
-                        }
-                        versions.push(e.name);
-                    }),
-                ),
-        ]).then((_) => {
-            versions.forEach(addVersion);
-            genWarning();
-        });
-    </script>
-</div></div>
+</div><div id="versionSidebarInclude"></div>
+<script>
+    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+</script></div>
       </div>
       
     </div>
@@ -300,6 +229,12 @@
   <div class="main">
     <div class="content">
       <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
@@ -329,9 +264,11 @@
 
             let content = document.createElement("p");
             if (current == "nightly") {
-                content.innerText = "You're reading the documentation for a development version. For the latest released version, ";
+                content.innerText =
+                    "You're reading the documentation for a development version. For the latest released version, ";
             } else {
-                content.innerText = "You're reading an old version of this documentation. If you want up-to-date information, ";
+                content.innerText =
+                    "You're reading an old version of this documentation. If you want up-to-date information, ";
             }
             content.innerHTML += `please have a look at <a href='/latest'>${window.latest}</a>.`;
 
@@ -341,7 +278,7 @@
     }
 </script>
 <section id="bundling-to-an-application">
-<h1>Bundling to an Application<a class="headerlink" href="#bundling-to-an-application" title="Permalink to this headline">¶</a></h1>
+<h1>Bundling to an Application<a class="headerlink" href="#bundling-to-an-application" title="Permalink to this heading">#</a></h1>
 <p>Say you’ve just made an amazing game in Python and you want to share it with the world. You would need to share the
 Python file, make sure you add all of your sprites and tell your users to install python and the needed dependencies. This
 isn’t very user friendly.</p>
@@ -367,17 +304,17 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="d8cfb0a1-a2b2-414c-ac5f-c26485fe76d9" name="252bf320-9c61-4bfb-a66a-112683368bfc" type="radio"/>
-<label class="sd-tab-label" for="d8cfb0a1-a2b2-414c-ac5f-c26485fe76d9">
+<input checked="checked" id="14727535-675e-4db4-b5bf-9c8fcfd87b6d" name="03be8669-98f3-4428-bb63-6b43fa1ab07e" type="radio">
+</input><label class="sd-tab-label" for="14727535-675e-4db4-b5bf-9c8fcfd87b6d">
 Windows</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">"resources;resources"</span> main.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="eb515ad0-6f8e-4c32-8151-f403e791c565" name="252bf320-9c61-4bfb-a66a-112683368bfc" type="radio"/>
-<label class="sd-tab-label" for="eb515ad0-6f8e-4c32-8151-f403e791c565">
+<input id="724b3e46-2fdd-4f67-8348-0d271c642c06" name="03be8669-98f3-4428-bb63-6b43fa1ab07e" type="radio">
+</input><label class="sd-tab-label" for="724b3e46-2fdd-4f67-8348-0d271c642c06">
 Mac OS X</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">"resources:resources"</span> main.py
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
@@ -399,7 +336,7 @@ built-in functions make sure to wrap your relative paths with the <code class="d
 <blockquote>
 <div><p>Tells the app to run in a window. Without this, the app will run in a terminal.</p>
 </div></blockquote>
-<p><code class="docutils literal notranslate"><span class="pre">--add-data</span> <span class="pre">"src;dest"</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">--add-data</span> <span class="pre">&quot;src;dest&quot;</span></code></p>
 <blockquote>
 <div><p>Add data to the app. This is a way to add resources to the app. src is the path to the resource or folder and dest is where it will be
 accessible to Python (relative to the specified python file).</p>
@@ -414,7 +351,7 @@ accessible to Python (relative to the specified python file).</p>
 app file itself. For Windows, this needs to be a <code class="docutils literal notranslate"><span class="pre">.ico</span></code> file. For Mac, this needs to be a <code class="docutils literal notranslate"><span class="pre">.icns</span></code> file.</p>
 </div></blockquote>
 <section id="more-information">
-<h2>More Information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h2>
+<h2>More Information<a class="headerlink" href="#more-information" title="Permalink to this heading">#</a></h2>
 <p>For more information on bundling, see the following links:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://www.pyinstaller.org/">PyInstaller Homepage</a></p></li>
@@ -427,27 +364,37 @@ app file itself. For Windows, this needs to be a <code class="docutils literal n
       </div>
       <footer>
         
-        <div class="related-pages">
-          
-          <a class="prev-page" href="../pixel_mutation/">
-              <svg><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Pixel Mutation</div>
-                
-              </div>
+<div class="related-pages">
+     <a class="prev-page" href="../pixel_mutation/">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+            <div class="context">
+                <span>Previous</span>
+            </div>
+            
+            <div class="title">Pixel Mutation</div>
+            
+        </div>
+    </a>
+</div>
+<div class="bottom-of-page">
+    <div class="left-details">
+        <div class="copyright"> Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave
+        </div>
+    </div>
+    <div class="right-details">
+        <div class="icons"><a class="muted-link" href="https://github.com/rubatopy/rubato" aria-label="On GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    ></path>
+                </svg>
             </a>
         </div>
+    </div>
+</div>
 
-        <div class="related-information">
-              Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave |
-          Created using <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-        </div>
-        
       </footer>
     </div>
     <aside class="toc-drawer">
@@ -478,6 +425,7 @@ app file itself. For Windows, this needs to be a <code class="docutils literal n
 </div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/scripts/furo.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>

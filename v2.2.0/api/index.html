@@ -1,26 +1,26 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Full API Documentation" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rubato.app/api.html" />
+  <meta property="og:url" content="https://docs.rubato.app/api.html" />
   <meta property="og:site_name" content="rubato docs" />
   <meta property="og:description" content="rubato is a modern 2D game engine for python. Accurate fixed-step physics simulations, robust scene and game object management, event listener system and more all come prepackaged. Fundamentally, rubato is built developer-focused. From intricate rigidbody simulations to 2D games, rubato streamlin..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="next" title="Event Details" href="../events/" /><link rel="prev" title="Getting Started" href="../intro/" />
-        <link rel="canonical" href="https://rubato.app/api.html" />
+        <link rel="canonical" href="https://docs.rubato.app/api.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.06.04.1"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
         <title>Full API Documentation - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     
@@ -69,6 +69,11 @@
 
     gtag("config", "G-WM5S826BXJ");
 </script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
 </head>
   <body>
     
@@ -212,87 +217,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
-</div><div class="sidebar-tree">
-    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-    <ul id="versions" class="current"></ul>
-    <script>
-        // Add any branches to appear in the side pane here, tags will be added below
-        // Will only appear if docs are built and pushed in gh-pages
-        var versions = ["nightly"];
-        var dirs = new Set();
-        window.latest = "";
-
-        function addVersion(name) {
-            if (dirs.has(name)) {
-                var li = document.createElement("li");
-                li.classList.add("toctree-l1");
-                var a = document.createElement("a");
-                a.classList.add("reference", "internal");
-                window.current = window.location.pathname.split("/")[1];
-                if (name == current || (current == "latest" && name == latest)) {
-                    a.classList.add("current");
-                    li.classList.add("current", "current-page");
-                }
-
-                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
-
-                reader = new XMLHttpRequest();
-                reader.open("get", ideal, false);
-
-                reader.onreadystatechange = () => {
-                    if (reader.readyState === 4) {
-                        //check to see whether request for the file failed or succeeded
-                        if (reader.status == 200 || reader.status == 0) {
-                            a.href = ideal;
-                            return;
-                        } else {
-                            a.href = `/${name}/intro`;
-                            return;
-                        }
-                    }
-                };
-
-                try {
-                    reader.send();
-                } catch (e) {}
-
-                if (name == "nightly") {
-                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                } else if (name == latest) {
-                    a.innerText = `${name} (Latest)`;
-                } else {
-                    a.innerText = name;
-                }
-                li.appendChild(a);
-                document.getElementById("versions").appendChild(li);
-            }
-        }
-        Promise.all([
-            // Find gh-pages directories and populate `dirs`
-            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.type == "dir") dirs.add(e.name);
-                    }),
-                ),
-            // Add tags to `versions`
-            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.name > latest) {
-                            window.latest = e.name;
-                        }
-                        versions.push(e.name);
-                    }),
-                ),
-        ]).then((_) => {
-            versions.forEach(addVersion);
-            genWarning();
-        });
-    </script>
-</div></div>
+</div><div id="versionSidebarInclude"></div>
+<script>
+    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+</script></div>
       </div>
       
     </div>
@@ -349,7 +277,7 @@
     }
 </script>
 <section id="full-api-documentation">
-<h1>Full API Documentation<a class="headerlink" href="#full-api-documentation" title="Permalink to this headline">#</a></h1>
+<h1>Full API Documentation<a class="headerlink" href="#full-api-documentation" title="Permalink to this heading">#</a></h1>
 <p>rubato is a modern 2D game engine for python. Accurate fixed-step physics simulations, robust scene and game object management, event listener system and more all come prepackaged.</p>
 <p>Fundamentally, rubato is built developer-focused. From intricate rigidbody simulations to 2D games, rubato streamlines development for beginners and the poweruser. And all that finally with some legible documentation.</p>
 <div class="toctree-wrapper compound">
@@ -389,7 +317,7 @@ Defaults to None.</p></li>
 </dd></dl>
 
 <section id="module-rubato.game">
-<span id="game"></span><span id="game-class"></span><h2>Game<a class="headerlink" href="#module-rubato.game" title="Permalink to this headline">#</a></h2>
+<span id="game"></span><span id="game-class"></span><h2>Game<a class="headerlink" href="#module-rubato.game" title="Permalink to this heading">#</a></h2>
 <p>The main game module. It controls everything in the game.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.game.GameProperties">
@@ -420,7 +348,7 @@ To use the property methods here, simply access them as you would any other Game
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.game.GameProperties.camera">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">camera</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.camera.Camera" title="rubato.classes.camera.Camera"><span class="pre">rubato.classes.camera.Camera</span></a></em><a class="headerlink" href="#rubato.game.GameProperties.camera" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">camera</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.camera.Camera" title="rubato.classes.camera.Camera"><span class="pre">Camera</span></a></em><a class="headerlink" href="#rubato.game.GameProperties.camera" title="Permalink to this definition">#</a></dt>
 <dd><p>A shortcut getter allowing easy access to the current camera.
 This is a get-only property.</p>
 <div class="admonition note">
@@ -519,7 +447,7 @@ Will always process timed calls.</p>
 
 </section>
 <section id="scenes-and-their-management">
-<h2>Scenes and Their Management<a class="headerlink" href="#scenes-and-their-management" title="Permalink to this headline">#</a></h2>
+<h2>Scenes and Their Management<a class="headerlink" href="#scenes-and-their-management" title="Permalink to this heading">#</a></h2>
 <p><a class="reference internal" href="#rubato.classes.scene.Scene" title="rubato.classes.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> hold a collection of Game Objects and Groups. It also manages a
 <a class="reference internal" href="#rubato.classes.camera.Camera" title="rubato.classes.camera.Camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code></a>. Scenes are used to compartmentalize code. For example,
 you could have each level of your game on a different scene. Then to switch levels you would switch scenes.
@@ -529,7 +457,7 @@ easily.</p>
 further compartmentalize items. For example, items in 2 different groups won’t collide with each other. In this tutorial,
 we won’t be using Groups as we don’t need this functionality here.</p>
 <section id="scenemanager">
-<span id="id1"></span><h3>SceneManager<a class="headerlink" href="#scenemanager" title="Permalink to this headline">#</a></h3>
+<span id="id1"></span><h3>SceneManager<a class="headerlink" href="#scenemanager" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.classes.scene_manager"></span><p>The Scene Manager houses a collection of scenes and allows switching between scenes.
 It also handles drawing and updating the current scene.</p>
 <dl class="py class">
@@ -551,7 +479,7 @@ manager. Accessed by scene id.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.scene_manager.SceneManager.current">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.scene.Scene" title="rubato.classes.scene.Scene"><span class="pre">rubato.classes.scene.Scene</span></a></em><a class="headerlink" href="#rubato.classes.scene_manager.SceneManager.current" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.scene.Scene" title="rubato.classes.scene.Scene"><span class="pre">Scene</span></a></em><a class="headerlink" href="#rubato.classes.scene_manager.SceneManager.current" title="Permalink to this definition">#</a></dt>
 <dd><p>The current scene.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -634,7 +562,7 @@ If the manager is empty the current scene will be updated.</p>
 
 </section>
 <section id="scene">
-<span id="id2"></span><h3>Scene<a class="headerlink" href="#scene" title="Permalink to this headline">#</a></h3>
+<span id="id2"></span><h3>Scene<a class="headerlink" href="#scene" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.classes.scene"></span><p>The Scene class which is a collection of groups. It also houses the current scene camera.
 Scenes are built with a root group that everything is added to.</p>
 <dl class="py class">
@@ -780,7 +708,7 @@ Is empty by default an can be overridden.</p>
 </dd></dl>
 
 <section id="camera">
-<span id="id3"></span><h4>Camera<a class="headerlink" href="#camera" title="Permalink to this headline">#</a></h4>
+<span id="id3"></span><h4>Camera<a class="headerlink" href="#camera" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.classes.camera"></span><p>The Camera module handles where things are drawn.
 A camera can zoom, pan, and travel along the z-index.
 Items only render if their z-index is not more than that of the camera’s.</p>
@@ -871,7 +799,7 @@ Items only render if their z-index is not more than that of the camera’s.</p>
 </section>
 </section>
 <section id="group">
-<span id="id4"></span><h3>Group<a class="headerlink" href="#group" title="Permalink to this headline">#</a></h3>
+<span id="id4"></span><h3>Group<a class="headerlink" href="#group" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.classes.group"></span><p>Groups contain game objects or other groups and allow separation between game objects.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.group.Group">
@@ -1012,14 +940,14 @@ Called automatically by rubato as long as the group is added to a scene.</p>
 </section>
 </section>
 <section id="game-object-and-components">
-<h2>Game Object and Components<a class="headerlink" href="#game-object-and-components" title="Permalink to this headline">#</a></h2>
+<h2>Game Object and Components<a class="headerlink" href="#game-object-and-components" title="Permalink to this heading">#</a></h2>
 <p><a class="reference internal" href="#rubato.classes.game_object.GameObject" title="rubato.classes.game_object.GameObject"><code class="xref py py-func docutils literal notranslate"><span class="pre">Game</span> <span class="pre">Objects</span></code></a> are the main item in a game. They hold Components, have a position, and
 have a z-index. By themselves, they have very little functionality.</p>
 <p><a class="reference internal" href="#rubato.classes.components.component.Component" title="rubato.classes.components.component.Component"><code class="xref py py-func docutils literal notranslate"><span class="pre">Components</span></code></a> are how Game Objects get their functionality. Each component adds or
 changes something about the Game Object. For example, an Image component draws an image from your filesystem to the game at the
 Game Object’s position.</p>
 <section id="module-rubato.classes.game_object">
-<span id="game-object"></span><span id="gameobj"></span><h3>Game Object<a class="headerlink" href="#module-rubato.classes.game_object" title="Permalink to this headline">#</a></h3>
+<span id="game-object"></span><span id="gameobj"></span><h3>Game Object<a class="headerlink" href="#module-rubato.classes.game_object" title="Permalink to this heading">#</a></h3>
 <p>A game object is a basic element that holds components, postion, and z_index.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.game_object.GameObject">
@@ -1194,7 +1122,7 @@ game object.</p>
 
 </section>
 <section id="components">
-<span id="id5"></span><h3>Components<a class="headerlink" href="#components" title="Permalink to this headline">#</a></h3>
+<span id="id5"></span><h3>Components<a class="headerlink" href="#components" title="Permalink to this heading">#</a></h3>
 <p>The default Component class.</p>
 <span class="target" id="module-rubato.classes.components.component"></span><p>The component module that represents the template for all components.</p>
 <div class="admonition attention">
@@ -1304,7 +1232,7 @@ not be used directly. Instead create another class and extend from this one.</p>
 </dd></dl>
 
 <section id="image">
-<span id="id6"></span><h4>Image<a class="headerlink" href="#image" title="Permalink to this headline">#</a></h4>
+<span id="id6"></span><h4>Image<a class="headerlink" href="#image" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.classes.components.image"></span><p>The image component that renders an image from the filesystem.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.image.Image">
@@ -1350,7 +1278,7 @@ not be used directly. Instead create another class and extend from this one.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.image.Image.scale">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.image.Image.scale" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.image.Image.scale" title="Permalink to this definition">#</a></dt>
 <dd><p>The scale of the image.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -1512,7 +1440,7 @@ not be used directly. Instead create another class and extend from this one.</p>
 
 </section>
 <section id="raster">
-<span id="id7"></span><h4>Raster<a class="headerlink" href="#raster" title="Permalink to this headline">#</a></h4>
+<span id="id7"></span><h4>Raster<a class="headerlink" href="#raster" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.classes.components.raster"></span><p>A Raster is a grid of pixels that you can draw shapes onto or edit individual pixels.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.raster.Raster">
@@ -1578,7 +1506,7 @@ set, it cannot be changed. You can however change the scale and rotation of the 
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.raster.Raster.rendered_size">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rendered_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.raster.Raster.rendered_size" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rendered_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.raster.Raster.rendered_size" title="Permalink to this definition">#</a></dt>
 <dd><p>The size of the raster after scaling (ie. the size it will be rendered at).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -1589,7 +1517,7 @@ set, it cannot be changed. You can however change the scale and rotation of the 
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.raster.Raster.scale">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.raster.Raster.scale" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.raster.Raster.scale" title="Permalink to this definition">#</a></dt>
 <dd><p>The scale of the raster.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -1739,7 +1667,7 @@ set, it cannot be changed. You can however change the scale and rotation of the 
 
 </section>
 <section id="text">
-<span id="id8"></span><h4>Text<a class="headerlink" href="#text" title="Permalink to this headline">#</a></h4>
+<span id="id8"></span><h4>Text<a class="headerlink" href="#text" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.classes.components.text"></span><p>A text component.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.text.Text">
@@ -1786,7 +1714,7 @@ Defaults to Vector(0, 0).</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.text.Text.anchor">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anchor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.text.Text.anchor" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anchor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.text.Text.anchor" title="Permalink to this definition">#</a></dt>
 <dd><p>The anchor vector of the text.</p>
 <p>This controls the position of the text relative to the game object. Is a vector where the x value
 controls the x anchor and the y value controls the y anchor. The values for each can be either -1, 0 or 1. This
@@ -1820,7 +1748,7 @@ move the text so that it’s top left corner is at the game object’s center.</
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.text.Text.font_object">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font_object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.font.Font" title="rubato.utils.font.Font"><span class="pre">rubato.utils.font.Font</span></a></em><a class="headerlink" href="#rubato.classes.components.text.Text.font_object" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font_object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.font.Font" title="rubato.utils.font.Font"><span class="pre">Font</span></a></em><a class="headerlink" href="#rubato.classes.components.text.Text.font_object" title="Permalink to this definition">#</a></dt>
 <dd><p>The font object of the text.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -1846,7 +1774,7 @@ move the text so that it’s top left corner is at the game object’s center.</
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.text.Text.font_color">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font_color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="headerlink" href="#rubato.classes.components.text.Text.font_color" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font_color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="headerlink" href="#rubato.classes.components.text.Text.font_color" title="Permalink to this definition">#</a></dt>
 <dd><p>The font color.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -1900,7 +1828,7 @@ move the text so that it’s top left corner is at the game object’s center.</
 
 </section>
 <section id="button">
-<span id="id9"></span><h4>Button<a class="headerlink" href="#button" title="Permalink to this headline">#</a></h4>
+<span id="id9"></span><h4>Button<a class="headerlink" href="#button" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.classes.components.button"></span><p>A button component that can be used in UI or to detect mouse presses in an area.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.button.Button">
@@ -2008,11 +1936,11 @@ move the text so that it’s top left corner is at the game object’s center.</
 
 </section>
 <section id="module-rubato.classes.components.slider">
-<span id="id10"></span><span id="slider"></span><h4>Slider<a class="headerlink" href="#module-rubato.classes.components.slider" title="Permalink to this headline">#</a></h4>
+<span id="id10"></span><span id="slider"></span><h4>Slider<a class="headerlink" href="#module-rubato.classes.components.slider" title="Permalink to this heading">#</a></h4>
 <p>A slider component that can be used in UI.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.slider.Slider">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Slider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slider_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slider_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(0,</span> <span class="pre">-</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onclick</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onrelease</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onhover</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onexit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">:</span> <span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/slider/#Slider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.slider.Slider" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Slider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slider_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slider_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(0,</span> <span class="pre">-1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onclick</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onrelease</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onhover</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onexit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">:</span> <span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/slider/#Slider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.slider.Slider" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#rubato.classes.components.component.Component" title="rubato.classes.components.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 <p>A Slider component. Still needs to be added to a <a class="reference internal" href="#rubato.classes.game_object.GameObject" title="rubato.classes.game_object.GameObject"><code class="xref py py-func docutils literal notranslate"><span class="pre">GameObject</span></code></a>.</p>
 <dl class="field-list simple">
@@ -2157,7 +2085,7 @@ move the text so that it’s top left corner is at the game object’s center.</
 
 </section>
 <section id="animation">
-<span id="id11"></span><h4>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">#</a></h4>
+<span id="id11"></span><h4>Animation<a class="headerlink" href="#animation" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.classes.components.animation"></span><p>This is the animation component module for game objects.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.animation.Animation">
@@ -2297,7 +2225,7 @@ to None.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.animation.Animation.anim_frame">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.components.image.Image" title="rubato.classes.components.image.Image"><span class="pre">rubato.classes.components.image.Image</span></a></em><a class="headerlink" href="#rubato.classes.components.animation.Animation.anim_frame" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.components.image.Image" title="rubato.classes.components.image.Image"><span class="pre">Image</span></a></em><a class="headerlink" href="#rubato.classes.components.animation.Animation.anim_frame" title="Permalink to this definition">#</a></dt>
 <dd><p>The current animation frame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -2308,7 +2236,7 @@ to None.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.classes.components.animation.Animation.set_current_state">
-<span class="sig-name descname"><span class="pre">set_current_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/animation/#Animation.set_current_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.animation.Animation.set_current_state" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">set_current_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/animation/#Animation.set_current_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.animation.Animation.set_current_state" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the current animation state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2436,7 +2364,7 @@ Use -1 to never freeze. Defaults to -1.</p></li>
 </dd></dl>
 
 <section id="spritesheet">
-<span id="id12"></span><h5>Spritesheet<a class="headerlink" href="#spritesheet" title="Permalink to this headline">#</a></h5>
+<span id="id12"></span><h5>Spritesheet<a class="headerlink" href="#spritesheet" title="Permalink to this heading">#</a></h5>
 <span class="target" id="module-rubato.classes.components.spritesheet"></span><p>A module to load, manage, and interact with spritesheets.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.spritesheet.Spritesheet">
@@ -2458,7 +2386,7 @@ grid size. Defaults to None.</p></li>
 </dl>
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.spritesheet.Spritesheet.grid_size">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grid_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.spritesheet.Spritesheet.grid_size" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grid_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.spritesheet.Spritesheet.grid_size" title="Permalink to this definition">#</a></dt>
 <dd><p>The size of the spritesheet grid (readonly).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -2469,7 +2397,7 @@ grid size. Defaults to None.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.spritesheet.Spritesheet.sprite_size">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sprite_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.spritesheet.Spritesheet.sprite_size" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sprite_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.spritesheet.Spritesheet.sprite_size" title="Permalink to this definition">#</a></dt>
 <dd><p>The size of each sprite (readonly).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -2480,7 +2408,7 @@ grid size. Defaults to None.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.spritesheet.Spritesheet.sheet">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sheet</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.components.image.Image" title="rubato.classes.components.image.Image"><span class="pre">rubato.classes.components.image.Image</span></a></em><a class="headerlink" href="#rubato.classes.components.spritesheet.Spritesheet.sheet" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sheet</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.components.image.Image" title="rubato.classes.components.image.Image"><span class="pre">Image</span></a></em><a class="headerlink" href="#rubato.classes.components.spritesheet.Spritesheet.sheet" title="Permalink to this definition">#</a></dt>
 <dd><p>The actual spritesheet image (readonly).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -2491,7 +2419,7 @@ grid size. Defaults to None.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.spritesheet.Spritesheet.sprites">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sprites</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rubato.classes.components.image.Image" title="rubato.classes.components.image.Image"><span class="pre">rubato.classes.components.image.Image</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rubato.classes.components.spritesheet.Spritesheet.sprites" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sprites</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rubato.classes.components.image.Image" title="rubato.classes.components.image.Image"><span class="pre">Image</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rubato.classes.components.spritesheet.Spritesheet.sprites" title="Permalink to this definition">#</a></dt>
 <dd><p>The list of all the sprites as images (readonly).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -2562,7 +2490,7 @@ Added alphabetically. Default is the first sheet loaded.</p>
 </section>
 </section>
 <section id="hitbox">
-<span id="id13"></span><h4>Hitbox<a class="headerlink" href="#hitbox" title="Permalink to this headline">#</a></h4>
+<span id="id13"></span><h4>Hitbox<a class="headerlink" href="#hitbox" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.classes.components.hitbox"></span><p>Various hitbox components that enable collisions</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.hitbox.Hitbox">
@@ -2674,7 +2602,7 @@ Instead, use Polygon, Rectangle, or Circle, which inherit Hitbox properties.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.classes.components.hitbox.Hitbox.pos">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.hitbox.Hitbox.pos" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.hitbox.Hitbox.pos" title="Permalink to this definition">#</a></dt>
 <dd><p>The getter method for the position of the hitbox’s center</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -2714,7 +2642,7 @@ Instead, use Polygon, Rectangle, or Circle, which inherit Hitbox properties.</p>
 </dd></dl>
 
 <section id="rectangle">
-<span id="rect"></span><h5>Rectangle<a class="headerlink" href="#rectangle" title="Permalink to this headline">#</a></h5>
+<span id="rect"></span><h5>Rectangle<a class="headerlink" href="#rectangle" title="Permalink to this heading">#</a></h5>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.hitbox.Rectangle">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trigger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_collide</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">manifold:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_exit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">manifold:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Rectangle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Rectangle" title="Permalink to this definition">#</a></dt>
@@ -2921,7 +2849,7 @@ added to a Game Object.</p>
 
 </section>
 <section id="polygon">
-<span id="poly"></span><h5>Polygon<a class="headerlink" href="#polygon" title="Permalink to this headline">#</a></h5>
+<span id="poly"></span><h5>Polygon<a class="headerlink" href="#polygon" title="Permalink to this heading">#</a></h5>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.hitbox.Polygon">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trigger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_collide</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">manifold:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_exit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">manifold:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon" title="Permalink to this definition">#</a></dt>
@@ -3074,7 +3002,7 @@ a list of vertices. Defaults to the None.</p></li>
 
 </section>
 <section id="circle">
-<span id="id14"></span><h5>Circle<a class="headerlink" href="#circle" title="Permalink to this headline">#</a></h5>
+<span id="id14"></span><h5>Circle<a class="headerlink" href="#circle" title="Permalink to this heading">#</a></h5>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.hitbox.Circle">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trigger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_collide</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">manifold:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_exit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">manifold:</span> <span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Circle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Circle" title="Permalink to this definition">#</a></dt>
@@ -3157,12 +3085,12 @@ a list of vertices. Defaults to the None.</p></li>
 </section>
 </section>
 <section id="rigidbody">
-<span id="id15"></span><h4>RigidBody<a class="headerlink" href="#rigidbody" title="Permalink to this headline">#</a></h4>
+<span id="id15"></span><h4>RigidBody<a class="headerlink" href="#rigidbody" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.classes.components.rigidbody"></span><p>The Rigidbody component contains an implementation of rigidbody physics. They
 have hitboxes and can collide and interact with other rigidbodies.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.rigidbody.RigidBody">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RigidBody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounciness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gravity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(Math.INF,</span> <span class="pre">Math.INF)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ang_vel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">friction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">advanced</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/rigidbody/#RigidBody"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RigidBody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounciness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gravity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(Math.INF,</span> <span class="pre">Math.INF)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ang_vel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">friction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">advanced</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/rigidbody/#RigidBody"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody" title="Permalink to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#rubato.classes.components.component.Component" title="rubato.classes.components.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
 <p>A RigidBody implementation with built in physics and collisions.
 Rigidbodies require hitboxes.</p>
@@ -3429,13 +3357,13 @@ A continuous impulse is a impulse that is continuously applied over a time perio
 </section>
 </section>
 <section id="physics">
-<h2>Physics<a class="headerlink" href="#physics" title="Permalink to this headline">#</a></h2>
+<h2>Physics<a class="headerlink" href="#physics" title="Permalink to this heading">#</a></h2>
 <p>The Engine and Manifold classes comprise rubato’s collision engine. Collision and overlap tests inside groups are
 automatically handled by rubato, so these classes are here mainly for reference.</p>
 <p>In general, it is recommended that you define callback functions for Hitbox objects instead of calling Engine
 functions yourself.</p>
 <section id="engine">
-<span id="id16"></span><h3>Engine<a class="headerlink" href="#engine" title="Permalink to this headline">#</a></h3>
+<span id="id16"></span><h3>Engine<a class="headerlink" href="#engine" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.engine.Engine">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Engine</span></span><a class="reference internal" href="../_modules/rubato/classes/components/engine/#Engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.engine.Engine" title="Permalink to this definition">#</a></dt>
@@ -3576,7 +3504,7 @@ Resolves the collision using Rigidbody impulse resolution if applicable.</p>
 
 </section>
 <section id="manifold">
-<span id="id17"></span><h3>Manifold<a class="headerlink" href="#manifold" title="Permalink to this headline">#</a></h3>
+<span id="id17"></span><h3>Manifold<a class="headerlink" href="#manifold" title="Permalink to this heading">#</a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.classes.components.engine.Manifold">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Manifold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">penetration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contacts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/engine/#Manifold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.engine.Manifold" title="Permalink to this definition">#</a></dt>
@@ -3656,11 +3584,11 @@ Resolves the collision using Rigidbody impulse resolution if applicable.</p>
 </section>
 </section>
 <section id="hardware-interaction">
-<h2>Hardware Interaction<a class="headerlink" href="#hardware-interaction" title="Permalink to this headline">#</a></h2>
+<h2>Hardware Interaction<a class="headerlink" href="#hardware-interaction" title="Permalink to this heading">#</a></h2>
 <p>All of these static classes let you interact with the hardware. Either by checking for user input, drawing to the screen
 or playing a sound.</p>
 <section id="display">
-<span id="id18"></span><h3>Display<a class="headerlink" href="#display" title="Permalink to this headline">#</a></h3>
+<span id="id18"></span><h3>Display<a class="headerlink" href="#display" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.display"></span><p>Global display class that allows for easy screen and window management.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.display.DisplayProperties">
@@ -3674,7 +3602,7 @@ To use the property methods here, simply access them as you would any other <cod
 </div>
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.DisplayProperties.window_size">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">window_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.DisplayProperties.window_size" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">window_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.DisplayProperties.window_size" title="Permalink to this definition">#</a></dt>
 <dd><p>The pixel size of the physical window.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -3691,7 +3619,7 @@ lead to unexpected results. You should instead use
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.DisplayProperties.res">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">res</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.DisplayProperties.res" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">res</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.DisplayProperties.res" title="Permalink to this definition">#</a></dt>
 <dd><p>The pixel resolution of the game. This is the number of virtual
 pixels on the window.</p>
 <div class="admonition-example admonition">
@@ -3717,7 +3645,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.DisplayProperties.window_pos">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">window_pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.DisplayProperties.window_pos" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">window_pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.DisplayProperties.window_pos" title="Permalink to this definition">#</a></dt>
 <dd><p>The current position of the window in terms of screen pixels</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3728,7 +3656,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.DisplayProperties.display_ratio">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">display_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.DisplayProperties.display_ratio" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">display_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.DisplayProperties.display_ratio" title="Permalink to this definition">#</a></dt>
 <dd><p>The ratio of the renderer resolution to the window size. This is a read-only property.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -3891,7 +3819,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.top_left">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top_left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.top_left" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top_left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.top_left" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the top left of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3902,7 +3830,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.top_right">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top_right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.top_right" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top_right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.top_right" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the top right of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3913,7 +3841,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.bottom_left">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom_left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.bottom_left" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom_left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.bottom_left" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the bottom left of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3924,7 +3852,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.bottom_right">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom_right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.bottom_right" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom_right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.bottom_right" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the bottom right of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3935,7 +3863,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.top_center">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top_center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.top_center" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top_center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.top_center" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the top center of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3946,7 +3874,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.bottom_center">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom_center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.bottom_center" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom_center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.bottom_center" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the bottom center of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3957,7 +3885,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.center_left">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.center_left" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.center_left" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the center left of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3968,7 +3896,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.center_right">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.center_right" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.center_right" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the center right of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -3979,7 +3907,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.center">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.center" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.center" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the center of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -4036,7 +3964,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 </section>
 <section id="input">
-<span id="id19"></span><h3>Input<a class="headerlink" href="#input" title="Permalink to this headline">#</a></h3>
+<span id="id19"></span><h3>Input<a class="headerlink" href="#input" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.rb_input"></span><p>The Input module is the way you collect input from the user.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rb_input.Input">
@@ -4266,7 +4194,7 @@ mouse button. (button1, button2, button3, button4, button5)</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rb_input.Input.mouse_in">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mouse_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims=rubato.Vector(1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">1)</span> <span class="pre">at</span> <span class="pre">0x1fbbc3da1a0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle=0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_input/#Input.mouse_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_input.Input.mouse_in" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mouse_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_input/#Input.mouse_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_input.Input.mouse_in" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks if the mouse is inside a rectangle defined by its center
 and dimensions</p>
 <dl class="field-list simple">
@@ -4290,7 +4218,7 @@ and dimensions</p>
 
 </section>
 <section id="sound">
-<span id="id20"></span><h3>Sound<a class="headerlink" href="#sound" title="Permalink to this headline">#</a></h3>
+<span id="id20"></span><h3>Sound<a class="headerlink" href="#sound" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.sound"></span><p>A fully functional, multi-channel sound system.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.sound.Sound">
@@ -4425,10 +4353,10 @@ dictionary by filename.</p>
 </section>
 </section>
 <section id="utilities">
-<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">#</a></h2>
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this heading">#</a></h2>
 <p>These classes are utility classes that are used to make certain tasks easier.</p>
 <section id="draw">
-<span id="id21"></span><h3>Draw<a class="headerlink" href="#draw" title="Permalink to this headline">#</a></h3>
+<span id="id21"></span><h3>Draw<a class="headerlink" href="#draw" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.draw"></span><p>A static draw class for drawing things directly to the renderer.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.draw.Draw">
@@ -4539,7 +4467,7 @@ dictionary by filename.</p>
 
 </section>
 <section id="vector">
-<span id="id22"></span><h3>Vector<a class="headerlink" href="#vector" title="Permalink to this headline">#</a></h3>
+<span id="id22"></span><h3>Vector<a class="headerlink" href="#vector" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.vector"></span><p>A vector implementation.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector">
@@ -4633,7 +4561,7 @@ dictionary by filename.</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.rationalized_mag_vector">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rationalized_mag_vector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="headerlink" href="#rubato.utils.vector.Vector.rationalized_mag_vector" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rationalized_mag_vector</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.vector.Vector.rationalized_mag_vector" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a vector with the rationalized magnitude.</p>
 <div class="admonition-example admonition">
 <p class="admonition-title">Example</p>
@@ -5047,7 +4975,7 @@ If you want the function to act on itself, set this value to the reference of th
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.one">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">one</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a></em><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.one" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">one</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.one" title="Permalink to this definition">#</a></dt>
 <dd><p>A Vector with all ones</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5090,7 +5018,7 @@ If you want the function to act on itself, set this value to the reference of th
 
 </section>
 <section id="math">
-<span id="id23"></span><h3>Math<a class="headerlink" href="#math" title="Permalink to this headline">#</a></h3>
+<span id="id23"></span><h3>Math<a class="headerlink" href="#math" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.rb_math"></span><p>The math module includes some helper functions for commonly used equations.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rb_math.Math">
@@ -5379,7 +5307,7 @@ Code by David Eppstein, UC Irvine, 28 Feb 2002
 </dd></dl>
 
 <section id="noise">
-<span id="id24"></span><h4>Noise<a class="headerlink" href="#noise" title="Permalink to this headline">#</a></h4>
+<span id="id24"></span><h4>Noise<a class="headerlink" href="#noise" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.utils.noise"></span><p>A utility for generating simple smooth noise in your projects.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.noise.Noise">
@@ -5440,7 +5368,7 @@ This is identical to <a class="reference internal" href="#rubato.utils.noise.Noi
 </section>
 </section>
 <section id="time">
-<span id="id25"></span><h3>Time<a class="headerlink" href="#time" title="Permalink to this headline">#</a></h3>
+<span id="id25"></span><h3>Time<a class="headerlink" href="#time" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.rb_time"></span><p>A static time class to monitor time and to call functions in the future.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.TimerTask">
@@ -5604,7 +5532,7 @@ to run the function at.</p></li>
 
 </section>
 <section id="color">
-<span id="id26"></span><h3>Color<a class="headerlink" href="#color" title="Permalink to this headline">#</a></h3>
+<span id="id26"></span><h3>Color<a class="headerlink" href="#color" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.color"></span><p>This color module contains the Color class, which is used to represent colors in the game.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.color.Color">
@@ -5857,7 +5785,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.clear">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.clear" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.clear" title="Permalink to this definition">#</a></dt>
 <dd><p>A transparent color object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5868,7 +5796,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.black">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">black</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.black"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.black" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">black</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.black"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.black" title="Permalink to this definition">#</a></dt>
 <dd><p>The default black color. To see the RGB values, check out the <a class="reference internal" href="#grayscaledef"><span class="std std-ref">Grayscale defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5879,7 +5807,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.white">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">white</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.white"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.white" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">white</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.white"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.white" title="Permalink to this definition">#</a></dt>
 <dd><p>The default white color. To see the RGB values, check out the <a class="reference internal" href="#grayscaledef"><span class="std std-ref">Grayscale defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5890,7 +5818,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.night">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">night</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.night"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.night" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">night</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.night"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.night" title="Permalink to this definition">#</a></dt>
 <dd><p>The default night color. To see the RGB values, check out the <a class="reference internal" href="#grayscaledef"><span class="std std-ref">Grayscale defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5901,7 +5829,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.darkgray">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">darkgray</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.darkgray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.darkgray" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">darkgray</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.darkgray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.darkgray" title="Permalink to this definition">#</a></dt>
 <dd><p>The default darkgray color. To see the RGB values, check out the <a class="reference internal" href="#grayscaledef"><span class="std std-ref">Grayscale defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5912,7 +5840,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.gray">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gray</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.gray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.gray" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gray</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.gray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.gray" title="Permalink to this definition">#</a></dt>
 <dd><p>The default gray color. To see the RGB values, check out the <a class="reference internal" href="#grayscaledef"><span class="std std-ref">Grayscale defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5923,7 +5851,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.lightgray">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lightgray</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.lightgray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.lightgray" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lightgray</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.lightgray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.lightgray" title="Permalink to this definition">#</a></dt>
 <dd><p>The default lightgray color. To see the RGB values, check out the <a class="reference internal" href="#grayscaledef"><span class="std std-ref">Grayscale defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5934,7 +5862,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.snow">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">snow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.snow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.snow" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">snow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.snow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.snow" title="Permalink to this definition">#</a></dt>
 <dd><p>The default snow color. To see the RGB values, check out the <a class="reference internal" href="#grayscaledef"><span class="std std-ref">Grayscale defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5945,7 +5873,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.yellow">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">yellow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.yellow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.yellow" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">yellow</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.yellow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.yellow" title="Permalink to this definition">#</a></dt>
 <dd><p>The default yellow color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5956,7 +5884,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.orange">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orange</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.orange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.orange" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orange</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.orange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.orange" title="Permalink to this definition">#</a></dt>
 <dd><p>The default orange color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5967,7 +5895,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.red">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">red</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.red"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.red" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">red</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.red"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.red" title="Permalink to this definition">#</a></dt>
 <dd><p>The default red color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5978,7 +5906,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.scarlet">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scarlet</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.scarlet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.scarlet" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scarlet</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.scarlet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.scarlet" title="Permalink to this definition">#</a></dt>
 <dd><p>The default scarlet color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -5989,7 +5917,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.magenta">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">magenta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.magenta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.magenta" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">magenta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.magenta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.magenta" title="Permalink to this definition">#</a></dt>
 <dd><p>The default magenta color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6000,7 +5928,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.purple">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">purple</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.purple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.purple" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">purple</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.purple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.purple" title="Permalink to this definition">#</a></dt>
 <dd><p>The default purple color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6011,7 +5939,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.violet">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">violet</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.violet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.violet" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">violet</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.violet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.violet" title="Permalink to this definition">#</a></dt>
 <dd><p>The default violet color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6022,7 +5950,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.blue">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">blue</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.blue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.blue" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">blue</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.blue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.blue" title="Permalink to this definition">#</a></dt>
 <dd><p>The default blue color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6033,7 +5961,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.cyan">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cyan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.cyan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.cyan" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cyan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.cyan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.cyan" title="Permalink to this definition">#</a></dt>
 <dd><p>The default cyan color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6044,7 +5972,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.turquoize">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turquoize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.turquoize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.turquoize" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">turquoize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.turquoize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.turquoize" title="Permalink to this definition">#</a></dt>
 <dd><p>The default turquoize color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6055,7 +5983,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.green">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">green</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.green"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.green" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">green</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.green"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.green" title="Permalink to this definition">#</a></dt>
 <dd><p>The default green color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6066,7 +5994,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.lime">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lime</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.lime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.lime" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lime</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="reference internal" href="../_modules/rubato/utils/color/#Color.lime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.lime" title="Permalink to this definition">#</a></dt>
 <dd><p>The default lime color. To see the RGB values, check out the <a class="reference internal" href="#colordef"><span class="std std-ref">Color defaults</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6078,7 +6006,7 @@ Defaults to “mix”.</p></li>
 </dd></dl>
 
 <section id="default-colors">
-<span id="colordef"></span><h4>Default Colors<a class="headerlink" href="#default-colors" title="Permalink to this headline">#</a></h4>
+<span id="colordef"></span><h4>Default Colors<a class="headerlink" href="#default-colors" title="Permalink to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_color_defaults</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;yellow&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">253</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">110</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
     <span class="s2">&quot;scarlet&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">214</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
@@ -6100,7 +6028,7 @@ Defaults to “mix”.</p></li>
 </div>
 </section>
 <section id="default-grayscale-colors">
-<span id="grayscaledef"></span><h4>Default Grayscale Colors<a class="headerlink" href="#default-grayscale-colors" title="Permalink to this headline">#</a></h4>
+<span id="grayscaledef"></span><h4>Default Grayscale Colors<a class="headerlink" href="#default-grayscale-colors" title="Permalink to this heading">#</a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_grayscale_defaults</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;black&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . tuple</span>
     <span class="s2">&quot;white&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
@@ -6116,7 +6044,7 @@ Defaults to “mix”.</p></li>
 </section>
 </section>
 <section id="debug">
-<span id="id27"></span><h3>Debug<a class="headerlink" href="#debug" title="Permalink to this headline">#</a></h3>
+<span id="id27"></span><h3>Debug<a class="headerlink" href="#debug" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.debug"></span><p>This Debug module provides a set of functions to help with debugging.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.debug.Debug">
@@ -6239,7 +6167,7 @@ Defaults to “mix”.</p></li>
 
 </section>
 <section id="font">
-<span id="debugdef"></span><span id="id28"></span><h3>Font<a class="headerlink" href="#font" title="Permalink to this headline">#</a></h3>
+<span id="debugdef"></span><span id="id28"></span><h3>Font<a class="headerlink" href="#font" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.font"></span><p>The font module for text rendering</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.font.Font">
@@ -6269,7 +6197,7 @@ Defaults to “mix”.</p></li>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.font.Font.color">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">rubato.utils.color.Color</span></a></em><a class="headerlink" href="#rubato.utils.font.Font.color" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="headerlink" href="#rubato.utils.font.Font.color" title="Permalink to this definition">#</a></dt>
 <dd><p>The color of the text.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
@@ -6338,7 +6266,7 @@ Defaults to “mix”.</p></li>
 
 </section>
 <section id="radio">
-<span id="id29"></span><h3>Radio<a class="headerlink" href="#radio" title="Permalink to this headline">#</a></h3>
+<span id="id29"></span><h3>Radio<a class="headerlink" href="#radio" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.radio"></span><p>The Radio module is a system used to communicate to all parts of the game.
 This is similar to event systems in other game engines.</p>
 <p>To use this, first you need to listen for a specific key using the
@@ -6478,7 +6406,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 
 </section>
 <section id="errors">
-<span id="id30"></span><h3>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">#</a></h3>
+<span id="id30"></span><h3>Errors<a class="headerlink" href="#errors" title="Permalink to this heading">#</a></h3>
 <span class="target" id="module-rubato.utils.error"></span><p>Some custom errors</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="rubato.utils.error.Error">
@@ -6693,6 +6621,7 @@ as removed, they will no longer work.</p>
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>

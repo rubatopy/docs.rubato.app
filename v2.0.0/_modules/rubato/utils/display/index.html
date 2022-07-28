@@ -1,17 +1,18 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><link rel="search" title="Search" href="../../../../search/" />
+        <link rel="canonical" href="https://docs.rubato.app/_modules/rubato/utils/display.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
         <title>rubato.utils.display - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css" />
     
     
@@ -27,22 +28,24 @@
   --font-stack: Fredoka, sans-serif;
   
   }
-  body[data-theme="dark"] {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  --color-brand-primary: #ff9484;
-  --color-brand-content: #ff9484;
-  --color-api-name: #ff9484;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) {
+  @media not print {
+    body[data-theme="dark"] {
       --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
   --color-brand-primary: #ff9484;
   --color-brand-content: #ff9484;
   --color-api-name: #ff9484;
   
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+      }
     }
   }
 </style>
@@ -57,26 +60,29 @@
 
     gtag("config", "G-WM5S826BXJ");
 </script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
 </head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" />
-      <line x1="4" y1="6" x2="20" y2="6" />
-      <line x1="10" y1="12" x2="20" y2="12" />
-      <line x1="6" y1="18" x2="20" y2="18" />
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
     </svg>
   </symbol>
   <symbol id="svg-menu" viewBox="0 0 24 24">
     <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
       <line x1="3" y1="12" x2="21" y2="12"></line>
       <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -85,14 +91,14 @@
   </symbol>
   <symbol id="svg-arrow-right" viewBox="0 0 24 24">
     <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>
   </symbol>
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -107,7 +113,7 @@
   </symbol>
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
@@ -115,7 +121,7 @@
   </symbol>
   <symbol id="svg-sun-half" viewBox="0 0 24 24">
     <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <circle cx="12" cy="12" r="9" />
@@ -206,87 +212,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../defaults/">Default Options</a></li>
 </ul>
 
-</div><div class="sidebar-tree">
-    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-    <ul id="versions" class="current"></ul>
-    <script>
-        // Add any branches to appear in the side pane here, tags will be added below
-        // Will only appear if docs are built and pushed in gh-pages
-        var versions = ["nightly"];
-        var dirs = new Set();
-        window.latest = "";
-
-        function addVersion(name) {
-            if (dirs.has(name)) {
-                var li = document.createElement("li");
-                li.classList.add("toctree-l1");
-                var a = document.createElement("a");
-                a.classList.add("reference", "internal");
-                window.current = window.location.pathname.split("/")[1];
-                if (name == current || (current == latest && name == latest)) {
-                    a.classList.add("current");
-                    li.classList.add("current", "current-page");
-                }
-
-                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
-
-                reader = new XMLHttpRequest();
-                reader.open("get", ideal, false);
-
-                reader.onreadystatechange = () => {
-                    if (reader.readyState === 4) {
-                        //check to see whether request for the file failed or succeeded
-                        if (reader.status == 200 || reader.status == 0) {
-                            a.href = ideal;
-                            return;
-                        } else {
-                            a.href = `/${name}/intro`;
-                            return;
-                        }
-                    }
-                };
-
-                try {
-                    reader.send();
-                } catch (e) {}
-
-                if (name == "nightly") {
-                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                } else if (name == latest) {
-                    a.innerText = `${name} (Latest)`;
-                } else {
-                    a.innerText = name;
-                }
-                li.appendChild(a);
-                document.getElementById("versions").appendChild(li);
-            }
-        }
-        Promise.all([
-            // Find gh-pages directories and populate `dirs`
-            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.type == "dir") dirs.add(e.name);
-                    }),
-                ),
-            // Add tags to `versions`
-            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.name > latest) {
-                            window.latest = e.name;
-                        }
-                        versions.push(e.name);
-                    }),
-                ),
-        ]).then((_) => {
-            versions.forEach(addVersion);
-            genWarning();
-        });
-    </script>
-</div></div>
+</div><div id="versionSidebarInclude"></div>
+<script>
+    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+</script></div>
       </div>
       
     </div>
@@ -294,6 +223,12 @@
   <div class="main">
     <div class="content">
       <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
@@ -323,9 +258,11 @@
 
             let content = document.createElement("p");
             if (current == "nightly") {
-                content.innerText = "You're reading the documentation for a development version. For the latest released version, ";
+                content.innerText =
+                    "You're reading the documentation for a development version. For the latest released version, ";
             } else {
-                content.innerText = "You're reading an old version of this documentation. If you want up-to-date information, ";
+                content.innerText =
+                    "You're reading an old version of this documentation. If you want up-to-date information, ";
             }
             content.innerHTML += `please have a look at <a href='/latest'>${window.latest}</a>.`;
 
@@ -335,9 +272,9 @@
     }
 </script>
 <h1>Source code for rubato.utils.display</h1><div class="highlight"><pre>
-<span></span><span class="sd">"""</span>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Global display class that allows for easy screen and window management.</span>
-<span class="sd">"""</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 <span class="kn">from</span> <span class="nn">sdl2.sdlgfx</span> <span class="kn">import</span> <span class="n">pixelRGBA</span><span class="p">,</span> <span class="n">thickLineColor</span>
@@ -350,24 +287,24 @@
 
 
 <div class="viewcode-block" id="DisplayProperties"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.DisplayProperties">[docs]</a><span class="k">class</span> <span class="nc">DisplayProperties</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Defines static property methods for Display.</span>
 
 <span class="sd">    Attention:</span>
 <span class="sd">        This is only a metaclass for the class below it, so you wont be able to access this class.</span>
 <span class="sd">        To use the property methods here, simply access them as you would any other ``Display`` property.</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The pixel size of the physical window.</span>
 
 <span class="sd">        Warning:</span>
 <span class="sd">            Using this value to determine the placement of your game objects will</span>
 <span class="sd">            lead to unexpected results. Instead you should use</span>
 <span class="sd">            :func:`Display.res &lt;rubato.utils.display.Display.res&gt;`</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 
     <span class="nd">@window_size</span><span class="o">.</span><span class="n">setter</span>
@@ -376,7 +313,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">res</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The pixel resolution of the game. This is the number of virtual</span>
 <span class="sd">        pixels on the window.</span>
 
@@ -391,7 +328,7 @@
 <span class="sd">            While this value can be changed, it is recommended that you do not</span>
 <span class="sd">            change it as it will scale your entire project in ways you might</span>
 <span class="sd">            not expect.</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">logical_size</span><span class="p">)</span>
 
     <span class="nd">@res</span><span class="o">.</span><span class="n">setter</span>
@@ -400,7 +337,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">window_pos</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The current position of the window in terms of screen pixels"""</span>
+        <span class="sd">&quot;&quot;&quot;The current position of the window in terms of screen pixels&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 
     <span class="nd">@window_pos</span><span class="o">.</span><span class="n">setter</span>
@@ -417,23 +354,23 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">display_ratio</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The ratio of the renderer resolution to the window size. This is a read-only property.</span>
+        <span class="sd">&quot;&quot;&quot;The ratio of the renderer resolution to the window size. This is a read-only property.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector: The ratio of the renderer resolution to the window size seperated by x and y.</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span></div>
 
 
 <div class="viewcode-block" id="Display"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display">[docs]</a><span class="k">class</span> <span class="nc">Display</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">DisplayProperties</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A static class that houses all of the display information</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        window (sdl2.Window): The pysdl2 window element.</span>
 <span class="sd">        renderer (sdl2.Renderer): The pysdl2 renderer element.</span>
 <span class="sd">        format (sdl2.PixelFormat): The pysdl2 pixel format element.</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">window</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Window</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">renderer</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Renderer</span> <span class="o">=</span> <span class="kc">None</span>
@@ -441,7 +378,7 @@
 
 <div class="viewcode-block" id="Display.set_window_icon"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.set_window_icon">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">set_window_icon</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">"""</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the icon of the window.</span>
 
 <span class="sd">        Warning:</span>
@@ -449,11 +386,11 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            path: The path to the icon.</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">image</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">w</span> <span class="o">&gt;</span> <span class="mi">128</span> <span class="ow">or</span> <span class="n">image</span><span class="o">.</span><span class="n">h</span> <span class="o">&gt;</span> <span class="mi">128</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"The logo image must be less than 128x128"</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The logo image must be less than 128x128&quot;</span><span class="p">)</span>
 
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetWindowIcon</span><span class="p">(</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span>
@@ -462,18 +399,18 @@
 
 <div class="viewcode-block" id="Display.draw_point"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.draw_point">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">draw_point</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
-        <span class="sd">"""</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw a point onto the renderer.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pos: The position of the point.</span>
 <span class="sd">            color: The color to use for the pixel. Defaults to black.</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pixelRGBA</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="o">*</span><span class="n">color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Display.draw_line"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.draw_line">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">draw_line</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="sd">"""</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw a line onto the renderer.</span>
 
 <span class="sd">        Args:</span>
@@ -481,7 +418,7 @@
 <span class="sd">            p2: The second point of the line.</span>
 <span class="sd">            color: The color to use for the line. Defaults to black.</span>
 <span class="sd">            width: The width of the line. Defaults to 1.</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">thickLineColor</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p2</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">rgba32</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Display.draw_text"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.draw_text">[docs]</a>    <span class="nd">@classmethod</span>
@@ -490,33 +427,33 @@
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="n">Font</span><span class="p">,</span>
         <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
-        <span class="n">justify</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Defaults</span><span class="o">.</span><span class="n">text_defaults</span><span class="p">[</span><span class="s2">"justify"</span><span class="p">],</span>
-        <span class="n">align</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Defaults</span><span class="o">.</span><span class="n">text_defaults</span><span class="p">[</span><span class="s2">"align"</span><span class="p">],</span>
-        <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Defaults</span><span class="o">.</span><span class="n">text_defaults</span><span class="p">[</span><span class="s2">"width"</span><span class="p">]</span>
+        <span class="n">justify</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Defaults</span><span class="o">.</span><span class="n">text_defaults</span><span class="p">[</span><span class="s2">&quot;justify&quot;</span><span class="p">],</span>
+        <span class="n">align</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Defaults</span><span class="o">.</span><span class="n">text_defaults</span><span class="p">[</span><span class="s2">&quot;align&quot;</span><span class="p">],</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Defaults</span><span class="o">.</span><span class="n">text_defaults</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">]</span>
     <span class="p">):</span>
-        <span class="sd">"""</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draws some text onto the renderer.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            text: The text to draw.</span>
 <span class="sd">            font: The Font object to use.</span>
 <span class="sd">            pos: The position of the text. Defaults to Vector(0, 0).</span>
-<span class="sd">            justify: The justification of the text. (left, center, right). Defaults to "left".</span>
+<span class="sd">            justify: The justification of the text. (left, center, right). Defaults to &quot;left&quot;.</span>
 <span class="sd">            align: The alignment of the text. Defaults to Vector(0, 0).</span>
 <span class="sd">            width: The maximum width of the text. Will automatically wrap the text. Defaults to -1.</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">justify</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="p">(</span><span class="n">align</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Display.update"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.update">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="sd">"""</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the current screen.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tx: The texture to draw on the screen.</span>
 <span class="sd">            pos: The position to draw the texture on.</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">size</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
@@ -535,7 +472,7 @@
 
 <div class="viewcode-block" id="Display.clone_surface"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.clone_surface">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">clone_surface</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">surface</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
-        <span class="sd">"""</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clones an SDL surface.</span>
 
 <span class="sd">        Args:</span>
@@ -543,7 +480,7 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            sdl2.SDL_Surface: The cloned surface.</span>
-<span class="sd">        """</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormatFrom</span><span class="p">(</span>
             <span class="n">surface</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span>
             <span class="n">surface</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
@@ -556,96 +493,106 @@
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">top_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the top left of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top left of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">top_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the top right of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top right of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bottom_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the bottom left of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom left of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bottom_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the bottom right of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom right of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">top_center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the top center of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top center of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bottom_center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the bottom center of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom center of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">center_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the center left of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the center left of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">center_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the center right of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the center right of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">"""The position of the center of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the center of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">"""The position of the top of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">0</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">"""The position of the right of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the right of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">"""The position of the left of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the left of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">0</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bottom</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">"""The position of the bottom of the window."""</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom of the window.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span></div>
 </pre></div> 
         </article>
       </div>
       <footer>
         
-        <div class="related-pages">
-          
-          
+<div class="related-pages">
+     
+</div>
+<div class="bottom-of-page">
+    <div class="left-details">
+        <div class="copyright"> Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave
         </div>
+    </div>
+    <div class="right-details">
+        <div class="icons"><a class="muted-link" href="https://github.com/rubatopy/rubato" aria-label="On GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    ></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
 
-        <div class="related-information">
-              Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave |
-          Created using <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-        </div>
-        
       </footer>
     </div>
     <aside class="toc-drawer no-toc">
@@ -657,6 +604,7 @@
 </div><script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../../_static/doctools.js"></script>
     <script src="../../../../_static/scripts/furo.js"></script>
     <script src="../../../../_static/clipboard.min.js"></script>

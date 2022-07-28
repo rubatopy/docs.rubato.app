@@ -1,26 +1,27 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Default Options" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rubato.app/defaults.html" />
+  <meta property="og:url" content="https://docs.rubato.app/defaults.html" />
   <meta property="og:site_name" content="rubato docs" />
   <meta property="og:description" content="Here is a list of all of the default values for all the options dictionaries. Game Defaults: Group Defaults: Game Object Defaults: UI Element Defaults: Can also include parameters from Game Objects Text Defaults: Font Defaults: RigidBody Defaults: Image Defaults: Animation Defaults: Spritesheet D..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="prev" title="Key Names" href="../key-names/" />
+        <link rel="canonical" href="https://docs.rubato.app/defaults.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
         <title>Default Options - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     
     
@@ -36,22 +37,24 @@
   --font-stack: Fredoka, sans-serif;
   
   }
-  body[data-theme="dark"] {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  --color-brand-primary: #ff9484;
-  --color-brand-content: #ff9484;
-  --color-api-name: #ff9484;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) {
+  @media not print {
+    body[data-theme="dark"] {
       --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
   --color-brand-primary: #ff9484;
   --color-brand-content: #ff9484;
   --color-api-name: #ff9484;
   
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+      }
     }
   }
 </style>
@@ -66,26 +69,29 @@
 
     gtag("config", "G-WM5S826BXJ");
 </script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
 </head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" />
-      <line x1="4" y1="6" x2="20" y2="6" />
-      <line x1="10" y1="12" x2="20" y2="12" />
-      <line x1="6" y1="18" x2="20" y2="18" />
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
     </svg>
   </symbol>
   <symbol id="svg-menu" viewBox="0 0 24 24">
     <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
       <line x1="3" y1="12" x2="21" y2="12"></line>
       <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -94,14 +100,14 @@
   </symbol>
   <symbol id="svg-arrow-right" viewBox="0 0 24 24">
     <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>
   </symbol>
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -116,7 +122,7 @@
   </symbol>
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
@@ -124,7 +130,7 @@
   </symbol>
   <symbol id="svg-sun-half" viewBox="0 0 24 24">
     <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <circle cx="12" cy="12" r="9" />
@@ -215,87 +221,10 @@
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Default Options</a></li>
 </ul>
 
-</div><div class="sidebar-tree">
-    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-    <ul id="versions" class="current"></ul>
-    <script>
-        // Add any branches to appear in the side pane here, tags will be added below
-        // Will only appear if docs are built and pushed in gh-pages
-        var versions = ["nightly"];
-        var dirs = new Set();
-        window.latest = "";
-
-        function addVersion(name) {
-            if (dirs.has(name)) {
-                var li = document.createElement("li");
-                li.classList.add("toctree-l1");
-                var a = document.createElement("a");
-                a.classList.add("reference", "internal");
-                window.current = window.location.pathname.split("/")[1];
-                if (name == current || (current == latest && name == latest)) {
-                    a.classList.add("current");
-                    li.classList.add("current", "current-page");
-                }
-
-                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
-
-                reader = new XMLHttpRequest();
-                reader.open("get", ideal, false);
-
-                reader.onreadystatechange = () => {
-                    if (reader.readyState === 4) {
-                        //check to see whether request for the file failed or succeeded
-                        if (reader.status == 200 || reader.status == 0) {
-                            a.href = ideal;
-                            return;
-                        } else {
-                            a.href = `/${name}/intro`;
-                            return;
-                        }
-                    }
-                };
-
-                try {
-                    reader.send();
-                } catch (e) {}
-
-                if (name == "nightly") {
-                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                } else if (name == latest) {
-                    a.innerText = `${name} (Latest)`;
-                } else {
-                    a.innerText = name;
-                }
-                li.appendChild(a);
-                document.getElementById("versions").appendChild(li);
-            }
-        }
-        Promise.all([
-            // Find gh-pages directories and populate `dirs`
-            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.type == "dir") dirs.add(e.name);
-                    }),
-                ),
-            // Add tags to `versions`
-            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.name > latest) {
-                            window.latest = e.name;
-                        }
-                        versions.push(e.name);
-                    }),
-                ),
-        ]).then((_) => {
-            versions.forEach(addVersion);
-            genWarning();
-        });
-    </script>
-</div></div>
+</div><div id="versionSidebarInclude"></div>
+<script>
+    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+</script></div>
       </div>
       
     </div>
@@ -303,6 +232,12 @@
   <div class="main">
     <div class="content">
       <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
@@ -332,9 +267,11 @@
 
             let content = document.createElement("p");
             if (current == "nightly") {
-                content.innerText = "You're reading the documentation for a development version. For the latest released version, ";
+                content.innerText =
+                    "You're reading the documentation for a development version. For the latest released version, ";
             } else {
-                content.innerText = "You're reading an old version of this documentation. If you want up-to-date information, ";
+                content.innerText =
+                    "You're reading an old version of this documentation. If you want up-to-date information, ";
             }
             content.innerHTML += `please have a look at <a href='/latest'>${window.latest}</a>.`;
 
@@ -344,236 +281,236 @@
     }
 </script>
 <section id="default-options">
-<span id="defaults"></span><h1>Default Options<a class="headerlink" href="#default-options" title="Permalink to this headline">¶</a></h1>
+<span id="defaults"></span><h1>Default Options<a class="headerlink" href="#default-options" title="Permalink to this heading">#</a></h1>
 <p>Here is a list of all of the default values for all the options dictionaries.</p>
 <section id="game-defaults">
-<span id="gamedef"></span><h2>Game Defaults<a class="headerlink" href="#game-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="gamedef"></span><h2>Game Defaults<a class="headerlink" href="#game-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">game_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Untitled Game"</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Untitled Game&quot;</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The title that appears at the top of the window</span>
-    <span class="s2">"window_size"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">360</span><span class="p">,</span> <span class="mi">360</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;window_size&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">360</span><span class="p">,</span> <span class="mi">360</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . Vector</span>
     <span class="c1"># The actual size of the window</span>
-    <span class="s2">"res"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1080</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;res&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1080</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The pixel resolution of the game</span>
-    <span class="s2">"target_fps"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;target_fps&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The target FPS of the game</span>
-    <span class="s2">"physics_fps"</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;physics_fps&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The target physics FPS of the game</span>
-    <span class="s2">"border_color"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple or Color</span>
+    <span class="s2">&quot;border_color&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple or Color</span>
     <span class="c1"># The color of the borders</span>
-    <span class="s2">"background_color"</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . tuple or Color</span>
+    <span class="s2">&quot;background_color&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . tuple or Color</span>
     <span class="c1"># The background color of the window</span>
-    <span class="s2">"icon"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;icon&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The path to an image to use as the window icon.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="group-defaults">
-<span id="groupdef"></span><h2>Group Defaults<a class="headerlink" href="#group-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="groupdef"></span><h2>Group Defaults<a class="headerlink" href="#group-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">group_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The name of the game object. (Used in error messages)</span>
-    <span class="s2">"z_index"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;z_index&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The z_index of the group.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="game-object-defaults">
-<span id="gameobjdef"></span><h2>Game Object Defaults<a class="headerlink" href="#game-object-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="gameobjdef"></span><h2>Game Object Defaults<a class="headerlink" href="#game-object-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gameobj_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The name of the game object. (Used in error messages)</span>
-    <span class="s2">"pos"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;pos&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The starting position of the game object.</span>
-    <span class="s2">"z_index"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;z_index&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The z_index of the game object.</span>
-    <span class="s2">"debug"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
-    <span class="c1"># Whether to draw a plus sign at the game object's position</span>
+    <span class="s2">&quot;debug&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="c1"># Whether to draw a plus sign at the game object&#39;s position</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="ui-element-defaults">
-<span id="uidef"></span><h2>UI Element Defaults<a class="headerlink" href="#ui-element-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="uidef"></span><h2>UI Element Defaults<a class="headerlink" href="#ui-element-defaults" title="Permalink to this heading">#</a></h2>
 <p>Can also include parameters from <a class="reference internal" href="#gameobjdef"><span class="std std-ref">Game Objects</span></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ui_defaults</span> <span class="o">=</span> <span class="p">{}</span>
 </pre></div>
 </div>
 </section>
 <section id="text-defaults">
-<span id="textdef"></span><h2>Text Defaults<a class="headerlink" href="#text-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="textdef"></span><h2>Text Defaults<a class="headerlink" href="#text-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"text"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The text to display.</span>
-    <span class="s2">"justify"</span><span class="p">:</span> <span class="s2">"left"</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;justify&quot;</span><span class="p">:</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The justification of the text. (left, center, right)</span>
-    <span class="s2">"align"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;align&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The alignment of the text. The zero vector means it is centered.</span>
     <span class="c1"># x component is whether to shift left, none, or right (-1, 0, 1)</span>
     <span class="c1"># y component is whether to shift top, none, or bottom (-1, 0, 1)</span>
-    <span class="s2">"width"</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The maximum width of the text. Will automatically wrap the text.</span>
-    <span class="s2">"font"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . Font</span>
+    <span class="s2">&quot;font&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . Font</span>
     <span class="c1"># The font object to use. Defaults to an object using the Fredoka font.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="font-defaults">
-<span id="fontdef"></span><h2>Font Defaults<a class="headerlink" href="#font-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="fontdef"></span><h2>Font Defaults<a class="headerlink" href="#font-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">font_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"font"</span><span class="p">:</span> <span class="s2">"Roboto"</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;font&quot;</span><span class="p">:</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The name or path of the font to use.</span>
     <span class="c1"># Builtin fonts: Comfortaa, Fredoka, Merriweather, Roboto, SourceCodePro, PressStart</span>
-    <span class="s2">"size"</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The size of the text.</span>
-    <span class="s2">"styles"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"normal"</span><span class="p">],</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . List[str]</span>
+    <span class="s2">&quot;styles&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;normal&quot;</span><span class="p">],</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . List[str]</span>
     <span class="c1"># A list containing the style to apply to the text. (bold, italic, underline, strikethrough)</span>
-    <span class="s2">"color"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . tuple or Color</span>
+    <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . tuple or Color</span>
     <span class="c1"># The color of the text.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="rigidbody-defaults">
-<span id="rigidbodydef"></span><h2>RigidBody Defaults<a class="headerlink" href="#rigidbody-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="rigidbodydef"></span><h2>RigidBody Defaults<a class="headerlink" href="#rigidbody-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rigidbody_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"mass"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;mass&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . . float</span>
     <span class="c1"># The mass of the RB. (0 for infinite)</span>
-    <span class="s2">"bounciness"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;bounciness&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . float</span>
     <span class="c1"># The percent bounciness of the RB. (as a decimal)</span>
-    <span class="s2">"gravity"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;gravity&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The gravity applied to the RB.</span>
-    <span class="s2">"max_speed"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">),</span>  <span class="c1"># . . . . . . . . Vector</span>
+    <span class="s2">&quot;max_speed&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">),</span>  <span class="c1"># . . . . . . . . Vector</span>
     <span class="c1"># The maximum speed of the RB.</span>
-    <span class="s2">"velocity"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;velocity&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The starting velocity of the RB.</span>
-    <span class="s2">"friction"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;friction&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
     <span class="c1"># The amount of friction experienced by the RB.</span>
-    <span class="s2">"rotation"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
     <span class="c1"># The starting rotation of the RB.</span>
-    <span class="s2">"static"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;static&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether the RB is static or not.</span>
-    <span class="s2">"pos_correction"</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;pos_correction&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . float</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="image-defaults">
-<span id="imagedef"></span><h2>Image Defaults<a class="headerlink" href="#image-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="imagedef"></span><h2>Image Defaults<a class="headerlink" href="#image-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">image_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"rel_path"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;rel_path&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The relative path of the image. (from the cwd)</span>
-    <span class="s2">"size"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The size of the image in pixels. (if a rel path is set this value will be ignored)</span>
-    <span class="s2">"scale"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The initial scale factor of the image.</span>
-    <span class="s2">"rotation"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
     <span class="c1"># The initial rotation of the image.</span>
-    <span class="s2">"anti_aliasing"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;anti_aliasing&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether or not to enable anti aliasing.</span>
-    <span class="s2">"flipx"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;flipx&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether or not to flip the image along the x axis</span>
-    <span class="s2">"flipy"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;flipy&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether or not to flip the image along the y axis</span>
-    <span class="s2">"offset"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The offset from the center of the game object that the hitbox should be placed.</span>
-    <span class="s2">"visible"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;visible&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether or not the image is visible.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="animation-defaults">
-<span id="animationdef"></span><h2>Animation Defaults<a class="headerlink" href="#animation-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="animationdef"></span><h2>Animation Defaults<a class="headerlink" href="#animation-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">animation_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"scale"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The startin scale factor of the animation.</span>
-    <span class="s2">"rotation"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
     <span class="c1"># The rotation of the animation.</span>
-    <span class="s2">"fps"</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;fps&quot;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The FPS that the animation should run at. Greater than 0.</span>
-    <span class="s2">"anti_aliasing"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;anti_aliasing&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether or not to enable anti aliasing.</span>
-    <span class="s2">"flipx"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;flipx&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether or not to flip the animation along the x axis</span>
-    <span class="s2">"flipy"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;flipy&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether or not to flip the animation along the y axis</span>
-    <span class="s2">"offset"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The offset from the center of the game object that the hitbox should be placed.</span>
-    <span class="s2">"visible"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;visible&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether or not the image is visible.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="spritesheet-defaults">
-<span id="spritesheetdef"></span><h2>Spritesheet Defaults<a class="headerlink" href="#spritesheet-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="spritesheetdef"></span><h2>Spritesheet Defaults<a class="headerlink" href="#spritesheet-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spritesheet_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"rel_path"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;rel_path&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The relative path to the spritesheet (from the cwd).</span>
-    <span class="s2">"sprite_size"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;sprite_size&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The size of each sprite in pixels.</span>
-    <span class="s2">"grid_size"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;grid_size&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The size of the spritesheet grid (columns/x, rows/y).</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="hitbox-defaults">
-<span id="hitboxdef"></span><h2>Hitbox Defaults<a class="headerlink" href="#hitbox-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="hitboxdef"></span><h2>Hitbox Defaults<a class="headerlink" href="#hitbox-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hitbox_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"debug"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;debug&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether to draw a green outline around the Polygon or not.</span>
-    <span class="s2">"trigger"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . bool</span>
+    <span class="s2">&quot;trigger&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . bool</span>
     <span class="c1"># Whether this hitbox is just a trigger or not.</span>
-    <span class="s2">"scale"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The scale of the polygon</span>
-    <span class="s2">"on_collide"</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">colInfo</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . Callable</span>
+    <span class="s2">&quot;on_collide&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">colInfo</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . Callable</span>
     <span class="c1"># The on_collide function to call when a collision happens with this hitbox</span>
     <span class="c1"># Must take a rb.ColInfo.</span>
-    <span class="s2">"color"</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . Color</span>
+    <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . Color</span>
     <span class="c1"># The color to fill this hitbox with.</span>
-    <span class="s2">"tag"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . . str</span>
+    <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . . str</span>
     <span class="c1"># The tag of the hitbox (can be used to identify hitboxes)</span>
-    <span class="s2">"offset"</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . Vector</span>
+    <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . Vector</span>
     <span class="c1"># The offset from the center of the game object that the hitbox should be placed.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <section id="polygon-defaults">
-<span id="polygondef"></span><h3>Polygon Defaults<a class="headerlink" href="#polygon-defaults" title="Permalink to this headline">¶</a></h3>
+<span id="polygondef"></span><h3>Polygon Defaults<a class="headerlink" href="#polygon-defaults" title="Permalink to this heading">#</a></h3>
 <p>Can also include parameters from <a class="reference internal" href="#hitboxdef"><span class="std std-ref">Hitbox</span></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">polygon_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"verts"</span><span class="p">:</span> <span class="p">[],</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . List[Vector]</span>
+    <span class="s2">&quot;verts&quot;</span><span class="p">:</span> <span class="p">[],</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . List[Vector]</span>
     <span class="c1"># A list of vectors representing the vertices of the Polygon going CCW.</span>
-    <span class="s2">"rotation"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
     <span class="c1"># The rotation of the polygon</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="rectangle-defaults">
-<span id="rectangledef"></span><h3>Rectangle Defaults<a class="headerlink" href="#rectangle-defaults" title="Permalink to this headline">¶</a></h3>
+<span id="rectangledef"></span><h3>Rectangle Defaults<a class="headerlink" href="#rectangle-defaults" title="Permalink to this heading">#</a></h3>
 <p>Can also include parameters from <a class="reference internal" href="#hitboxdef"><span class="std std-ref">Hitbox</span></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rectangle_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"width"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The width of the rectangle.</span>
-    <span class="s2">"height"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The height of the rectangle.</span>
-    <span class="s2">"rotation"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
+    <span class="s2">&quot;rotation&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># . . . . . . . . . . . . . . . . . . . . . float</span>
     <span class="c1"># The rotation of the rectangle</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="circle-defaults">
-<span id="circledef"></span><h3>Circle Defaults<a class="headerlink" href="#circle-defaults" title="Permalink to this headline">¶</a></h3>
+<span id="circledef"></span><h3>Circle Defaults<a class="headerlink" href="#circle-defaults" title="Permalink to this heading">#</a></h3>
 <p>Can also include parameters from <a class="reference internal" href="#hitboxdef"><span class="std std-ref">Hitbox</span></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">circle_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"radius"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . int</span>
+    <span class="s2">&quot;radius&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . . . . int</span>
     <span class="c1"># The radius of the circle.</span>
 <span class="p">}</span>
 </pre></div>
@@ -581,20 +518,20 @@
 </section>
 </section>
 <section id="color-defaults">
-<span id="colordef"></span><h2>Color Defaults<a class="headerlink" href="#color-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="colordef"></span><h2>Color Defaults<a class="headerlink" href="#color-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">color_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"yellow"</span><span class="p">:</span> <span class="p">(</span><span class="mi">253</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">110</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"scarlet"</span><span class="p">:</span> <span class="p">(</span><span class="mi">214</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"violet"</span><span class="p">:</span> <span class="p">(</span><span class="mi">108</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">231</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"turquoize"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">201</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"orange"</span><span class="p">:</span> <span class="p">(</span><span class="mi">225</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"magenta"</span><span class="p">:</span> <span class="p">(</span><span class="mi">232</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">147</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"blue"</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">227</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"green"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">148</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"red"</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">118</span><span class="p">,</span> <span class="mi">117</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"purple"</span><span class="p">:</span> <span class="p">(</span><span class="mi">162</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">254</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"cyan"</span><span class="p">:</span> <span class="p">(</span><span class="mi">116</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"lime"</span><span class="p">:</span> <span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">196</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;yellow&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">253</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">110</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;scarlet&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">214</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;violet&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">108</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">231</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;turquoize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">201</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;orange&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">225</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;magenta&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">232</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">147</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;blue&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">227</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;green&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">148</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;red&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">118</span><span class="p">,</span> <span class="mi">117</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;purple&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">162</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">254</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;cyan&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">116</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;lime&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">196</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
 
     <span class="c1"># colorwheel used (rgb values are not identical):</span>
     <span class="c1"># https://upload.wikimedia.org/wikipedia/commons/5/54/RGV_color_wheel_1908.png</span>
@@ -603,15 +540,15 @@
 </div>
 </section>
 <section id="grayscale-defaults">
-<span id="grayscaledef"></span><h2>Grayscale Defaults<a class="headerlink" href="#grayscale-defaults" title="Permalink to this headline">¶</a></h2>
+<span id="grayscaledef"></span><h2>Grayscale Defaults<a class="headerlink" href="#grayscale-defaults" title="Permalink to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grayscale_defaults</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"black"</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"white"</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"night"</span><span class="p">:</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"darkgray"</span><span class="p">:</span> <span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">54</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"gray"</span><span class="p">:</span> <span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">114</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"lightgray"</span><span class="p">:</span> <span class="p">(</span><span class="mi">178</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">195</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . tuple</span>
-    <span class="s2">"snow"</span><span class="p">:</span> <span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">233</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;black&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;white&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;night&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;darkgray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">54</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;gray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">114</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;lightgray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">178</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">195</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . tuple</span>
+    <span class="s2">&quot;snow&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">233</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . tuple</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -622,27 +559,37 @@
       </div>
       <footer>
         
-        <div class="related-pages">
-          
-          <a class="prev-page" href="../key-names/">
-              <svg><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Key Names</div>
-                
-              </div>
+<div class="related-pages">
+     <a class="prev-page" href="../key-names/">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+            <div class="context">
+                <span>Previous</span>
+            </div>
+            
+            <div class="title">Key Names</div>
+            
+        </div>
+    </a>
+</div>
+<div class="bottom-of-page">
+    <div class="left-details">
+        <div class="copyright"> Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave
+        </div>
+    </div>
+    <div class="right-details">
+        <div class="icons"><a class="muted-link" href="https://github.com/rubatopy/rubato" aria-label="On GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    ></path>
+                </svg>
             </a>
         </div>
+    </div>
+</div>
 
-        <div class="related-information">
-              Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave |
-          Created using <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-        </div>
-        
       </footer>
     </div>
     <aside class="toc-drawer">
@@ -690,6 +637,7 @@
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>

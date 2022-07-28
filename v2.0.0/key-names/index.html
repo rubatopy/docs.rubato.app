@@ -1,26 +1,27 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Key Names" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://rubato.app/key-names.html" />
+  <meta property="og:url" content="https://docs.rubato.app/key-names.html" />
   <meta property="og:site_name" content="rubato docs" />
   <meta property="og:description" content="Here is the list of all of the available key names. These names are used by rubato to identify pressed keys and are passed to the key parameter for key events. Note that names are case-sensitive. Numbers: Letters: Modifier Keys: Function Keys: Special Characters: Numerical Keypad: Application Con..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="next" title="Default Options" href="../defaults/" /><link rel="prev" title="Event Details" href="../events/" />
+        <link rel="canonical" href="https://docs.rubato.app/key-names.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-4.4.0, furo 2022.01.02"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
         <title>Key Names - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=df49af52631e7917044a9c21a57f7b83170a6dd0" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.59c74d8c95b765a7fd995ac71d459ebe.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=fade93df149f7c5fedb3ff897f799dc7d283b420" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     
     
@@ -36,22 +37,24 @@
   --font-stack: Fredoka, sans-serif;
   
   }
-  body[data-theme="dark"] {
-    --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  --color-brand-primary: #ff9484;
-  --color-brand-content: #ff9484;
-  --color-api-name: #ff9484;
-  
-  }
-  @media (prefers-color-scheme: dark) {
-    body:not([data-theme="light"]) {
+  @media not print {
+    body[data-theme="dark"] {
       --color-code-background: #202020;
   --color-code-foreground: #d0d0d0;
   --color-brand-primary: #ff9484;
   --color-brand-content: #ff9484;
   --color-api-name: #ff9484;
   
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+      }
     }
   }
 </style>
@@ -66,26 +69,29 @@
 
     gtag("config", "G-WM5S826BXJ");
 </script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
 </head>
   <body>
+    
     <script>
       document.body.dataset.theme = localStorage.getItem("theme") || "auto";
     </script>
     
+
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="svg-toc" viewBox="0 0 24 24">
     <title>Contents</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" />
-      <line x1="4" y1="6" x2="20" y2="6" />
-      <line x1="10" y1="12" x2="20" y2="12" />
-      <line x1="6" y1="18" x2="20" y2="18" />
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
     </svg>
   </symbol>
   <symbol id="svg-menu" viewBox="0 0 24 24">
     <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
       <line x1="3" y1="12" x2="21" y2="12"></line>
       <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -94,14 +100,14 @@
   </symbol>
   <symbol id="svg-arrow-right" viewBox="0 0 24 24">
     <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>
   </symbol>
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -116,7 +122,7 @@
   </symbol>
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
@@ -124,7 +130,7 @@
   </symbol>
   <symbol id="svg-sun-half" viewBox="0 0 24 24">
     <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <circle cx="12" cy="12" r="9" />
@@ -215,87 +221,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../defaults/">Default Options</a></li>
 </ul>
 
-</div><div class="sidebar-tree">
-    <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-    <ul id="versions" class="current"></ul>
-    <script>
-        // Add any branches to appear in the side pane here, tags will be added below
-        // Will only appear if docs are built and pushed in gh-pages
-        var versions = ["nightly"];
-        var dirs = new Set();
-        window.latest = "";
-
-        function addVersion(name) {
-            if (dirs.has(name)) {
-                var li = document.createElement("li");
-                li.classList.add("toctree-l1");
-                var a = document.createElement("a");
-                a.classList.add("reference", "internal");
-                window.current = window.location.pathname.split("/")[1];
-                if (name == current || (current == latest && name == latest)) {
-                    a.classList.add("current");
-                    li.classList.add("current", "current-page");
-                }
-
-                var ideal = `/${name}/${window.location.pathname.split("/").slice(2).join("/")}`;
-
-                reader = new XMLHttpRequest();
-                reader.open("get", ideal, false);
-
-                reader.onreadystatechange = () => {
-                    if (reader.readyState === 4) {
-                        //check to see whether request for the file failed or succeeded
-                        if (reader.status == 200 || reader.status == 0) {
-                            a.href = ideal;
-                            return;
-                        } else {
-                            a.href = `/${name}/intro`;
-                            return;
-                        }
-                    }
-                };
-
-                try {
-                    reader.send();
-                } catch (e) {}
-
-                if (name == "nightly") {
-                    a.innerText = name.charAt(0).toUpperCase() + name.slice(1);
-                } else if (name == latest) {
-                    a.innerText = `${name} (Latest)`;
-                } else {
-                    a.innerText = name;
-                }
-                li.appendChild(a);
-                document.getElementById("versions").appendChild(li);
-            }
-        }
-        Promise.all([
-            // Find gh-pages directories and populate `dirs`
-            fetch("https://api.github.com/repos/rubatopy/rubato/contents?ref=gh-pages")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.type == "dir") dirs.add(e.name);
-                    }),
-                ),
-            // Add tags to `versions`
-            fetch("https://api.github.com/repos/rubatopy/rubato/tags")
-                .then((response) => response.json())
-                .then((data) =>
-                    data.forEach(function (e) {
-                        if (e.name > latest) {
-                            window.latest = e.name;
-                        }
-                        versions.push(e.name);
-                    }),
-                ),
-        ]).then((_) => {
-            versions.forEach(addVersion);
-            genWarning();
-        });
-    </script>
-</div></div>
+</div><div id="versionSidebarInclude"></div>
+<script>
+    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+</script></div>
       </div>
       
     </div>
@@ -303,6 +232,12 @@
   <div class="main">
     <div class="content">
       <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
         <div class="content-icon-container">
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
@@ -332,9 +267,11 @@
 
             let content = document.createElement("p");
             if (current == "nightly") {
-                content.innerText = "You're reading the documentation for a development version. For the latest released version, ";
+                content.innerText =
+                    "You're reading the documentation for a development version. For the latest released version, ";
             } else {
-                content.innerText = "You're reading an old version of this documentation. If you want up-to-date information, ";
+                content.innerText =
+                    "You're reading an old version of this documentation. If you want up-to-date information, ";
             }
             content.innerHTML += `please have a look at <a href='/latest'>${window.latest}</a>.`;
 
@@ -344,286 +281,286 @@
     }
 </script>
 <section id="key-names">
-<h1>Key Names<a class="headerlink" href="#key-names" title="Permalink to this headline">¶</a></h1>
+<h1>Key Names<a class="headerlink" href="#key-names" title="Permalink to this heading">#</a></h1>
 <p>Here is the list of all of the available key names. These names are used by rubato to identify pressed keys and are passed to the key parameter for <a class="reference internal" href="../events/"><span class="doc">key events</span></a>.
 Note that names are case-sensitive.</p>
 <section id="numbers">
-<h2>Numbers<a class="headerlink" href="#numbers" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">"0"</span>
-<span class="linenos"> 2</span><span class="s2">"1"</span>
-<span class="linenos"> 3</span><span class="s2">"2"</span>
-<span class="linenos"> 4</span><span class="s2">"3"</span>
-<span class="linenos"> 5</span><span class="s2">"4"</span>
-<span class="linenos"> 6</span><span class="s2">"5"</span>
-<span class="linenos"> 7</span><span class="s2">"6"</span>
-<span class="linenos"> 8</span><span class="s2">"7"</span>
-<span class="linenos"> 9</span><span class="s2">"8"</span>
-<span class="linenos">10</span><span class="s2">"9"</span>
+<h2>Numbers<a class="headerlink" href="#numbers" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="s2">&quot;0&quot;</span>
+<span class="linenos"> 2</span><span class="s2">&quot;1&quot;</span>
+<span class="linenos"> 3</span><span class="s2">&quot;2&quot;</span>
+<span class="linenos"> 4</span><span class="s2">&quot;3&quot;</span>
+<span class="linenos"> 5</span><span class="s2">&quot;4&quot;</span>
+<span class="linenos"> 6</span><span class="s2">&quot;5&quot;</span>
+<span class="linenos"> 7</span><span class="s2">&quot;6&quot;</span>
+<span class="linenos"> 8</span><span class="s2">&quot;7&quot;</span>
+<span class="linenos"> 9</span><span class="s2">&quot;8&quot;</span>
+<span class="linenos">10</span><span class="s2">&quot;9&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="letters">
-<h2>Letters<a class="headerlink" href="#letters" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">11</span><span class="s2">"a"</span>
-<span class="linenos">12</span><span class="s2">"b"</span>
-<span class="linenos">13</span><span class="s2">"c"</span>
-<span class="linenos">14</span><span class="s2">"d"</span>
-<span class="linenos">15</span><span class="s2">"e"</span>
-<span class="linenos">16</span><span class="s2">"f"</span>
-<span class="linenos">17</span><span class="s2">"g"</span>
-<span class="linenos">18</span><span class="s2">"h"</span>
-<span class="linenos">19</span><span class="s2">"i"</span>
-<span class="linenos">20</span><span class="s2">"j"</span>
-<span class="linenos">21</span><span class="s2">"k"</span>
-<span class="linenos">22</span><span class="s2">"l"</span>
-<span class="linenos">23</span><span class="s2">"m"</span>
-<span class="linenos">24</span><span class="s2">"n"</span>
-<span class="linenos">25</span><span class="s2">"o"</span>
-<span class="linenos">26</span><span class="s2">"p"</span>
-<span class="linenos">27</span><span class="s2">"q"</span>
-<span class="linenos">28</span><span class="s2">"r"</span>
-<span class="linenos">29</span><span class="s2">"s"</span>
-<span class="linenos">30</span><span class="s2">"t"</span>
-<span class="linenos">31</span><span class="s2">"u"</span>
-<span class="linenos">32</span><span class="s2">"v"</span>
-<span class="linenos">33</span><span class="s2">"w"</span>
-<span class="linenos">34</span><span class="s2">"x"</span>
-<span class="linenos">35</span><span class="s2">"y"</span>
-<span class="linenos">36</span><span class="s2">"z"</span>
+<h2>Letters<a class="headerlink" href="#letters" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">11</span><span class="s2">&quot;a&quot;</span>
+<span class="linenos">12</span><span class="s2">&quot;b&quot;</span>
+<span class="linenos">13</span><span class="s2">&quot;c&quot;</span>
+<span class="linenos">14</span><span class="s2">&quot;d&quot;</span>
+<span class="linenos">15</span><span class="s2">&quot;e&quot;</span>
+<span class="linenos">16</span><span class="s2">&quot;f&quot;</span>
+<span class="linenos">17</span><span class="s2">&quot;g&quot;</span>
+<span class="linenos">18</span><span class="s2">&quot;h&quot;</span>
+<span class="linenos">19</span><span class="s2">&quot;i&quot;</span>
+<span class="linenos">20</span><span class="s2">&quot;j&quot;</span>
+<span class="linenos">21</span><span class="s2">&quot;k&quot;</span>
+<span class="linenos">22</span><span class="s2">&quot;l&quot;</span>
+<span class="linenos">23</span><span class="s2">&quot;m&quot;</span>
+<span class="linenos">24</span><span class="s2">&quot;n&quot;</span>
+<span class="linenos">25</span><span class="s2">&quot;o&quot;</span>
+<span class="linenos">26</span><span class="s2">&quot;p&quot;</span>
+<span class="linenos">27</span><span class="s2">&quot;q&quot;</span>
+<span class="linenos">28</span><span class="s2">&quot;r&quot;</span>
+<span class="linenos">29</span><span class="s2">&quot;s&quot;</span>
+<span class="linenos">30</span><span class="s2">&quot;t&quot;</span>
+<span class="linenos">31</span><span class="s2">&quot;u&quot;</span>
+<span class="linenos">32</span><span class="s2">&quot;v&quot;</span>
+<span class="linenos">33</span><span class="s2">&quot;w&quot;</span>
+<span class="linenos">34</span><span class="s2">&quot;x&quot;</span>
+<span class="linenos">35</span><span class="s2">&quot;y&quot;</span>
+<span class="linenos">36</span><span class="s2">&quot;z&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="modifier-keys">
-<h2>Modifier Keys<a class="headerlink" href="#modifier-keys" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">37</span><span class="s2">"shift"</span> <span class="c1"># any shift is down</span>
-<span class="linenos">38</span><span class="s2">"left shift"</span>
-<span class="linenos">39</span><span class="s2">"right shift"</span>
+<h2>Modifier Keys<a class="headerlink" href="#modifier-keys" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">37</span><span class="s2">&quot;shift&quot;</span> <span class="c1"># any shift is down</span>
+<span class="linenos">38</span><span class="s2">&quot;left shift&quot;</span>
+<span class="linenos">39</span><span class="s2">&quot;right shift&quot;</span>
 <span class="linenos">40</span>
-<span class="linenos">41</span><span class="s2">"alt"</span> <span class="c1"># any alt is down</span>
-<span class="linenos">42</span><span class="s2">"left alt"</span>
-<span class="linenos">43</span><span class="s2">"right alt"</span>
+<span class="linenos">41</span><span class="s2">&quot;alt&quot;</span> <span class="c1"># any alt is down</span>
+<span class="linenos">42</span><span class="s2">&quot;left alt&quot;</span>
+<span class="linenos">43</span><span class="s2">&quot;right alt&quot;</span>
 <span class="linenos">44</span>
-<span class="linenos">45</span><span class="s2">"ctrl"</span> <span class="c1"># any ctrl is down</span>
-<span class="linenos">46</span><span class="s2">"left ctrl"</span>
-<span class="linenos">47</span><span class="s2">"right ctrl"</span>
+<span class="linenos">45</span><span class="s2">&quot;ctrl&quot;</span> <span class="c1"># any ctrl is down</span>
+<span class="linenos">46</span><span class="s2">&quot;left ctrl&quot;</span>
+<span class="linenos">47</span><span class="s2">&quot;right ctrl&quot;</span>
 <span class="linenos">48</span>
-<span class="linenos">49</span><span class="s2">"gui"</span> <span class="c1"># any gui is down</span>
-<span class="linenos">50</span><span class="s2">"left gui"</span> <span class="c1"># windows, command apple, meta</span>
-<span class="linenos">51</span><span class="s2">"right gui"</span> <span class="c1"># windows, command apple, meta</span>
+<span class="linenos">49</span><span class="s2">&quot;gui&quot;</span> <span class="c1"># any gui is down</span>
+<span class="linenos">50</span><span class="s2">&quot;left gui&quot;</span> <span class="c1"># windows, command apple, meta</span>
+<span class="linenos">51</span><span class="s2">&quot;right gui&quot;</span> <span class="c1"># windows, command apple, meta</span>
 <span class="linenos">52</span>
-<span class="linenos">53</span><span class="s2">"numlock"</span>
-<span class="linenos">54</span><span class="s2">"caps lock"</span>
+<span class="linenos">53</span><span class="s2">&quot;numlock&quot;</span>
+<span class="linenos">54</span><span class="s2">&quot;caps lock&quot;</span>
 <span class="linenos">55</span>
-<span class="linenos">56</span><span class="s2">"altgr"</span>
+<span class="linenos">56</span><span class="s2">&quot;altgr&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="function-keys">
-<h2>Function Keys<a class="headerlink" href="#function-keys" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">56</span><span class="s2">"f1"</span>
-<span class="linenos">57</span><span class="s2">"f2"</span>
-<span class="linenos">58</span><span class="s2">"f3"</span>
-<span class="linenos">59</span><span class="s2">"f4"</span>
-<span class="linenos">60</span><span class="s2">"f5"</span>
-<span class="linenos">61</span><span class="s2">"f6"</span>
-<span class="linenos">62</span><span class="s2">"f7"</span>
-<span class="linenos">63</span><span class="s2">"f8"</span>
-<span class="linenos">64</span><span class="s2">"f9"</span>
-<span class="linenos">65</span><span class="s2">"f10"</span>
-<span class="linenos">66</span><span class="s2">"f11"</span>
-<span class="linenos">67</span><span class="s2">"f12"</span>
-<span class="linenos">68</span><span class="s2">"f13"</span>
-<span class="linenos">69</span><span class="s2">"f14"</span>
-<span class="linenos">70</span><span class="s2">"f15"</span>
-<span class="linenos">71</span><span class="s2">"f16"</span>
-<span class="linenos">72</span><span class="s2">"f17"</span>
-<span class="linenos">73</span><span class="s2">"f18"</span>
-<span class="linenos">74</span><span class="s2">"f19"</span>
-<span class="linenos">75</span><span class="s2">"f20"</span>
-<span class="linenos">76</span><span class="s2">"f21"</span>
-<span class="linenos">77</span><span class="s2">"f22"</span>
-<span class="linenos">78</span><span class="s2">"f23"</span>
-<span class="linenos">79</span><span class="s2">"f24"</span>
+<h2>Function Keys<a class="headerlink" href="#function-keys" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">56</span><span class="s2">&quot;f1&quot;</span>
+<span class="linenos">57</span><span class="s2">&quot;f2&quot;</span>
+<span class="linenos">58</span><span class="s2">&quot;f3&quot;</span>
+<span class="linenos">59</span><span class="s2">&quot;f4&quot;</span>
+<span class="linenos">60</span><span class="s2">&quot;f5&quot;</span>
+<span class="linenos">61</span><span class="s2">&quot;f6&quot;</span>
+<span class="linenos">62</span><span class="s2">&quot;f7&quot;</span>
+<span class="linenos">63</span><span class="s2">&quot;f8&quot;</span>
+<span class="linenos">64</span><span class="s2">&quot;f9&quot;</span>
+<span class="linenos">65</span><span class="s2">&quot;f10&quot;</span>
+<span class="linenos">66</span><span class="s2">&quot;f11&quot;</span>
+<span class="linenos">67</span><span class="s2">&quot;f12&quot;</span>
+<span class="linenos">68</span><span class="s2">&quot;f13&quot;</span>
+<span class="linenos">69</span><span class="s2">&quot;f14&quot;</span>
+<span class="linenos">70</span><span class="s2">&quot;f15&quot;</span>
+<span class="linenos">71</span><span class="s2">&quot;f16&quot;</span>
+<span class="linenos">72</span><span class="s2">&quot;f17&quot;</span>
+<span class="linenos">73</span><span class="s2">&quot;f18&quot;</span>
+<span class="linenos">74</span><span class="s2">&quot;f19&quot;</span>
+<span class="linenos">75</span><span class="s2">&quot;f20&quot;</span>
+<span class="linenos">76</span><span class="s2">&quot;f21&quot;</span>
+<span class="linenos">77</span><span class="s2">&quot;f22&quot;</span>
+<span class="linenos">78</span><span class="s2">&quot;f23&quot;</span>
+<span class="linenos">79</span><span class="s2">&quot;f24&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="special-characters">
-<h2>Special Characters<a class="headerlink" href="#special-characters" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">80</span><span class="s2">"'"</span>
-<span class="linenos">81</span><span class="s2">"</span><span class="se">\"</span>
-<span class="linenos">82</span><span class="s2">","</span>
-<span class="linenos">83</span><span class="s2">"="</span>
-<span class="linenos">84</span><span class="s2">"`"</span>
-<span class="linenos">85</span><span class="s2">"["</span>
-<span class="linenos">86</span><span class="s2">"-"</span>
-<span class="linenos">87</span><span class="s2">"."</span>
-<span class="linenos">88</span><span class="s2">"]"</span>
-<span class="linenos">89</span><span class="s2">";"</span>
-<span class="linenos">90</span><span class="s2">"/"</span>
+<h2>Special Characters<a class="headerlink" href="#special-characters" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">80</span><span class="s2">&quot;&#39;&quot;</span>
+<span class="linenos">81</span><span class="s2">&quot;</span><span class="se">\&quot;</span>
+<span class="linenos">82</span><span class="s2">&quot;,&quot;</span>
+<span class="linenos">83</span><span class="s2">&quot;=&quot;</span>
+<span class="linenos">84</span><span class="s2">&quot;`&quot;</span>
+<span class="linenos">85</span><span class="s2">&quot;[&quot;</span>
+<span class="linenos">86</span><span class="s2">&quot;-&quot;</span>
+<span class="linenos">87</span><span class="s2">&quot;.&quot;</span>
+<span class="linenos">88</span><span class="s2">&quot;]&quot;</span>
+<span class="linenos">89</span><span class="s2">&quot;;&quot;</span>
+<span class="linenos">90</span><span class="s2">&quot;/&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="numerical-keypad">
-<h2>Numerical Keypad<a class="headerlink" href="#numerical-keypad" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 90</span><span class="s2">"keypad -"</span>
-<span class="linenos"> 91</span><span class="s2">"keypad ,"</span>
-<span class="linenos"> 92</span><span class="s2">"keypad :"</span>
-<span class="linenos"> 93</span><span class="s2">"keypad !"</span>
-<span class="linenos"> 94</span><span class="s2">"keypad ."</span>
-<span class="linenos"> 95</span><span class="s2">"keypad ("</span>
-<span class="linenos"> 96</span><span class="s2">"keypad )"</span>
-<span class="linenos"> 97</span><span class="s2">"keypad {"</span>
-<span class="linenos"> 98</span><span class="s2">"keypad }"</span>
-<span class="linenos"> 99</span><span class="s2">"keypad @"</span>
-<span class="linenos">100</span><span class="s2">"keypad *"</span>
-<span class="linenos">101</span><span class="s2">"keypad /"</span>
-<span class="linenos">102</span><span class="s2">"keypad &amp;"</span>
-<span class="linenos">103</span><span class="s2">"keypad &amp;&amp;"</span>
-<span class="linenos">104</span><span class="s2">"keypad #"</span>
-<span class="linenos">105</span><span class="s2">"keypad %"</span>
-<span class="linenos">106</span><span class="s2">"keypad ^"</span>
-<span class="linenos">107</span><span class="s2">"keypad +"</span>
-<span class="linenos">108</span><span class="s2">"keypad +/-"</span>
-<span class="linenos">109</span><span class="s2">"keypad &lt;"</span>
-<span class="linenos">110</span><span class="s2">"keypad = (as400)"</span>
-<span class="linenos">111</span><span class="s2">"keypad ="</span>
-<span class="linenos">112</span><span class="s2">"keypad &gt;"</span>
-<span class="linenos">113</span><span class="s2">"keypad |"</span>
-<span class="linenos">114</span><span class="s2">"keypad 0"</span>
-<span class="linenos">115</span><span class="s2">"keypad 00"</span>
-<span class="linenos">116</span><span class="s2">"keypad 000"</span>
-<span class="linenos">117</span><span class="s2">"keypad 1"</span>
-<span class="linenos">118</span><span class="s2">"keypad 2"</span>
-<span class="linenos">119</span><span class="s2">"keypad 3"</span>
-<span class="linenos">120</span><span class="s2">"keypad 4"</span>
-<span class="linenos">121</span><span class="s2">"keypad 5"</span>
-<span class="linenos">122</span><span class="s2">"keypad 6"</span>
-<span class="linenos">123</span><span class="s2">"keypad 7"</span>
-<span class="linenos">124</span><span class="s2">"keypad 8"</span>
-<span class="linenos">125</span><span class="s2">"keypad 9"</span>
-<span class="linenos">126</span><span class="s2">"keypad a"</span>
-<span class="linenos">127</span><span class="s2">"keypad b"</span>
-<span class="linenos">128</span><span class="s2">"keypad c"</span>
-<span class="linenos">129</span><span class="s2">"keypad d"</span>
-<span class="linenos">130</span><span class="s2">"keypad e"</span>
-<span class="linenos">131</span><span class="s2">"keypad f"</span>
-<span class="linenos">132</span><span class="s2">"keypad backspace"</span>
-<span class="linenos">133</span><span class="s2">"keypad binary"</span>
-<span class="linenos">134</span><span class="s2">"keypad clear"</span>
-<span class="linenos">135</span><span class="s2">"keypad clearentry"</span>
-<span class="linenos">136</span><span class="s2">"keypad decimal"</span>
-<span class="linenos">137</span><span class="s2">"keypad enter"</span>
-<span class="linenos">138</span><span class="s2">"keypad hexadecimal"</span>
-<span class="linenos">139</span><span class="s2">"keypad memadd"</span>
-<span class="linenos">140</span><span class="s2">"keypad memclear"</span>
-<span class="linenos">141</span><span class="s2">"keypad memdivide"</span>
-<span class="linenos">142</span><span class="s2">"keypad memmultiply"</span>
-<span class="linenos">143</span><span class="s2">"keypad memrecall"</span>
-<span class="linenos">144</span><span class="s2">"keypad memstore"</span>
-<span class="linenos">145</span><span class="s2">"keypad memsubtract"</span>
-<span class="linenos">146</span><span class="s2">"keypad octal"</span>
-<span class="linenos">147</span><span class="s2">"keypad space"</span>
-<span class="linenos">148</span><span class="s2">"keypad tab"</span>
-<span class="linenos">149</span><span class="s2">"keypad xor"</span>
+<h2>Numerical Keypad<a class="headerlink" href="#numerical-keypad" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 90</span><span class="s2">&quot;keypad -&quot;</span>
+<span class="linenos"> 91</span><span class="s2">&quot;keypad ,&quot;</span>
+<span class="linenos"> 92</span><span class="s2">&quot;keypad :&quot;</span>
+<span class="linenos"> 93</span><span class="s2">&quot;keypad !&quot;</span>
+<span class="linenos"> 94</span><span class="s2">&quot;keypad .&quot;</span>
+<span class="linenos"> 95</span><span class="s2">&quot;keypad (&quot;</span>
+<span class="linenos"> 96</span><span class="s2">&quot;keypad )&quot;</span>
+<span class="linenos"> 97</span><span class="s2">&quot;keypad {&quot;</span>
+<span class="linenos"> 98</span><span class="s2">&quot;keypad }&quot;</span>
+<span class="linenos"> 99</span><span class="s2">&quot;keypad @&quot;</span>
+<span class="linenos">100</span><span class="s2">&quot;keypad *&quot;</span>
+<span class="linenos">101</span><span class="s2">&quot;keypad /&quot;</span>
+<span class="linenos">102</span><span class="s2">&quot;keypad &amp;&quot;</span>
+<span class="linenos">103</span><span class="s2">&quot;keypad &amp;&amp;&quot;</span>
+<span class="linenos">104</span><span class="s2">&quot;keypad #&quot;</span>
+<span class="linenos">105</span><span class="s2">&quot;keypad %&quot;</span>
+<span class="linenos">106</span><span class="s2">&quot;keypad ^&quot;</span>
+<span class="linenos">107</span><span class="s2">&quot;keypad +&quot;</span>
+<span class="linenos">108</span><span class="s2">&quot;keypad +/-&quot;</span>
+<span class="linenos">109</span><span class="s2">&quot;keypad &lt;&quot;</span>
+<span class="linenos">110</span><span class="s2">&quot;keypad = (as400)&quot;</span>
+<span class="linenos">111</span><span class="s2">&quot;keypad =&quot;</span>
+<span class="linenos">112</span><span class="s2">&quot;keypad &gt;&quot;</span>
+<span class="linenos">113</span><span class="s2">&quot;keypad |&quot;</span>
+<span class="linenos">114</span><span class="s2">&quot;keypad 0&quot;</span>
+<span class="linenos">115</span><span class="s2">&quot;keypad 00&quot;</span>
+<span class="linenos">116</span><span class="s2">&quot;keypad 000&quot;</span>
+<span class="linenos">117</span><span class="s2">&quot;keypad 1&quot;</span>
+<span class="linenos">118</span><span class="s2">&quot;keypad 2&quot;</span>
+<span class="linenos">119</span><span class="s2">&quot;keypad 3&quot;</span>
+<span class="linenos">120</span><span class="s2">&quot;keypad 4&quot;</span>
+<span class="linenos">121</span><span class="s2">&quot;keypad 5&quot;</span>
+<span class="linenos">122</span><span class="s2">&quot;keypad 6&quot;</span>
+<span class="linenos">123</span><span class="s2">&quot;keypad 7&quot;</span>
+<span class="linenos">124</span><span class="s2">&quot;keypad 8&quot;</span>
+<span class="linenos">125</span><span class="s2">&quot;keypad 9&quot;</span>
+<span class="linenos">126</span><span class="s2">&quot;keypad a&quot;</span>
+<span class="linenos">127</span><span class="s2">&quot;keypad b&quot;</span>
+<span class="linenos">128</span><span class="s2">&quot;keypad c&quot;</span>
+<span class="linenos">129</span><span class="s2">&quot;keypad d&quot;</span>
+<span class="linenos">130</span><span class="s2">&quot;keypad e&quot;</span>
+<span class="linenos">131</span><span class="s2">&quot;keypad f&quot;</span>
+<span class="linenos">132</span><span class="s2">&quot;keypad backspace&quot;</span>
+<span class="linenos">133</span><span class="s2">&quot;keypad binary&quot;</span>
+<span class="linenos">134</span><span class="s2">&quot;keypad clear&quot;</span>
+<span class="linenos">135</span><span class="s2">&quot;keypad clearentry&quot;</span>
+<span class="linenos">136</span><span class="s2">&quot;keypad decimal&quot;</span>
+<span class="linenos">137</span><span class="s2">&quot;keypad enter&quot;</span>
+<span class="linenos">138</span><span class="s2">&quot;keypad hexadecimal&quot;</span>
+<span class="linenos">139</span><span class="s2">&quot;keypad memadd&quot;</span>
+<span class="linenos">140</span><span class="s2">&quot;keypad memclear&quot;</span>
+<span class="linenos">141</span><span class="s2">&quot;keypad memdivide&quot;</span>
+<span class="linenos">142</span><span class="s2">&quot;keypad memmultiply&quot;</span>
+<span class="linenos">143</span><span class="s2">&quot;keypad memrecall&quot;</span>
+<span class="linenos">144</span><span class="s2">&quot;keypad memstore&quot;</span>
+<span class="linenos">145</span><span class="s2">&quot;keypad memsubtract&quot;</span>
+<span class="linenos">146</span><span class="s2">&quot;keypad octal&quot;</span>
+<span class="linenos">147</span><span class="s2">&quot;keypad space&quot;</span>
+<span class="linenos">148</span><span class="s2">&quot;keypad tab&quot;</span>
+<span class="linenos">149</span><span class="s2">&quot;keypad xor&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="application-control-keypad">
-<h2>Application Control Keypad<a class="headerlink" href="#application-control-keypad" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">149</span><span class="s2">"ac back"</span>
-<span class="linenos">150</span><span class="s2">"ac bookmarks"</span>
-<span class="linenos">151</span><span class="s2">"ac forward"</span>
-<span class="linenos">152</span><span class="s2">"ac home"</span>
-<span class="linenos">153</span><span class="s2">"ac refresh"</span>
-<span class="linenos">154</span><span class="s2">"ac search"</span>
-<span class="linenos">155</span><span class="s2">"ac stop"</span>
+<h2>Application Control Keypad<a class="headerlink" href="#application-control-keypad" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">149</span><span class="s2">&quot;ac back&quot;</span>
+<span class="linenos">150</span><span class="s2">&quot;ac bookmarks&quot;</span>
+<span class="linenos">151</span><span class="s2">&quot;ac forward&quot;</span>
+<span class="linenos">152</span><span class="s2">&quot;ac home&quot;</span>
+<span class="linenos">153</span><span class="s2">&quot;ac refresh&quot;</span>
+<span class="linenos">154</span><span class="s2">&quot;ac search&quot;</span>
+<span class="linenos">155</span><span class="s2">&quot;ac stop&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="other-common">
-<h2>Other Common<a class="headerlink" href="#other-common" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">156</span><span class="s2">"up"</span>  <span class="c1"># the up arrow key</span>
-<span class="linenos">157</span><span class="s2">"down"</span> <span class="c1"># the down arrow key</span>
-<span class="linenos">158</span><span class="s2">"left"</span>  <span class="c1"># the left arrow key</span>
-<span class="linenos">159</span><span class="s2">"right"</span>  <span class="c1"># the right arrow key</span>
+<h2>Other Common<a class="headerlink" href="#other-common" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">156</span><span class="s2">&quot;up&quot;</span>  <span class="c1"># the up arrow key</span>
+<span class="linenos">157</span><span class="s2">&quot;down&quot;</span> <span class="c1"># the down arrow key</span>
+<span class="linenos">158</span><span class="s2">&quot;left&quot;</span>  <span class="c1"># the left arrow key</span>
+<span class="linenos">159</span><span class="s2">&quot;right&quot;</span>  <span class="c1"># the right arrow key</span>
 <span class="linenos">160</span>
-<span class="linenos">161</span><span class="s2">"backspace"</span>
-<span class="linenos">162</span><span class="s2">"delete"</span>
-<span class="linenos">163</span><span class="s2">"escape"</span>
-<span class="linenos">164</span><span class="s2">"return"</span>
-<span class="linenos">165</span><span class="s2">"space"</span>
-<span class="linenos">166</span><span class="s2">"tab"</span>
+<span class="linenos">161</span><span class="s2">&quot;backspace&quot;</span>
+<span class="linenos">162</span><span class="s2">&quot;delete&quot;</span>
+<span class="linenos">163</span><span class="s2">&quot;escape&quot;</span>
+<span class="linenos">164</span><span class="s2">&quot;return&quot;</span>
+<span class="linenos">165</span><span class="s2">&quot;space&quot;</span>
+<span class="linenos">166</span><span class="s2">&quot;tab&quot;</span>
 <span class="linenos">167</span>
-<span class="linenos">168</span><span class="s2">"audiomute"</span>
-<span class="linenos">169</span><span class="s2">"audionext"</span>
-<span class="linenos">170</span><span class="s2">"audioplay"</span>
-<span class="linenos">171</span><span class="s2">"audioprev"</span>
-<span class="linenos">172</span><span class="s2">"audiostop"</span>
+<span class="linenos">168</span><span class="s2">&quot;audiomute&quot;</span>
+<span class="linenos">169</span><span class="s2">&quot;audionext&quot;</span>
+<span class="linenos">170</span><span class="s2">&quot;audioplay&quot;</span>
+<span class="linenos">171</span><span class="s2">&quot;audioprev&quot;</span>
+<span class="linenos">172</span><span class="s2">&quot;audiostop&quot;</span>
 <span class="linenos">173</span>
-<span class="linenos">174</span><span class="s2">"volumedown"</span>
-<span class="linenos">175</span><span class="s2">"volumeup"</span>
+<span class="linenos">174</span><span class="s2">&quot;volumedown&quot;</span>
+<span class="linenos">175</span><span class="s2">&quot;volumeup&quot;</span>
 <span class="linenos">176</span>
-<span class="linenos">177</span><span class="s2">"brightnessdown"</span>
-<span class="linenos">178</span><span class="s2">"brightnessup"</span>
+<span class="linenos">177</span><span class="s2">&quot;brightnessdown&quot;</span>
+<span class="linenos">178</span><span class="s2">&quot;brightnessup&quot;</span>
 <span class="linenos">179</span>
-<span class="linenos">180</span><span class="s2">"capslock"</span>
-<span class="linenos">181</span><span class="s2">"displayswitch"</span>
-<span class="linenos">182</span><span class="s2">"eject"</span>
-<span class="linenos">183</span><span class="s2">"end"</span>
-<span class="linenos">184</span><span class="s2">"insert"</span>
+<span class="linenos">180</span><span class="s2">&quot;capslock&quot;</span>
+<span class="linenos">181</span><span class="s2">&quot;displayswitch&quot;</span>
+<span class="linenos">182</span><span class="s2">&quot;eject&quot;</span>
+<span class="linenos">183</span><span class="s2">&quot;end&quot;</span>
+<span class="linenos">184</span><span class="s2">&quot;insert&quot;</span>
 <span class="linenos">185</span>
-<span class="linenos">186</span><span class="s2">"kbdillumdown"</span>  <span class="c1"># the keyboard illumination down key</span>
-<span class="linenos">187</span><span class="s2">"kbdillumtoggle"</span>  <span class="c1"># the keyboard illumination toggle key</span>
-<span class="linenos">188</span><span class="s2">"kbdillumup"</span>  <span class="c1"># the keyboard illumination up key</span>
+<span class="linenos">186</span><span class="s2">&quot;kbdillumdown&quot;</span>  <span class="c1"># the keyboard illumination down key</span>
+<span class="linenos">187</span><span class="s2">&quot;kbdillumtoggle&quot;</span>  <span class="c1"># the keyboard illumination toggle key</span>
+<span class="linenos">188</span><span class="s2">&quot;kbdillumup&quot;</span>  <span class="c1"># the keyboard illumination up key</span>
 <span class="linenos">189</span>
-<span class="linenos">190</span><span class="s2">"scrolllock"</span>
+<span class="linenos">190</span><span class="s2">&quot;scrolllock&quot;</span>
 <span class="linenos">191</span>
-<span class="linenos">192</span><span class="s2">"pagedown"</span>
-<span class="linenos">193</span><span class="s2">"pageup"</span>
+<span class="linenos">192</span><span class="s2">&quot;pagedown&quot;</span>
+<span class="linenos">193</span><span class="s2">&quot;pageup&quot;</span>
 <span class="linenos">194</span>
-<span class="linenos">195</span><span class="s2">"pause"</span>  <span class="c1"># the pause / break key</span>
-<span class="linenos">196</span><span class="s2">"printscreen"</span>
+<span class="linenos">195</span><span class="s2">&quot;pause&quot;</span>  <span class="c1"># the pause / break key</span>
+<span class="linenos">196</span><span class="s2">&quot;printscreen&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="other-uncommon">
-<h2>Other Uncommon<a class="headerlink" href="#other-uncommon" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">197</span><span class="s2">"again"</span>
-<span class="linenos">198</span><span class="s2">"alterase"</span> <span class="c1"># erase-eaze</span>
-<span class="linenos">199</span><span class="s2">"application"</span>  <span class="c1"># the application / compose / context menu windows key</span>
-<span class="linenos">200</span><span class="s2">"calculator"</span>
-<span class="linenos">201</span><span class="s2">"cancel"</span>
-<span class="linenos">202</span><span class="s2">"clear / again"</span>
-<span class="linenos">203</span><span class="s2">"clear"</span>
-<span class="linenos">204</span><span class="s2">"computer"</span>
-<span class="linenos">205</span><span class="s2">"copy"</span>
-<span class="linenos">206</span><span class="s2">"crsel"</span>
-<span class="linenos">207</span><span class="s2">"currencysubunit"</span>
-<span class="linenos">208</span><span class="s2">"currencyunit"</span>
-<span class="linenos">209</span><span class="s2">"cut"</span>
-<span class="linenos">210</span><span class="s2">"decimalseparator"</span>
-<span class="linenos">211</span><span class="s2">"execute"</span>
-<span class="linenos">212</span><span class="s2">"exsel"</span>
-<span class="linenos">213</span><span class="s2">"find"</span>
-<span class="linenos">214</span><span class="s2">"help"</span>
-<span class="linenos">215</span><span class="s2">"home"</span>
-<span class="linenos">216</span><span class="s2">"mail"</span>
-<span class="linenos">217</span><span class="s2">"mediaselect"</span>
-<span class="linenos">218</span><span class="s2">"menu"</span>
-<span class="linenos">219</span><span class="s2">"modeswitch"</span>
-<span class="linenos">220</span><span class="s2">"mute"</span>
-<span class="linenos">221</span><span class="s2">"oper"</span>
-<span class="linenos">222</span><span class="s2">"out"</span>
-<span class="linenos">223</span><span class="s2">"paste"</span>
-<span class="linenos">224</span><span class="s2">"prior"</span>
-<span class="linenos">225</span><span class="s2">"select"</span>
-<span class="linenos">226</span><span class="s2">"separator"</span>
-<span class="linenos">227</span><span class="s2">"sleep"</span>
-<span class="linenos">228</span><span class="s2">"stop"</span>
-<span class="linenos">229</span><span class="s2">"sysreq"</span>
-<span class="linenos">230</span><span class="s2">"thousandsseparator"</span>
-<span class="linenos">231</span><span class="s2">"undo"</span>
-<span class="linenos">232</span><span class="s2">"www"</span>
+<h2>Other Uncommon<a class="headerlink" href="#other-uncommon" title="Permalink to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">197</span><span class="s2">&quot;again&quot;</span>
+<span class="linenos">198</span><span class="s2">&quot;alterase&quot;</span> <span class="c1"># erase-eaze</span>
+<span class="linenos">199</span><span class="s2">&quot;application&quot;</span>  <span class="c1"># the application / compose / context menu windows key</span>
+<span class="linenos">200</span><span class="s2">&quot;calculator&quot;</span>
+<span class="linenos">201</span><span class="s2">&quot;cancel&quot;</span>
+<span class="linenos">202</span><span class="s2">&quot;clear / again&quot;</span>
+<span class="linenos">203</span><span class="s2">&quot;clear&quot;</span>
+<span class="linenos">204</span><span class="s2">&quot;computer&quot;</span>
+<span class="linenos">205</span><span class="s2">&quot;copy&quot;</span>
+<span class="linenos">206</span><span class="s2">&quot;crsel&quot;</span>
+<span class="linenos">207</span><span class="s2">&quot;currencysubunit&quot;</span>
+<span class="linenos">208</span><span class="s2">&quot;currencyunit&quot;</span>
+<span class="linenos">209</span><span class="s2">&quot;cut&quot;</span>
+<span class="linenos">210</span><span class="s2">&quot;decimalseparator&quot;</span>
+<span class="linenos">211</span><span class="s2">&quot;execute&quot;</span>
+<span class="linenos">212</span><span class="s2">&quot;exsel&quot;</span>
+<span class="linenos">213</span><span class="s2">&quot;find&quot;</span>
+<span class="linenos">214</span><span class="s2">&quot;help&quot;</span>
+<span class="linenos">215</span><span class="s2">&quot;home&quot;</span>
+<span class="linenos">216</span><span class="s2">&quot;mail&quot;</span>
+<span class="linenos">217</span><span class="s2">&quot;mediaselect&quot;</span>
+<span class="linenos">218</span><span class="s2">&quot;menu&quot;</span>
+<span class="linenos">219</span><span class="s2">&quot;modeswitch&quot;</span>
+<span class="linenos">220</span><span class="s2">&quot;mute&quot;</span>
+<span class="linenos">221</span><span class="s2">&quot;oper&quot;</span>
+<span class="linenos">222</span><span class="s2">&quot;out&quot;</span>
+<span class="linenos">223</span><span class="s2">&quot;paste&quot;</span>
+<span class="linenos">224</span><span class="s2">&quot;prior&quot;</span>
+<span class="linenos">225</span><span class="s2">&quot;select&quot;</span>
+<span class="linenos">226</span><span class="s2">&quot;separator&quot;</span>
+<span class="linenos">227</span><span class="s2">&quot;sleep&quot;</span>
+<span class="linenos">228</span><span class="s2">&quot;stop&quot;</span>
+<span class="linenos">229</span><span class="s2">&quot;sysreq&quot;</span>
+<span class="linenos">230</span><span class="s2">&quot;thousandsseparator&quot;</span>
+<span class="linenos">231</span><span class="s2">&quot;undo&quot;</span>
+<span class="linenos">232</span><span class="s2">&quot;www&quot;</span>
 </pre></div>
 </div>
 </section>
@@ -633,35 +570,45 @@ Note that names are case-sensitive.</p>
       </div>
       <footer>
         
-        <div class="related-pages">
-          <a class="next-page" href="../defaults/">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Default Options</div>
-              </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="../events/">
-              <svg><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Event Details</div>
-                
-              </div>
+<div class="related-pages">
+    <a class="next-page" href="../defaults/">
+        <div class="page-info">
+            <div class="context">
+                <span>Next</span>
+            </div>
+            <div class="title">Default Options</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+    </a> <a class="prev-page" href="../events/">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+            <div class="context">
+                <span>Previous</span>
+            </div>
+            
+            <div class="title">Event Details</div>
+            
+        </div>
+    </a>
+</div>
+<div class="bottom-of-page">
+    <div class="left-details">
+        <div class="copyright"> Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave
+        </div>
+    </div>
+    <div class="right-details">
+        <div class="icons"><a class="muted-link" href="https://github.com/rubatopy/rubato" aria-label="On GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    ></path>
+                </svg>
             </a>
         </div>
+    </div>
+</div>
 
-        <div class="related-information">
-              Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave |
-          Created using <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
-          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
-        </div>
-        
       </footer>
     </div>
     <aside class="toc-drawer">
@@ -700,6 +647,7 @@ Note that names are case-sensitive.</p>
 </div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/furo.js"></script>
     <script src="../_static/clipboard.min.js"></script>
