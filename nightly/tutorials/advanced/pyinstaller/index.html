@@ -221,7 +221,12 @@
 
 </div><div id="versionSidebarInclude"></div>
 <script>
-    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+    if (window.location.hostname == "localhost") {
+        console.log("loading test version sidebar from localhost:8001");
+        $("#versionSidebarInclude").load("http://localhost:8001/version_iframe.html");
+    } else {
+        $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+    }
 </script></div>
       </div>
       
@@ -305,15 +310,15 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="231d418d-47e8-48b7-80ac-8b980e4ef2aa" name="aaecf270-2f54-4dc3-9e7d-99fe47676033" type="radio">
-</input><label class="sd-tab-label" for="231d418d-47e8-48b7-80ac-8b980e4ef2aa">
+<input checked="checked" id="3f3aacc4-b555-4c23-ae10-ea82318f7e9d" name="06377e77-ce71-4ba5-81ac-e818d53a77cf" type="radio">
+</input><label class="sd-tab-label" for="3f3aacc4-b555-4c23-ae10-ea82318f7e9d">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="1f39c0e5-3dcd-4fa0-9989-7a47684e965a" name="aaecf270-2f54-4dc3-9e7d-99fe47676033" type="radio">
-</input><label class="sd-tab-label" for="1f39c0e5-3dcd-4fa0-9989-7a47684e965a">
+<input id="517b8d2d-a62e-403b-99bb-9bc5046ac760" name="06377e77-ce71-4ba5-81ac-e818d53a77cf" type="radio">
+</input><label class="sd-tab-label" for="517b8d2d-a62e-403b-99bb-9bc5046ac760">
 Mac OS X</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>
