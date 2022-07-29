@@ -466,11 +466,7 @@
 <span class="sd">            tx: The texture to draw on the screen.</span>
 <span class="sd">            pos: The position to draw the texture on.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span>
-            <span class="n">tx</span><span class="p">,</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">),</span>
-        <span class="p">)</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span> <span class="n">dstrect</span><span class="o">=</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Display.clone_surface"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.clone_surface">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">clone_surface</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">surface</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
