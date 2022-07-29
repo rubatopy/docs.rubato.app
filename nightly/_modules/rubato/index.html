@@ -391,7 +391,7 @@
 <span class="sd">        RuntimeError: rubato has not been initialized before calling.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">Game</span><span class="o">.</span><span class="n">_initialized</span><span class="p">:</span> <span class="c1"># pylint: disable=protected-access</span>
-        <span class="n">Game</span><span class="o">.</span><span class="n">constant_loop</span><span class="p">()</span>
+        <span class="n">Game</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
             <span class="s2">&quot;You have not initialized rubato. Make sure to run rubato.init() right after importing the library&quot;</span>

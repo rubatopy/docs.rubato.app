@@ -453,17 +453,27 @@ use <a class="reference internal" href="#rubato.struct.scene.Scene.camera" title
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.game.Game.constant_loop">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">constant_loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.constant_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.constant_loop" title="Permalink to this definition">#</a></dt>
-<dd><p>The constant game loop. Should only be called by <a class="reference internal" href="#rubato.begin" title="rubato.begin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rubato.begin()</span></code></a>.</p>
+<dt class="sig sig-object py" id="rubato.game.Game.start">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.start" title="Permalink to this definition">#</a></dt>
+<dd><p>Starts the main game loop. Called automatically by <a class="reference internal" href="#rubato.begin" title="rubato.begin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rubato.begin()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.game.Game.loop">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">loop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.loop" title="Permalink to this definition">#</a></dt>
+<dd><p>Rubato’s main game loop. Called automatically by <code class="xref py py-meth docutils literal notranslate"><span class="pre">rubato.Game.start()</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.game.Game.update">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.update" title="Permalink to this definition">#</a></dt>
-<dd><p>The update loop for the game. Called automatically every frame.
-Handles the game states.
-Will always process timed calls.</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.update" title="Permalink to this definition">#</a></dt>
+<dd><p>An overrideable method for updating the game. Called once per frame, before the current scene updates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.game.Game.draw">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.draw" title="Permalink to this definition">#</a></dt>
+<dd><p>An overrideable method for drawing the game. Called once per frame, after the current scene draws.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4581,14 +4591,14 @@ dictionary by filename.</p>
 <p>Draws things to the renderer. Don’t instantiate, instead use it as a static class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.draw.Draw.clear">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">border_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.white</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/draw/#Draw.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.draw.Draw.clear" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">background_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.white</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/draw/#Draw.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.draw.Draw.clear" title="Permalink to this definition">#</a></dt>
 <dd><p>Clears the renderer and draws the background of the frame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>background_color</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code>) – The background color. Defaults to white.</p></li>
 <li><p><strong>border_color</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code>) – The border color. Defaults to black.
 Shown when the aspect ratio of the game does not match the aspect ratio of the window.</p></li>
-<li><p><strong>background_color</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code>) – The background color. Defaults to white.</p></li>
 </ul>
 </dd>
 </dl>
