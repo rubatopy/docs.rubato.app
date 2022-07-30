@@ -184,7 +184,26 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand centered" href="https://www.rubato.app">
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><div id="vtag-name"></div>
+<style>
+    div#vtag-name {
+        color: var(--color-sidebar-caption-text);
+        font-size: var(--sidebar-caption-font-size);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: right;
+        position: absolute;
+        right: 0;
+        padding: 1.25rem 1.25rem 0 0;
+    }
+</style>
+<script>
+    let vtag = document.getElementById("vtag-name");
+    window.onload = () => {
+        vtag.innerHTML = window.current;
+    };
+</script>
+<a class="sidebar-brand centered" href="https://www.rubato.app">
     
     <div class="sidebar-logo-container">
         <img
@@ -310,15 +329,15 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="53c6e092-b285-443d-bd08-b3edc1be9f74" name="dcf15ee8-d90b-4ab7-9a6d-858cf909b990" type="radio">
-</input><label class="sd-tab-label" for="53c6e092-b285-443d-bd08-b3edc1be9f74">
+<input checked="checked" id="08a75d7e-0948-4ae2-b857-c62f94213caa" name="df7014e0-aaf6-4fbc-a3b3-3b47b8a822fa" type="radio">
+</input><label class="sd-tab-label" for="08a75d7e-0948-4ae2-b857-c62f94213caa">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="afb04aa6-0db3-42f6-9c37-1e6ca2887c96" name="dcf15ee8-d90b-4ab7-9a6d-858cf909b990" type="radio">
-</input><label class="sd-tab-label" for="afb04aa6-0db3-42f6-9c37-1e6ca2887c96">
+<input id="6d6f1fd9-f106-4f60-94bd-bbf63382839a" name="df7014e0-aaf6-4fbc-a3b3-3b47b8a822fa" type="radio">
+</input><label class="sd-tab-label" for="6d6f1fd9-f106-4f60-94bd-bbf63382839a">
 Mac OS X</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>
