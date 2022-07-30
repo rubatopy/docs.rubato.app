@@ -183,7 +183,31 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand centered" href="https://www.rubato.app">
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><div id="vtag-name"></div>
+<style>
+    div#vtag-name {
+        color: var(--color-sidebar-caption-text);
+        font-size: var(--sidebar-caption-font-size);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: right;
+        position: absolute;
+        right: 0;
+        padding: 1.25rem 1.25rem 0 0;
+    }
+</style>
+<script>
+    let vtag = document.getElementById("vtag-name");
+    function waitForElement() {
+        if (typeof window.current !== "undefined") {
+            vtag.innerHTML = window.current;
+        } else {
+            setTimeout(waitForElement, 250);
+        }
+    }
+    waitForElement();
+</script>
+<a class="sidebar-brand centered" href="https://www.rubato.app">
     
     <div class="sidebar-logo-container">
         <img
@@ -220,7 +244,12 @@
 
 </div><div id="versionSidebarInclude"></div>
 <script>
-    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+    if (window.location.hostname == "localhost") {
+        console.log("loading test version sidebar from localhost:8001");
+        $("#versionSidebarInclude").load("http://localhost:8001/version_sidebar.html");
+    } else {
+        $("#versionSidebarInclude").load("https://test.rubato.app/version_sidebar.html");
+    }
 </script></div>
       </div>
       
@@ -304,15 +333,15 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="14727535-675e-4db4-b5bf-9c8fcfd87b6d" name="03be8669-98f3-4428-bb63-6b43fa1ab07e" type="radio">
-</input><label class="sd-tab-label" for="14727535-675e-4db4-b5bf-9c8fcfd87b6d">
+<input checked="checked" id="f99ad2c4-79a8-4b78-be5a-f5df70cb51fc" name="31a99822-b36b-4a64-8e88-7e335afa9d80" type="radio">
+</input><label class="sd-tab-label" for="f99ad2c4-79a8-4b78-be5a-f5df70cb51fc">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="724b3e46-2fdd-4f67-8348-0d271c642c06" name="03be8669-98f3-4428-bb63-6b43fa1ab07e" type="radio">
-</input><label class="sd-tab-label" for="724b3e46-2fdd-4f67-8348-0d271c642c06">
+<input id="823cab9d-4a57-4576-8eb4-03aa3a96a086" name="31a99822-b36b-4a64-8e88-7e335afa9d80" type="radio">
+</input><label class="sd-tab-label" for="823cab9d-4a57-4576-8eb4-03aa3a96a086">
 Mac OS X</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>

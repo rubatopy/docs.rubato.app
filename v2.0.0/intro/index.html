@@ -183,7 +183,31 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><div class="sidebar-scroll"><a class="sidebar-brand centered" href="https://www.rubato.app">
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><div id="vtag-name"></div>
+<style>
+    div#vtag-name {
+        color: var(--color-sidebar-caption-text);
+        font-size: var(--sidebar-caption-font-size);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: right;
+        position: absolute;
+        right: 0;
+        padding: 1.25rem 1.25rem 0 0;
+    }
+</style>
+<script>
+    let vtag = document.getElementById("vtag-name");
+    function waitForElement() {
+        if (typeof window.current !== "undefined") {
+            vtag.innerHTML = window.current;
+        } else {
+            setTimeout(waitForElement, 250);
+        }
+    }
+    waitForElement();
+</script>
+<a class="sidebar-brand centered" href="https://www.rubato.app">
     
     <div class="sidebar-logo-container">
         <img
@@ -223,7 +247,12 @@
 
 </div><div id="versionSidebarInclude"></div>
 <script>
-    $("#versionSidebarInclude").load("https://test.rubato.app/version_iframe.html");
+    if (window.location.hostname == "localhost") {
+        console.log("loading test version sidebar from localhost:8001");
+        $("#versionSidebarInclude").load("http://localhost:8001/version_sidebar.html");
+    } else {
+        $("#versionSidebarInclude").load("https://test.rubato.app/version_sidebar.html");
+    }
 </script></div>
       </div>
       
@@ -298,22 +327,22 @@
 <p>You’ll also need to install the SDL dlls (they’re the C-lib files that Rubato needs).
 Here’s how you can do that on your platform:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="a201f0ea-109b-487b-808a-d991b368615f" name="f9d96316-a683-4091-a0f8-cc73eecfce6c" type="radio">
-</input><label class="sd-tab-label" data-sync-id="win" for="a201f0ea-109b-487b-808a-d991b368615f">
+<input checked="checked" id="1b29cf75-75ed-4734-8398-cbe1ee94dedd" name="8bccb943-2b9d-4675-b27e-26d2746b53cd" type="radio">
+</input><label class="sd-tab-label" data-sync-id="win" for="1b29cf75-75ed-4734-8398-cbe1ee94dedd">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install pysdl-dll
 </pre></div>
 </div>
 </div>
-<input id="3350430b-62d0-4ea8-88e2-8e3144dec959" name="f9d96316-a683-4091-a0f8-cc73eecfce6c" type="radio">
-</input><label class="sd-tab-label" data-sync-id="linux" for="3350430b-62d0-4ea8-88e2-8e3144dec959">
+<input id="a4bff276-33f4-44ab-978c-03d8e8fb433c" name="8bccb943-2b9d-4675-b27e-26d2746b53cd" type="radio">
+</input><label class="sd-tab-label" data-sync-id="linux" for="a4bff276-33f4-44ab-978c-03d8e8fb433c">
 Linux</label><div class="sd-tab-content docutils">
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install pysdl-dll
 </pre></div>
 </div>
 </div>
-<input id="cc2ad955-8ecc-4dc6-94fc-fd6b7956172d" name="f9d96316-a683-4091-a0f8-cc73eecfce6c" type="radio">
-</input><label class="sd-tab-label" data-sync-id="mac" for="cc2ad955-8ecc-4dc6-94fc-fd6b7956172d">
+<input id="f074b28b-3759-4b65-8765-6b10b69db138" name="8bccb943-2b9d-4675-b27e-26d2746b53cd" type="radio">
+</input><label class="sd-tab-label" data-sync-id="mac" for="f074b28b-3759-4b65-8765-6b10b69db138">
 Mac</label><div class="sd-tab-content docutils">
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>brew install sdl2 sdl2_mixer sdl2_ttf sdl2_gfx sdl2_image
 </pre></div>
