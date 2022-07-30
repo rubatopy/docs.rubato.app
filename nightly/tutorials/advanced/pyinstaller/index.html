@@ -199,9 +199,14 @@
 </style>
 <script>
     let vtag = document.getElementById("vtag-name");
-    window.onload = () => {
-        vtag.innerHTML = window.current;
-    };
+    function waitForElement() {
+        if (typeof window.current !== "undefined") {
+            vtag.innerHTML = window.current;
+        } else {
+            setTimeout(waitForElement, 250);
+        }
+    }
+    waitForElement();
 </script>
 <a class="sidebar-brand centered" href="https://www.rubato.app">
     
@@ -329,15 +334,15 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="cc120c79-ad9e-410a-96a4-ccbb5370a954" name="dbf07916-ff74-429c-ab76-8c8cb517c2eb" type="radio">
-</input><label class="sd-tab-label" for="cc120c79-ad9e-410a-96a4-ccbb5370a954">
+<input checked="checked" id="be34e444-2d78-439e-8817-b90c69f29a60" name="cb6b3876-fe4f-486f-aaaa-2bbdc4ab1fda" type="radio">
+</input><label class="sd-tab-label" for="be34e444-2d78-439e-8817-b90c69f29a60">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="78a66de0-88fe-4cf9-b554-b3921035ee8c" name="dbf07916-ff74-429c-ab76-8c8cb517c2eb" type="radio">
-</input><label class="sd-tab-label" for="78a66de0-88fe-4cf9-b554-b3921035ee8c">
+<input id="902c312f-076d-4dbe-b3ed-ab463005819a" name="cb6b3876-fe4f-486f-aaaa-2bbdc4ab1fda" type="radio">
+</input><label class="sd-tab-label" for="902c312f-076d-4dbe-b3ed-ab463005819a">
 Mac OS X</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>
