@@ -339,12 +339,18 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">listeners</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="Radio.pump"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.pump">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">pump</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Pump events from SDL and broadcast them as necessary. Called automatically every frame.&quot;&quot;&quot;</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PumpEvents</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">get_events</span><span class="p">():</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">get_events</span><span class="p">())</span>
+
+<div class="viewcode-block" id="Radio.handle"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.handle">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Handle the event queue&quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="bp">cls</span><span class="o">.</span><span class="n">queue</span><span class="p">:</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_QUIT</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WINDOWEVENT</span><span class="p">:</span>

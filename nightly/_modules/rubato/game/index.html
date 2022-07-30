@@ -307,7 +307,7 @@
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Dict</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Debug</span><span class="p">,</span> <span class="n">Radio</span><span class="p">,</span> <span class="n">Events</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">IdError</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Debug</span><span class="p">,</span> <span class="n">Radio</span><span class="p">,</span> <span class="n">Events</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">IdError</span><span class="p">,</span> <span class="n">Draw</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Scene</span>
@@ -322,7 +322,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The state of the game.</span>
 
@@ -335,14 +335,14 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_state</span>
 
     <span class="nd">@state</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">state</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="c1"># test: skip</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">new</span>
 
         <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="n">Game</span><span class="o">.</span><span class="n">STOPPED</span><span class="p">:</span>
             <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PushEvent</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Event</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_QUIT</span><span class="p">))</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">camera</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Camera</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">camera</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Camera</span><span class="p">:</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A shortcut getter allowing easy access to the current camera.</span>
 <span class="sd">        This is a get-only property.</span>
@@ -389,7 +389,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Scene</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Scene</span><span class="p">:</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The current scene. Get-only.</span>
 
@@ -399,7 +399,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_current</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Game.set_scene"><a class="viewcode-back" href="../../../api/#rubato.game.Game.set_scene">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">set_scene</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">scene_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_scene</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">scene_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Changes the current scene. Takes effect on the next frame.</span>
 
@@ -409,7 +409,7 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">_current</span> <span class="o">=</span> <span class="n">scene_id</span></div>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">):</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a scene to the game. Also set the current scene if this is the first added scene.</span>
 
@@ -433,17 +433,17 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">_scene_id</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <div class="viewcode-block" id="Game.quit"><a class="viewcode-back" href="../../../api/#rubato.game.Game.quit">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;Quit the game and close the python process.&quot;&quot;&quot;</span>
         <span class="n">Radio</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">Events</span><span class="o">.</span><span class="n">EXIT</span><span class="p">)</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">STOPPED</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_Quit</span><span class="p">()</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Quit</span><span class="p">()</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span></div>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Game.start"><a class="viewcode-back" href="../../../api/#rubato.game.Game.start">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>  <span class="c1"># test: skip</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Starts the main game loop. Called automatically by :meth:`rubato.begin`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -455,7 +455,7 @@
         <span class="k">except</span> <span class="n">PrintError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
             <span class="k">raise</span> <span class="n">e</span>
-        <span class="k">except</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">,)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># add possible exceptions here if there are more needed</span>
+        <span class="k">except</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">,)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
             <span class="k">raise</span> <span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)(</span>
                 <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Rubato Error-ed. Was it our fault? Issue tracker: &quot;</span>
@@ -465,7 +465,7 @@
             <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Game.loop"><a class="viewcode-back" href="../../../api/#rubato.game.Game.loop">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>  <span class="c1"># test: skip</span>
+    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rubato&#39;s main game loop. Called automatically by :meth:`rubato.Game.start`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -473,8 +473,11 @@
             <span class="c1"># start timing the update loop</span>
             <span class="n">Time</span><span class="o">.</span><span class="n">_frame_start</span> <span class="o">=</span> <span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>  <span class="c1"># pylint: disable= protected-access</span>
 
+            <span class="c1"># Pump SDL events</span>
+            <span class="n">Radio</span><span class="o">.</span><span class="n">pump</span><span class="p">()</span>
+
             <span class="c1"># Event handling</span>
-            <span class="k">if</span> <span class="n">Radio</span><span class="o">.</span><span class="n">pump</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">Radio</span><span class="o">.</span><span class="n">handle</span><span class="p">():</span>
                 <span class="bp">cls</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 
             <span class="c1"># process delayed calls</span>
@@ -502,6 +505,8 @@
 
             <span class="bp">cls</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 
+            <span class="n">Draw</span><span class="o">.</span><span class="n">dump</span><span class="p">()</span>
+
             <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">show_fps</span><span class="p">:</span>
                 <span class="n">Debug</span><span class="o">.</span><span class="n">draw_fps</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">debug_font</span><span class="p">)</span>
 
@@ -523,12 +528,12 @@
             <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">Time</span><span class="o">.</span><span class="n">frame_start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>  <span class="c1"># pylint: disable= comparison-with-callable</span></div>
 
 <div class="viewcode-block" id="Game.update"><a class="viewcode-back" href="../../../api/#rubato.game.Game.update">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">():</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;An overrideable method for updating the game. Called once per frame, before the current scene updates.&quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="Game.draw"><a class="viewcode-back" href="../../../api/#rubato.game.Game.draw">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">():</span> <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;An overrideable method for drawing the game. Called once per frame, after the current scene draws.&quot;&quot;&quot;</span>
         <span class="k">pass</span></div></div>
 </pre></div> 
