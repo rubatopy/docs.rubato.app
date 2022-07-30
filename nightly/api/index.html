@@ -1200,8 +1200,8 @@ not be used directly. Instead create another class and extend from this one.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.component.Component.rotation_offset">
-<span class="sig-name descname"><span class="pre">rotation_offset</span></span><a class="headerlink" href="#rubato.struct.gameobject.component.Component.rotation_offset" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.struct.gameobject.component.Component.rot_offset">
+<span class="sig-name descname"><span class="pre">rot_offset</span></span><a class="headerlink" href="#rubato.struct.gameobject.component.Component.rot_offset" title="Permalink to this definition">#</a></dt>
 <dd><p>The rotational offset from the game object’s rotation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -1337,8 +1337,8 @@ not be used directly. Instead create another class and extend from this one.</p>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.image.Image.rotation_offset">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rotation_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.struct.gameobject.sprites.image.Image.rotation_offset" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.image.Image.rot_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rot_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.struct.gameobject.sprites.image.Image.rot_offset" title="Permalink to this definition">#</a></dt>
 <dd><p>The rotation offset of the image.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1544,8 +1544,8 @@ set, it cannot be changed. You can however change the scale and rotation of the 
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.raster.Raster.rotation_offset">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rotation_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.struct.gameobject.raster.Raster.rotation_offset" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.struct.gameobject.raster.Raster.rot_offset">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rot_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.struct.gameobject.raster.Raster.rot_offset" title="Permalink to this definition">#</a></dt>
 <dd><p>The rotation offset of the raster.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -2815,6 +2815,23 @@ added to a Game Object.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Rectangle.contains_pt">
+<span class="sig-name descname"><span class="pre">contains_pt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/hitbox/#Rectangle.contains_pt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Rectangle.contains_pt" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks if a point is inside the Rectangle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pt</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code>) – The point to check, in game-world coordinates.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the point is inside the Rectangle.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Rectangle.get_aabb">
 <span class="sig-name descname"><span class="pre">get_aabb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/hitbox/#Rectangle.get_aabb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Rectangle.get_aabb" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets top left and bottom right corners of the axis-aligned bounding box of the hitbox in world coordinates.</p>
@@ -3049,6 +3066,23 @@ Simply break them up into multiple convex Polygon hitboxes and add them individu
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Polygon.contains_pt">
+<span class="sig-name descname"><span class="pre">contains_pt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/hitbox/#Polygon.contains_pt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Polygon.contains_pt" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks if a point is inside the Polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pt</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code>) – The point to check, in game-world coordinates..</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the point is inside the Polygon.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Polygon.draw">
 <span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/hitbox/#Polygon.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Polygon.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>The draw function template for a component subclass.</p>
@@ -3056,26 +3090,24 @@ Simply break them up into multiple convex Polygon hitboxes and add them individu
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Polygon.generate_polygon">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_sides</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/hitbox/#Polygon.generate_polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Polygon.generate_polygon" title="Permalink to this definition">#</a></dt>
-<dd><p>Generates the vertices of a regular polygon with a specified number of sides and a radius.
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_polygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_sides</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/hitbox/#Polygon.generate_polygon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Polygon.generate_polygon" title="Permalink to this definition">#</a></dt>
+<dd><p>Generates the <strong>vertices</strong> of a regular polygon with a specified number of sides and a radius.
 You can use this as the <cite>verts</cite> option in the Polygon constructor if you wish to generate a regular polygon.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>num_sides</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of sides of the polygon.</p></li>
 <li><p><strong>radius</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The radius of the polygon. Defaults to 1.</p></li>
-<li><p><strong>option</strong> – A Polygon config. If set, will return a Polygon object. Otherwise it will return
-a list of vertices. Defaults to the None.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.SideError" title="rubato.utils.error.SideError"><strong>SideError</strong></a> – Raised when the number of sides is less than 3.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>], <a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Polygon" title="rubato.struct.gameobject.physics.hitbox.Polygon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polygon</span></code></a>]</p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The vertices of the polygon or the Polygon object (depending on whether options is set).</p>
+<dd class="field-even"><p>The vertices of the polygon.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -3168,6 +3200,23 @@ a list of vertices. Defaults to the None.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Circle.contains_pt">
+<span class="sig-name descname"><span class="pre">contains_pt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/hitbox/#Circle.contains_pt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Circle.contains_pt" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks if a point is inside the Circle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pt</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code>) – The point to check, in game-world coordinates..</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether or not the point is inside the Circle.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
@@ -4263,6 +4312,26 @@ mouse button. (button1, button2, button3, button4, button5)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>toggle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – True to show the mouse and false to hide the mouse.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.rb_input.Input.pt_in_poly">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pt_in_poly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_input/#Input.pt_in_poly"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_input.Input.pt_in_poly" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks if a point is inside a polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pt</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code>) – The point to check.</p></li>
+<li><p><strong>verts</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List[Vector]</span></code>) – The polygon representation as a list of Vectors (vertices)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the point is inside the polygon.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>

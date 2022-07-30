@@ -277,11 +277,11 @@
 <h1>Source code for rubato.struct.gameobject.physics.hitbox</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Various hitbox components that enable collisions&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Component</span>
-<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Error</span><span class="p">,</span> <span class="n">SideError</span><span class="p">,</span> <span class="n">Game</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Camera</span>
+<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Error</span><span class="p">,</span> <span class="n">SideError</span><span class="p">,</span> <span class="n">Game</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">Input</span>
 
 
 <div class="viewcode-block" id="Hitbox"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Hitbox">[docs]</a><span class="k">class</span> <span class="nc">Hitbox</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
@@ -492,6 +492,18 @@
         <span class="sd">&quot;&quot;&quot;Returns the a list of vertices in world coordinates&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformed_verts</span><span class="p">()]</span></div>
 
+<div class="viewcode-block" id="Polygon.contains_pt"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon.contains_pt">[docs]</a>    <span class="k">def</span> <span class="nf">contains_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if a point is inside the Polygon.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pt (Vector): The point to check, in game-world coordinates..</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether or not the point is inside the Polygon.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Input</span><span class="o">.</span><span class="n">pt_in_poly</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_verts</span><span class="p">())</span></div>
+
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="si">}</span><span class="s2">&quot;</span>
 
@@ -513,39 +525,26 @@
 <div class="viewcode-block" id="Polygon.generate_polygon"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon.generate_polygon">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">generate_polygon</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span>
                          <span class="n">num_sides</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                         <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-                         <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span> <span class="o">|</span> <span class="n">Polygon</span><span class="p">:</span>
+                         <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generates the vertices of a regular polygon with a specified number of sides and a radius.</span>
+<span class="sd">        Generates the **vertices** of a regular polygon with a specified number of sides and a radius.</span>
 <span class="sd">        You can use this as the `verts` option in the Polygon constructor if you wish to generate a regular polygon.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            num_sides: The number of sides of the polygon.</span>
 <span class="sd">            radius: The radius of the polygon. Defaults to 1.</span>
-<span class="sd">            option: A Polygon config. If set, will return a Polygon object. Otherwise it will return</span>
-<span class="sd">                a list of vertices. Defaults to the None.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            SideError: Raised when the number of sides is less than 3.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            The vertices of the polygon or the Polygon object (depending on whether options is set).</span>
+<span class="sd">            The vertices of the polygon.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">num_sides</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SideError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t create a polygon with less than three sides&quot;</span><span class="p">)</span>
 
-        <span class="n">rotangle</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">num_sides</span>
-        <span class="n">angle</span><span class="p">,</span> <span class="n">verts</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sides</span><span class="p">):</span>
-            <span class="n">angle</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">rotangle</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="n">rotangle</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
-            <span class="n">verts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">*</span> <span class="n">radius</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">*</span> <span class="n">radius</span><span class="p">))</span>
-
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">options</span> <span class="o">|</span> <span class="p">{</span><span class="s2">&quot;verts&quot;</span><span class="p">:</span> <span class="n">verts</span><span class="p">})</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">verts</span></div></div>
-
+        <span class="n">rotangle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">num_sides</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Vector</span><span class="o">.</span><span class="n">from_radial</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">i</span> <span class="o">*</span> <span class="n">rotangle</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sides</span><span class="p">)]</span></div></div>
 
 <div class="viewcode-block" id="Rectangle"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle">[docs]</a><span class="k">class</span> <span class="nc">Rectangle</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -781,6 +780,18 @@
         <span class="sd">&quot;&quot;&quot;The radius of the rectangle.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
+<div class="viewcode-block" id="Rectangle.contains_pt"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle.contains_pt">[docs]</a>    <span class="k">def</span> <span class="nf">contains_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if a point is inside the Rectangle.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pt (Vector): The point to check, in game-world coordinates.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether or not the point is inside the Rectangle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Input</span><span class="o">.</span><span class="n">pt_in_poly</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_verts</span><span class="p">())</span></div>
+
 <div class="viewcode-block" id="Rectangle.get_aabb"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle.get_aabb">[docs]</a>    <span class="k">def</span> <span class="nf">get_aabb</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">]:</span>
         <span class="n">verts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real_verts</span><span class="p">()</span>
         <span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
@@ -860,7 +871,7 @@
 <div class="viewcode-block" id="Rectangle.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Rectangle</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Rectangle</span><span class="p">(</span>
             <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
-            <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rotation_offset</span><span class="p">,</span>
+            <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span>
             <span class="n">debug</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span>
             <span class="n">trigger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">,</span>
             <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span>
@@ -956,6 +967,19 @@
         <span class="sd">&quot;&quot;&quot;Gets the true radius of the circle&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span></div>
 
+<div class="viewcode-block" id="Circle.contains_pt"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Circle.contains_pt">[docs]</a>    <span class="k">def</span> <span class="nf">contains_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if a point is inside the Circle.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pt (Vector): The point to check, in game-world coordinates..</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether or not the point is inside the Circle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformed_radius</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">pt</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span><span class="o">.</span><span class="n">mag_sq</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">r</span></div>
+
 <div class="viewcode-block" id="Circle.draw"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Circle.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Will draw the circle to the screen. Won&#39;t draw if color = None.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span>
@@ -978,7 +1002,7 @@
 <div class="viewcode-block" id="Circle.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Circle.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Circle</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Circle</span><span class="p">(</span>
             <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
-            <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rotation_offset</span><span class="p">,</span>
+            <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span>
             <span class="n">debug</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span>
             <span class="n">trigger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">,</span>
             <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span>
