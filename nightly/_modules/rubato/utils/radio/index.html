@@ -229,6 +229,14 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../tutorials/platformer/">Simple Platformer</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/platformer/step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/platformer/step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/platformer/step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/platformer/step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorials/platformer/step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
@@ -316,15 +324,30 @@
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Vector</span>
 
-<span class="k">class</span> <span class="nc">Events</span><span class="p">:</span>
-    <span class="n">KEYUP</span> <span class="o">=</span> <span class="s2">&quot;KEYUP&quot;</span>  <span class="c1"># Fired when a key is released</span>
-    <span class="n">KEYDOWN</span> <span class="o">=</span> <span class="s2">&quot;KEYDOWN&quot;</span>  <span class="c1"># Fired when a key is pressed</span>
-    <span class="n">KEYHOLD</span> <span class="o">=</span> <span class="s2">&quot;KEYHOLD&quot;</span>  <span class="c1"># Fired when a key is held down (After the initial keydown)</span>
-    <span class="n">MOUSEUP</span> <span class="o">=</span> <span class="s2">&quot;MOUSEUP&quot;</span>  <span class="c1"># Fired when a mouse button is released</span>
-    <span class="n">MOUSEDOWN</span> <span class="o">=</span> <span class="s2">&quot;MOUSEDOWN&quot;</span>  <span class="c1"># Fired when a mouse button is pressed</span>
-    <span class="n">ZOOM</span> <span class="o">=</span> <span class="s2">&quot;ZOOM&quot;</span>  <span class="c1"># Fired when the camera is zoomed</span>
-    <span class="n">EXIT</span> <span class="o">=</span> <span class="s2">&quot;EXIT&quot;</span>  <span class="c1"># Fired when the game is exiting</span>
-    <span class="n">RESIZE</span> <span class="o">=</span> <span class="s2">&quot;RESIZE&quot;</span>  <span class="c1"># Fired when the window is resized</span>
+
+<div class="viewcode-block" id="Events"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Events">[docs]</a><span class="k">class</span> <span class="nc">Events</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Describes all rubato-fired events that can be listened for.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        KEYUP: Fired when a key is released</span>
+<span class="sd">        KEYDOWN: Fired when a key is pressed</span>
+<span class="sd">        KEYHOLD: Fired when a key is held down (After the initial keydown)</span>
+<span class="sd">        MOUSEUP: Fired when a mouse button is released</span>
+<span class="sd">        MOUSEDOWN: Fired when a mouse button is pressed</span>
+<span class="sd">        ZOOM: Fired when the camera is zoomed</span>
+<span class="sd">        EXIT: Fired when the game is exiting</span>
+<span class="sd">        RESIZE: Fired when the window is resized</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">KEYUP</span> <span class="o">=</span> <span class="s2">&quot;KEYUP&quot;</span>
+    <span class="n">KEYDOWN</span> <span class="o">=</span> <span class="s2">&quot;KEYDOWN&quot;</span>
+    <span class="n">KEYHOLD</span> <span class="o">=</span> <span class="s2">&quot;KEYHOLD&quot;</span>
+    <span class="n">MOUSEUP</span> <span class="o">=</span> <span class="s2">&quot;MOUSEUP&quot;</span>
+    <span class="n">MOUSEDOWN</span> <span class="o">=</span> <span class="s2">&quot;MOUSEDOWN&quot;</span>
+    <span class="n">ZOOM</span> <span class="o">=</span> <span class="s2">&quot;ZOOM&quot;</span>
+    <span class="n">EXIT</span> <span class="o">=</span> <span class="s2">&quot;EXIT&quot;</span>
+    <span class="n">RESIZE</span> <span class="o">=</span> <span class="s2">&quot;RESIZE&quot;</span></div>
 
 
 <div class="viewcode-block" id="Radio"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio">[docs]</a><span class="k">class</span> <span class="nc">Radio</span><span class="p">:</span>

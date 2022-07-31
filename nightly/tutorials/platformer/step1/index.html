@@ -4,18 +4,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-  <meta property="og:title" content="Basic Structure" />
+  <meta property="og:title" content="Step 1 - Basic Structure" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/tutorials/platformer/step1.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="Welcome to the first part of making a platformer in rubato. In this first step, we will be setting up our project and laying down the foundation for the next steps. First, lets make sure you have rubato installed. Make sure you have python 3.10.x installed and run It should then successfully inst..." />
+  <meta property="og:description" content="Before we can design our game, we need to do a few things to set rubato up. First, follow the setup guide, naming your file main.py. Then, download and extract these files into the same directory as your main.py file (so you have main.py and the files folder in the same directory.) At this point,..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
-  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" />
+  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Step 2 - Creating a Player" href="../step2/" /><link rel="prev" title="Simple Platformer" href="../" />
         <link rel="canonical" href="https://docs.rubato.app/tutorials/platformer/step1.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title>Basic Structure - rubato docs</title>
+        <title>Step 1 - Basic Structure - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -237,7 +237,15 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../">Simple Platformer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/custom_components/">Custom Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/pyinstaller/">Bundling to an Application</a></li>
@@ -307,95 +315,70 @@
         }
     }
 </script>
-<section id="basic-structure">
-<h1>Basic Structure<a class="headerlink" href="#basic-structure" title="Permalink to this heading">#</a></h1>
-<p>Welcome to the first part of making a platformer in rubato. In this first step, we will
-be setting up our project and laying down the foundation for the next steps.</p>
-<p>First, lets make sure you have rubato installed. Make sure you have python 3.10.x
-installed and run</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install rubato
-</pre></div>
-</div>
-<p>It should then successfully install. Now we are ready to start programming. Note that
-if you run into any issues. The source code for this step is available
-<a class="reference external" href="https://github.com/rubatopy/rubato/tree/main/tutorials/platformer/step1">here</a>.
-Let’s get started.</p>
-<p>In a folder of your choice, create a file and name it <code class="code docutils literal notranslate"><span class="pre">main.py</span></code>. At the top
-of this file, import rubato:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rubato</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-<p>This will allow to access the entire rubato library by just typing the name</p>
-<p>Next we need to initialize rubato:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize a new game</span>
-<span class="n">init</span><span class="p">()</span>
+<section id="step-1-basic-structure">
+<h1>Step 1 - Basic Structure<a class="headerlink" href="#step-1-basic-structure" title="Permalink to this heading">#</a></h1>
+<p>Before we can design our game, we need to do a few things to set rubato up.</p>
+<p>First, follow the <a class="reference internal" href="../../../intro/"><span class="doc">setup guide</span></a>, naming your file <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p>
+<p>Then, download and extract these
+<a class="reference external" href="https://raw.githubusercontent.com/rubatopy/rubato/main/demo/files/files.zip">files</a>
+into the same directory as your <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file (so you have <code class="docutils literal notranslate"><span class="pre">main.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">files</span></code> folder in the same directory.)</p>
+<p>At this point, your <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file should look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
 
-<span class="c1"># begin the game</span>
-<span class="n">begin</span><span class="p">()</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>At this point, if you run the code, you should see a white window appear.</p>
-<a class="reference internal image-reference" href="../../../_images/1.png"><img alt="../../../_images/1.png" class="align-center" src="../../../_images/1.png" style="width: 245px;" /></a>
+<p>Running <code class="docutils literal notranslate"><span class="pre">main.py</span></code> using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">main.py</span></code> should result in a window similar to this appearing:</p>
+<a class="reference internal image-reference" href="../../../_images/1.png"><img alt="../../../_images/1.png" class="align-center" src="../../../_images/1.png" style="width: 25%;" /></a>
 <p><code class="code docutils literal notranslate"><span class="pre">rb.init()</span></code> is the initializer function for the library.
-It will make sure that the computer hardware can communicate with Python and it will
-set up a window for you. <code class="code docutils literal notranslate"><span class="pre">rb.begin()</span></code> actually runs the game loop. The loop will
+It will ensure that rubato can communicate with the computer hardware and
+set up a window for you.</p>
+<p><code class="code docutils literal notranslate"><span class="pre">rb.begin()</span></code> actually runs the game loop. The loop will
 handle all of the rendering, player logic, etc. Without calling it, nothing happens.</p>
 <dl class="simple">
-<dt>To customize your game window, you can pass in a few parameters. For now, lets:</dt><dd><ul class="simple">
+<dt>To customize your game window, you can pass in a few parameters. For now, let’s:</dt><dd><ul class="simple">
 <li><p>Give our window a name</p></li>
-<li><p>Increase its size a little</p></li>
 <li><p>Change its resolution</p></li>
-<li><p>Set a more interesting background color</p></li>
 </ul>
 </dd>
 </dl>
 <p>Replace the previous <code class="code docutils literal notranslate"><span class="pre">rb.init()</span></code> call with this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize a new game</span>
-<span class="n">init</span><span class="p">(</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
-        <span class="s2">&quot;window_size&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">960</span><span class="p">,</span> <span class="mi">540</span><span class="p">),</span>  <span class="c1"># Set the window size</span>
-        <span class="s2">&quot;background_color&quot;</span><span class="p">:</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">(),</span>  <span class="c1"># Set the background color</span>
-        <span class="s2">&quot;res&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Increase the window resolution</span>
-    <span class="p">}</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (pixel length and height).</span>
+        <span class="c1"># note that since we didn&#39;t also specify a window size,</span>
+        <span class="c1"># the window will be automatically resized to half of the resolution.</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Here we’re introducing 2 new classes: <a class="reference internal" href="../../../api/#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Vector</span></code></a>
-and <a class="reference internal" href="../../../api/#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Color</span></code></a>.</p>
-<p>A vector is a class that contains an x variable and a y variable.
-It can represent a point, dimensions, a vector, or anything else that has an x and y
-parameter. The <a class="reference internal" href="../../../api/#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">Vector</span></code></a> class comes loaded with
-many useful linear algebra functions and can have nearly every builtin python math function
-applied to them.</p>
-<p>The <a class="reference internal" href="../../../api/#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-func docutils literal notranslate"><span class="pre">Color</span></code></a> class helps you manage colors. Colors
-are stored in the RGBA format and can be loaded from HSV and tuples. It comes
-preloaded with a lot of <a class="reference internal" href="../../../api/#rubato.utils.color.Color.random" title="rubato.utils.color.Color.random"><code class="xref py py-func docutils literal notranslate"><span class="pre">default</span> <span class="pre">colors</span></code></a> and
-has a few functions to manipulate color. In the code above, we use <a class="reference internal" href="../../../api/#rubato.utils.color.Color.lighter" title="rubato.utils.color.Color.lighter"><code class="xref py py-func docutils literal notranslate"><span class="pre">lighter()</span></code></a>
-to increase the shade of the color.</p>
+<p>Here we’re introducing a new class: <a class="reference internal" href="../../../api/#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Vector</span></code></a>.</p>
+<p>A rubato <a class="reference internal" href="../../../api/#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">Vector</span></code></a> is an object that contains two numbers, x and y.
+A Vector can represent a point, dimensions, a mathematical vector, or anything else that has x and y
+parameters. The <a class="reference internal" href="../../../api/#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">Vector</span></code></a> class comes loaded with
+many useful transformation functions and also allows super intuitive math using operator overloading. We’ll take a
+deeper look at what that means in a bit.</p>
 <p>At this point, running the game should look like this:</p>
-<a class="reference internal image-reference" href="../../../_images/2.png"><img alt="../../../_images/2.png" class="align-center" src="../../../_images/2.png" style="width: 540px;" /></a>
-<p>Here is what you main.py should look like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rubato</span> <span class="kn">import</span> <span class="o">*</span>
+<a class="reference internal image-reference" href="../../../_images/2.png"><img alt="../../../_images/2.png" class="align-center" src="../../../_images/2.png" style="width: 75%;" /></a>
+<p>Here is what your main.py should look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
 
 <span class="c1"># initialize a new game</span>
-<span class="n">init</span><span class="p">(</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
-        <span class="s2">&quot;window_size&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">960</span><span class="p">,</span> <span class="mi">540</span><span class="p">),</span>  <span class="c1"># Set the window size</span>
-        <span class="s2">&quot;background_color&quot;</span><span class="p">:</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">(),</span>  <span class="c1"># Set the background color</span>
-        <span class="s2">&quot;res&quot;</span><span class="p">:</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Increase the window resolution</span>
-    <span class="p">}</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (pixel length and height).</span>
+        <span class="c1"># note that since we didn&#39;t also specify a window size,</span>
+        <span class="c1"># the window will be automatically resized to half of the resolution.</span>
 <span class="p">)</span>
 
 <span class="c1"># begin the game</span>
-<span class="n">begin</span><span class="p">()</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>There we go! Now your game is set up. In the next step, we will create a player
-and add him to the game.</p>
-<p>The source code for this step is available
-<a class="reference external" href="https://github.com/rubatopy/rubato/tree/main/tutorials/platformer/step1">here</a>.</p>
+<p>If you made it here, great! We’re ready to build the platformer.
+Next, we’ll create a player and add him to the game.</p>
 </section>
  
         </article>
@@ -403,7 +386,25 @@ and add him to the game.</p>
       <footer>
         
 <div class="related-pages">
-     
+    <a class="next-page" href="../step2/">
+        <div class="page-info">
+            <div class="context">
+                <span>Next</span>
+            </div>
+            <div class="title">Step 2 - Creating a Player</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+    </a> <a class="prev-page" href="../">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+            <div class="context">
+                <span>Previous</span>
+            </div>
+            
+            <div class="title">Simple Platformer</div>
+            
+        </div>
+    </a>
 </div>
 <div class="bottom-of-page">
     <div class="left-details">

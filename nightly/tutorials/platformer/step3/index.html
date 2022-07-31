@@ -4,17 +4,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-  <meta property="og:title" content="Handling Input" />
+  <meta property="og:title" content="Step 3 - Adding Player Behavior" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/tutorials/platformer/step3.html" />
   <meta property="og:site_name" content="rubato docs" />
+  <meta property="og:description" content="In this step, we will be adding player behavior to our character. We want our dinosaur to be able to move left, right and jump. We also want to apply physics laws to him, such as gravity and collisions with future obstacles. First, let’s add physics to our player. To do this, we will add a RigidB..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
-  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" />
+  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Step 4 - Creating a Level" href="../step4/" /><link rel="prev" title="Step 2 - Creating a Player" href="../step2/" />
         <link rel="canonical" href="https://docs.rubato.app/tutorials/platformer/step3.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title>Handling Input - rubato docs</title>
+        <title>Step 3 - Adding Player Behavior - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -236,7 +237,15 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../">Simple Platformer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/custom_components/">Custom Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/pyinstaller/">Bundling to an Application</a></li>
@@ -306,16 +315,228 @@
         }
     }
 </script>
-<section id="handling-input">
-<h1>Handling Input<a class="headerlink" href="#handling-input" title="Permalink to this heading">#</a></h1>
-</section>
+<section id="step-3-adding-player-behavior">
+<h1>Step 3 - Adding Player Behavior<a class="headerlink" href="#step-3-adding-player-behavior" title="Permalink to this heading">#</a></h1>
+<p>In this step, we will be adding player behavior to our character.</p>
+<p>We want our dinosaur to be able to move left, right and jump.
+We also want to apply physics laws to him, such as gravity and collisions with future obstacles.</p>
+<p>First, let’s add physics to our player. To do this, we will add a <a class="reference internal" href="../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody" title="rubato.struct.gameobject.physics.rigidbody.RigidBody"><code class="xref py py-func docutils literal notranslate"><span class="pre">RigidBody</span></code></a> component to our
+player. Add the following code after the animation code, but before the <code class="docutils literal notranslate"><span class="pre">main.add</span></code> call.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the player rigidbody</span>
+<span class="n">player_body</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">(</span>
+    <span class="n">gravity</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">),</span>
+    <span class="n">pos_correction</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">friction</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player_body</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>This enables physics for our player. Running the file, you should see the dinosaur slowly falling down the screen. 2 things to note here:</dt><dd><ul class="simple">
+<li><p>We base the gravity off of our Display resolution so that scaling our screen does not affect the gravity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pos_correction</span></code> is the amount we correct the position of the player every frame if it is colliding with something. Setting it to 1 means that all overlaps are fully corrected in one frame.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Let’s also add a hitbox to our player. For simplicity, we will use a rectangular hitbox. Add the following code right after the previous block.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># add a hitbox to the player with the collider</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
+<span class="p">))</span>
+</pre></div>
+</div>
+<p>This rectangle won’t actually draw unless the following line is added.
+Feel free to remove the following line once you’ve confirmed that the rectangle was added properly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rb</span><span class="o">.</span><span class="n">Game</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/12.png"><img alt="../../../_images/12.png" class="align-center" src="../../../_images/12.png" style="width: 75%;" /></a>
+<p>Next let’s add movement. Since we need to check player input every frame, lets create a custom update function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a custom update function</span>
+<span class="c1"># this function is run every frame</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="k">pass</span>
+
+<span class="n">main</span><span class="o">.</span><span class="n">update</span> <span class="o">=</span> <span class="n">update</span>
+</pre></div>
+</div>
+<p>Add the above code between the <code class="docutils literal notranslate"><span class="pre">main.add</span></code> and the <code class="docutils literal notranslate"><span class="pre">rb.begin</span></code> lines. Anything inside this custom update function will be run every frame. Inside
+this function, we will check for player input and update the player’s velocity accordingly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">):</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">300</span>
+        <span class="n">p_animation</span><span class="o">.</span><span class="n">flipx</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">):</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">300</span>
+        <span class="n">p_animation</span><span class="o">.</span><span class="n">flipx</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Here we check for player input using <a class="reference internal" href="../../../api/#rubato.utils.rb_input.Input.key_pressed" title="rubato.utils.rb_input.Input.key_pressed"><code class="xref py py-func docutils literal notranslate"><span class="pre">key_pressed()</span></code></a>. We then update the player’s horizontal velocity
+in the corresponding direction. We also flip the player’s animation depending on the direction we want to face. Now, when you press “a” or “d” you
+should be able to move the player left and right.</p>
+<p>Finally, let’s add a jump behavior. Unlike moving left and right, we don’t want the user to be able to move up forever if they keep holding the jump
+key. We also want to limit the number of jumps the player gets. We will do this by creating a jump counter and process the jump through an event
+listener.</p>
+<p>An event listener is a piece of code that waits for an event to be broadcast and then runs a function. We will create a function to handle jumping
+that is called when the “w” key is pressed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a custom input listener</span>
+<span class="k">def</span> <span class="nf">handle_keydown</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">jumps</span>
+    <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span> <span class="ow">and</span> <span class="n">jumps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
+        <span class="k">if</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="n">freeze</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;somer&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">jumps</span> <span class="o">-=</span> <span class="mi">1</span>
+
+<span class="n">rb</span><span class="o">.</span><span class="n">Radio</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="s2">&quot;KEYDOWN&quot;</span><span class="p">,</span> <span class="n">handle_keydown</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Also at the top of your file, under the debug line, add the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tracks the number of jumps the player has left</span>
+<span class="n">jumps</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Let’s break this down.</p>
+<p>First, we use the <code class="docutils literal notranslate"><span class="pre">global</span></code> keyword to declare that we are changing the global jumps variable.
+This variable will be used later when dealing with ground contact. Next, we check if the keydown event’s key is “w” and if you still
+have jumps remaining. If so, we set your upwards velocity to 800 (remember that negative y values represent up on the screen).
+We also want to vary the jump animation on your last jump. The first is a regular jump and the second is a somersault.
+Finally, we decrement the number of jumps you have left, so you can’t jump infinitely.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">rb.Radio.listen(&quot;KEYDOWN&quot;,</span> <span class="pre">handle_keydown)</span></code> line is where we tell rubato to listen for a keydown event and run the <code class="docutils literal notranslate"><span class="pre">handle_keydown</span></code> function
+whenever that event is broadcast. Note that you can also replace <code class="docutils literal notranslate"><span class="pre">&quot;KEYDOWN&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">rb.Events.KEYDOWN</span></code> and get the same functionality.
+<a class="reference internal" href="../../../api/#rubato.utils.radio.Events" title="rubato.utils.radio.Events"><code class="xref py py-func docutils literal notranslate"><span class="pre">Events</span></code></a> have all other rubato-triggered events that you can listen for.</p>
+<p>Running the script at this point should show a falling dinosaur, and let you dump twice and move a little left and right before falling to your doom.
+In the next step, we’ll be building the level for the player to explore.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Here’s the full source code if you’ve been following along:<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
+
+<span class="c1"># initialize a new game</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (pixel length and height).</span>
+        <span class="c1"># note that since we didn&#39;t also specify a window size,</span>
+        <span class="c1"># the window will be automatically resized to half of the resolution.</span>
+<span class="p">)</span>
+
+<span class="n">rb</span><span class="o">.</span><span class="n">Game</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Tracks the number of jumps the player has left</span>
+<span class="n">jumps</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Create a scene</span>
+<span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
+
+<span class="c1"># Create the player and set its starting position</span>
+<span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
+    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create animation and initialize states</span>
+<span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
+    <span class="n">rel_path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
+    <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+    <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">p_animation</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">p_animation</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># The frames will change 10 times a second</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p_animation</span><span class="p">)</span>  <span class="c1"># Add the animation component to the player</span>
+
+<span class="c1"># define the player rigidbody</span>
+<span class="n">player_body</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">(</span>
+    <span class="n">gravity</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">),</span>
+    <span class="n">pos_correction</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">friction</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player_body</span><span class="p">)</span>
+
+<span class="c1"># add a hitbox to the player with the collider</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
+<span class="p">))</span>
+
+<span class="c1"># Add the player to the scene</span>
+<span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+
+
+<span class="c1"># define a custom update function</span>
+<span class="c1"># this function is run every frame</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">):</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">300</span>
+        <span class="n">p_animation</span><span class="o">.</span><span class="n">flipx</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">):</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">300</span>
+        <span class="n">p_animation</span><span class="o">.</span><span class="n">flipx</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;space&quot;</span><span class="p">):</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">ang_vel</span> <span class="o">+=</span> <span class="mi">10</span>
+
+
+<span class="n">main</span><span class="o">.</span><span class="n">update</span> <span class="o">=</span> <span class="n">update</span>
+
+
+<span class="c1"># define a custom input listener</span>
+<span class="k">def</span> <span class="nf">handle_keydown</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">jumps</span>
+    <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span> <span class="ow">and</span> <span class="n">jumps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
+        <span class="k">if</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="n">freeze</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;somer&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">jumps</span> <span class="o">-=</span> <span class="mi">1</span>
+
+
+<span class="n">rb</span><span class="o">.</span><span class="n">Radio</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="s2">&quot;KEYDOWN&quot;</span><span class="p">,</span> <span class="n">handle_keydown</span><span class="p">)</span>
+
+<span class="c1"># begin the game</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
  
         </article>
       </div>
       <footer>
         
 <div class="related-pages">
-     
+    <a class="next-page" href="../step4/">
+        <div class="page-info">
+            <div class="context">
+                <span>Next</span>
+            </div>
+            <div class="title">Step 4 - Creating a Level</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+    </a> <a class="prev-page" href="../step2/">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+            <div class="context">
+                <span>Previous</span>
+            </div>
+            
+            <div class="title">Step 2 - Creating a Player</div>
+            
+        </div>
+    </a>
 </div>
 <div class="bottom-of-page">
     <div class="left-details">

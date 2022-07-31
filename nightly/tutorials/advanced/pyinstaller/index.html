@@ -238,6 +238,14 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../platformer/">Simple Platformer</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../platformer/step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../platformer/step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../platformer/step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../platformer/step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../platformer/step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../custom_components/">Custom Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Bundling to an Application</a></li>
@@ -334,15 +342,15 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4e0bf77f-483e-4b7a-8842-4160461e2645" name="c8e4a8f3-a5da-4858-9f1c-c5f5ca78fa3e" type="radio">
-</input><label class="sd-tab-label" for="4e0bf77f-483e-4b7a-8842-4160461e2645">
+<input checked="checked" id="3ca040e0-05e0-4193-8607-eca2da3088ba" name="af2e63fb-10a4-48ff-89b9-0c65bc79193f" type="radio">
+</input><label class="sd-tab-label" for="3ca040e0-05e0-4193-8607-eca2da3088ba">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="057abecd-42c6-4004-bdbe-eb70fae589f6" name="c8e4a8f3-a5da-4858-9f1c-c5f5ca78fa3e" type="radio">
-</input><label class="sd-tab-label" for="057abecd-42c6-4004-bdbe-eb70fae589f6">
+<input id="4fc52fe0-dc88-4b14-afce-68009e341b95" name="af2e63fb-10a4-48ff-89b9-0c65bc79193f" type="radio">
+</input><label class="sd-tab-label" for="4fc52fe0-dc88-4b14-afce-68009e341b95">
 Mac OS X</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>

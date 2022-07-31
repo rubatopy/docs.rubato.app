@@ -8,7 +8,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/api.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="rubato is a modern 2D game engine for python. Accurate fixed-step physics simulations, robust scene and game object management, event listener system and more all come prepackaged. Fundamentally, rubato is built developer-focused. From intricate rigidbody simulations to 2D games, rubato streamlin..." />
+  <meta property="og:description" content="This page describes all user-accessible API components to the rubato project. Game: The main game module. It controls everything in the game. Scenes and Their Management: Scenes holds two Groups. It also manages a Camera. Scenes are used to compartmentalize code. For example, you could have each ..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="next" title="Event Details" href="../events/" /><link rel="prev" title="Getting Started" href="../intro/" />
@@ -238,6 +238,14 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/platformer/">Simple Platformer</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/platformer/step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/platformer/step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/platformer/step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/platformer/step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/platformer/step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced/custom_components/">Custom Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
@@ -309,8 +317,7 @@
 </script>
 <section id="full-api-documentation">
 <h1>Full API Documentation<a class="headerlink" href="#full-api-documentation" title="Permalink to this heading">#</a></h1>
-<p>rubato is a modern 2D game engine for python. Accurate fixed-step physics simulations, robust scene and game object management, event listener system and more all come prepackaged.</p>
-<p>Fundamentally, rubato is built developer-focused. From intricate rigidbody simulations to 2D games, rubato streamlines development for beginners and the poweruser. And all that finally with some legible documentation.</p>
+<p>This page describes all user-accessible API components to the rubato project.</p>
 <div class="toctree-wrapper compound">
 </div>
 <dl class="py function">
@@ -6797,6 +6804,61 @@ This is similar to event systems in other game engines.</p>
 <a class="reference internal" href="#rubato.utils.radio.Radio.listen" title="rubato.utils.radio.Radio.listen"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Radio.listen()</span></code></a> function. Then from anywhere else in the code, you can
 broadcast that event key using <a class="reference internal" href="#rubato.utils.radio.Radio.broadcast" title="rubato.utils.radio.Radio.broadcast"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Radio.broadcast()</span></code></a>.</p>
 <p><a class="reference internal" href="../events/"><span class="doc">Go here</span></a> to see all the events that can be broadcast.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Events</span></span><a class="reference internal" href="../_modules/rubato/utils/radio/#Events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.radio.Events" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Describes all rubato-fired events that can be listened for.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events.KEYUP">
+<span class="sig-name descname"><span class="pre">KEYUP</span></span><a class="headerlink" href="#rubato.utils.radio.Events.KEYUP" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when a key is released</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events.KEYDOWN">
+<span class="sig-name descname"><span class="pre">KEYDOWN</span></span><a class="headerlink" href="#rubato.utils.radio.Events.KEYDOWN" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when a key is pressed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events.KEYHOLD">
+<span class="sig-name descname"><span class="pre">KEYHOLD</span></span><a class="headerlink" href="#rubato.utils.radio.Events.KEYHOLD" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when a key is held down (After the initial keydown)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events.MOUSEUP">
+<span class="sig-name descname"><span class="pre">MOUSEUP</span></span><a class="headerlink" href="#rubato.utils.radio.Events.MOUSEUP" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when a mouse button is released</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events.MOUSEDOWN">
+<span class="sig-name descname"><span class="pre">MOUSEDOWN</span></span><a class="headerlink" href="#rubato.utils.radio.Events.MOUSEDOWN" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when a mouse button is pressed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events.ZOOM">
+<span class="sig-name descname"><span class="pre">ZOOM</span></span><a class="headerlink" href="#rubato.utils.radio.Events.ZOOM" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when the camera is zoomed</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events.EXIT">
+<span class="sig-name descname"><span class="pre">EXIT</span></span><a class="headerlink" href="#rubato.utils.radio.Events.EXIT" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when the game is exiting</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.Events.RESIZE">
+<span class="sig-name descname"><span class="pre">RESIZE</span></span><a class="headerlink" href="#rubato.utils.radio.Events.RESIZE" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when the window is resized</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.radio.Radio">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Radio</span></span><a class="reference internal" href="../_modules/rubato/utils/radio/#Radio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.radio.Radio" title="Permalink to this definition">#</a></dt>

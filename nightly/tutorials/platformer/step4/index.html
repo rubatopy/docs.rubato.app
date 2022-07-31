@@ -4,17 +4,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-  <meta property="og:title" content="Creating a Level" />
+  <meta property="og:title" content="Step 4 - Creating a Level" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/tutorials/platformer/step4.html" />
   <meta property="og:site_name" content="rubato docs" />
+  <meta property="og:description" content="In this step, we will be creating a small level for our player to run in. We will build our level out of basic rectangle hitboxes. We can also pass in a Color to these hitboxes in order for them to draw. First let’s set a variable for the level size. This will be the width of the level. Let’s set..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
-  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" />
+  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Step 5 - Finishing Touches" href="../step5/" /><link rel="prev" title="Step 3 - Adding Player Behavior" href="../step3/" />
         <link rel="canonical" href="https://docs.rubato.app/tutorials/platformer/step4.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title>Creating a Level - rubato docs</title>
+        <title>Step 4 - Creating a Level - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -236,7 +237,15 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../">Simple Platformer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/custom_components/">Custom Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/pyinstaller/">Bundling to an Application</a></li>
@@ -306,16 +315,281 @@
         }
     }
 </script>
-<section id="creating-a-level">
-<h1>Creating a Level<a class="headerlink" href="#creating-a-level" title="Permalink to this heading">#</a></h1>
-</section>
+<section id="step-4-creating-a-level">
+<h1>Step 4 - Creating a Level<a class="headerlink" href="#step-4-creating-a-level" title="Permalink to this heading">#</a></h1>
+<p>In this step, we will be creating a small level for our player to run in.</p>
+<p>We will build our level out of basic rectangle hitboxes. We can also pass in a Color to these hitboxes in order for them to draw.</p>
+<p>First let’s set a variable for the level size. This will be the width of the level. Let’s set it to be 120% the resolution of the screen.
+Note that it needs to be an integer, because it represents the width of the level in pixels.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># size of level</span>
+<span class="n">level_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="mf">1.2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This should be added right after the init call. Next, we will create our floor. We do this by creating a GameObject and adding a Rectangle hitbox to it.
+In the following code we also use the Rectangle’s bottom_left property to place the floor correctly. We also give a “ground” tag to our floor. This will be
+used later to determine if the player is on the ground.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create the ground</span>
+<span class="n">ground</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">()</span>
+<span class="n">ground</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">level_size</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">green</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">))</span>
+<span class="n">ground</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">)</span><span class="o">.</span><span class="n">bottom_left</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom_left</span>
+</pre></div>
+</div>
+<p>Place this before <code class="docutils literal notranslate"><span class="pre">main.add</span></code> and update that call to add the ground as well:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">ground</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also change the player gravity to <code class="docutils literal notranslate"><span class="pre">1.5</span> <span class="pre">*</span> <span class="pre">rb.Display.res.y</span></code>, which will make the game more realistic. It should look like this
+now:</p>
+<a class="reference internal image-reference" href="../../../_images/13.png"><img alt="../../../_images/13.png" class="align-center" src="../../../_images/13.png" style="width: 75%;" /></a>
+<p>The process for adding all of the remaining platforms is the same as what we’ve done to add the floor. To have cleaner code, we actually create some
+lists to store all of our Game Objects. At this point, you should have fun with it! Create a level of your choice!
+You can even add images to the gameobjects instead of giving the hitboxes color, to give the game a much more polished feel.</p>
+<p>Below is a very basic example that we will be using for the rest of the tutorial.</p>
+<a class="reference internal image-reference" href="../../../_images/21.png"><img alt="../../../_images/21.png" class="align-center" src="../../../_images/21.png" style="width: 75%;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Code that made the above level<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create platforms</span>
+<span class="n">platforms</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">140</span><span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+                    <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+                    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+                <span class="p">)),</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">340</span><span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+                    <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+                    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+                <span class="p">)),</span>
+<span class="p">]</span>
+
+<span class="c1"># create obstacles</span>
+<span class="n">obstacles</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">700</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">purple</span><span class="p">,</span>
+    <span class="p">)),</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1200</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">purple</span><span class="p">,</span>
+    <span class="p">)),</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">obstacle</span> <span class="ow">in</span> <span class="n">obstacles</span><span class="p">:</span>
+    <span class="n">obstacle</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">)</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">30</span>
+
+<span class="c1"># add them all to the scene</span>
+<span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">ground</span><span class="p">,</span> <span class="o">*</span><span class="n">platforms</span><span class="p">,</span> <span class="o">*</span><span class="n">obstacles</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>Now that you have a level built, we need to move around it. You may notice that you are currently able to fall off the world. This is because nothing
+is stopping you from doing so. Let’s fix this by adding a clear hitbox on either side of the play area.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Side boundary</span>
+<span class="n">left</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">-</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">left</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+<span class="n">right</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">level_size</span> <span class="o">+</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">right</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+
+<span class="c1"># add them all to the scene</span>
+<span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">ground</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="o">*</span><span class="n">platforms</span><span class="p">,</span> <span class="o">*</span><span class="n">obstacles</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Remember!</p>
+<p>To not have the hitbox render, don’t pass a color to the hitbox! All other functionality will remain untouched.</p>
+</div>
+<p>You’ll now notice that the player is unable to fall off the world. This is because the hitbox is blocking it’s path.</p>
+<p>There’s one big issue, however. Jumps don’t come back, even once you hit the ground. Not to worry. We will implement this in <a class="reference internal" href="../step5/"><span class="doc">Step 5 - Finishing Touches</span></a>.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Our game file is now getting pretty big! It should currently look like this (with your own level of course!)<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
+
+<span class="c1"># initialize a new game</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (pixel length and height).</span>
+        <span class="c1"># note that since we didn&#39;t also specify a window size,</span>
+        <span class="c1"># the window will be automatically resized to half of the resolution.</span>
+<span class="p">)</span>
+
+<span class="n">rb</span><span class="o">.</span><span class="n">Game</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Tracks the number of jumps the player has left</span>
+<span class="n">jumps</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c1"># size of level</span>
+<span class="n">level_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="mf">1.2</span><span class="p">)</span>
+
+<span class="c1"># Create a scene</span>
+<span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
+
+<span class="c1"># Create the player and set its starting position</span>
+<span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
+    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create animation and initialize states</span>
+<span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
+    <span class="n">rel_path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
+    <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+    <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">p_animation</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">p_animation</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># The frames will change 10 times a second</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p_animation</span><span class="p">)</span>  <span class="c1"># Add the animation component to the player</span>
+
+<span class="c1"># define the player rigidbody</span>
+<span class="n">player_body</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">(</span>
+    <span class="n">gravity</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">),</span>
+    <span class="n">pos_correction</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">friction</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player_body</span><span class="p">)</span>
+
+<span class="c1"># add a hitbox to the player with the collider</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
+<span class="p">))</span>
+
+<span class="c1"># create the ground</span>
+<span class="n">ground</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">()</span>
+<span class="n">ground</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">level_size</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">green</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">))</span>
+<span class="n">ground</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">)</span><span class="o">.</span><span class="n">bottom_left</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom_left</span>
+
+<span class="c1"># create platforms</span>
+<span class="n">platforms</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">140</span><span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+                    <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+                    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+                <span class="p">)),</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">340</span><span class="p">)</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+                    <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+                    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+                <span class="p">)),</span>
+<span class="p">]</span>
+
+<span class="c1"># create obstacles</span>
+<span class="n">obstacles</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">700</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">purple</span><span class="p">,</span>
+    <span class="p">)),</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1200</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">purple</span><span class="p">,</span>
+    <span class="p">)),</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">obstacle</span> <span class="ow">in</span> <span class="n">obstacles</span><span class="p">:</span>
+    <span class="n">obstacle</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">)</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">30</span>
+
+<span class="c1"># Side boundary</span>
+<span class="n">left</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">-</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">left</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+<span class="n">right</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">level_size</span> <span class="o">+</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">right</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+
+<span class="c1"># add them all to the scene</span>
+<span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">ground</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="o">*</span><span class="n">platforms</span><span class="p">,</span> <span class="o">*</span><span class="n">obstacles</span><span class="p">)</span>
+
+<span class="c1"># define a custom update function</span>
+<span class="c1"># this function is run every frame</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">):</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">300</span>
+        <span class="n">p_animation</span><span class="o">.</span><span class="n">flipx</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">elif</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">):</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">300</span>
+        <span class="n">p_animation</span><span class="o">.</span><span class="n">flipx</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;space&quot;</span><span class="p">):</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">ang_vel</span> <span class="o">+=</span> <span class="mi">10</span>
+
+
+<span class="n">main</span><span class="o">.</span><span class="n">update</span> <span class="o">=</span> <span class="n">update</span>
+
+
+<span class="c1"># define a custom input listener</span>
+<span class="k">def</span> <span class="nf">handle_keydown</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">jumps</span>
+    <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span> <span class="ow">and</span> <span class="n">jumps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
+        <span class="k">if</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="n">freeze</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;somer&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">jumps</span> <span class="o">-=</span> <span class="mi">1</span>
+
+
+<span class="n">rb</span><span class="o">.</span><span class="n">Radio</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="s2">&quot;KEYDOWN&quot;</span><span class="p">,</span> <span class="n">handle_keydown</span><span class="p">)</span>
+
+<span class="c1"># begin the game</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
  
         </article>
       </div>
       <footer>
         
 <div class="related-pages">
-     
+    <a class="next-page" href="../step5/">
+        <div class="page-info">
+            <div class="context">
+                <span>Next</span>
+            </div>
+            <div class="title">Step 5 - Finishing Touches</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+    </a> <a class="prev-page" href="../step3/">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+            <div class="context">
+                <span>Previous</span>
+            </div>
+            
+            <div class="title">Step 3 - Adding Player Behavior</div>
+            
+        </div>
+    </a>
 </div>
 <div class="bottom-of-page">
     <div class="left-details">

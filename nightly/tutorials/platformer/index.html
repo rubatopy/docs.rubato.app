@@ -4,18 +4,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-  <meta property="og:title" content="Making a Platformer" />
+  <meta property="og:title" content="Simple Platformer" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/tutorials/platformer/index.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="Basic Structure, Creating a Player, Handling Input, Creating a Level, Adding Enemies, Adding Sound, Final Touches." />
+  <meta property="og:description" content="In this tutorial, we’ll be making a simple platformer. In the end, you will have a game that looks like this: This tutorial teaches the fundamentals of working with rubato. By the end of this process, you should have the tools you need to make your own games and simulations! This tutorial is spli..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
-  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../search/" />
+  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../search/" /><link rel="next" title="Step 1 - Basic Structure" href="step1/" /><link rel="prev" title="Key Names" href="../../key-names/" />
         <link rel="canonical" href="https://docs.rubato.app/tutorials/platformer/index.html" />
 
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
-        <title>Making a Platformer - rubato docs</title>
+        <title>Simple Platformer - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
@@ -237,7 +237,15 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
+<ul class="current">
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Simple Platformer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../advanced/custom_components/">Custom Components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../advanced/pyinstaller/">Bundling to an Application</a></li>
@@ -307,19 +315,33 @@
         }
     }
 </script>
-<section id="making-a-platformer">
-<h1>Making a Platformer<a class="headerlink" href="#making-a-platformer" title="Permalink to this heading">#</a></h1>
+<section id="simple-platformer">
+<h1>Simple Platformer<a class="headerlink" href="#simple-platformer" title="Permalink to this heading">#</a></h1>
+<p>In this tutorial, we’ll be making a simple platformer. In the end, you will have a game that looks like this:</p>
+<a class="reference internal image-reference" href="../../_images/index_img.png"><img alt="../../_images/index_img.png" class="align-center" src="../../_images/index_img.png" style="width: 75%;" /></a>
+<p>This tutorial teaches the fundamentals of working with rubato.
+By the end of this process, you should have the tools you need to make your own games and simulations!</p>
+<p>This tutorial is split up into the following steps. To follow along, you will need these
+<a class="reference external" href="https://raw.githubusercontent.com/rubatopy/rubato/main/demo/files/files.zip">files</a>.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="step1/">Basic Structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="step2/">Creating a Player</a></li>
-<li class="toctree-l1"><a class="reference internal" href="step3/">Handling Input</a></li>
-<li class="toctree-l1"><a class="reference internal" href="step4/">Creating a Level</a></li>
-<li class="toctree-l1"><a class="reference internal" href="step5/">Adding Enemies</a></li>
-<li class="toctree-l1"><a class="reference internal" href="step6/">Adding Sound</a></li>
-<li class="toctree-l1"><a class="reference internal" href="step7/">Final Touches</a></li>
+<li class="toctree-l1"><a class="reference internal" href="step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l1"><a class="reference internal" href="step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l1"><a class="reference internal" href="step5/">Step 5 - Finishing Touches</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="step5/#jump-limit">Jump Limit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step5/#camera-scroll">Camera Scroll</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step5/#to-conclude">To Conclude</a></li>
+</ul>
+</li>
 </ul>
 </div>
+<p>Please note that this is not a comprehensive overview of every feature rubato has to offer. A variety of additional
+tutorials are planned for the topics that were not covered here. If you would like to learn more about the advanced
+features rubato has, there are also tutorials on custom components, bundling to an executable with PyInstaller, and more.</p>
+<p>At the end of each step, we’ve included the source code for the main file. You can also find the
+completed game source <a class="reference external" href="https://github.com/rubatopy/rubato/blob/main/demo/platformer.py">here</a>.</p>
 </section>
  
         </article>
@@ -327,7 +349,25 @@
       <footer>
         
 <div class="related-pages">
-     
+    <a class="next-page" href="step1/">
+        <div class="page-info">
+            <div class="context">
+                <span>Next</span>
+            </div>
+            <div class="title">Step 1 - Basic Structure</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+    </a> <a class="prev-page" href="../../key-names/">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+            <div class="context">
+                <span>Previous</span>
+            </div>
+            
+            <div class="title">Key Names</div>
+            
+        </div>
+    </a>
 </div>
 <div class="bottom-of-page">
     <div class="left-details">
