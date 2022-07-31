@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta property="og:title" content="Bundling to an Application" />
   <meta property="og:type" content="website" />
@@ -14,7 +14,7 @@
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="prev" title="Pixel Mutation" href="../pixel_mutation/" />
         <link rel="canonical" href="https://docs.rubato.app/tutorials/advanced/pyinstaller.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Bundling to an Application - rubato docs</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
@@ -191,9 +191,10 @@
         font-weight: 700;
         text-transform: uppercase;
         text-align: right;
-        position: absolute;
-        right: 0;
-        padding: 1.25rem 1.25rem 0 0;
+        position: relative;
+        right: 1.25rem;
+        top: 1.75rem;
+        margin: -0.25rem 0;
     }
 </style>
 <script>
@@ -332,15 +333,15 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="521cea7e-260f-44b6-a068-58f698702f57" name="fd3d44f5-ec2a-45c6-b0ed-b3b6e6653f86" type="radio">
-</input><label class="sd-tab-label" for="521cea7e-260f-44b6-a068-58f698702f57">
+<input checked="checked" id="0b2f419f-1308-41f9-88b4-6e3266c72bfa" name="d8f99ffc-dd64-482f-b241-343ec795178a" type="radio">
+</input><label class="sd-tab-label" for="0b2f419f-1308-41f9-88b4-6e3266c72bfa">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="566b47da-ede6-4847-a6bd-091b3d5cdd8e" name="fd3d44f5-ec2a-45c6-b0ed-b3b6e6653f86" type="radio">
-</input><label class="sd-tab-label" for="566b47da-ede6-4847-a6bd-091b3d5cdd8e">
+<input id="87703c01-bb6d-4603-aa52-79dc5999cd2b" name="d8f99ffc-dd64-482f-b241-343ec795178a" type="radio">
+</input><label class="sd-tab-label" for="87703c01-bb6d-4603-aa52-79dc5999cd2b">
 Mac OS X</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>

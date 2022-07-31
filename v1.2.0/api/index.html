@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta property="og:title" content="Full API Documentation" />
   <meta property="og:type" content="website" />
@@ -14,7 +14,7 @@
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="next" title="Configs" href="../defaults/" /><link rel="prev" title="Sprites" href="../examples/sprites/" />
         <link rel="canonical" href="https://docs.rubato.app/api.html" />
 
-    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.0, furo 2022.06.04.1"/>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
         <title>Full API Documentation - Rubato Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
@@ -190,9 +190,10 @@
         font-weight: 700;
         text-transform: uppercase;
         text-align: right;
-        position: absolute;
-        right: 0;
-        padding: 1.25rem 1.25rem 0 0;
+        position: relative;
+        right: 1.25rem;
+        top: 1.75rem;
+        margin: -0.25rem 0;
     }
 </style>
 <script>
@@ -318,7 +319,7 @@ module path.</p>
 <dd><p>The global game class that can be accessed anywhere.
 Initialized when <code class="xref py py-meth docutils literal notranslate"><span class="pre">rubato.init()</span></code> is called.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Game</span></code></p>
 </dd>
 </dl>
@@ -329,7 +330,7 @@ Initialized when <code class="xref py py-meth docutils literal notranslate"><spa
 <span class="sig-name descname"><span class="pre">begin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/#begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Starts the main game loop.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>RuntimeError</strong> – Rubato has not been initialized before calling.</p>
 </dd>
 </dl>
@@ -340,7 +341,7 @@ Initialized when <code class="xref py py-meth docutils literal notranslate"><spa
 <span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/#init"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
 <dd><p>Initializes rubato.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>options</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – A game config.
 Defaults to the <a class="reference internal" href="../defaults/#defaults"><span class="std std-ref">default config</span></a> for <cite>Game</cite>.</p>
 </dd>
@@ -357,7 +358,7 @@ The Screen is the actual size of the window which the user interacts with.</p>
 <span class="sig-name descname"><span class="pre">scenes</span></span><a class="headerlink" href="#rubato.game.scenes" title="Permalink to this definition">#</a></dt>
 <dd><p>The global scene manager.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">SceneManager</span></code></p>
 </dd>
 </dl>
@@ -368,7 +369,7 @@ The Screen is the actual size of the window which the user interacts with.</p>
 <span class="sig-name descname"><span class="pre">radio</span></span><a class="headerlink" href="#rubato.game.radio" title="Permalink to this definition">#</a></dt>
 <dd><p>The global radio system.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.radio.Radio" title="rubato.radio.Radio"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Radio</span></code></a></p>
 </dd>
 </dl>
@@ -379,7 +380,7 @@ The Screen is the actual size of the window which the user interacts with.</p>
 <span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#rubato.game.name" title="Permalink to this definition">#</a></dt>
 <dd><p>The title of the game window.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
 </dl>
@@ -390,7 +391,7 @@ The Screen is the actual size of the window which the user interacts with.</p>
 <span class="sig-name descname"><span class="pre">fps</span></span><a class="headerlink" href="#rubato.game.fps" title="Permalink to this definition">#</a></dt>
 <dd><p>The target fps of the game.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -402,7 +403,7 @@ The Screen is the actual size of the window which the user interacts with.</p>
 <dd><p>Controls whether or not the display should reset
 every frame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
 </dd>
 </dl>
@@ -413,7 +414,7 @@ every frame.</p>
 <span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#rubato.game.state" title="Permalink to this definition">#</a></dt>
 <dd><p>The current state of the game.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">STATE</span></code></p>
 </dd>
 </dl>
@@ -434,7 +435,7 @@ PAUSED: will pause physics time calls. Please do not use this feature.</p>
 <span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.init" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a game. Should only be called by <code class="xref py py-meth docutils literal notranslate"><span class="pre">rubato.init()</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>options</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – A game config.
 Defaults to the <a class="reference internal" href="../defaults/#defaults"><span class="std std-ref">default config</span></a> for <cite>Game</cite>.</p>
 </dd>
@@ -459,7 +460,7 @@ Will always process timed calls.</p>
 <dt class="sig sig-object py" id="rubato.game.get_window_width">
 <span class="sig-name descname"><span class="pre">get_window_width</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#get_window_width"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.get_window_width" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The height of the actual window (screen).</p>
 </dd>
 </dl>
@@ -475,7 +476,7 @@ Will always process timed calls.</p>
 <div><p>rubato.init()</p>
 </div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
@@ -485,7 +486,7 @@ Will always process timed calls.</p>
 <dt class="sig sig-object py" id="rubato.game.get_window_height">
 <span class="sig-name descname"><span class="pre">get_window_height</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#get_window_height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.get_window_height" title="Permalink to this definition">#</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The width of the actual window (screen).</p>
 </dd>
 </dl>
@@ -501,7 +502,7 @@ Will always process timed calls.</p>
 <div><p>rubato.init()</p>
 </div></blockquote>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
@@ -512,11 +513,11 @@ Will always process timed calls.</p>
 <span class="sig-name descname"><span class="pre">get_window_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#get_window_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.get_window_size" title="Permalink to this definition">#</a></dt>
 <dd><p>The current size of the window</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A vector with x representing the width and
 y representing the height</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -531,7 +532,7 @@ y representing the height</p>
 <span class="sig-name descname"><span class="pre">key</span></span><a class="headerlink" href="#rubato.input.key" title="Permalink to this definition">#</a></dt>
 <dd><p>The pygame key module.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pygame.key</span></code></p>
 </dd>
 </dl>
@@ -542,7 +543,7 @@ y representing the height</p>
 <span class="sig-name descname"><span class="pre">mouse</span></span><a class="headerlink" href="#rubato.input.mouse" title="Permalink to this definition">#</a></dt>
 <dd><p>The pygame mouse module.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pygame.mouse</span></code></p>
 </dd>
 </dl>
@@ -553,13 +554,13 @@ y representing the height</p>
 <span class="sig-name descname"><span class="pre">is_pressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/input/#is_pressed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.input.is_pressed" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks if a key is pressed.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>char</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the key to check.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether or not the key is pressed.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -571,16 +572,16 @@ y representing the height</p>
 <dd><p>Checks if the mouse is inside a rectangle defined by its center
 and dimensions</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>center</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The center of the rectangle.</p></li>
 <li><p><strong>dims</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The dimensions of the rectangle. Defaults to Vector(1, 1).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether or not the mouse is in the defined rectangle.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -605,7 +606,7 @@ Has a buffer system and a handler system.</p>
 <span class="sig-name descname"><span class="pre">events</span></span><a class="headerlink" href="#rubato.radio.Radio.events" title="Permalink to this definition">#</a></dt>
 <dd><p>A list with all the event keys in the queue.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List[str]</span></code></p>
 </dd>
 </dl>
@@ -617,7 +618,7 @@ Has a buffer system and a handler system.</p>
 <dd><p>A dictionary with all of the
 active listeners.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict[str,</span> <span class="pre">Callable]</span></code></p>
 </dd>
 </dl>
@@ -634,7 +635,7 @@ active listeners.</p>
 <span class="sig-name descname"><span class="pre">listen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/radio/#Radio.listen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.radio.Radio.listen" title="Permalink to this definition">#</a></dt>
 <dd><p>Creates an event listener and registers it.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>event</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The event key to listen for.</p></li>
 <li><p><strong>func</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – The function to run once the event is
@@ -649,7 +650,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">listener</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/radio/#Radio.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.radio.Radio.register" title="Permalink to this definition">#</a></dt>
 <dd><p>Registers an event listener.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>listener</strong> (<a class="reference internal" href="#rubato.radio.Listener" title="rubato.radio.Listener"><code class="xref py py-class docutils literal notranslate"><span class="pre">Listener</span></code></a>) – The listener object to be registered</p>
 </dd>
 </dl>
@@ -660,7 +661,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <span class="sig-name descname"><span class="pre">broadcast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/radio/#Radio.broadcast"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.radio.Radio.broadcast" title="Permalink to this definition">#</a></dt>
 <dd><p>Broadcast an event to be caught by listeners.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>event</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The event key to broadcast.</p></li>
 <li><p><strong>params</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – A parameters dictionary</p></li>
@@ -681,7 +682,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <span class="sig-name descname"><span class="pre">event</span></span><a class="headerlink" href="#rubato.radio.Listener.event" title="Permalink to this definition">#</a></dt>
 <dd><p>The event descriptor</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
 </dl>
@@ -692,7 +693,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <span class="sig-name descname"><span class="pre">callback</span></span><a class="headerlink" href="#rubato.radio.Listener.callback" title="Permalink to this definition">#</a></dt>
 <dd><p>The function called when the event occurs</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></p>
 </dd>
 </dl>
@@ -703,7 +704,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <span class="sig-name descname"><span class="pre">registered</span></span><a class="headerlink" href="#rubato.radio.Listener.registered" title="Permalink to this definition">#</a></dt>
 <dd><p>Describes whether the listener is registered</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
 </dd>
 </dl>
@@ -719,7 +720,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <span class="sig-name descname"><span class="pre">ping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/radio/#Listener.ping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.radio.Listener.ping" title="Permalink to this definition">#</a></dt>
 <dd><p>Calls the callback of this listener.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>params</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – A parameters dictionary</p>
 </dd>
 </dl>
@@ -730,7 +731,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/radio/#Listener.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.radio.Listener.remove" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes itself from the radio register.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>ValueError</strong> – Raises error when listener is not registered</p>
 </dd>
 </dl>
@@ -747,10 +748,10 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <span class="sig-name descname"><span class="pre">loaded_sounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/sound/#loaded_sounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.sound.loaded_sounds" title="Permalink to this definition">#</a></dt>
 <dd><p>A dictionary of all the loaded sounds. The keys are the filename.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The returned dictionary.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>dict[str, pygame.mixer.Sound]</p>
 </dd>
 </dl>
@@ -762,7 +763,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 <dd><p>Imports a sound and saves it in the loaded_sounds dictionary with the key
 being the sound_name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rel_path</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The relative path to the sound file you wish to import.</p></li>
 <li><p><strong>sound_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the sound.</p></li>
@@ -777,7 +778,7 @@ being the sound_name.</p>
 <dd><p>Imports a folder of sounds, saving each one in the loaded_sounds
 dictionary by filename.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rel_path</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The relative path to the folder you wish to import.</p>
 </dd>
 </dl>
@@ -788,16 +789,16 @@ dictionary by filename.</p>
 <span class="sig-name descname"><span class="pre">get_sound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sound_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/sound/#get_sound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.sound.get_sound" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the sound based on the sound name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sound_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the sound.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.IdError" title="rubato.utils.error.IdError"><strong>IdError</strong></a> – No sound is associated to the sound name.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The sound.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>mixer.Sound</p>
 </dd>
 </dl>
@@ -808,7 +809,7 @@ dictionary by filename.</p>
 <span class="sig-name descname"><span class="pre">play_sound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sound_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loops</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/sound/#play_sound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.sound.play_sound" title="Permalink to this definition">#</a></dt>
 <dd><p>Plays a sound.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sound_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the sound to play.</p></li>
 <li><p><strong>loops</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of times to loop a sound after the first play through.
@@ -823,7 +824,7 @@ Use -1 to loop forever. Defaults to 0.</p></li>
 <span class="sig-name descname"><span class="pre">stop_sound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sound_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/sound/#stop_sound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.sound.stop_sound" title="Permalink to this definition">#</a></dt>
 <dd><p>Stops a sound.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sound_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the sound to stop.</p>
 </dd>
 </dl>
@@ -843,7 +844,7 @@ Use -1 to loop forever. Defaults to 0.</p></li>
 <span class="sig-name descname"><span class="pre">pos</span></span><a class="headerlink" href="#rubato.classes.sprite.Sprite.pos" title="Permalink to this definition">#</a></dt>
 <dd><p>The current position of the sprite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -854,7 +855,7 @@ Use -1 to loop forever. Defaults to 0.</p></li>
 <span class="sig-name descname"><span class="pre">z_index</span></span><a class="headerlink" href="#rubato.classes.sprite.Sprite.z_index" title="Permalink to this definition">#</a></dt>
 <dd><p>The z_index of the sprite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -866,7 +867,7 @@ Use -1 to loop forever. Defaults to 0.</p></li>
 <dd><p>All the components attached to this
 sprite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List[Component]</span></code></p>
 </dd>
 </dl>
@@ -877,7 +878,7 @@ sprite.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/sprite/#Sprite.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.sprite.Sprite.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a sprite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>options</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – A sprite config. Defaults to the <a class="reference internal" href="../defaults/#defaults"><span class="std std-ref">default config</span></a> for
 <cite>Sprite</cite>.</p>
 </dd>
@@ -889,10 +890,10 @@ sprite.</p>
 <span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/sprite/#Sprite.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.sprite.Sprite.add" title="Permalink to this definition">#</a></dt>
 <dd><p>Add a component to the sprite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>component</strong> (<a class="reference internal" href="#rubato.classes.component.Component" title="rubato.classes.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>) – The component to add.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="#rubato.utils.error.DuplicateComponentError" title="rubato.utils.error.DuplicateComponentError"><strong>DuplicateComponentError</strong></a> – Raised when there is already a component
     of the same type on the sprite.</p></li>
@@ -900,10 +901,10 @@ sprite.</p>
     another component.</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The current sprite</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.classes.sprite.Sprite" title="rubato.classes.sprite.Sprite">Sprite</a></p>
 </dd>
 </dl>
@@ -914,10 +915,10 @@ sprite.</p>
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/sprite/#Sprite.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.sprite.Sprite.remove" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes a component from the sprite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>comp_type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>) – The type of the component to remove.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>Warning</strong> – The component was not on the sprite and nothing
     was removed.</p>
 </dd>
@@ -929,14 +930,14 @@ sprite.</p>
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/sprite/#Sprite.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.sprite.Sprite.get" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets a component from the sprite.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>comp_type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code>) – The type of the component to search for.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The component if it was found or None if it
 wasn’t.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Union[<a class="reference internal" href="#rubato.classes.component.Component" title="rubato.classes.component.Component">Component</a>, None]</p>
 </dd>
 </dl>
@@ -965,16 +966,16 @@ wasn’t.</p>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center_to_tl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/sprite/#Sprite.center_to_tl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.sprite.Sprite.center_to_tl" title="Permalink to this definition">#</a></dt>
 <dd><p>Converts center coordinates to top left coordinates</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>center</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The top left coordinate as a Vector</p></li>
 <li><p><strong>dims</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The width and the height of the item as a sprite as a Vector</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The new coordinates.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -997,7 +998,7 @@ wasn’t.</p>
 <span class="sig-name descname"><span class="pre">sprite</span></span><a class="headerlink" href="#rubato.classes.component.Component.sprite" title="Permalink to this definition">#</a></dt>
 <dd><p>The sprite this component is attached to.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code></p>
 </dd>
 </dl>
@@ -1009,7 +1010,7 @@ wasn’t.</p>
 <dd><p>A list of components that are required by this
 component. (For example, a RigidBody needs a Hitbox).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List[type]</span></code></p>
 </dd>
 </dl>
@@ -1022,7 +1023,7 @@ component. (For example, a RigidBody needs a Hitbox).</p>
 same Sprite. (For example, an Animation and an Image cannot be
 on the same Sprite)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List[type]</span></code></p>
 </dd>
 </dl>
@@ -1039,7 +1040,7 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/component/#Component.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.component.Component.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>The draw loop</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
@@ -1050,7 +1051,7 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/component/#Component.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.component.Component.update" title="Permalink to this definition">#</a></dt>
 <dd><p>The main update loop for the component.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
@@ -1061,7 +1062,7 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/component/#Component.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.component.Component.setup" title="Permalink to this definition">#</a></dt>
 <dd><p>Run after initialization and before update loop begins</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
@@ -1088,7 +1089,7 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#rubato.classes.components.image.Image.image" title="Permalink to this definition">#</a></dt>
 <dd><p>The pygame surface containing the image.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">pygame.Surface</span></code></p>
 </dd>
 </dl>
@@ -1099,7 +1100,7 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/image/#Image.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.image.Image.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes an Image</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>options</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – A Image config. Defaults to the <a class="reference internal" href="../defaults/#defaults"><span class="std std-ref">default config</span></a> for
 <cite>Image</cite>.</p>
 </dd>
@@ -1111,10 +1112,10 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">get_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/image/#Image.get_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.image.Image.get_size" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the current size of the frame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>[description]</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>[type]</p>
 </dd>
 </dl>
@@ -1125,7 +1126,7 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/image/#Image.scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.image.Image.scale" title="Permalink to this definition">#</a></dt>
 <dd><p>Scales the image.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>scale_factor</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The 2-d scale factor relative to it’s current size.</p>
 </dd>
 </dl>
@@ -1136,7 +1137,7 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/image/#Image.resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.image.Image.resize" title="Permalink to this definition">#</a></dt>
 <dd><p>Resize the image to a given size in pixels.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>new_size</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The new size of the image in pixels.</p>
 </dd>
 </dl>
@@ -1147,7 +1148,7 @@ on the same Sprite)</p>
 <span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/image/#Image.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.image.Image.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>Draws the image if the z index is below the camera’s.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>camera</strong> – The current Camera viewing the scene.</p>
 </dd>
 </dl>
@@ -1170,7 +1171,7 @@ each holding separate frames and their times.</p>
 <span class="sig-name descname"><span class="pre">rotation</span></span><a class="headerlink" href="#rubato.classes.components.animation.Animation.rotation" title="Permalink to this definition">#</a></dt>
 <dd><p>The rotation of the animation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -1182,7 +1183,7 @@ each holding separate frames and their times.</p>
 <dd><p>The default length of an animation in
 frames.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -1194,7 +1195,7 @@ frames.</p>
 <dd><p>The key of the default state. Defaults
 to None.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Union[str,</span> <span class="pre">None]</span></code></p>
 </dd>
 </dl>
@@ -1205,7 +1206,7 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">current_state</span></span><a class="headerlink" href="#rubato.classes.components.animation.Animation.current_state" title="Permalink to this definition">#</a></dt>
 <dd><p>The key of the current state. Defaults to “”.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
 </dl>
@@ -1216,7 +1217,7 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">animation_frames_left</span></span><a class="headerlink" href="#rubato.classes.components.animation.Animation.animation_frames_left" title="Permalink to this definition">#</a></dt>
 <dd><p>The number of animation frames left.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -1227,7 +1228,7 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">current_frame</span></span><a class="headerlink" href="#rubato.classes.components.animation.Animation.current_frame" title="Permalink to this definition">#</a></dt>
 <dd><p>The current frame of the animation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -1238,7 +1239,7 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">loop</span></span><a class="headerlink" href="#rubato.classes.components.animation.Animation.loop" title="Permalink to this definition">#</a></dt>
 <dd><p>Whether the animation should loop. Defaults to False.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
 </dd>
 </dl>
@@ -1249,7 +1250,7 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/animation/#Animation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.animation.Animation.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes an Animation.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>options</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – A Animation config. Defaults to the <a class="reference internal" href="../defaults/#defaults"><span class="std std-ref">default config</span></a> for
 <cite>Animation</cite>.</p>
 </dd>
@@ -1261,10 +1262,10 @@ to None.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pygame.Surface</span></em><a class="headerlink" href="#rubato.classes.components.animation.Animation.image" title="Permalink to this definition">#</a></dt>
 <dd><p>The current image.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The pygame surface holding the current image.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Surface</p>
 </dd>
 </dl>
@@ -1275,10 +1276,10 @@ to None.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.components.image.Image" title="rubato.classes.components.image.Image"><span class="pre">Image</span></a></em><a class="headerlink" href="#rubato.classes.components.animation.Animation.anim_frame" title="Permalink to this definition">#</a></dt>
 <dd><p>The current frame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The image representing the current frame.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.classes.components.image.Image" title="rubato.classes.components.image.Image">Image</a></p>
 </dd>
 </dl>
@@ -1289,7 +1290,7 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/animation/#Animation.scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.animation.Animation.scale" title="Permalink to this definition">#</a></dt>
 <dd><p>Scales the Images to the given scale factor.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>scale_factor</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The 2-d scale factor relative to it’s current size.</p>
 </dd>
 </dl>
@@ -1300,7 +1301,7 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/animation/#Animation.resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.animation.Animation.resize" title="Permalink to this definition">#</a></dt>
 <dd><p>Resize the image to a given size in pixels.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>new_size</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The new size of the image in pixels.</p>
 </dd>
 </dl>
@@ -1311,13 +1312,13 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">set_current_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/animation/#Animation.set_current_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.animation.Animation.set_current_state" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the current animation state.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>new_state</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The key of the new current state.</p></li>
 <li><p><strong>loop</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to loop the state. Defaults to False.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>KeyError</strong> – The new_state key is not in the initialized states.</p>
 </dd>
 </dl>
@@ -1328,7 +1329,7 @@ to None.</p>
 <span class="sig-name descname"><span class="pre">add_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_and_times</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/animation/#Animation.add_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.animation.Animation.add_state" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a state to this animation component.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>state_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The key used to reference this state.</p></li>
 <li><p><strong>image_and_times</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>], <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>]) – The list of images and times. Should be the output
@@ -1336,7 +1337,7 @@ of the <code class="docutils literal notranslate"><span class="pre">import_anima
 tuples following the format: (Image, frame_number)</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.Error" title="rubato.utils.error.Error"><strong>Error</strong></a> – The animation frame tuple is invalid.</p>
 </dd>
 </dl>
@@ -1347,7 +1348,7 @@ tuples following the format: (Image, frame_number)</p></li>
 <span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/animation/#Animation.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.animation.Animation.setup" title="Permalink to this definition">#</a></dt>
 <dd><p>Run after initialization and before update loop begins</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
@@ -1366,14 +1367,14 @@ tuples following the format: (Image, frame_number)</p></li>
 placing it in a list by order in directory. Directory must be
 solely comprised of images.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>rel_path</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The relative path to the folder you wish to import</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>a list of rubato.Image s. Filled with all images in
 given directory.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list</p>
 </dd>
 </dl>
@@ -1416,11 +1417,11 @@ given directory.</p>
 <span class="sig-name descname"><span class="pre">bounding_box_dimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Hitbox.bounding_box_dimensions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Hitbox.bounding_box_dimensions" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the dimensions of the bounding box surrounding the polygon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A vector with the x variable holding the width and the y
 variable holding the height.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -1431,18 +1432,18 @@ variable holding the height.</p>
 <span class="sig-name descname"><span class="pre">collide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">lambda</span> <span class="pre">c:</span> <span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Hitbox.collide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Hitbox.collide" title="Permalink to this definition">#</a></dt>
 <dd><p>A simple collision engine for most use cases.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>other</strong> (<a class="reference internal" href="#rubato.classes.components.hitbox.Hitbox" title="rubato.classes.components.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) – The other rigidbody to collide with.</p></li>
 <li><p><strong>callback</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – The function to run when a collision is detected.
 Defaults to None.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Returns a collision info object if a
 collision is detected or nothing if no collision is detected.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Union[<a class="reference internal" href="#rubato.classes.components.hitbox.CollisionInfo" title="rubato.classes.components.hitbox.CollisionInfo">CollisionInfo</a>, None]</p>
 </dd>
 </dl>
@@ -1461,7 +1462,7 @@ collision is detected or nothing if no collision is detected.</p>
 <dd><p>A list of the vertices in the Polygon, in either
 clockwise or anticlockwise direction.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List[Vector]</span></code></p>
 </dd>
 </dl>
@@ -1472,7 +1473,7 @@ clockwise or anticlockwise direction.</p>
 <span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon.scale" title="Permalink to this definition">#</a></dt>
 <dd><p>The scale of the polygon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Union[float,</span> <span class="pre">int]</span></code></p>
 </dd>
 </dl>
@@ -1483,7 +1484,7 @@ clockwise or anticlockwise direction.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Polygon.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a Polygon</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>verts</strong> – A list of the vertices in the Polygon.</p></li>
 <li><p><strong>pos</strong> – The position of the center of the Polygon as a function.
@@ -1501,16 +1502,16 @@ function. Defaults to lambda: 0.</p></li>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">generate_rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Polygon.generate_rect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon.generate_rect" title="Permalink to this definition">#</a></dt>
 <dd><p>Creates a rectangle from its dimensions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>w</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The width of the hitbox.</p></li>
 <li><p><strong>h</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The height of the hitbox.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The vertices of the rectangle.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a>]</p>
 </dd>
 </dl>
@@ -1522,19 +1523,19 @@ function. Defaults to lambda: 0.</p></li>
 <dd><p>Creates a normal polygon with a specified number of sides and
 an optional radius.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>num_sides</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of sides of the polygon.</p></li>
 <li><p><strong>radius</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The radius of the polygon. Defaults to 1.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.SideError" title="rubato.utils.error.SideError"><strong>SideError</strong></a> – Raised when the number of sides is less than 3.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The vertices of the polygon.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a>]</p>
 </dd>
 </dl>
@@ -1545,7 +1546,7 @@ an optional radius.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon.pos" title="Permalink to this definition">#</a></dt>
 <dd><p>The getter method for the position of the Polygon’s center</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1556,7 +1557,7 @@ an optional radius.</p>
 <span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Polygon.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon.clone" title="Permalink to this definition">#</a></dt>
 <dd><p>Creates a copy of the Polygon at the current position</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.classes.components.hitbox.Polygon" title="rubato.classes.components.hitbox.Polygon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polygon</span></code></a></p>
 </dd>
 </dl>
@@ -1567,7 +1568,7 @@ an optional radius.</p>
 <span class="sig-name descname"><span class="pre">transformed_verts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Polygon.transformed_verts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon.transformed_verts" title="Permalink to this definition">#</a></dt>
 <dd><p>Maps each vertex with the Polygon’s scale and rotation</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]</p>
 </dd>
 </dl>
@@ -1578,7 +1579,7 @@ an optional radius.</p>
 <span class="sig-name descname"><span class="pre">real_verts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Polygon.real_verts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon.real_verts" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the a list of vertices in absolute coordinates</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]</p>
 </dd>
 </dl>
@@ -1589,11 +1590,11 @@ an optional radius.</p>
 <span class="sig-name descname"><span class="pre">bounding_box_dimensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Polygon.bounding_box_dimensions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Polygon.bounding_box_dimensions" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the dimensions of the bounding box surrounding the polygon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A vector with the x variable holding the width and the y
 variable holding the height.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -1613,7 +1614,7 @@ variable holding the height.</p>
 <dd><p>Bases: <a class="reference internal" href="#rubato.classes.components.hitbox.Polygon" title="rubato.classes.components.hitbox.Polygon"><code class="xref py py-class docutils literal notranslate"><span class="pre">Polygon</span></code></a></p>
 <p>_summary_</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>Polygon</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">_type_</span></code>) – _description_</p>
 </dd>
 </dl>
@@ -1622,7 +1623,7 @@ variable holding the height.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Rectangle.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Rectangle.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a Polygon</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>verts</strong> – A list of the vertices in the Polygon.</p></li>
 <li><p><strong>pos</strong> – The position of the center of the Polygon as a function.
@@ -1647,7 +1648,7 @@ function. Defaults to lambda: 0.</p></li>
 <span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#rubato.classes.components.hitbox.Circle.radius" title="Permalink to this definition">#</a></dt>
 <dd><p>The radius of the circle.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -1658,7 +1659,7 @@ function. Defaults to lambda: 0.</p></li>
 <span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#rubato.classes.components.hitbox.Circle.scale" title="Permalink to this definition">#</a></dt>
 <dd><p>The scale of the circle.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -1669,7 +1670,7 @@ function. Defaults to lambda: 0.</p></li>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Circle.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Circle.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a Circle</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pos</strong> – The position of the circle as a function.
 Defaults to lambda: Vector(0, 0).</p></li>
@@ -1685,7 +1686,7 @@ Defaults to lambda: Vector(0, 0).</p></li>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.classes.components.hitbox.Circle.pos" title="Permalink to this definition">#</a></dt>
 <dd><p>The getter method for the position of the circle’s center</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1696,7 +1697,7 @@ Defaults to lambda: Vector(0, 0).</p></li>
 <span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Circle.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Circle.clone" title="Permalink to this definition">#</a></dt>
 <dd><p>Creates a copy of the circle at the current position</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.classes.components.hitbox.Circle" title="rubato.classes.components.hitbox.Circle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a></p>
 </dd>
 </dl>
@@ -1707,7 +1708,7 @@ Defaults to lambda: Vector(0, 0).</p></li>
 <span class="sig-name descname"><span class="pre">transformed_radius</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#Circle.transformed_radius"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.Circle.transformed_radius" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the true radius of the circle</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -1731,7 +1732,7 @@ Defaults to lambda: Vector(0, 0).</p></li>
 <span class="sig-name descname"><span class="pre">shape_a</span></span><a class="headerlink" href="#rubato.classes.components.hitbox.CollisionInfo.shape_a" title="Permalink to this definition">#</a></dt>
 <dd><p>A reference to the first shape.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Union[Circle,</span> <span class="pre">Polygon,</span> <span class="pre">None]</span></code></p>
 </dd>
 </dl>
@@ -1742,7 +1743,7 @@ Defaults to lambda: Vector(0, 0).</p></li>
 <span class="sig-name descname"><span class="pre">shape_b</span></span><a class="headerlink" href="#rubato.classes.components.hitbox.CollisionInfo.shape_b" title="Permalink to this definition">#</a></dt>
 <dd><p>A reference to the second shape.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Union[Circle,</span> <span class="pre">Polygon,</span> <span class="pre">None]</span></code></p>
 </dd>
 </dl>
@@ -1753,7 +1754,7 @@ Defaults to lambda: Vector(0, 0).</p></li>
 <span class="sig-name descname"><span class="pre">seperation</span></span><a class="headerlink" href="#rubato.classes.components.hitbox.CollisionInfo.seperation" title="Permalink to this definition">#</a></dt>
 <dd><p>The vector that would separate the two colliders.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1778,17 +1779,17 @@ circles and polygons</p>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#SAT.overlap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.SAT.overlap" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks for overlap between any two shapes (Polygon or Circle)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>shape_a</strong> (<a class="reference internal" href="#rubato.classes.components.hitbox.Hitbox" title="rubato.classes.components.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) – The first shape.</p></li>
 <li><p><strong>shape_b</strong> (<a class="reference internal" href="#rubato.classes.components.hitbox.Hitbox" title="rubato.classes.components.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) – The second shape.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>If a collision occurs, a CollisionInfo
 is returned. Otherwise None is returned.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Union[<a class="reference internal" href="#rubato.classes.components.hitbox.CollisionInfo" title="rubato.classes.components.hitbox.CollisionInfo">CollisionInfo</a>, None]</p>
 </dd>
 </dl>
@@ -1805,7 +1806,7 @@ is returned. Otherwise None is returned.</p>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">polygon_polygon_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#SAT.polygon_polygon_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.SAT.polygon_polygon_test" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks for overlap between two polygons</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.classes.components.hitbox.CollisionInfo" title="rubato.classes.components.hitbox.CollisionInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollisionInfo</span></code></a>]</p>
 </dd>
 </dl>
@@ -1816,7 +1817,7 @@ is returned. Otherwise None is returned.</p>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">perpendicular_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/hitbox/#SAT.perpendicular_axis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.hitbox.SAT.perpendicular_axis" title="Permalink to this definition">#</a></dt>
 <dd><p>Finds a vector perpendicular to a side</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1828,7 +1829,7 @@ is returned. Otherwise None is returned.</p>
 <dd><p>Projects the vertices onto a given axis.
 Returns as a vector x is min, y is max</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1853,7 +1854,7 @@ Rigidbodies require hitboxes.</p>
 <dd><p>Whether or not the rigidbody is static (as in, it does
 not move).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
 </dd>
 </dl>
@@ -1865,7 +1866,7 @@ not move).</p>
 <dd><p>The acceleration of the gravity that should be
 applied.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1877,7 +1878,7 @@ applied.</p>
 <dd><p>The friction coefficient of the Rigidbody (usually a
 a value between 0 and 1).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -1888,7 +1889,7 @@ a value between 0 and 1).</p>
 <span class="sig-name descname"><span class="pre">max_speed</span></span><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody.max_speed" title="Permalink to this definition">#</a></dt>
 <dd><p>The maximum speed of the Rigidbody.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1899,7 +1900,7 @@ a value between 0 and 1).</p>
 <span class="sig-name descname"><span class="pre">min_speed</span></span><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody.min_speed" title="Permalink to this definition">#</a></dt>
 <dd><p>The minimum speed of the Rigidbody.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1910,7 +1911,7 @@ a value between 0 and 1).</p>
 <span class="sig-name descname"><span class="pre">velocity</span></span><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody.velocity" title="Permalink to this definition">#</a></dt>
 <dd><p>The current velocity of the Rigidbody.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -1922,7 +1923,7 @@ a value between 0 and 1).</p>
 <dd><p>The inverse of the mass of the Rigidbody (0 if the
 mass is infinite).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -1934,7 +1935,7 @@ mass is infinite).</p>
 <dd><p>How bouncy the rigidbody is (usually a value
 between 0 and 1).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -1945,7 +1946,7 @@ between 0 and 1).</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/rigidbody/#RigidBody.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a Rigidbody.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>options</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>) – A rigidbody config. Defaults to the <a class="reference internal" href="../defaults/#defaults"><span class="std std-ref">default config</span></a> for
 <cite>RigidBody</cite></p>
 </dd>
@@ -1957,7 +1958,7 @@ between 0 and 1).</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mass</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody.mass" title="Permalink to this definition">#</a></dt>
 <dd><p>The mass of the Rigidbody (readonly)</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -1974,7 +1975,7 @@ between 0 and 1).</p>
 <span class="sig-name descname"><span class="pre">add_force</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/rigidbody/#RigidBody.add_force"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody.add_force" title="Permalink to this definition">#</a></dt>
 <dd><p>Add a force to the Rigidbody.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>force</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The force to add.</p>
 </dd>
 </dl>
@@ -1987,7 +1988,7 @@ between 0 and 1).</p>
 that is continuously applied over a time period. (the force is added
 every frame for a specific duration).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>impulse</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The force to add.</p></li>
 <li><p><strong>time</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The time in seconds that the force should be added.</p></li>
@@ -2001,7 +2002,7 @@ every frame for a specific duration).</p>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">handle_collision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/components/rigidbody/#RigidBody.handle_collision"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.components.rigidbody.RigidBody.handle_collision" title="Permalink to this definition">#</a></dt>
 <dd><p>Handle the collision between two rigidbodies.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>col</strong> (<a class="reference internal" href="#rubato.classes.components.hitbox.CollisionInfo" title="rubato.classes.components.hitbox.CollisionInfo"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollisionInfo</span></code></a>) – The collision information.</p>
 </dd>
 </dl>
@@ -2035,10 +2036,10 @@ every frame for a specific duration).</p>
 <span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/group/#Group.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.group.Group.add" title="Permalink to this definition">#</a></dt>
 <dd><p>Adds an item to the group.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>item</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#rubato.classes.sprite.Sprite" title="rubato.classes.sprite.Sprite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code></a>, <a class="reference internal" href="#rubato.classes.group.Group" title="rubato.classes.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#rubato.classes.sprite.Sprite" title="rubato.classes.sprite.Sprite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code></a>, <a class="reference internal" href="#rubato.classes.group.Group" title="rubato.classes.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]]]) – The item or list of items to add to the group.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.Error" title="rubato.utils.error.Error"><strong>Error</strong></a> – The item being added is the group itself. A group cannot be
     added to itself.</p>
 </dd>
@@ -2050,10 +2051,10 @@ every frame for a specific duration).</p>
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/group/#Group.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.group.Group.remove" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes an item from the group.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>item</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#rubato.classes.sprite.Sprite" title="rubato.classes.sprite.Sprite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code></a>, <a class="reference internal" href="#rubato.classes.group.Group" title="rubato.classes.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]) – The item to remove from the group.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – The item is not in the group and cannot be deleted.</p>
 </dd>
 </dl>
@@ -2077,7 +2078,7 @@ no other groups are specified.</p>
 <span class="sig-name descname"><span class="pre">root</span></span><a class="headerlink" href="#rubato.classes.scene.Scene.root" title="Permalink to this definition">#</a></dt>
 <dd><p>The base group of sprites in the scene.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></p>
 </dd>
 </dl>
@@ -2088,7 +2089,7 @@ no other groups are specified.</p>
 <span class="sig-name descname"><span class="pre">camera</span></span><a class="headerlink" href="#rubato.classes.scene.Scene.camera" title="Permalink to this definition">#</a></dt>
 <dd><p>The camera of this scene.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Camera</span></code></p>
 </dd>
 </dl>
@@ -2099,7 +2100,7 @@ no other groups are specified.</p>
 <span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#rubato.classes.scene.Scene.id" title="Permalink to this definition">#</a></dt>
 <dd><p>The id of this scene.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
 </dl>
@@ -2117,7 +2118,7 @@ and a blank id.</p>
 <span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/scene/#Scene.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.scene.Scene.add" title="Permalink to this definition">#</a></dt>
 <dd><p>Adds an item to the root group.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>item</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#rubato.classes.sprite.Sprite" title="rubato.classes.sprite.Sprite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code></a>, <a class="reference internal" href="#rubato.classes.group.Group" title="rubato.classes.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#rubato.classes.sprite.Sprite" title="rubato.classes.sprite.Sprite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code></a>, <a class="reference internal" href="#rubato.classes.group.Group" title="rubato.classes.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]]]) – The item or list of items to add.</p>
 </dd>
 </dl>
@@ -2128,7 +2129,7 @@ and a blank id.</p>
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/scene/#Scene.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.scene.Scene.remove" title="Permalink to this definition">#</a></dt>
 <dd><p>Removes an item from the root group.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>item</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#rubato.classes.sprite.Sprite" title="rubato.classes.sprite.Sprite"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sprite</span></code></a>, <a class="reference internal" href="#rubato.classes.group.Group" title="rubato.classes.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]) – The item to remove.</p>
 </dd>
 </dl>
@@ -2173,7 +2174,7 @@ and updating the current scene.</p>
 <dd><p>The collection of scenes in the
 manager. Accessed by scene id.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Scene]</span></code></p>
 </dd>
 </dl>
@@ -2184,7 +2185,7 @@ manager. Accessed by scene id.</p>
 <span class="sig-name descname"><span class="pre">current</span></span><a class="headerlink" href="#rubato.classes.scene_manager.SceneManager.current" title="Permalink to this definition">#</a></dt>
 <dd><p>The id of the current scene.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
 </dd>
 </dl>
@@ -2201,10 +2202,10 @@ manager. Accessed by scene id.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_empty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#rubato.classes.scene_manager.SceneManager.is_empty" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks if the scene manager contains no scene.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if the scene is empty. False otherwise.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>bool</p>
 </dd>
 </dl>
@@ -2215,10 +2216,10 @@ manager. Accessed by scene id.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_scene</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.classes.scene.Scene" title="rubato.classes.scene.Scene"><span class="pre">Scene</span></a></em><a class="headerlink" href="#rubato.classes.scene_manager.SceneManager.current_scene" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the current scene.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The current scene.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.classes.scene.Scene" title="rubato.classes.scene.Scene">Scene</a></p>
 </dd>
 </dl>
@@ -2229,13 +2230,13 @@ manager. Accessed by scene id.</p>
 <span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/scene_manager/#SceneManager.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.scene_manager.SceneManager.add" title="Permalink to this definition">#</a></dt>
 <dd><p>Add a scene to the current scene manager.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scene</strong> (<a class="reference internal" href="#rubato.classes.scene.Scene" title="rubato.classes.scene.Scene"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>) – The scene to add to the manager.</p></li>
 <li><p><strong>scene_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The id of the scene.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.IdError" title="rubato.utils.error.IdError"><strong>IdError</strong></a> – The given scene id is already used.</p>
 </dd>
 </dl>
@@ -2246,7 +2247,7 @@ manager. Accessed by scene id.</p>
 <span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/scene_manager/#SceneManager.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.scene_manager.SceneManager.set" title="Permalink to this definition">#</a></dt>
 <dd><p>Changes the current scene.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>scene_id</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The id of the new scene.</p>
 </dd>
 </dl>
@@ -2288,7 +2289,7 @@ is less than that of the camera’s.</p>
 <span class="sig-name descname"><span class="pre">pos</span></span><a class="headerlink" href="#rubato.classes.camera.Camera.pos" title="Permalink to this definition">#</a></dt>
 <dd><p>The current position of the camera.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -2299,7 +2300,7 @@ is less than that of the camera’s.</p>
 <span class="sig-name descname"><span class="pre">zoom</span></span><a class="headerlink" href="#rubato.classes.camera.Camera.zoom" title="Permalink to this definition">#</a></dt>
 <dd><p>The current zoom of the camera.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -2310,7 +2311,7 @@ is less than that of the camera’s.</p>
 <span class="sig-name descname"><span class="pre">z_index</span></span><a class="headerlink" href="#rubato.classes.camera.Camera.z_index" title="Permalink to this definition">#</a></dt>
 <dd><p>The current z_index of the camera.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -2321,7 +2322,7 @@ is less than that of the camera’s.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/classes/camera/#Camera.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.classes.camera.Camera.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a camera.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pos</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The starting position of the camera. Defaults to Vector().</p></li>
 <li><p><strong>zoom</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The starting zoom of the camera. Defaults to 1.</p></li>
@@ -2337,10 +2338,10 @@ is less than that of the camera’s.</p>
 <dd><p>Converts world space coordinates into screen space coordinates
 according to the camera.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>point</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The point in world space coordinates.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><dl class="simple">
 <dt>The translated coordinates,</dt><dd><p>where the first item is the x-coordinate and the second item
 is the y-coordinate. The coordinates are returned with the
@@ -2349,7 +2350,7 @@ same type that is given.</p>
 </dl>
 </p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
@@ -2368,7 +2369,7 @@ same type that is given.</p>
 <span class="sig-name descname"><span class="pre">INFINITY</span></span><a class="headerlink" href="#rubato.utils.math.INFINITY" title="Permalink to this definition">#</a></dt>
 <dd><p>The max value of a float.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -2379,17 +2380,17 @@ same type that is given.</p>
 <span class="sig-name descname"><span class="pre">clamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/math/#clamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.math.clamp" title="Permalink to this definition">#</a></dt>
 <dd><p>Clamps a value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>a</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The value to clamp.</p></li>
 <li><p><strong>lower</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The lower bound of the clamp.</p></li>
 <li><p><strong>upper</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The upper bound of the clamp.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The clamped result.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -2400,13 +2401,13 @@ same type that is given.</p>
 <span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/math/#sign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.math.sign" title="Permalink to this definition">#</a></dt>
 <dd><p>Checks the sign of n.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>n</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – A number to check.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The sign of the number. (1 for positive, -1 for negative)</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -2417,17 +2418,17 @@ same type that is given.</p>
 <span class="sig-name descname"><span class="pre">lerp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/math/#lerp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.math.lerp" title="Permalink to this definition">#</a></dt>
 <dd><p>Linearly interpolates between lower and upper bounds by t</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>a</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The lower bound.</p></li>
 <li><p><strong>a</strong> – The upper bound.</p></li>
 <li><p><strong>t</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Distance between upper and lower (1 gives b, 0 gives a).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The lerped value.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -2443,7 +2444,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">set_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_surface</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/display/#set_display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.display.set_display" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the global display.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>new_surface</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code>) – The new surface to set.</p>
 </dd>
 </dl>
@@ -2454,7 +2455,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/display/#update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.display.update" title="Permalink to this definition">#</a></dt>
 <dd><p>Update the current display.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>surface</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code>) – The surface to draw on the display.</p></li>
 <li><p><strong>pos</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>) – The position to draw the surface on.</p></li>
@@ -2468,7 +2469,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">set_window_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/display/#set_window_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.display.set_window_position" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the position of the Pygame window.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The x position.</p></li>
 <li><p><strong>y</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The y position.</p></li>
@@ -2482,7 +2483,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">set_window_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/display/#set_window_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.display.set_window_name" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the title of the PyGame window.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The name of the PyGame window.</p>
 </dd>
 </dl>
@@ -2502,7 +2503,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#rubato.utils.vector.Vector.x" title="Permalink to this definition">#</a></dt>
 <dd><p>The x coordinate.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Union[float,</span> <span class="pre">int]</span></code></p>
 </dd>
 </dl>
@@ -2513,7 +2514,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#rubato.utils.vector.Vector.y" title="Permalink to this definition">#</a></dt>
 <dd><p>The y coordinate.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Union[float,</span> <span class="pre">int]</span></code></p>
 </dd>
 </dl>
@@ -2524,7 +2525,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes a vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The x coordinate. Defaults to 0.</p></li>
 <li><p><strong>y</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The y coordinate. Defaults to 0.</p></li>
@@ -2538,7 +2539,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.translate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.translate" title="Permalink to this definition">#</a></dt>
 <dd><p>Translates the vector’s x y and z coordinates by some constants.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>x</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The change in x.</p></li>
 <li><p><strong>y</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The change in y.</p></li>
@@ -2552,13 +2553,13 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">offset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.offset" title="Permalink to this definition">#</a></dt>
 <dd><p>Offsets the x and y coordinates of a vector by those of another vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – Another vector.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A new vector with the translated x and y coordinates.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -2569,7 +2570,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">to_tuple</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.to_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.to_tuple" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the x and y coordinates of the vector as a tuple.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
 </dd>
 </dl>
@@ -2583,7 +2584,7 @@ displayed screen.</p>
 :param coords: tuple with an x and y coordinate [float | int].</p>
 <p>Returns: Vector with specified coordinates.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -2594,13 +2595,13 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.dot" title="Permalink to this definition">#</a></dt>
 <dd><p>Takes the dot product of vectors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The other vector.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The resulting dot product.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Union[float, int]</p>
 </dd>
 </dl>
@@ -2611,13 +2612,13 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.cross"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.cross" title="Permalink to this definition">#</a></dt>
 <dd><p>Takes the cross product of vectors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The other vector.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The resulting cross product.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Union[float, int]</p>
 </dd>
 </dl>
@@ -2628,10 +2629,10 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">crossp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.crossp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.crossp" title="Permalink to this definition">#</a></dt>
 <dd><p>Does <cite>Vector(self.y, -self.x)</cite>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The resulting vector.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -2642,13 +2643,13 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">pow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.pow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.pow" title="Permalink to this definition">#</a></dt>
 <dd><p>Takes the power of the elements in the vector to the num.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>num</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The exponent to use.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The new vector.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -2659,7 +2660,7 @@ displayed screen.</p>
 <span class="sig-name descname"><span class="pre">clamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">absolute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.clamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.clamp" title="Permalink to this definition">#</a></dt>
 <dd><p>Clamps x and y between the two values given.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The lower bound.</p></li>
 <li><p><strong>upper</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The upper bound.</p></li>
@@ -2675,7 +2676,7 @@ instead of the actual value.</p></li>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mag</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.utils.vector.Vector.mag" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the squared magnitude of the vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -2686,7 +2687,7 @@ instead of the actual value.</p></li>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">magnitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.utils.vector.Vector.magnitude" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the magnitude of the vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -2703,7 +2704,7 @@ instead of the actual value.</p></li>
 <span class="sig-name descname"><span class="pre">unit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.unit" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the unit vector of this vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -2714,16 +2715,16 @@ instead of the actual value.</p></li>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_radial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnitude</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.from_radial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.from_radial" title="Permalink to this definition">#</a></dt>
 <dd><p>Gives you a Vector from the given direction and distance.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>angle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Direction of vector in radians.</p></li>
 <li><p><strong>magnitude</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Length of vector.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Vector from the given direction and distance</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -2734,7 +2735,7 @@ instead of the actual value.</p></li>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.utils.vector.Vector.angle" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the angle of the vector</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -2745,10 +2746,10 @@ instead of the actual value.</p></li>
 <span class="sig-name descname"><span class="pre">invert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.invert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.invert" title="Permalink to this definition">#</a></dt>
 <dd><p>Inverts the vector in the axis given</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>axis</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The axis to invert the vector in (x or y).</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – The value for axis is not “x” or “y”</p>
 </dd>
 </dl>
@@ -2759,7 +2760,7 @@ instead of the actual value.</p></li>
 <span class="sig-name descname"><span class="pre">to_int</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.to_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.to_int" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a new vector with values that are ints.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -2770,7 +2771,7 @@ instead of the actual value.</p></li>
 <span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.clone" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a copy of the vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -2781,16 +2782,16 @@ instead of the actual value.</p></li>
 <span class="sig-name descname"><span class="pre">lerp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.lerp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.lerp" title="Permalink to this definition">#</a></dt>
 <dd><p>Changes its values x and y to fit the target vector by amount t.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>target</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – the target velocity.</p></li>
 <li><p><strong>t</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – the amount you lerp between 0 and 1.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The resulting vector.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector">Vector</a></p>
 </dd>
 </dl>
@@ -2801,7 +2802,7 @@ instead of the actual value.</p></li>
 <span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decimal_places</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.round" title="Permalink to this definition">#</a></dt>
 <dd><p>Rounds x and y to decimal_places</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>decimal_places</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – the amount of decimal places rounded to.</p>
 </dd>
 </dl>
@@ -2812,7 +2813,7 @@ instead of the actual value.</p></li>
 <span class="sig-name descname"><span class="pre">ceil</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.ceil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.ceil" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns the cieled vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -2824,13 +2825,13 @@ instead of the actual value.</p></li>
 <dd><p>Treating vectors as points the direction to the other vector from the
 current vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>vector</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The other vector.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The direction to the new vector in radians.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -2842,13 +2843,13 @@ current vector.</p>
 <dd><p>Treating vectors as points the distance to the other vector from
 the current vector.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>vector</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The other vector.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Distance to new vector.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -2859,7 +2860,7 @@ the current vector.</p>
 <span class="sig-name descname"><span class="pre">absolute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.absolute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.absolute" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a vector representing the absolute values of the current vector</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
 </dd>
 </dl>
@@ -2877,7 +2878,7 @@ the current vector.</p>
 <dd><p>The total number of elapsed frames since the start of the
 game.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
 </dd>
 </dl>
@@ -2888,16 +2889,16 @@ game.</p>
 <span class="sig-name descname"><span class="pre">fixed_delta_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'milli'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/time/#fixed_delta_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.time.fixed_delta_time" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the time since the fixed update frame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>form</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The format the output should be (sec, milli). Defaults to milli.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – The form is not “sec” or “milli”.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Time since the fixed update frame, in the given form.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -2908,16 +2909,16 @@ game.</p>
 <span class="sig-name descname"><span class="pre">delta_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'milli'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/time/#delta_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.time.delta_time" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the time since the last frame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>form</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The format the output should be (sec, milli). Defaults to milli.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – The form is not “sec” or “milli”.</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Time since the last frame, in the given form.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>float</p>
 </dd>
 </dl>
@@ -2928,10 +2929,10 @@ game.</p>
 <span class="sig-name descname"><span class="pre">now</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/time/#now"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.time.now" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the time since the start of the game, in milliseconds.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Time since the start of the game, in milliseconds.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>int</p>
 </dd>
 </dl>
@@ -2942,7 +2943,7 @@ game.</p>
 <span class="sig-name descname"><span class="pre">delayed_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/time/#delayed_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.time.delayed_call" title="Permalink to this definition">#</a></dt>
 <dd><p>Calls the function func at a later</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time_delta</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The time from now (in milliseconds)
 to run the function at.</p></li>
@@ -2957,7 +2958,7 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">delayed_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames_delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/time/#delayed_frames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.time.delayed_frames" title="Permalink to this definition">#</a></dt>
 <dd><p>Calls the function func at a later frame.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>frames_delta</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The number of frames to wait.</p></li>
 <li><p><strong>func</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – The function to call</p></li>
@@ -2971,13 +2972,13 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">milli_to_sec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">milli</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/time/#milli_to_sec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.time.milli_to_sec" title="Permalink to this definition">#</a></dt>
 <dd><p>Converts milliseconds to seconds.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>milli</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – A number in milliseconds.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The converted number in seconds.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
@@ -2988,7 +2989,7 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">set_clock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_clock</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/time/#set_clock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.time.set_clock" title="Permalink to this definition">#</a></dt>
 <dd><p>Allows you to set the clock object property to a Pygame Clock object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>clock</strong> – A pygame Clock object.</p>
 </dd>
 </dl>
@@ -3014,7 +3015,7 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">r</span></span><a class="headerlink" href="#rubato.utils.color.Color.r" title="Permalink to this definition">#</a></dt>
 <dd><p>The red value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -3025,7 +3026,7 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">g</span></span><a class="headerlink" href="#rubato.utils.color.Color.g" title="Permalink to this definition">#</a></dt>
 <dd><p>The green value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -3036,7 +3037,7 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">b</span></span><a class="headerlink" href="#rubato.utils.color.Color.b" title="Permalink to this definition">#</a></dt>
 <dd><p>The blue value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type</dt>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
@@ -3047,7 +3048,7 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.__init__" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes an Color class.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>r</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The red value. Defaults to 0.0.</p></li>
 <li><p><strong>g</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The green value. Defaults to 0.0.</p></li>
@@ -3062,10 +3063,10 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">to_tuple</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.to_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.to_tuple" title="Permalink to this definition">#</a></dt>
 <dd><p>Converts the Color to a tuple.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The tuple representing the color.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>tuple(int, int, int)</p>
 </dd>
 </dl>
@@ -3083,16 +3084,16 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">lerp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.lerp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.lerp" title="Permalink to this definition">#</a></dt>
 <dd><p>Lerps between this color and another.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>other</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The other Color to lerp with.</p></li>
 <li><p><strong>t</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The amount to lerp.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The lerped Color. This Color remains unchanged.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3103,10 +3104,10 @@ to run the function at.</p></li>
 <span class="sig-name descname"><span class="pre">to_hex</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.to_hex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.to_hex" title="Permalink to this definition">#</a></dt>
 <dd><p>Converts the Color to hexadecimal.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The hexadecimal output in lowercase. (i.e. ffffff)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
 </dd>
 </dl>
@@ -3117,13 +3118,13 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_hex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.from_hex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.from_hex" title="Permalink to this definition">#</a></dt>
 <dd><p>Creates an Color from a hex string.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>h</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The hexadecimal value in lowercase.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Color value.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3134,17 +3135,17 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_hsv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.from_hsv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.from_hsv" title="Permalink to this definition">#</a></dt>
 <dd><p>Creates an Color from an HSV.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>h</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The hue amount.</p></li>
 <li><p><strong>s</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The saturation amount.</p></li>
 <li><p><strong>v</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The value amount.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The Color value.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3155,10 +3156,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.random"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.random" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class with a random color.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A random color.</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3169,10 +3170,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">black</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.black"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.black" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color black.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(0, 0, 0)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3183,10 +3184,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">white</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.white"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.white" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color white.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(255, 255, 255)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3197,10 +3198,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">red</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.red"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.red" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color red.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(255, 0, 0)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3211,10 +3212,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lime</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.lime"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.lime" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color lime.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(0, 255, 0)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3225,10 +3226,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">blue</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.blue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.blue" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color blue.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(0, 0, 255)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3239,10 +3240,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">yellow</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.yellow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.yellow" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color yellow.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(255, 255, 0)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3253,10 +3254,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cyan</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.cyan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.cyan" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color cyan.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(0, 255, 255)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3267,10 +3268,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">magenta</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.magenta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.magenta" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color magenta.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(255, 0, 255)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3281,10 +3282,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">silver</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.silver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.silver" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color silver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(192, 192, 192)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3295,10 +3296,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gray</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.gray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.gray" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color gray.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(128, 128, 128)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3309,10 +3310,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">maroon</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.maroon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.maroon" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color maroon.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(128, 0, 0)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3323,10 +3324,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">olive</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.olive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.olive" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color olive.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(128, 128, 0)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3337,10 +3338,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">green</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.green"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.green" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color green.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(0, 128, 0)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3351,10 +3352,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">purple</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.purple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.purple" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color purple.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(128, 0, 128)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3365,10 +3366,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">teal</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.teal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.teal" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color teal.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(0, 128, 128)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
@@ -3379,10 +3380,10 @@ to run the function at.</p></li>
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">navy</span></span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.navy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.navy" title="Permalink to this definition">#</a></dt>
 <dd><p>A Color class of the color navy.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(0, 0, 128)</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color">Color</a></p>
 </dd>
 </dl>
