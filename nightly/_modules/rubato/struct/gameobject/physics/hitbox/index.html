@@ -343,8 +343,8 @@
         <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">trigger</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -353,8 +353,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">debug</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trigger</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">trigger</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">scale</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">on_collide</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">on_exit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">on_collide</span> <span class="k">if</span> <span class="n">on_collide</span> <span class="k">else</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">on_exit</span> <span class="k">if</span> <span class="n">on_exit</span> <span class="k">else</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">singular</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">tag</span>
@@ -423,8 +423,8 @@
         <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">trigger</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -449,7 +449,8 @@
         <span class="n">verts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformed_verts</span><span class="p">()</span>
         <span class="n">max_dist</span> <span class="o">=</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
         <span class="k">for</span> <span class="n">vert</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">dist</span> <span class="o">:=</span> <span class="n">vert</span><span class="o">.</span><span class="n">distance_between</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">max_dist</span><span class="p">:</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">distance_between</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_dist</span><span class="p">:</span>
                 <span class="n">max_dist</span> <span class="o">=</span> <span class="n">dist</span>
         <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">max_dist</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
@@ -547,9 +548,7 @@
             <span class="n">Draw</span><span class="o">.</span><span class="n">queue_poly</span><span class="p">(</span><span class="n">list_of_points</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Display</span><span class="o">.</span><span class="n">display_ratio</span><span class="o">.</span><span class="n">x</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Polygon.generate_polygon"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon.generate_polygon">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">generate_polygon</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span>
-                         <span class="n">num_sides</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-                         <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">generate_polygon</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generates the **vertices** of a regular polygon with a specified number of sides and a radius.</span>
 <span class="sd">        You can use this as the `verts` option in the Polygon constructor if you wish to generate a regular polygon.</span>
@@ -569,6 +568,7 @@
 
         <span class="n">rotangle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">num_sides</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">Vector</span><span class="o">.</span><span class="n">from_radial</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">i</span> <span class="o">*</span> <span class="n">rotangle</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sides</span><span class="p">)]</span></div></div>
+
 
 <div class="viewcode-block" id="Rectangle"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle">[docs]</a><span class="k">class</span> <span class="nc">Rectangle</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -602,8 +602,8 @@
         <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">trigger</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -941,8 +941,8 @@
         <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">trigger</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">manifold</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_collide</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_exit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1010,7 +1010,7 @@
             <span class="k">return</span>
 
         <span class="n">relative_pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">scaled_rad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">scaled_rad</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">:</span>
             <span class="n">relative_pos</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span>

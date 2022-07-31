@@ -303,9 +303,9 @@
 <span class="sd">The main game module. It controls everything in the game.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Debug</span><span class="p">,</span> <span class="n">Radio</span><span class="p">,</span> <span class="n">Events</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">IdError</span><span class="p">,</span> <span class="n">Draw</span>
 
@@ -485,7 +485,8 @@
 
             <span class="bp">cls</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
-            <span class="k">if</span> <span class="n">curr</span> <span class="o">:=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span><span class="p">:</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span>
+            <span class="k">if</span> <span class="n">curr</span><span class="p">:</span> <span class="c1"># pylint: disable=using-constant-test</span>
                 <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">Game</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">:</span>
                     <span class="c1"># process user set pause update</span>
                     <span class="n">curr</span><span class="o">.</span><span class="n">private_paused_update</span><span class="p">()</span>

@@ -698,7 +698,9 @@
 <span class="sd">            A new vector with the magnitude clamped to the given range.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">vector_c</span> <span class="o">=</span> <span class="n">vector</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">new</span> <span class="o">:=</span> <span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">((</span><span class="n">magnitude</span> <span class="o">:=</span> <span class="n">vector_c</span><span class="o">.</span><span class="n">magnitude</span><span class="p">),</span> <span class="n">min_magnitude</span><span class="p">,</span> <span class="n">max_magnitude</span><span class="p">))</span> <span class="o">!=</span> <span class="n">magnitude</span><span class="p">:</span>
+        <span class="n">magnitude</span> <span class="o">=</span> <span class="n">vector_c</span><span class="o">.</span><span class="n">magnitude</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">((</span><span class="n">magnitude</span><span class="p">),</span> <span class="n">min_magnitude</span><span class="p">,</span> <span class="n">max_magnitude</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new</span> <span class="o">!=</span> <span class="n">magnitude</span><span class="p">:</span>
             <span class="n">vector_c</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">=</span> <span class="n">new</span>
 
         <span class="k">return</span> <span class="n">vector_c</span></div>

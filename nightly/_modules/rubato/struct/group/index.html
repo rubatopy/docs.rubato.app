@@ -411,7 +411,8 @@
 
             <span class="c1"># collide all hitboxes with each other</span>
             <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">hts</span> <span class="o">:=</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">,</span> <span class="p">[]):</span>  <span class="c1"># pylint: disable=protected-access</span>
+                <span class="n">hts</span> <span class="o">=</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">,</span> <span class="p">[])</span> <span class="c1"># pylint: disable=protected-access</span>
+                <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
                     <span class="n">bb</span> <span class="o">=</span> <span class="n">QTree</span><span class="o">.</span><span class="n">calc_bb</span><span class="p">(</span><span class="n">hts</span><span class="p">)</span>
                     <span class="n">qtree</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">hts</span><span class="p">,</span> <span class="n">bb</span><span class="p">)</span>
                     <span class="n">qtree</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">hts</span><span class="p">,</span> <span class="n">bb</span><span class="p">)</span>
@@ -421,7 +422,8 @@
 
                 <span class="c1"># collide children groups with parent hitboxes</span>
                 <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">hts</span> <span class="o">:=</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">,</span> <span class="p">[]):</span>  <span class="c1"># pylint: disable=protected-access</span>
+                    <span class="n">hts</span> <span class="o">=</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">,</span> <span class="p">[])</span> <span class="c1"># pylint: disable=protected-access</span>
+                    <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
                         <span class="n">qtree</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">hts</span><span class="p">,</span> <span class="n">QTree</span><span class="o">.</span><span class="n">calc_bb</span><span class="p">(</span><span class="n">hts</span><span class="p">))</span></div>
 
     <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
