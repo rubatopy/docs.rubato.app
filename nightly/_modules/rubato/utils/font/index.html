@@ -314,7 +314,8 @@
 <span class="sd">    Args:</span>
 <span class="sd">        font: The font to use. Can also be a path to a font file. Defaults to Roboto.</span>
 <span class="sd">        size: The size of the font. Defaults to 16.</span>
-<span class="sd">        styles: The styles to apply to the font. Defaults to [&quot;normal&quot;].</span>
+<span class="sd">        styles: The styles to apply to the font. Defaults to [].</span>
+<span class="sd">            Fill with only the following: bold, italic, underline, strikethrough.</span>
 <span class="sd">        color: The color of the font. Defaults to Color(0, 0, 0).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -338,7 +339,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Comfortaa&quot;</span><span class="p">,</span> <span class="s2">&quot;Fredoka&quot;</span><span class="p">,</span> <span class="s2">&quot;Merriweather&quot;</span><span class="p">,</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span> <span class="s2">&quot;SourceCodePro&quot;</span><span class="p">,</span> <span class="s2">&quot;PressStart&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span>
         <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
-        <span class="n">styles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="s2">&quot;italic&quot;</span><span class="p">,</span> <span class="s2">&quot;underline&quot;</span><span class="p">,</span> <span class="s2">&quot;strikethrough&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">styles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
