@@ -192,9 +192,10 @@
         font-weight: 700;
         text-transform: uppercase;
         text-align: right;
-        position: absolute;
-        right: 0;
-        padding: 1.25rem 1.25rem 0 0;
+        position: relative;
+        right: 1.25rem;
+        top: 1.75rem;
+        margin: -0.25rem 0;
     }
 </style>
 <script>
@@ -342,15 +343,15 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="3ca040e0-05e0-4193-8607-eca2da3088ba" name="af2e63fb-10a4-48ff-89b9-0c65bc79193f" type="radio">
-</input><label class="sd-tab-label" for="3ca040e0-05e0-4193-8607-eca2da3088ba">
+<input checked="checked" id="79e7f981-faf6-4e6c-8102-c8e15ff774f0" name="06562b60-78a9-4142-90a9-50221fc52a74" type="radio">
+</input><label class="sd-tab-label" for="79e7f981-faf6-4e6c-8102-c8e15ff774f0">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="4fc52fe0-dc88-4b14-afce-68009e341b95" name="af2e63fb-10a4-48ff-89b9-0c65bc79193f" type="radio">
-</input><label class="sd-tab-label" for="4fc52fe0-dc88-4b14-afce-68009e341b95">
+<input id="000c3140-df9c-42d3-a8d7-7d90922fe3a1" name="06562b60-78a9-4142-90a9-50221fc52a74" type="radio">
+</input><label class="sd-tab-label" for="000c3140-df9c-42d3-a8d7-7d90922fe3a1">
 Mac OS X</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>
