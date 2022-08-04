@@ -2379,12 +2379,6 @@ Use -1 to never freeze. Defaults to -1.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.animation.Animation.setup">
-<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/animation/#Animation.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.animation.Animation.setup" title="Permalink to this definition">#</a></dt>
-<dd><p>Sets up the animation component.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.animation.Animation.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/animation/#Animation.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.animation.Animation.update" title="Permalink to this definition">#</a></dt>
 <dd><p>The update function template for a component subclass.</p>
@@ -2563,7 +2557,7 @@ Instead, use Polygon, Rectangle, or Circle, which inherit Hitbox properties.</p>
 <li><p><strong>tag</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A string to tag the hitbox. Defaults to “”.</p></li>
 <li><p><strong>debug</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether or not to draw the hitbox. Defaults to False.</p></li>
 <li><p><strong>trigger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether or not the hitbox is a trigger. Defaults to False.</p></li>
-<li><p><strong>scale</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The scale of the hitbox. Defaults to 1.</p></li>
+<li><p><strong>scale</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The scale of the hitbox. Defaults to 1.</p></li>
 <li><p><strong>on_collide</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A function to call when the hitbox collides with another hitbox. Defaults to lambda manifold: None.</p></li>
 <li><p><strong>on_exit</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A function to call when the hitbox exits another hitbox. Defaults to lambda manifold: None.</p></li>
 <li><p><strong>offset</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The offset of the hitbox from the gameobject. Defaults to Vector(0, 0).</p></li>
@@ -2710,13 +2704,13 @@ Instead, use Polygon, Rectangle, or Circle, which inherit Hitbox properties.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The width of the rectangle. Defaults to 10.</p></li>
-<li><p><strong>height</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The height of the rectangle. Defaults to 10.</p></li>
+<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The width of the rectangle. Defaults to 10.</p></li>
+<li><p><strong>height</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The height of the rectangle. Defaults to 10.</p></li>
 <li><p><strong>color</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – The color of the hitbox. Set to None to not show the hitbox. Defaults to None.</p></li>
 <li><p><strong>tag</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A string to tag the hitbox. Defaults to “”.</p></li>
 <li><p><strong>debug</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether or not to draw the hitbox. Defaults to False.</p></li>
 <li><p><strong>trigger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether or not the hitbox is a trigger. Defaults to False.</p></li>
-<li><p><strong>scale</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The scale of the hitbox. Defaults to 1.</p></li>
+<li><p><strong>scale</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The scale of the hitbox. Defaults to 1.</p></li>
 <li><p><strong>on_collide</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A function to call when the hitbox collides with another hitbox. Defaults to lambda manifold: None.</p></li>
 <li><p><strong>on_exit</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A function to call when the hitbox exits another hitbox. Defaults to lambda manifold: None.</p></li>
 <li><p><strong>offset</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The offset of the hitbox from the gameobject. Defaults to Vector(0, 0).</p></li>
@@ -2994,7 +2988,7 @@ Simply break them up into multiple convex Polygon hitboxes and add them individu
 <li><p><strong>tag</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A string to tag the hitbox. Defaults to “”.</p></li>
 <li><p><strong>debug</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether or not to draw the hitbox. Defaults to False.</p></li>
 <li><p><strong>trigger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether or not the hitbox is a trigger. Defaults to False.</p></li>
-<li><p><strong>scale</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The scale of the hitbox. Defaults to 1.</p></li>
+<li><p><strong>scale</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The scale of the hitbox. Defaults to 1.</p></li>
 <li><p><strong>on_collide</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A function to call when the hitbox collides with another hitbox. Defaults to lambda manifold: None.</p></li>
 <li><p><strong>on_exit</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A function to call when the hitbox exits another hitbox. Defaults to lambda manifold: None.</p></li>
 <li><p><strong>offset</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The offset of the hitbox from the gameobject. Defaults to Vector(0, 0).</p></li>
@@ -3157,12 +3151,12 @@ You can use this as the <cite>verts</cite> option in the Polygon constructor if 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>radius</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The radius of the circle. Defaults to 10.</p></li>
+<li><p><strong>radius</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The radius of the circle. Defaults to 10.</p></li>
 <li><p><strong>color</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – The color of the hitbox. Set to None to not show the hitbox. Defaults to None.</p></li>
 <li><p><strong>tag</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – A string to tag the hitbox. Defaults to “”.</p></li>
 <li><p><strong>debug</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether or not to draw the hitbox. Defaults to False.</p></li>
 <li><p><strong>trigger</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether or not the hitbox is a trigger. Defaults to False.</p></li>
-<li><p><strong>scale</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The scale of the hitbox. Defaults to 1.</p></li>
+<li><p><strong>scale</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The scale of the hitbox. Defaults to 1.</p></li>
 <li><p><strong>on_collide</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A function to call when the hitbox collides with another hitbox. Defaults to lambda manifold: None.</p></li>
 <li><p><strong>on_exit</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>]) – A function to call when the hitbox exits another hitbox. Defaults to lambda manifold: None.</p></li>
 <li><p><strong>offset</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The offset of the hitbox from the gameobject. Defaults to Vector(0, 0).</p></li>
@@ -3231,7 +3225,7 @@ You can use this as the <cite>verts</cite> option in the Polygon constructor if 
 <dd><p>Gets the true radius of the circle</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -4074,44 +4068,44 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.top">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#rubato.utils.display.Display.top" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.utils.display.Display.top" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the top of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.right">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#rubato.utils.display.Display.right" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">right</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.utils.display.Display.right" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the right of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.left">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#rubato.utils.display.Display.left" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">left</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.utils.display.Display.left" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the left of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.bottom">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#rubato.utils.display.Display.bottom" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#rubato.utils.display.Display.bottom" title="Permalink to this definition">#</a></dt>
 <dd><p>The position of the bottom of the window.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -4769,7 +4763,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <li><p><strong>p1</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The first point of the line.</p></li>
 <li><p><strong>p2</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The second point of the line.</p></li>
 <li><p><strong>color</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The color to use for the line. Defaults to Color.green.</p></li>
-<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The width of the line. Defaults to 1.</p></li>
+<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The width of the line. Defaults to 1.</p></li>
 <li><p><strong>z_index</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Where to draw it in the drawing order. Defaults to Math.INF.</p></li>
 </ul>
 </dd>
@@ -4786,7 +4780,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <li><p><strong>p1</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The first point of the line.</p></li>
 <li><p><strong>p2</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The second point of the line.</p></li>
 <li><p><strong>color</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The color to use for the line. Defaults to Color.green.</p></li>
-<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The width of the line. Defaults to 1.</p></li>
+<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The width of the line. Defaults to 1.</p></li>
 </ul>
 </dd>
 </dl>
@@ -4800,10 +4794,10 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>center</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The center of the rectangle.</p></li>
-<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The width of the rectangle.</p></li>
-<li><p><strong>height</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The height of the rectangle.</p></li>
+<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The width of the rectangle.</p></li>
+<li><p><strong>height</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The height of the rectangle.</p></li>
 <li><p><strong>border</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The border color. Defaults to Color.clear.</p></li>
-<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The border thickness. Defaults to 1.</p></li>
+<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The border thickness. Defaults to 1.</p></li>
 <li><p><strong>fill</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – The fill color. Defaults to None.</p></li>
 <li><p><strong>angle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The angle in degrees. Defaults to 0.</p></li>
 <li><p><strong>z_index</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Where to draw it in the drawing order. Defaults to Math.INF.</p></li>
@@ -4820,10 +4814,10 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>center</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The center of the rectangle.</p></li>
-<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The width of the rectangle.</p></li>
-<li><p><strong>height</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The height of the rectangle.</p></li>
+<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The width of the rectangle.</p></li>
+<li><p><strong>height</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The height of the rectangle.</p></li>
 <li><p><strong>border</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The border color. Defaults to Color.clear.</p></li>
-<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The border thickness. Defaults to 1.</p></li>
+<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The border thickness. Defaults to 1.</p></li>
 <li><p><strong>fill</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – The fill color. Defaults to None.</p></li>
 <li><p><strong>angle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The angle in degrees. Defaults to 0.</p></li>
 </ul>
@@ -4841,7 +4835,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <li><p><strong>center</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The center.</p></li>
 <li><p><strong>radius</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The radius. Defaults to 4.</p></li>
 <li><p><strong>border</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The border color. Defaults to green.</p></li>
-<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The border thickness. Defaults to 1.</p></li>
+<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The border thickness. Defaults to 1.</p></li>
 <li><p><strong>fill</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – The fill color. Defaults to None.</p></li>
 <li><p><strong>z_index</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Where to draw it in the drawing order. Defaults to Math.INF.</p></li>
 </ul>
@@ -4857,9 +4851,9 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>center</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The center.</p></li>
-<li><p><strong>radius</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The radius. Defaults to 4.</p></li>
+<li><p><strong>radius</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The radius. Defaults to 4.</p></li>
 <li><p><strong>border</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The border color. Defaults to green.</p></li>
-<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The border thickness. Defaults to 1.</p></li>
+<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The border thickness. Defaults to 1.</p></li>
 <li><p><strong>fill</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – The fill color. Defaults to None.</p></li>
 </ul>
 </dd>
@@ -4875,7 +4869,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]) – The list of points to draw.</p></li>
 <li><p><strong>border</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The border color. Defaults to green.</p></li>
-<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The border thickness. Defaults to 1.</p></li>
+<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The border thickness. Defaults to 1.</p></li>
 <li><p><strong>fill</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – The fill color. Defaults to None.</p></li>
 <li><p><strong>z_index</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Where to draw it in the drawing order. Defaults to Math.INF.</p></li>
 </ul>
@@ -4892,7 +4886,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]) – The list of points to draw.</p></li>
 <li><p><strong>border</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) – The border color. Defaults to green.</p></li>
-<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The border thickness. Defaults to 1.</p></li>
+<li><p><strong>border_thickness</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The border thickness. Defaults to 1.</p></li>
 <li><p><strong>fill</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – The fill color. Defaults to None.</p></li>
 </ul>
 </dd>
@@ -4911,7 +4905,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <li><p><strong>pos</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The position of the text. Defaults to Vector(0, 0).</p></li>
 <li><p><strong>justify</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The justification of the text. (left, center, right). Defaults to “left”.</p></li>
 <li><p><strong>align</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The alignment of the text. Defaults to Vector(0, 0).</p></li>
-<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The maximum width of the text. Will automatically wrap the text. Defaults to -1.</p></li>
+<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The maximum width of the text. Will automatically wrap the text. Defaults to -1.</p></li>
 <li><p><strong>z_index</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – Where to draw it in the drawing order. Defaults to Math.INF.</p></li>
 </ul>
 </dd>
@@ -4930,7 +4924,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <li><p><strong>pos</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The position of the text. Defaults to Vector(0, 0).</p></li>
 <li><p><strong>justify</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The justification of the text. (left, center, right). Defaults to “left”.</p></li>
 <li><p><strong>align</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The alignment of the text. Defaults to Vector(0, 0).</p></li>
-<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The maximum width of the text. Will automatically wrap the text. Defaults to -1.</p></li>
+<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The maximum width of the text. Will automatically wrap the text. Defaults to -1.</p></li>
 </ul>
 </dd>
 </dl>
@@ -5019,7 +5013,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <dd><p>The x coordinate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span> <span class="pre">|</span> <span class="pre">int</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -5030,7 +5024,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <dd><p>The y coordinate.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span> <span class="pre">|</span> <span class="pre">int</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -5158,17 +5152,6 @@ If you want the function to act on itself, set this value to the reference of th
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.vector.Vector.to_tuple">
-<span class="sig-name descname"><span class="pre">to_tuple</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.to_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.to_tuple" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns the x and y coordinates of the vector as a tuple.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.dot">
 <span class="sig-name descname"><span class="pre">dot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.dot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.dot" title="Permalink to this definition">#</a></dt>
 <dd><p>Takes the dot product of two vectors.</p>
@@ -5265,12 +5248,23 @@ If you want the function to act on itself, set this value to the reference of th
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.vector.Vector.to_int">
-<span class="sig-name descname"><span class="pre">to_int</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.to_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.to_int" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns a new vector with values that are ints.</p>
+<dt class="sig sig-object py" id="rubato.utils.vector.Vector.rounded">
+<span class="sig-name descname"><span class="pre">rounded</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.rounded"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.rounded" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a new vector with values that are rounded.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.vector.Vector.to_tuple">
+<span class="sig-name descname"><span class="pre">to_tuple</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.to_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.to_tuple" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the x and y coordinates of the vector as a tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5281,7 +5275,7 @@ If you want the function to act on itself, set this value to the reference of th
 <dd><p>Returns a tuple with rounded values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5305,7 +5299,7 @@ If you want the function to act on itself, set this value to the reference of th
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>target</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The target Vector.</p></li>
-<li><p><strong>t</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The lerping amount (between 0 and 1).</p></li>
+<li><p><strong>t</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The lerping amount (between 0 and 1).</p></li>
 <li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]) – The output vector to set to. Defaults to a new vector.
 If you want the function to act on itself, set this value to the reference of the vector.</p></li>
 </ul>
@@ -5435,8 +5429,8 @@ If you want the function to act on itself, set this value to the reference of th
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>magnitude</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Length of vector.</p></li>
-<li><p><strong>angle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – Direction of vector in North degrees.</p></li>
+<li><p><strong>magnitude</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Length of vector.</p></li>
+<li><p><strong>angle</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – Direction of vector in North degrees.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -5456,8 +5450,8 @@ If you want the function to act on itself, set this value to the reference of th
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vector</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The vector to clamp.</p></li>
-<li><p><strong>max_magnitude</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The maximum magnitude of the vector.</p></li>
-<li><p><strong>min_magnitude</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The minimum magnitude of the vector. Defaults to 0.</p></li>
+<li><p><strong>max_magnitude</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The maximum magnitude of the vector.</p></li>
+<li><p><strong>min_magnitude</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – The minimum magnitude of the vector. Defaults to 0.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -5503,15 +5497,15 @@ If you want the function to act on itself, set this value to the reference of th
 </dl>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.zero">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zero</span></span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.zero" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zero</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.zero" title="Permalink to this definition">#</a></dt>
 <dd><p>A zeroed Vector</p>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.one">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">one</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.one" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">one</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.one" title="Permalink to this definition">#</a></dt>
 <dd><p>A Vector with all ones</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -5520,33 +5514,33 @@ If you want the function to act on itself, set this value to the reference of th
 </dl>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.up">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">up</span></span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.up"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.up" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">up</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.up"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.up" title="Permalink to this definition">#</a></dt>
 <dd><p>A Vector in the up direction</p>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.left">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">left</span></span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.left" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">left</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.left" title="Permalink to this definition">#</a></dt>
 <dd><p>A Vector in the left direction</p>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.down">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">down</span></span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.down"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.down" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">down</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.down"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.down" title="Permalink to this definition">#</a></dt>
 <dd><p>A Vector in the down direction</p>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.right">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">right</span></span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.right" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">right</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.right" title="Permalink to this definition">#</a></dt>
 <dd><p>A Vector in the right direction</p>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector.infinity">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">infinity</span></span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.infinity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.infinity" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">infinity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector.infinity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector.infinity" title="Permalink to this definition">#</a></dt>
 <dd><p>A Vector at positive infinity</p>
 </dd></dl>
 
@@ -6747,8 +6741,8 @@ Fill with only the following: bold, italic, underline, strikethrough.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>text</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The text to render.</p></li>
 <li><p><strong>align</strong> (<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) – The alignment to use. Defaults to Vector(0, 0).</p></li>
-<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The maximum width to use. Defaults to -1.</p></li>
-<li><p><strong>rot</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The rotation of the text in degrees. Defaults to 0.</p></li>
+<li><p><strong>width</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The maximum width to use. Defaults to -1.</p></li>
+<li><p><strong>rot</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]) – The rotation of the text in degrees. Defaults to 0.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
