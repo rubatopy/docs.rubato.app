@@ -363,6 +363,18 @@
     <span class="k">pass</span></div>
 
 
+<div class="viewcode-block" id="InitError"><a class="viewcode-back" href="../../../../api/#rubato.utils.error.InitError">[docs]</a><span class="k">class</span> <span class="nc">InitError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An error that is raised when you try to initialize a static class.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        classObject: The static class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classObject</span><span class="p">:</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">classObject</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is a static class and cannot be initialized.&quot;</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="RemovalWarning"><a class="viewcode-back" href="../../../../api/#rubato.utils.error.RemovalWarning">[docs]</a><span class="k">class</span> <span class="nc">RemovalWarning</span><span class="p">(</span><span class="ne">DeprecationWarning</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A warning that is raised when you try to use a removed function.</span>

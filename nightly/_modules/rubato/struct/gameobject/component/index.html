@@ -333,25 +333,23 @@
 <span class="sd">        offset: The offset of the component from the game object. Defaults to Vector(0, 0).</span>
 <span class="sd">        rot_offset: The rotation offset of the component from the game object. Defaults to 0.</span>
 <span class="sd">        z_index: The vertical offset of where to draw the component. Defaults to 0.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        gameobj (GameObject): The game object this component is attached to.</span>
-<span class="sd">        singular (bool): Whether multiple components of the same type are allowed on a game object.</span>
-<span class="sd">        offset (Vector): The offset from the center of the game object that the hitbox should be placed.</span>
-<span class="sd">        rot_offset (float): The rotational offset from the game object&#39;s rotation.</span>
-<span class="sd">        z_index (int): Where to draw the component in the z direction.</span>
-<span class="sd">        started (bool): Whether the component has run its setup method.</span>
-<span class="sd">        hidden (bool): Whether the component should not draw.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span> <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;The game object this component is attached to.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">singular</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="sd">&quot;&quot;&quot;Whether multiple components of the same type are allowed on a game object.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="sd">&quot;&quot;&quot;The offset from the center of the game object that the hitbox should be placed.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">rot_offset</span>
+        <span class="sd">&quot;&quot;&quot;The rotational offset from the game object&#39;s rotation.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">z_index</span>
+        <span class="sd">&quot;&quot;&quot;Where to draw the component in the z direction.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="sd">&quot;&quot;&quot;Whether the component has run its setup method.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="sd">&quot;&quot;&quot;Whether the component should not draw.&quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">true_z</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

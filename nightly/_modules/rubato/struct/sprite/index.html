@@ -328,10 +328,6 @@
 <span class="sd">        rotation: The rotation of the image. Defaults to 0.</span>
 <span class="sd">        scale: The scale of the image. Defaults to Vector(1, 1).</span>
 <span class="sd">        aa: Whether anti aliasing is turned on. Defaults to True.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        image: The image that is rendered. This is an SDL_Surface or a string in the surface hasn&#39;t been set yet.</span>
-<span class="sd">        pos: The position of the image.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -343,6 +339,7 @@
         <span class="n">aa</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;The image that is rendered. This is an SDL_Surface or a string in the surface hasn&#39;t been set yet.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 

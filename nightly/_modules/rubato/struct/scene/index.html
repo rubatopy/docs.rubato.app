@@ -327,30 +327,30 @@
 <span class="sd">            Once this is set, it cannot be changed.</span>
 <span class="sd">        background_color: The color of the background of the window. Defaults to Color(255, 255, 255).</span>
 <span class="sd">        border_color: The color of the border of the window. Defaults to Color(0, 0, 0).</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        root (Group): The base group of game objects in the scene.</span>
-<span class="sd">        ui (Group): The ui elements of this scene. These are drawn on top of everything else and do not interact with</span>
-<span class="sd">            the other game objects.</span>
-<span class="sd">        camera (Camera): The camera of this scene.</span>
-<span class="sd">        border_color: The color of the border of the window.</span>
-<span class="sd">        background_color: The color of the background of the window.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
-        <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(),</span>
+        <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">white</span><span class="p">,</span>
+        <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span> <span class="n">Group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;The base group of game objects in the scene.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="p">:</span> <span class="n">Group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ui&quot;</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The ui elements of this scene. These are drawn on top of everything else and do not interact with the other</span>
+<span class="sd">        game objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
+        <span class="sd">&quot;&quot;&quot;The camera of this scene.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ui_cam</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">border_color</span> <span class="o">=</span> <span class="n">border_color</span>
+        <span class="sd">&quot;&quot;&quot;The color of the border of the window.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="n">background_color</span>
+        <span class="sd">&quot;&quot;&quot;The color of the background of the window.&quot;&quot;&quot;</span>
 
         <span class="n">Game</span><span class="o">.</span><span class="n">_add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -413,9 +413,7 @@
 <span class="sd">            This is a relatively expensive operation as it clones every group in the scene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">new_scene</span> <span class="o">=</span> <span class="n">Scene</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (clone)&quot;</span><span class="p">,</span>
-            <span class="n">background_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">background_color</span><span class="p">,</span>
-            <span class="n">border_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">border_color</span>
+            <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (clone)&quot;</span><span class="p">,</span> <span class="n">background_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">background_color</span><span class="p">,</span> <span class="n">border_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">border_color</span>
         <span class="p">)</span>
         <span class="n">new_scene</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
         <span class="n">new_scene</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span></div>

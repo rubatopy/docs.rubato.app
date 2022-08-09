@@ -318,66 +318,77 @@
 
 <span class="sd">:doc:`Go here &lt;events&gt;` to see all the events that can be broadcast.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span>
-<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">suppress</span>
+<span class="kn">import</span> <span class="nn">sdl2</span>
+<span class="kn">import</span> <span class="nn">cython</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Vector</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">InitError</span>
 
 
-<div class="viewcode-block" id="Events"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Events">[docs]</a><span class="k">class</span> <span class="nc">Events</span><span class="p">:</span>
+<div class="viewcode-block" id="Events"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Events">[docs]</a><span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
+<span class="k">class</span> <span class="nc">Events</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Describes all rubato-fired events that can be listened for.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        KEYUP: Fired when a key is released</span>
-<span class="sd">        KEYDOWN: Fired when a key is pressed</span>
-<span class="sd">        KEYHOLD: Fired when a key is held down (After the initial keydown)</span>
-<span class="sd">        MOUSEUP: Fired when a mouse button is released</span>
-<span class="sd">        MOUSEDOWN: Fired when a mouse button is pressed</span>
-<span class="sd">        ZOOM: Fired when the camera is zoomed</span>
-<span class="sd">        EXIT: Fired when the game is exiting</span>
-<span class="sd">        RESIZE: Fired when the window is resized</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">KEYUP</span> <span class="o">=</span> <span class="s2">&quot;KEYUP&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a key is released&quot;&quot;&quot;</span>
     <span class="n">KEYDOWN</span> <span class="o">=</span> <span class="s2">&quot;KEYDOWN&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a key is pressed&quot;&quot;&quot;</span>
     <span class="n">KEYHOLD</span> <span class="o">=</span> <span class="s2">&quot;KEYHOLD&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a key is held down (After the initial keydown)&quot;&quot;&quot;</span>
     <span class="n">MOUSEUP</span> <span class="o">=</span> <span class="s2">&quot;MOUSEUP&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a mouse button is released&quot;&quot;&quot;</span>
     <span class="n">MOUSEDOWN</span> <span class="o">=</span> <span class="s2">&quot;MOUSEDOWN&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a mouse button is pressed&quot;&quot;&quot;</span>
+    <span class="n">JOYAXISMOTION</span> <span class="o">=</span> <span class="s2">&quot;JOYAXISMOTION&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a controller joystick axis is moved&quot;&quot;&quot;</span>
+    <span class="n">JOYHATMOTION</span> <span class="o">=</span> <span class="s2">&quot;JOYHATMOTION&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a controller hat button is changed&quot;&quot;&quot;</span>
+    <span class="n">JOYBUTTONDOWN</span> <span class="o">=</span> <span class="s2">&quot;JOYBUTTONDOWN&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a controller button is pressed&quot;&quot;&quot;</span>
+    <span class="n">JOYBUTTONUP</span> <span class="o">=</span> <span class="s2">&quot;JOYBUTTONUP&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when a controller button is released&quot;&quot;&quot;</span>
     <span class="n">ZOOM</span> <span class="o">=</span> <span class="s2">&quot;ZOOM&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when the camera is zoomed&quot;&quot;&quot;</span>
     <span class="n">EXIT</span> <span class="o">=</span> <span class="s2">&quot;EXIT&quot;</span>
-    <span class="n">RESIZE</span> <span class="o">=</span> <span class="s2">&quot;RESIZE&quot;</span></div>
+    <span class="sd">&quot;&quot;&quot;Fired when the game is exiting&quot;&quot;&quot;</span>
+    <span class="n">RESIZE</span> <span class="o">=</span> <span class="s2">&quot;RESIZE&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when the window is resized&quot;&quot;&quot;</span></div>
 
 
+<span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Radio"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio">[docs]</a><span class="k">class</span> <span class="nc">Radio</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Broadcast system manages all events and inter-class communication.</span>
 <span class="sd">    Handles event callbacks during the beginning of each</span>
 <span class="sd">    :func:`Game.update() &lt;rubato.game.update&gt;` call.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        listeners (dict[str, Callable]): A dictionary with all of the</span>
-<span class="sd">            active listeners.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">listeners</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Listener</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="sd">&quot;&quot;&quot;A dictionary with all of the active listeners.&quot;&quot;&quot;</span>
 
-    <span class="n">listeners</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">queue</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">pump</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PumpEvents</span><span class="p">()</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">get_events</span><span class="p">())</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Radio.handle"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.handle">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Handle the event queue&quot;&quot;&quot;</span>
-        <span class="k">while</span> <span class="bp">cls</span><span class="o">.</span><span class="n">queue</span><span class="p">:</span>
-            <span class="n">event</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle the current SDL event queue.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether an SDL Quit event was fired.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Event</span><span class="p">()</span>
+
+        <span class="k">while</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PeepEvents</span><span class="p">(</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">event</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GETEVENT</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FIRSTEVENT</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_LASTEVENT</span>
+        <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_QUIT</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>
-            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WINDOWEVENT</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WINDOWEVENT</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WINDOWEVENT_RESIZED</span><span class="p">:</span>
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">Events</span><span class="o">.</span><span class="n">RESIZE</span><span class="p">,</span> <span class="p">{</span>
@@ -391,7 +402,7 @@
                         <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data1</span><span class="p">,</span>
                         <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data2</span><span class="p">,</span>
                     <span class="p">)</span>
-            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_KEYDOWN</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_KEYUP</span><span class="p">):</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_KEYDOWN</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_KEYUP</span><span class="p">):</span>
                 <span class="n">key_info</span><span class="p">,</span> <span class="n">unicode</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">keysym</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
                 <span class="k">with</span> <span class="n">suppress</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
                     <span class="n">unicode</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">key_info</span><span class="o">.</span><span class="n">sym</span><span class="p">)</span>
@@ -410,8 +421,7 @@
                         <span class="s2">&quot;mods&quot;</span><span class="p">:</span> <span class="n">key_info</span><span class="o">.</span><span class="n">mod</span><span class="p">,</span>
                     <span class="p">},</span>
                 <span class="p">)</span>
-
-            <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONDOWN</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONUP</span><span class="p">):</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONDOWN</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONUP</span><span class="p">):</span>
                 <span class="n">mouse_button</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_BUTTON_LEFT</span><span class="p">:</span>
                     <span class="n">mouse_button</span> <span class="o">=</span> <span class="s2">&quot;mouse 1&quot;</span>
@@ -441,6 +451,43 @@
                         <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
                     <span class="p">},</span>
                 <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYAXISMOTION</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                    <span class="n">Events</span><span class="o">.</span><span class="n">JOYAXISMOTION</span><span class="p">,</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;controller&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                        <span class="s2">&quot;axis&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">axis</span><span class="p">,</span>
+                        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                        <span class="s2">&quot;centered&quot;</span><span class="p">:</span> <span class="n">Input</span><span class="o">.</span><span class="n">axis_centered</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYBUTTONDOWN</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                    <span class="n">Events</span><span class="o">.</span><span class="n">JOYBUTTONDOWN</span><span class="p">,</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;controller&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                        <span class="s2">&quot;button&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">button</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYBUTTONUP</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                    <span class="n">Events</span><span class="o">.</span><span class="n">JOYBUTTONUP</span><span class="p">,</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;controller&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                        <span class="s2">&quot;button&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">button</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYHATMOTION</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                    <span class="n">Events</span><span class="o">.</span><span class="n">JOYHATMOTION</span><span class="p">,</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;controller&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                        <span class="s2">&quot;hat&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">hat</span><span class="p">,</span>
+                        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">Input</span><span class="o">.</span><span class="n">translate_hat</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+
         <span class="k">return</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="Radio.listen"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.listen">[docs]</a>    <span class="nd">@classmethod</span>
@@ -453,12 +500,10 @@
 <span class="sd">            func: The function to run once the event is</span>
 <span class="sd">                broadcast. It may take in a params dictionary argument.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">listener</span> <span class="o">=</span> <span class="n">Listener</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Listener</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">func</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Radio.register"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.register">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">listener</span><span class="p">:</span> <span class="s2">&quot;Listener&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">listener</span><span class="p">:</span> <span class="n">Listener</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Registers an event listener.</span>
 
@@ -492,19 +537,21 @@
             <span class="n">listener</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="n">params</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="Listener"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Listener">[docs]</a><span class="k">class</span> <span class="nc">Listener</span><span class="p">:</span>
+<div class="viewcode-block" id="Listener"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Listener">[docs]</a><span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
+<span class="k">class</span> <span class="nc">Listener</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The actual listener object itself. A backend class for the Radio.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        event: The event key to listen for.</span>
 <span class="sd">        callback: The function to run once the event is broadcast.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        event (str): The event descriptor</span>
-<span class="sd">        callback (Callable): The function called when the event occurs</span>
-<span class="sd">        registered (bool): Describes whether the listener is registered</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">event</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The event descriptor&quot;&quot;&quot;</span>
+    <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The function called when the event occurs&quot;&quot;&quot;</span>
+    <span class="n">registered</span><span class="p">:</span> <span class="n">cython</span><span class="o">.</span><span class="n">bint</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="n">cython</span><span class="o">.</span><span class="n">bint</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;Describes whether the listener is registered&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">event</span> <span class="o">=</span> <span class="n">event</span>

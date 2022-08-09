@@ -330,15 +330,6 @@
 <span class="sd">        offset: The offset of the button from the game object. Defaults to Vector(0, 0).</span>
 <span class="sd">        rot_offset: The rotation offset of the button from the game object. Defaults to 0.</span>
 <span class="sd">        z_index: The z-index of the button. Defaults to 0.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        pressed (bool): Whether the button is currently pressed.</span>
-<span class="sd">        hover (bool): Whether the mouse is hovering over the button.</span>
-<span class="sd">        dims (Vector): The dimensions of the button.</span>
-<span class="sd">        onclick (Callable): The function to call when the button is clicked.</span>
-<span class="sd">        onrelease (Callable): The function to call when the button is released.</span>
-<span class="sd">        onhover (Callable): The function to call when the mouse enters the button.</span>
-<span class="sd">        onexit (Callable): The function to call when the mouse exits the button.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -355,12 +346,19 @@
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">rot_offset</span><span class="o">=</span><span class="n">rot_offset</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="n">z_index</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;The dimensions of the button.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pressed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="sd">&quot;&quot;&quot;Whether the button is currently pressed.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hover</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="sd">&quot;&quot;&quot;Whether the mouse is hovering over the button.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">onclick</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">onclick</span> <span class="k">if</span> <span class="n">onclick</span> <span class="k">else</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;The function to call when the button is clicked.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">onrelease</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">onrelease</span> <span class="k">if</span> <span class="n">onrelease</span> <span class="k">else</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;The function to call when the button is released.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">onhover</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">onhover</span> <span class="k">if</span> <span class="n">onhover</span> <span class="k">else</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;The function to call when the mouse enters the button.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">onexit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">onexit</span> <span class="k">if</span> <span class="n">onexit</span> <span class="k">else</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;The function to call when the mouse exits the button.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Button.update"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.button.Button.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The update function for buttons.&quot;&quot;&quot;</span>

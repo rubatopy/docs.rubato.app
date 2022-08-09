@@ -312,20 +312,23 @@
 <span class="sd">The math module includes some helper functions for commonly used equations.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">InitError</span>
 
+
+<span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Math"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_math.Math">[docs]</a><span class="k">class</span> <span class="nc">Math</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A more complete math class.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        INF (float): The max value of a float.</span>
-<span class="sd">        PI_HALF (float): The value of pi / 2.</span>
-<span class="sd">        PI_TWO (float): The value of pi * 2.</span>
+<span class="sd">    A more complete math class.s</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">INF</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span>
-    <span class="n">PI_HALF</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
-    <span class="n">PI_TWO</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">tau</span>
+    <span class="n">INF</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2147483647</span>
+    <span class="sd">&quot;&quot;&quot;The max value of a 32-bit integer.&quot;&quot;&quot;</span>
+    <span class="n">PI_HALF</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="sd">&quot;&quot;&quot;The value of pi / 2.&quot;&quot;&quot;</span>
+    <span class="n">PI_TWO</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">tau</span>
+    <span class="sd">&quot;&quot;&quot;The value of pi * 2.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Math.clamp"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_math.Math.clamp">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">clamp</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span> <span class="n">lower</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>

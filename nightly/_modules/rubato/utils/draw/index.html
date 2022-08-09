@@ -311,26 +311,34 @@
 <span></span><span class="sd">&quot;&quot;&quot;A static draw class for drawing things directly to the renderer.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">c_int16</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">import</span> <span class="nn">cython</span>
 
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlgfx</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Math</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">InitError</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Sprite</span>
 
 
-<div class="viewcode-block" id="DrawTask"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.DrawTask">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
 <span class="k">class</span> <span class="nc">DrawTask</span><span class="p">:</span>
-    <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    <span class="n">priority</span><span class="p">:</span> <span class="n">cython</span><span class="o">.</span><span class="n">int</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="n">cython</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">priority</span><span class="p">:</span> <span class="n">cython</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">priority</span> <span class="o">=</span> <span class="n">priority</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
 
 
+<span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Draw"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw">[docs]</a><span class="k">class</span> <span class="nc">Draw</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Draws things to the renderer. Don&#39;t instantiate, instead use it as a static class.&quot;&quot;&quot;</span>
-    <span class="n">_queue</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">DrawTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DrawTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Draw.clear"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.clear">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">white</span><span class="p">,</span> <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">):</span>
@@ -364,7 +372,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="p">:</span>
             <span class="k">return</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">priority</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="p">:</span>
             <span class="n">task</span><span class="o">.</span><span class="n">func</span><span class="p">()</span>
@@ -372,36 +380,31 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Draw.queue_point"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_point">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">queue_point</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">green</span><span class="p">,</span> <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">queue_point</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span> <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw a point onto the renderer at the end of the frame.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pos (Vector): The position of the point.</span>
-<span class="sd">            color (Color): The color to use for the pixel. Defaults to Color.green.</span>
+<span class="sd">            color (Color): The color to use for the pixel. Defaults to Color.cyan.</span>
 <span class="sd">            z_index (int): Where to draw it in the drawing order. Defaults to Math.INF.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.point"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.point">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">green</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw a point onto the renderer immediately.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pos (Vector): The position of the point.</span>
-<span class="sd">            color (Color): The color to use for the pixel. Defaults to Color.green.</span>
+<span class="sd">            color (Color): The color to use for the pixel. Defaults to Color.cyan.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">pixelRGBA</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="o">*</span><span class="n">color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Draw.queue_line"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_line">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_line</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">p1</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span>
-        <span class="n">p2</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">green</span><span class="p">,</span>
-        <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw a line onto the renderer at the end of the frame.</span>
@@ -409,26 +412,26 @@
 <span class="sd">        Args:</span>
 <span class="sd">            p1: The first point of the line.</span>
 <span class="sd">            p2: The second point of the line.</span>
-<span class="sd">            color: The color to use for the line. Defaults to Color.green.</span>
+<span class="sd">            color: The color to use for the line. Defaults to Color.cyan.</span>
 <span class="sd">            width: The width of the line. Defaults to 1.</span>
 <span class="sd">            z_index: Where to draw it in the drawing order. Defaults to Math.INF.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.line"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.line">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">green</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">line</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw a line onto the renderer immediately.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            p1: The first point of the line.</span>
 <span class="sd">            p2: The second point of the line.</span>
-<span class="sd">            color: The color to use for the line. Defaults to Color.green.</span>
+<span class="sd">            color: The color to use for the line. Defaults to Color.cyan.</span>
 <span class="sd">            width: The width of the line. Defaults to 1.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">thickLineRGBA</span><span class="p">(</span>
-            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p2</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p2</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span><span class="p">),</span>
-            <span class="n">color</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">a</span>
+            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p2</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p2</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">.</span><span class="n">r</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">a</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.queue_rect"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_rect">[docs]</a>    <span class="nd">@classmethod</span>
@@ -483,12 +486,7 @@
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">width</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">height</span> <span class="o">//</span> <span class="mi">2</span>
         <span class="n">verts</span> <span class="o">=</span> <span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 
-        <span class="n">Draw</span><span class="o">.</span><span class="n">poly</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">center</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">],</span>
-            <span class="n">border</span><span class="p">,</span>
-            <span class="n">border_thickness</span><span class="p">,</span>
-            <span class="n">fill</span>
-        <span class="p">)</span></div>
+        <span class="n">Draw</span><span class="o">.</span><span class="n">poly</span><span class="p">([</span><span class="n">center</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">],</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.queue_circle"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_circle">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_circle</span><span class="p">(</span>
@@ -558,7 +556,7 @@
 <div class="viewcode-block" id="Draw.queue_poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_poly">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_poly</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">points</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span>
+        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -578,7 +576,7 @@
 
 <div class="viewcode-block" id="Draw.poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.poly">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">poly</span><span class="p">(</span>
-        <span class="n">points</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span>
+        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -607,7 +605,10 @@
                 <span class="n">fill</span><span class="o">.</span><span class="n">b</span><span class="p">,</span>
                 <span class="n">fill</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
             <span class="p">)</span>
-        <span class="k">if</span> <span class="n">border_thickness</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">border_thickness</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">elif</span> <span class="n">border_thickness</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">aapolygonRGBA</span><span class="p">(</span>
                 <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
                 <span class="n">vx</span><span class="p">,</span>
@@ -629,7 +630,7 @@
                         <span class="n">points</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                         <span class="n">points</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)]</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                     <span class="p">),</span>
-                    <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+                    <span class="n">border</span><span class="p">,</span>
                     <span class="n">border_thickness</span><span class="p">,</span>
                 <span class="p">)</span></div>
 

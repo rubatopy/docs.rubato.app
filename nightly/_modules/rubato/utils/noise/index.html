@@ -311,17 +311,16 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">A utility for generating simple smooth noise in your projects.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Math</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">InitError</span>
 
 
+<span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Noise"><a class="viewcode-back" href="../../../../api/#rubato.utils.noise.Noise">[docs]</a><span class="k">class</span> <span class="nc">Noise</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A modified implementation of the OpenSimplex2 algorithm.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        seed (int): The seed for the random noise. Setting to a fixed value will result in the same noise every time.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">seed</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="sd">&quot;&quot;&quot;The seed for the random noise. Setting to a fixed value will result in the same noise every time.&quot;&quot;&quot;</span>
 
     <span class="n">_PRIME_X</span> <span class="o">=</span> <span class="mh">0x5205402B9270C86F</span>
     <span class="n">_PRIME_Y</span> <span class="o">=</span> <span class="mh">0x598CD327003817B5</span>
@@ -341,6 +340,9 @@
     <span class="n">_RSQUARED_2D</span> <span class="o">=</span> <span class="mf">0.5</span>
 
     <span class="n">_GRADIENTS_2D</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Noise.noise"><a class="viewcode-back" href="../../../../api/#rubato.utils.noise.Noise.noise">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">noise</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>

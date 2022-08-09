@@ -336,22 +336,6 @@
 <span class="sd">        offset: The offset of the rigidbody from the gameobject. Defaults to Vector(0, 0).</span>
 <span class="sd">        rot_offset: The offset of the rigidbody&#39;s rotation from the gameobject. Defaults to 0.</span>
 <span class="sd">        z_index: The z-index of the rigidbody. Defaults to 0.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        static (bool): Whether or not the rigidbody is static (as in, it does</span>
-<span class="sd">            not move).</span>
-<span class="sd">        gravity (Vector): The acceleration of the gravity that should be</span>
-<span class="sd">            applied.</span>
-<span class="sd">        friction (float): The friction coefficient of the Rigidbody (usually a</span>
-<span class="sd">            a value between 0 and 1).</span>
-<span class="sd">        max_speed (Vector): The maximum speed of the Rigidbody.</span>
-<span class="sd">        min_speed (Vector): The minimum speed of the Rigidbody.</span>
-<span class="sd">        velocity (Vector): The current velocity of the Rigidbody.</span>
-<span class="sd">        ang_vel (float): The current angular velocity of the Rigidbody.</span>
-<span class="sd">        bounciness (float): How bouncy the rigidbody is (usually a value</span>
-<span class="sd">            between 0 and 1).</span>
-<span class="sd">        advanced (bool): Whether to use rotational collision resolution</span>
-<span class="sd">            (not desired in basic platformers, for instance).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -372,17 +356,24 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">rot_offset</span><span class="o">=</span><span class="n">rot_offset</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="n">z_index</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">static</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">static</span>
+        <span class="sd">&quot;&quot;&quot;Whether or not the rigidbody is static (as in, it does not move).&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">gravity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">gravity</span>
+        <span class="sd">&quot;&quot;&quot;The acceleration of the gravity that should be applied.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">friction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">friction</span>
+        <span class="sd">&quot;&quot;&quot;The friction coefficient of the Rigidbody (usually a value between 0 and 1).&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">max_speed</span>
+        <span class="sd">&quot;&quot;&quot;The maximum speed of the Rigidbody.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">pos_correction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">pos_correction</span>
+        <span class="sd">&quot;&quot;&quot;The positional correction of the rigidbody.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">velocity</span>
+        <span class="sd">&quot;&quot;&quot;The current velocity of the Rigidbody.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ang_vel</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">ang_vel</span>
+        <span class="sd">&quot;&quot;&quot;The current angular velocity of the Rigidbody.&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">singular</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">singular</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">if</span> <span class="n">mass</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">static</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_inv_mass</span> <span class="o">=</span> <span class="mi">0</span>
@@ -390,6 +381,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_inv_mass</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mass</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">bounciness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">bounciness</span>
+        <span class="sd">&quot;&quot;&quot;How bouncy the rigidbody is (usually a value between 0 and 1).&quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">inv_mass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>

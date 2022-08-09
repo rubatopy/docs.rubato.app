@@ -310,26 +310,187 @@
 <h1>Source code for rubato.utils.rb_input</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">The Input module is the way you collect input from the user.</span>
-
-
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">ctypes</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">import</span> <span class="nn">sdl2</span>
 <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_float</span><span class="p">,</span> <span class="n">c_int</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">Math</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">InitError</span>
 
 
+<span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Input"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input">[docs]</a><span class="k">class</span> <span class="nc">Input</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The input class, handling keyboard and mouse getter and setter functionality</span>
+<span class="sd">    The input class, handling keyboard, mouse, and controller functionality.</span>
 
 <span class="sd">    Go :doc:`here &lt;key-names&gt;` for a list of all the available keys.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># CONTROLLER METHODS</span>
+
+    <span class="n">_controllers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Joystick</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">controllers</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The number of controllers currently registered. (getonly)</span>
+
+<span class="sd">        If non-zero, the controllers are registered from 0 to n-1 where n is the number of controllers.</span>
+<span class="sd">        This number index is passed to events that are propagated when controllers are inputted to.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The total number of controllers.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Input.update_controllers"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.update_controllers">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">update_controllers</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Register controllers if needed. Called automatically.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">conts</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_NumJoysticks</span><span class="p">()</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">conts</span> <span class="o">&gt;</span> <span class="n">length</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickEventState</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_ENABLE</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">conts</span><span class="p">):</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickOpen</span><span class="p">(</span><span class="n">i</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Input.controller_name"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.controller_name">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">controller_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the name of the controller at the given index.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            index (int): The index of the controller to get the name of.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            IndexError: If the index is out of range.</span>
+<span class="sd">                Note that no error is thrown if controller is negative.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The name of the controller. If controller is less than 0, returns an empty string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickNameForIndex</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Input.controller_axis"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.controller_axis">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">controller_axis</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the value of a given joystick axis on a controller.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            controller (int): The index of the controller.</span>
+<span class="sd">            axis (int): The index of the joystick axis.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            IndexError: The given controller index is out of range.</span>
+<span class="sd">                Note that no error is thrown if controller is negative.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The value of the axis. If controller is less than 0, returns 0.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickGetAxis</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="n">axis</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Input.axis_centered"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.axis_centered">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">axis_centered</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check whether a given axis value is within the 10% bounds of deadzone considered the &quot;center&quot;.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            val (int): The value of the axis.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the axis is centered.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">3200</span> <span class="o">&lt;</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="mi">3200</span></div>
+
+<div class="viewcode-block" id="Input.controller_button"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.controller_button">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">controller_button</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">button</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get whether a given button on a controller is pressed.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            controller (int): The index of the controller.</span>
+<span class="sd">            button (int): The index of the button.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            IndexError: The given controller index is out of range.</span>
+<span class="sd">                Note that no error is thrown if controller is negative.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the button is pressed. If controller is less than 0, returns False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickGetButton</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="n">button</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="Input.controller_hat"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.controller_hat">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">controller_hat</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">hat</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the value of a given hat on a controller.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            controller (int): The index of the controller.</span>
+<span class="sd">            hat (int): The index of the hat.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            IndexError: The given controller index is out of range.</span>
+<span class="sd">                Note that no error is thrown if controller is negative.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The value of the hat, which you can translate with `translate_hat()`.</span>
+<span class="sd">                If controller is less than 0, returns 0.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickGetHat</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="n">hat</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Input.translate_hat"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.translate_hat">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">translate_hat</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Translate a hat value to a string.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            val (int): The hat value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The string representation of the hat value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_CENTERED</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;center&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_UP</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;up&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;right&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_DOWN</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;down&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;left&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHTUP</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;right up&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHTDOWN</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;right down&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFTUP</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;left up&quot;</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFTDOWN</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;left down&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;unknown&quot;</span></div>
+
     <span class="c1"># KEYBOARD METHODS</span>
 
-    <span class="n">_mods</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">_mods</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;shift&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">KMOD_SHIFT</span><span class="p">,</span>
         <span class="s2">&quot;left shift&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">KMOD_LSHIFT</span><span class="p">,</span>
         <span class="s2">&quot;right shift&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">KMOD_RSHIFT</span><span class="p">,</span>
@@ -346,6 +507,9 @@
         <span class="s2">&quot;caps lock&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">KMOD_CAPS</span><span class="p">,</span>
         <span class="s2">&quot;altgr&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">KMOD_MODE</span><span class="p">,</span>
     <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Input.key_pressed"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.key_pressed">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">key_pressed</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">keys</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -367,6 +531,8 @@
 <span class="sd">                if rb.Input.key_pressed(&quot;shift&quot;, &quot;w&quot;):</span>
 <span class="sd">                    # handle the &quot;shift+w&quot; keypress</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_keyboard_state</span><span class="p">()</span>
+
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_mods</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
@@ -385,8 +551,8 @@
                     <span class="n">key1</span><span class="p">,</span> <span class="n">key2</span> <span class="o">=</span> <span class="n">key</span><span class="p">,</span> <span class="n">key</span>
 
                 <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
-                    <span class="bp">cls</span><span class="o">.</span><span class="n">get_keyboard_state</span><span class="p">()[</span><span class="bp">cls</span><span class="o">.</span><span class="n">scancode_from_name</span><span class="p">(</span><span class="n">key1</span><span class="p">)]</span> <span class="ow">or</span>
-                    <span class="bp">cls</span><span class="o">.</span><span class="n">get_keyboard_state</span><span class="p">()[</span><span class="bp">cls</span><span class="o">.</span><span class="n">scancode_from_name</span><span class="p">(</span><span class="n">key2</span><span class="p">)]</span>
+                    <span class="n">state</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">scancode_from_name</span><span class="p">(</span><span class="n">key1</span><span class="p">)]</span> <span class="ow">or</span>
+                    <span class="n">state</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">scancode_from_name</span><span class="p">(</span><span class="n">key2</span><span class="p">)]</span>
                 <span class="p">):</span>
                     <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div>
@@ -413,7 +579,7 @@
         <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetKeyName</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Input.mods_from_code"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.mods_from_code">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">mods_from_code</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">mods_from_code</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the modifier names from a mod code.</span>
 
@@ -421,7 +587,7 @@
 <span class="sd">            code: The mod code.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[str]: A list with the names of the currently pressed modifiers.</span>
+<span class="sd">            list[str]: A list with the names of the currently pressed modifiers.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_mods</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">code</span> <span class="o">&amp;</span> <span class="n">val</span><span class="p">]</span></div>
 
@@ -459,18 +625,17 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: True if the window is focused, false otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetKeyboardFocus</span><span class="p">()</span> <span class="o">==</span> <span class="n">Display</span><span class="o">.</span><span class="n">window</span> <span class="ow">or</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetMouseFocus</span><span class="p">(</span>
-        <span class="p">)</span> <span class="o">==</span> <span class="n">Display</span><span class="o">.</span><span class="n">window</span></div>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetKeyboardFocus</span><span class="p">()</span> <span class="o">==</span> <span class="n">Display</span><span class="o">.</span><span class="n">window</span> <span class="ow">or</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetMouseFocus</span><span class="p">()</span> <span class="o">==</span> <span class="n">Display</span><span class="o">.</span><span class="n">window</span></div>
 
     <span class="c1"># MOUSE FUNCTIONS</span>
 
 <div class="viewcode-block" id="Input.mouse_state"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.mouse_state">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">mouse_state</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">mouse_state</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Checks which mouse buttons are pressed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[bool]: A tuple with 5 booleans representing the state of each</span>
+<span class="sd">            tuple[bool]: A tuple with 5 booleans representing the state of each</span>
 <span class="sd">            mouse button. (button1, button2, button3, button4, button5)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetMouseState</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
@@ -494,12 +659,12 @@
 
 <div class="viewcode-block" id="Input.mouse_is_pressed"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.mouse_is_pressed">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="nd">@deprecated</span><span class="p">(</span><span class="n">mouse_state</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">mouse_is_pressed</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">mouse_is_pressed</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Checks which mouse buttons are pressed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[bool]: A tuple with 5 booleans representing the state of each</span>
+<span class="sd">            tuple[bool]: A tuple with 5 booleans representing the state of each</span>
 <span class="sd">            mouse button. (button1, button2, button3, button4, button5)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetMouseState</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
@@ -535,9 +700,9 @@
 
         <span class="n">x_render</span><span class="p">,</span> <span class="n">y_render</span> <span class="o">=</span> <span class="n">c_float</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">c_float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">size</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">border_size</span>
-        <span class="k">if</span> <span class="n">Display</span><span class="o">.</span><span class="n">has_x_border</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Display</span><span class="o">.</span><span class="n">has_x_border</span><span class="p">():</span>
             <span class="n">x_window</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">x_window</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">size</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">Display</span><span class="o">.</span><span class="n">has_y_border</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">Display</span><span class="o">.</span><span class="n">has_y_border</span><span class="p">():</span>
             <span class="n">y_window</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">y_window</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">size</span><span class="p">)</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderWindowToLogical</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="n">x_window</span><span class="p">,</span> <span class="n">y_window</span><span class="p">,</span> <span class="n">x_render</span><span class="p">,</span> <span class="n">y_render</span><span class="p">)</span>
 
@@ -580,13 +745,13 @@
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_ShowCursor</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_ENABLE</span> <span class="k">if</span> <span class="n">toggle</span> <span class="k">else</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_DISABLE</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Input.pt_in_poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.pt_in_poly">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">pt_in_poly</span><span class="p">(</span><span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">verts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">pt_in_poly</span><span class="p">(</span><span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Checks if a point is inside a polygon.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pt (Vector): The point to check.</span>
-<span class="sd">            verts (List[Vector]): The polygon representation as a list of Vectors (vertices)</span>
+<span class="sd">            verts (list[Vector]): The polygon representation as a list of Vectors (vertices)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the point is inside the polygon.</span>

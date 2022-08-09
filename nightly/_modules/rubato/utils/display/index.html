@@ -319,28 +319,13 @@
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span><span class="o">,</span> <span class="nn">sdl2.sdlimage</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">get_path</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">InitError</span>
 
 
-<div class="viewcode-block" id="DisplayProperties"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.DisplayProperties">[docs]</a><span class="k">class</span> <span class="nc">DisplayProperties</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Defines static property methods for Display.</span>
-
-<span class="sd">    Attention:</span>
-<span class="sd">        This is only a metaclass for the class below it, so you wont be able to access this class.</span>
-<span class="sd">        To use the property methods here, simply access them as you would any other ``Display`` property.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="k">class</span> <span class="nc">_DisplayProperties</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The pixel size of the physical window.</span>
-
-<span class="sd">        Warning:</span>
-<span class="sd">            Using this value to determine the placement of your game objects may</span>
-<span class="sd">            lead to unexpected results. You should instead use</span>
-<span class="sd">            :func:`Display.res &lt;rubato.utils.display.Display.res&gt;`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Another way to do this.</span>
         <span class="c1"># wp, hp = ctypes.c_int(), ctypes.c_int()</span>
         <span class="c1"># if sdl2.SDL_GetRendererOutputSize(cls.renderer.sdlrenderer, ctypes.pointer(wp), ctypes.pointer(hp)) != 0:</span>
@@ -355,22 +340,6 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">res</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The pixel resolution of the game. This is the number of virtual</span>
-<span class="sd">        pixels on the window.</span>
-
-<span class="sd">        Example:</span>
-<span class="sd">            The window (:func:`Display.window_size &lt;rubato.utils.display.DisplayProperties.window_size&gt;`)</span>
-<span class="sd">            could be rendered at 500x500 while the resolution is at 1000x1000.</span>
-<span class="sd">            This would mean that you can place game objects at 900, 900 and still see them despite the window not being</span>
-<span class="sd">            900 pixels tall.</span>
-
-<span class="sd">        Warning:</span>
-<span class="sd">            While this value can be changed, it is recommended that you do not</span>
-<span class="sd">            alter it after initialization as it will scale your entire project in unexpected ways.</span>
-<span class="sd">            If you wish to achieve scaling across an entire scene, simply utilize the</span>
-<span class="sd">            :func:`camera zoom &lt;rubato.struct.camera.Camera.zoom&gt;` property in your scene&#39;s camera.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">logical_size</span><span class="p">)</span>
 
     <span class="nd">@res</span><span class="o">.</span><span class="n">setter</span>
@@ -379,7 +348,6 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">window_pos</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The current position of the window in terms of screen pixels&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
 
     <span class="nd">@window_pos</span><span class="o">.</span><span class="n">setter</span>
@@ -394,15 +362,58 @@
     <span class="k">def</span> <span class="nf">window_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">new</span>
 
+
+<div class="viewcode-block" id="Display"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display">[docs]</a><span class="k">class</span> <span class="nc">Display</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_DisplayProperties</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A static class that houses all of the display information</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        window (sdl2.Window): The pysdl2 window element.</span>
+<span class="sd">        renderer (sdl2.Renderer): The pysdl2 renderer element.</span>
+<span class="sd">        format (sdl2.PixelFormat): The pysdl2 pixel format element.</span>
+<span class="sd">        window_size (Vector): The pixel size of the physical window.</span>
+<span class="sd">            Warning:</span>
+<span class="sd">                Using this value to determine the placement of your game objects may</span>
+<span class="sd">                lead to unexpected results. You should instead use</span>
+<span class="sd">                :func:`Display.res &lt;rubato.utils.display.Display.res&gt;`</span>
+<span class="sd">        res (Vector): The pixel resolution of the game. This is the number of virtual pixels on the window.</span>
+
+<span class="sd">            Example:</span>
+<span class="sd">                The window (:func:`Display.window_size &lt;rubato.utils.display.DisplayProperties.window_size&gt;`)</span>
+<span class="sd">                could be rendered at 500x500 while the resolution is at 1000x1000.</span>
+<span class="sd">                This would mean that you can place game objects at 900, 900 and still see them despite</span>
+<span class="sd">                the window not being 900 pixels tall.</span>
+
+<span class="sd">            Warning:</span>
+<span class="sd">                While this value can be changed, it is recommended that you do not</span>
+<span class="sd">                alter it after initialization as it will scale your entire project in unexpected ways.</span>
+<span class="sd">                If you wish to achieve scaling across an entire scene, simply utilize the</span>
+<span class="sd">                :func:`camera zoom &lt;rubato.struct.camera.Camera.zoom&gt;` property in your scene&#39;s camera.</span>
+<span class="sd">        window_pos (Vector): The current position of the window in terms of screen pixels.</span>
+<span class="sd">        window_name (str): The name of the window.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">window</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Window</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">renderer</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Renderer</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nb">format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_RGBA8888</span><span class="p">)</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">format</span><span class="o">.</span><span class="n">contents</span>
+    <span class="n">_saved_window_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_saved_window_pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">display_ratio</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The ratio of the renderer resolution to the window size. This is a read-only property.</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The ratio of the renderer resolution to the window size. This is a read-only property.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector: The ratio of the renderer resolution to the window size seperated by x and y.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span>
 
+    <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">border_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The size of the black border on either side of the drawing area when the aspect ratios don&#39;t match.&quot;&quot;&quot;</span>
@@ -419,38 +430,21 @@
             <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">rat</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">0</span>
 
-    <span class="nd">@property</span>
+<div class="viewcode-block" id="Display.has_x_border"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.has_x_border">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">has_x_border</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Whether or not the window has a black border on the left or right side.&quot;&quot;&quot;</span>
         <span class="n">render_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
         <span class="n">window_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span>
 
-        <span class="k">return</span> <span class="n">render_rat</span> <span class="o">&gt;</span> <span class="n">window_rat</span>
+        <span class="k">return</span> <span class="n">render_rat</span> <span class="o">&gt;</span> <span class="n">window_rat</span></div>
 
-    <span class="nd">@property</span>
+<div class="viewcode-block" id="Display.has_y_border"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.has_y_border">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">has_y_border</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Whether or not the window has a black border on the top or bottom.&quot;&quot;&quot;</span>
         <span class="n">render_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
         <span class="n">window_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span>
 
         <span class="k">return</span> <span class="n">render_rat</span> <span class="o">&lt;</span> <span class="n">window_rat</span></div>
-
-
-<div class="viewcode-block" id="Display"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display">[docs]</a><span class="k">class</span> <span class="nc">Display</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">DisplayProperties</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A static class that houses all of the display information</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        window (sdl2.Window): The pysdl2 window element.</span>
-<span class="sd">        renderer (sdl2.Renderer): The pysdl2 renderer element.</span>
-<span class="sd">        format (sdl2.PixelFormat): The pysdl2 pixel format element.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">window</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Window</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">renderer</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Renderer</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="nb">format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_RGBA8888</span><span class="p">)</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">format</span><span class="o">.</span><span class="n">contents</span>
-    <span class="n">_saved_window_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_saved_window_pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Display.set_window_icon"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.set_window_icon">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">set_window_icon</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>

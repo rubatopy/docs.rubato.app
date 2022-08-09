@@ -310,21 +310,25 @@
 <h1>Source code for rubato.struct.gameobject.physics.engine</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Handles collision manifold generation for complex geometries.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">RigidBody</span><span class="p">,</span> <span class="n">Circle</span>
-<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Vector</span>
+<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">InitError</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Hitbox</span><span class="p">,</span> <span class="n">Polygon</span>
 
 
+<span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Engine"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine">[docs]</a><span class="k">class</span> <span class="nc">Engine</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    rubato&#39;s physics engine.</span>
 <span class="sd">    Handles overlap tests for Hitboxes and resolves Rigidbody collisions.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Engine.resolve"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.resolve">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">resolve</span><span class="p">(</span><span class="n">col</span><span class="p">:</span> <span class="n">Manifold</span><span class="p">):</span>
@@ -598,7 +602,7 @@
         <span class="k">return</span> <span class="n">best_dist</span><span class="p">,</span> <span class="n">best_ind</span></div>
 
 <div class="viewcode-block" id="Engine.get_support"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.get_support">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_support</span><span class="p">(</span><span class="n">verts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_support</span><span class="p">(</span><span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Gets the furthest support vertex in a given direction.&quot;&quot;&quot;</span>
         <span class="n">best_proj</span> <span class="o">=</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
         <span class="n">best_vert</span> <span class="o">=</span> <span class="kc">None</span>
@@ -613,7 +617,7 @@
         <span class="k">return</span> <span class="n">best_vert</span></div>
 
 <div class="viewcode-block" id="Engine.get_normal"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.get_normal">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Finds a vector perpendicular to a side&quot;&quot;&quot;</span>
         <span class="n">face</span> <span class="o">=</span> <span class="p">(</span><span class="n">verts</span><span class="p">[(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">verts</span><span class="p">)]</span> <span class="o">-</span> <span class="n">verts</span><span class="p">[</span><span class="n">index</span><span class="p">])</span><span class="o">.</span><span class="n">perpendicular</span><span class="p">()</span>
         <span class="n">face</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">=</span> <span class="mi">1</span>
@@ -629,12 +633,6 @@
 <span class="sd">        shape_b: The second shape involved in the collision.</span>
 <span class="sd">        penetration: The amount of penetration between the two shapes.</span>
 <span class="sd">        normal: The normal of the collision.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        shape_a (Optional[Hitbox]): A reference to the first shape.</span>
-<span class="sd">        shape_b (Optional[Hitbox]): A reference to the second shape.</span>
-<span class="sd">        penetration (float): The amount by which the colliders are intersecting.</span>
-<span class="sd">        normal (Vector): The direction that would most quickly separate the two colliders.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -644,10 +642,14 @@
         <span class="n">penetration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">normal</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span> <span class="o">=</span> <span class="n">shape_a</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span> <span class="o">=</span> <span class="n">shape_b</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">penetration</span> <span class="o">=</span> <span class="n">penetration</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">normal</span> <span class="o">=</span> <span class="n">normal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hitbox</span><span class="p">]</span> <span class="o">=</span> <span class="n">shape_a</span>
+        <span class="sd">&quot;&quot;&quot;A reference to the first shape.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hitbox</span><span class="p">]</span> <span class="o">=</span> <span class="n">shape_b</span>
+        <span class="sd">&quot;&quot;&quot;A reference to the second shape.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">penetration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">penetration</span>
+        <span class="sd">&quot;&quot;&quot;The amount by which the colliders are intersecting.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">normal</span>
+        <span class="sd">&quot;&quot;&quot;The direction that would most quickly separate the two colliders.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Manifold &lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">penetration</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
