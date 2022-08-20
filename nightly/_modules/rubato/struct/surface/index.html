@@ -311,7 +311,7 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 
-<span class="kn">from</span> <span class="nn">..c_src</span> <span class="kn">import</span> <span class="n">PixelEditor</span>
+<span class="kn">from</span> <span class="nn">..c_src</span> <span class="kn">import</span> <span class="n">c_draw</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Surf</span>
 
 
@@ -347,7 +347,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clears the surface.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">PixelEditor</span><span class="o">.</span><span class="n">clear_pixels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
+        <span class="n">c_draw</span><span class="o">.</span><span class="n">clear_pixels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="Surface.draw_point"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_point">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
@@ -360,7 +360,7 @@
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
-        <span class="n">PixelEditor</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">rgba32</span><span class="p">(),</span> <span class="n">blending</span><span class="p">)</span>
+        <span class="n">c_draw</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">rgba32</span><span class="p">(),</span> <span class="n">blending</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="Surface.draw_line"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_line">[docs]</a>    <span class="k">def</span> <span class="nf">draw_line</span><span class="p">(</span>
@@ -385,7 +385,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sx</span><span class="p">,</span> <span class="n">sy</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
         <span class="n">ex</span><span class="p">,</span> <span class="n">ey</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
-        <span class="n">PixelEditor</span><span class="o">.</span><span class="n">draw_line</span><span class="p">(</span>
+        <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_line</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">sx</span><span class="p">,</span> <span class="n">sy</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">ey</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">rgba32</span><span class="p">(),</span> <span class="n">aa</span><span class="p">,</span> <span class="n">blending</span><span class="p">,</span> <span class="n">thickness</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
@@ -412,7 +412,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">top_left</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
         <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">dims</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
-        <span class="n">PixelEditor</span><span class="o">.</span><span class="n">draw_rect</span><span class="p">(</span>
+        <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_rect</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span>
@@ -450,7 +450,7 @@
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">center</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
-        <span class="n">PixelEditor</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">(</span>
+        <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span>
@@ -485,7 +485,7 @@
 <span class="sd">            aa: Whether to use anti-aliasing. Defaults to False.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">PixelEditor</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">(</span>
+        <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span>
@@ -510,7 +510,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">from_rgba32</span><span class="p">(</span><span class="n">PixelEditor</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">from_rgba32</span><span class="p">(</span><span class="n">c_draw</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position is outside of the $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
 
