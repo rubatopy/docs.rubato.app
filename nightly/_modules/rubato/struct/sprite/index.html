@@ -239,7 +239,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -313,151 +312,44 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span><span class="o">,</span> <span class="nn">sdl2.sdlgfx</span>
+<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 
-<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Game</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Surf</span><span class="p">,</span> <span class="n">Display</span>
 
 
-<div class="viewcode-block" id="Sprite"><a class="viewcode-back" href="../../../../api/#rubato.struct.sprite.Sprite">[docs]</a><span class="k">class</span> <span class="nc">Sprite</span><span class="p">:</span>
+<div class="viewcode-block" id="Sprite"><a class="viewcode-back" href="../../../../api/#rubato.struct.sprite.Sprite">[docs]</a><span class="k">class</span> <span class="nc">Sprite</span><span class="p">(</span><span class="n">Surf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A sprite is a class that handles rendering of images independent of Game Objects.</span>
+<span class="sd">    A sprite is a class that handles rendering of images from your file system independent of Game Objects.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        rel_path: The relative path to the image.</span>
-<span class="sd">        pos: The position to draw the image at. Defaults to Vector(0, 0).</span>
 <span class="sd">        rotation: The rotation of the image. Defaults to 0.</span>
 <span class="sd">        scale: The scale of the image. Defaults to Vector(1, 1).</span>
-<span class="sd">        aa: Whether anti aliasing is turned on. Defaults to True.</span>
+<span class="sd">        af: Whether to use anisotropic filtering. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">rel_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
         <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">aa</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="sd">&quot;&quot;&quot;The image that is rendered. This is an SDL_Surface or a string in the surface hasn&#39;t been set yet.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">af</span><span class="o">=</span><span class="n">af</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">rel_path</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">rel_path</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">rel_path</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">get_path</span><span class="p">(</span><span class="n">rel_path</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">get_path</span><span class="p">(</span><span class="n">rel_path</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">SDLError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">fname</span> <span class="o">=</span> <span class="n">rel_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2"> is not a valid image file&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">_original</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">clone_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_tx</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rotation</span> <span class="o">=</span> <span class="n">rotation</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span> <span class="o">=</span> <span class="n">scale</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_aa</span> <span class="o">=</span> <span class="n">aa</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_last_camera_zoom</span> <span class="o">=</span> <span class="mi">1</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The rotation of the sprite.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rotation</span>
-
-    <span class="nd">@rotation</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rotation</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The scale of the sprite.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span>
-
-    <span class="nd">@scale</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">aa</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Whether anti-aliasing is enabled.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aa</span>
-
-    <span class="nd">@aa</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">aa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_aa</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="k">def</span> <span class="nf">_update_rotozoom</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_last_camera_zoom</span> <span class="o">=</span> <span class="n">Game</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">rotozoomSurfaceXY</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="p">,</span>
-            <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span>
-            <span class="c1"># It seems that rotation is counterclockwise, even though we assume clockwise until now.</span>
-            <span class="c1"># Requires further investigation but is a fix for now.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_camera_zoom</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_camera_zoom</span><span class="p">,</span>
-            <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aa</span><span class="p">),</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">contents</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Sprite.get_size"><a class="viewcode-back" href="../../../../api/#rubato.struct.sprite.Sprite.get_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the current size of the image.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The size of the image</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_update_rotozoom</span><span class="p">()</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">w</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="o">.</span><span class="n">w</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">h</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="o">.</span><span class="n">h</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">h</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">h</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Sprite.get_size_original"><a class="viewcode-back" href="../../../../api/#rubato.struct.sprite.Sprite.get_size_original">[docs]</a>    <span class="k">def</span> <span class="nf">get_size_original</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the original size of the image.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Vector: The original size of the image.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="o">.</span><span class="n">h</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Sprite.update"><a class="viewcode-back" href="../../../../api/#rubato.struct.sprite.Sprite.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Updates the rotozoom of the sprite if any changes were made.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_camera_zoom</span> <span class="o">!=</span> <span class="n">Game</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_rotozoom</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Sprite.delete"><a class="viewcode-back" href="../../../../api/#rubato.struct.sprite.Sprite.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Deletes the sprite&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_original</span> <span class="o">=</span> <span class="kc">None</span></div>
-
-<div class="viewcode-block" id="Sprite.clone"><a class="viewcode-back" href="../../../../api/#rubato.struct.sprite.Sprite.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Creates a clone of the sprite.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span>
-            <span class="s2">&quot;&quot;</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">aa</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="c1"># pylint: disable=protected-access</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">clone_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">_original</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">clone_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_original</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="viewcode-block" id="Sprite.clone"><a class="viewcode-back" href="../../../../api/#rubato.struct.sprite.Sprite.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sprite</span><span class="p">:</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">af</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">clone_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">s</span></div></div>
 </pre></div> 
         </article>

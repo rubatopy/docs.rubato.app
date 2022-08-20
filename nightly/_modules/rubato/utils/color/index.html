@@ -239,7 +239,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -312,6 +311,7 @@
 <span class="sd">This color module contains the Color class, which is used to represent colors in the game.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">choice</span>
 <span class="kn">import</span> <span class="nn">sdl2</span>
 
@@ -371,10 +371,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
         <span class="sd">&quot;&quot;&quot;The alpha value.&quot;&quot;&quot;</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">rgba32</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Color.rgba32"><a class="viewcode-back" href="../../../../api/#rubato.utils.color.Color.rgba32">[docs]</a>    <span class="k">def</span> <span class="nf">rgba32</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The RGBA32 representation of the color.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MapRGBA</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MapRGBA</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Color.darker"><a class="viewcode-back" href="../../../../api/#rubato.utils.color.Color.darker">[docs]</a>    <span class="k">def</span> <span class="nf">darker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -525,17 +524,11 @@
 <span class="sd">            rgba32: The RGBA32 representation as an int.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Color: The color object from the RGBA32.</span>
+<span class="sd">            The color object from the RGBA32.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">rgba32</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">rgba_str</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">rgba32</span><span class="p">,</span> <span class="s2">&quot;#034b&quot;</span><span class="p">)</span>
-        <span class="n">new</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="n">new</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgba_str</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">new</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgba_str</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">18</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">new</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgba_str</span><span class="p">[</span><span class="mi">18</span><span class="p">:</span><span class="mi">26</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">new</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgba_str</span><span class="p">[</span><span class="mi">26</span><span class="p">:</span><span class="mi">34</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new</span></div>
+        <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_ubyte</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_ubyte</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_ubyte</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_ubyte</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetRGBA</span><span class="p">(</span><span class="n">rgba32</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">r</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">g</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Color.from_hex"><a class="viewcode-back" href="../../../../api/#rubato.utils.color.Color.from_hex">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_hex</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
@@ -741,6 +734,14 @@
 <span class="sd">        The default lime color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;lime&quot;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Color.debug"><a class="viewcode-back" href="../../../../api/#rubato.utils.color.Color.debug">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The default debug color. Color(0, 255, 0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Color(r=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="si">}</span><span class="s2">, g=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="si">}</span><span class="s2">, b=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="si">}</span><span class="s2">, a=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>

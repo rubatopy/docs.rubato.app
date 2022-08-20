@@ -239,7 +239,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -319,7 +318,7 @@
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span><span class="o">,</span> <span class="nn">sdl2.sdlimage</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">InitError</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">InitError</span><span class="p">,</span> <span class="n">Math</span>
 
 
 <span class="k">class</span> <span class="nc">_DisplayProperties</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
@@ -396,7 +395,8 @@
 
     <span class="n">window</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Window</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">renderer</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Renderer</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="nb">format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_RGBA8888</span><span class="p">)</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">format</span><span class="o">.</span><span class="n">contents</span>
+    <span class="n">pixel_format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_RGBA8888</span>
+    <span class="nb">format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">pixel_format</span><span class="p">)</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">format</span><span class="o">.</span><span class="n">contents</span>
     <span class="n">_saved_window_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_saved_window_pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -433,7 +433,7 @@
 
 <div class="viewcode-block" id="Display.has_x_border"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.has_x_border">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">has_x_border</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Whether or not the window has a black border on the left or right side.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Whether the window has a black border on the left or right side.&quot;&quot;&quot;</span>
         <span class="n">render_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
         <span class="n">window_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span>
 
@@ -441,7 +441,7 @@
 
 <div class="viewcode-block" id="Display.has_y_border"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.has_y_border">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">has_y_border</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Whether or not the window has a black border on the top or bottom.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Whether the window has a black border on the top or bottom.&quot;&quot;&quot;</span>
         <span class="n">render_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
         <span class="n">window_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span>
 
@@ -469,7 +469,7 @@
 <span class="sd">        Set the window to fullscreen.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            on: Whether or not to set the window to fullscreen.</span>
+<span class="sd">            on: Whether to set the window to fullscreen.</span>
 <span class="sd">            mode: The type of fullscreen to use. Can be either &quot;desktop&quot; or &quot;exclusive&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">on</span><span class="p">:</span>
@@ -491,15 +491,43 @@
             <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetWindowFullscreen</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Display.update"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.update">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span>
+        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">flipx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update the current screen.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tx: The texture to draw on the screen.</span>
 <span class="sd">            pos: The position to draw the texture on.</span>
+<span class="sd">            scale: The scale of the texture. Defaults to Vector(1, 1).</span>
+<span class="sd">            angle: The clockwise rotation of the texture. Defaults to 0.</span>
+<span class="sd">            flipx: Whether to flip the texture horizontally. Defaults to False.</span>
+<span class="sd">            flipy: Whether to flip the texture vertically. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span> <span class="n">dstrect</span><span class="o">=</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">))</span></div>
+        <span class="n">flipx</span> <span class="o">|=</span> <span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">scale</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">flipy</span> <span class="o">|=</span> <span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">scale</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="n">flip</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_NONE</span>
+        <span class="k">if</span> <span class="n">flipx</span><span class="p">:</span>
+            <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_HORIZONTAL</span>
+        <span class="k">if</span> <span class="n">flipy</span><span class="p">:</span>
+            <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_VERTICAL</span>
+
+        <span class="n">x_dim</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span>
+            <span class="n">tx</span><span class="p">,</span>
+            <span class="n">dstrect</span><span class="o">=</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_dim</span> <span class="k">if</span> <span class="n">flipx</span> <span class="k">else</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">x_dim</span><span class="p">,</span> <span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="o">.</span><span class="n">y</span><span class="p">)),</span>
+            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
+            <span class="n">flip</span><span class="o">=</span><span class="n">flip</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Display.clone_surface"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.clone_surface">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">clone_surface</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">surface</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>

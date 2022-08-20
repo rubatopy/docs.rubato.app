@@ -239,7 +239,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -312,6 +311,7 @@
 <span class="sd">The Input module is the way you collect input from the user.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">sdl2</span>
 <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_float</span><span class="p">,</span> <span class="n">c_int</span>
 
@@ -564,10 +564,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">key1</span><span class="p">,</span> <span class="n">key2</span> <span class="o">=</span> <span class="n">key</span><span class="p">,</span> <span class="n">key</span>
 
-                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
-                    <span class="n">state</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">scancode_from_name</span><span class="p">(</span><span class="n">key1</span><span class="p">)]</span> <span class="ow">or</span>
-                    <span class="n">state</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">scancode_from_name</span><span class="p">(</span><span class="n">key2</span><span class="p">)]</span>
-                <span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">scancode_from_name</span><span class="p">(</span><span class="n">key1</span><span class="p">)]</span> <span class="ow">or</span> <span class="n">state</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">scancode_from_name</span><span class="p">(</span><span class="n">key2</span><span class="p">)]):</span>
                     <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
@@ -715,9 +712,9 @@
         <span class="n">x_render</span><span class="p">,</span> <span class="n">y_render</span> <span class="o">=</span> <span class="n">c_float</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">c_float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">size</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">border_size</span>
         <span class="k">if</span> <span class="n">Display</span><span class="o">.</span><span class="n">has_x_border</span><span class="p">():</span>
-            <span class="n">x_window</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">x_window</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">size</span><span class="p">)</span>
+            <span class="n">x_window</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">x_window</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">size</span><span class="p">))</span>
         <span class="k">elif</span> <span class="n">Display</span><span class="o">.</span><span class="n">has_y_border</span><span class="p">():</span>
-            <span class="n">y_window</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">y_window</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">size</span><span class="p">)</span>
+            <span class="n">y_window</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">y_window</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">size</span><span class="p">))</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderWindowToLogical</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="n">x_window</span><span class="p">,</span> <span class="n">y_window</span><span class="p">,</span> <span class="n">x_render</span><span class="p">,</span> <span class="n">y_render</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x_render</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">y_render</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
@@ -791,7 +788,7 @@
 <span class="sd">            angle: The angle of the rectangle in degrees. Defaults to 0.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: Whether or not the mouse is in the defined rectangle.</span>
+<span class="sd">            bool: Whether the mouse is in the defined rectangle.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">mo</span> <span class="o">=</span> <span class="n">Input</span><span class="o">.</span><span class="n">get_mouse_pos</span><span class="p">()</span>  <span class="c1"># mouse</span>

@@ -239,7 +239,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -316,7 +315,7 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterator</span>
 <span class="kn">import</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">random</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">raise_operator_error</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">SideError</span><span class="p">,</span> <span class="n">raise_operator_error</span>
 
 
 <div class="viewcode-block" id="Vector"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector">[docs]</a><span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
@@ -541,19 +540,15 @@
 
         <span class="k">return</span> <span class="n">out</span></div>
 
-<div class="viewcode-block" id="Vector.rounded"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.rounded">[docs]</a>    <span class="k">def</span> <span class="nf">rounded</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns a new vector with values that are rounded.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="Vector.to_tuple"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.to_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">to_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="Vector.to_tuple"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.to_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">to_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the x and y coordinates of the vector as a tuple.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span></div>
 
 <div class="viewcode-block" id="Vector.tuple_int"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.tuple_int">[docs]</a>    <span class="k">def</span> <span class="nf">tuple_int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Returns a tuple with rounded values.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
+        <span class="sd">&quot;&quot;&quot;Returns a tuple with int-cast values.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Vector.clone"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Returns a copy of the vector.&quot;&quot;&quot;</span>
@@ -737,6 +732,27 @@
 <span class="sd">            Random vector inside the unit circle.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_radial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">360</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vector.poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.poly">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">poly</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">num_sides</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of vectors representing a polygon with the given number of sides and radius.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_sides (int): The number of sides of the polygon.</span>
+<span class="sd">            radius (float | int, optional): The radius of the polygon. Defaults to 1.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            SideError: If num_sides is less than 3.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[Vector]: The list of vectors representing the polygon.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">num_sides</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SideError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t create a polygon with less than three sides.&quot;</span><span class="p">)</span>
+
+        <span class="n">rotangle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">num_sides</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Vector</span><span class="o">.</span><span class="n">from_radial</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">i</span> <span class="o">*</span> <span class="n">rotangle</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sides</span><span class="p">)]</span></div>
 
 <div class="viewcode-block" id="Vector.zero"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.zero">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">zero</span><span class="p">():</span>

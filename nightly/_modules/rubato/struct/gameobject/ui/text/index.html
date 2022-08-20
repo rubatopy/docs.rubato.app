@@ -239,7 +239,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -351,7 +350,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">anchor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_justify</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">justify</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">width</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stored_rot</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="n">Font</span><span class="p">()</span>
@@ -460,12 +458,10 @@
 <div class="viewcode-block" id="Text.generate_surface"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.generate_surface">[docs]</a>    <span class="k">def</span> <span class="nf">generate_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;(Re)generates the surface of the text.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span>
-            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span>
+            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_justify</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
-                <span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">),</span>
             <span class="p">)</span>
         <span class="p">)</span></div>
 
@@ -473,20 +469,17 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stored_rot</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_stored_rot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
-
         <span class="n">Draw</span><span class="o">.</span><span class="n">queue_texture</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="p">,</span>
             <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">,</span>
+            <span class="n">angle</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">),</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Text.delete"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Deletes the text component.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># pylint: disable=protected-access</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="kc">None</span></div>
 
