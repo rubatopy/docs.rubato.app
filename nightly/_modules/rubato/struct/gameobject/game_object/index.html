@@ -313,7 +313,7 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Hitbox</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">Component</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Component</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Surface</span>
 <span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Game</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">DuplicateComponentError</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">ImplementationError</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">Color</span>
 
@@ -367,7 +367,8 @@
 <span class="sd">            components (Component): The component(s) to add.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            DuplicateComponentError: Raised when there is already a component of the same type on the game object.</span>
+<span class="sd">            DuplicateComponentError: Raised when there is already a component of the same type in the game object.</span>
+<span class="sd">                Note that this error is only raised if the component type&#39;s &#39;singular&#39; attribute is True.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            GameObject: This GameObject.</span>
@@ -378,16 +379,13 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">component</span><span class="o">.</span><span class="n">singular</span> <span class="ow">and</span> <span class="n">comp_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="n">DuplicateComponentError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;There is already a component of type </span><span class="si">{</span><span class="n">comp_type</span><span class="si">}</span><span class="s2"> on the game object </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;There is already a component of type &#39;</span><span class="si">{</span><span class="n">comp_type</span><span class="si">}</span><span class="s2">&#39; in the game object &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
                     <span class="p">)</span>
             <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">ImplementationError</span><span class="p">(</span>
-                    <span class="s2">&quot;The component does not have a singular attribute. You most likely overrode the&quot;</span>
+                    <span class="s2">&quot;The component does not have the attribute &#39;singular&#39;. You most likely overrode the&quot;</span>
                     <span class="s2">&quot;__init__ method of the component without calling super().__init__().&quot;</span>
                 <span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
-
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Hitbox</span><span class="p">):</span>
-                <span class="n">comp_type</span> <span class="o">=</span> <span class="n">Hitbox</span>
 
             <span class="k">if</span> <span class="n">comp_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">comp_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -398,22 +396,37 @@
 
 <div class="viewcode-block" id="GameObject.remove"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Removes a component from the game object.</span>
+<span class="sd">        Removes the first instance of a component from the game object.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            comp_type: The type of the component to remove.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            Warning: The component was not in the game object and nothing was removed.</span>
+<span class="sd">            IndexError: The component was not in the game object and nothing was removed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">comp_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">:</span>
-            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">comp_type</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">comp_type</span><span class="p">]:</span>
-                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">comp_type</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Warning</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;The component of type </span><span class="si">{</span><span class="n">comp_type</span><span class="si">}</span><span class="s2"> is not in the game object </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> and was not removed.&quot;</span>
-            <span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_ind</span><span class="p">(</span><span class="n">comp_type</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GameObject.remove_ind"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove_ind">[docs]</a>    <span class="k">def</span> <span class="nf">remove_ind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">ind</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes a component from the game object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            comp_type: The Type of component to remove</span>
+<span class="sd">            ind: The index of the component to remove.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            IndexError: The component was not in the game object and nothing was removed or the index was out of bounds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">ind</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+                    <span class="k">del</span> <span class="n">val</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+                    <span class="k">return</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">ind</span> <span class="o">-=</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;There are no components of type &#39;</span><span class="si">{</span><span class="n">comp_type</span><span class="si">}</span><span class="s2">&#39; in game object &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; or the index is out of bounds.&quot;</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="GameObject.remove_all"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove_all">[docs]</a>    <span class="k">def</span> <span class="nf">remove_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -423,14 +436,15 @@
 <span class="sd">            comp_type: The type of the component to remove.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            Warning: The components were not in the game object and nothing was removed.</span>
+<span class="sd">            IndexError: The components were not in the game object and nothing was removed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">comp_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">:</span>
-            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">[</span><span class="n">comp_type</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Warning</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;The components of type </span><span class="si">{</span><span class="n">comp_type</span><span class="si">}</span><span class="s2"> are not in the game object </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> and were not removed.&quot;</span>
-            <span class="p">)</span></div>
+        <span class="n">deleted</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">):</span>
+                <span class="k">del</span> <span class="n">val</span>
+                <span class="n">deleted</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">deleted</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are no components of type &#39;</span><span class="si">{</span><span class="n">comp_type</span><span class="si">}</span><span class="s2">&#39; in game object &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GameObject.get"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -442,10 +456,9 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            The component if it was found or None if it wasn&#39;t.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">comp_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">comp_type</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">comp_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Rectangle</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="GameObject.get_all"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.get_all">[docs]</a>    <span class="k">def</span> <span class="nf">get_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
@@ -459,11 +472,11 @@
 <span class="sd">            A list containing all the components of that type. If no components were found, the</span>
 <span class="sd">                list is empty.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">comp_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">comp_type</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="k">if</span> <span class="n">comp_type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Rectangle</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="k">return</span> <span class="p">[]</span></div>
+        <span class="n">fin</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">):</span>
+                <span class="n">fin</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fin</span></div>
 
 <div class="viewcode-block" id="GameObject.delete"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

@@ -974,7 +974,8 @@ Game Object’s position.</p>
 <dd class="field-odd"><p><strong>components</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code>) – The component(s) to add.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.DuplicateComponentError" title="rubato.utils.error.DuplicateComponentError"><strong>DuplicateComponentError</strong></a> – Raised when there is already a component of the same type on the game object.</p>
+<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.error.DuplicateComponentError" title="rubato.utils.error.DuplicateComponentError"><strong>DuplicateComponentError</strong></a> – Raised when there is already a component of the same type in the game object.
+    Note that this error is only raised if the component type’s ‘singular’ attribute is True.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>This GameObject.</p>
@@ -988,13 +989,30 @@ Game Object’s position.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.game_object.GameObject.remove">
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/game_object/#GameObject.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.game_object.GameObject.remove" title="Permalink to this definition">#</a></dt>
-<dd><p>Removes a component from the game object.</p>
+<dd><p>Removes the first instance of a component from the game object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>comp_type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>)]) – The type of the component to remove.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Warning</strong> – The component was not in the game object and nothing was removed.</p>
+<dd class="field-even"><p><strong>IndexError</strong> – The component was not in the game object and nothing was removed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.game_object.GameObject.remove_ind">
+<span class="sig-name descname"><span class="pre">remove_ind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/game_object/#GameObject.remove_ind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.game_object.GameObject.remove_ind" title="Permalink to this definition">#</a></dt>
+<dd><p>Removes a component from the game object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comp_type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>)]) – The Type of component to remove</p></li>
+<li><p><strong>ind</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The index of the component to remove.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>IndexError</strong> – The component was not in the game object and nothing was removed or the index was out of bounds.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1008,7 +1026,7 @@ Game Object’s position.</p>
 <dd class="field-odd"><p><strong>comp_type</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>)]) – The type of the component to remove.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>Warning</strong> – The components were not in the game object and nothing was removed.</p>
+<dd class="field-even"><p><strong>IndexError</strong> – The components were not in the game object and nothing was removed.</p>
 </dd>
 </dl>
 </dd></dl>

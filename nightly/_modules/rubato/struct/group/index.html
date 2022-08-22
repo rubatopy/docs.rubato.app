@@ -409,11 +409,10 @@
 <span class="sd">        Called automatically by rubato as long as the group is added to a scene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
-            <span class="n">all_hts</span> <span class="o">=</span> <span class="p">[]</span>
-
             <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
                 <span class="n">group</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
 
+            <span class="n">all_hts</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
                 <span class="n">game_obj</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
                 <span class="n">hts</span> <span class="o">=</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
@@ -422,9 +421,7 @@
 
             <span class="n">qtree</span> <span class="o">=</span> <span class="n">QTree</span><span class="p">(</span><span class="n">all_hts</span><span class="p">)</span>
 
-            <span class="n">all_gos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_gameobjects</span><span class="p">()</span>
-
-            <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="n">all_gos</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_gameobjects</span><span class="p">():</span>
                 <span class="n">hts</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
                     <span class="n">qtree</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">hts</span><span class="p">,</span> <span class="n">qtree</span><span class="o">.</span><span class="n">calc_bb</span><span class="p">(</span><span class="n">hts</span><span class="p">))</span></div>
