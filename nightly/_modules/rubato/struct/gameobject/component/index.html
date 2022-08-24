@@ -352,10 +352,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="sd">&quot;&quot;&quot;Whether the component should not draw.&quot;&quot;&quot;</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">true_z</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The z_index of the component offset by its parent gameobject z_index.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_index</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">z_index</span>
+<div class="viewcode-block" id="Component.true_z"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.component.Component.true_z">[docs]</a>    <span class="k">def</span> <span class="nf">true_z</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the z_index of the component offset by its parent gameobject z_index.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_index</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">z_index</span></div>
+
+<div class="viewcode-block" id="Component.true_pos"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.component.Component.true_pos">[docs]</a>    <span class="k">def</span> <span class="nf">true_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the world position of the component.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Component.true_rotation"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.component.Component.true_rotation">[docs]</a>    <span class="k">def</span> <span class="nf">true_rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the rotation of the component offset by its parent gameobject rotation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span></div>
 
 <div class="viewcode-block" id="Component.draw"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.component.Component.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The draw function template for a component subclass.&quot;&quot;&quot;</span>

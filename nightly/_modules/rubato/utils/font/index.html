@@ -374,7 +374,7 @@
     <span class="nd">@size</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SetFontSize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SetFontSize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">new</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
