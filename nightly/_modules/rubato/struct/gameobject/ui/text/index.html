@@ -338,21 +338,35 @@
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="n">Font</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(),</span>
         <span class="n">justify</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
-        <span class="n">anchor</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">anchor</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">rot_offset</span><span class="o">=</span><span class="n">rot_offset</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="n">z_index</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">text</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="p">:</span> <span class="n">Font</span> <span class="o">=</span> <span class="n">font</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">anchor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="p">:</span> <span class="n">Font</span> <span class="o">=</span> <span class="n">font</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">anchor</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The anchor vector of the text.</span>
+
+<span class="sd">        This controls the position of the text relative to the game object. Is a vector where the x value</span>
+<span class="sd">        controls the x anchor and the y value controls the y anchor. The values for each can be either -1, 0 or 1. This</span>
+<span class="sd">        offset the text around the game object center.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            An anchor of ``Vector(0, 0)`` will center the text on the game object. An anchor of ``Vector(1, 1)`` will</span>
+<span class="sd">            move the text so that it&#39;s top left corner is at the game object&#39;s center.</span>
+
+<span class="sd">        Warning:</span>
+<span class="sd">            Previously was called align.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_justify</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">justify</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">width</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="n">Font</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span> <span class="o">=</span> <span class="n">Font</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
 
@@ -384,28 +398,6 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Justification </span><span class="si">{</span><span class="n">new</span><span class="si">}</span><span class="s2"> is not left, center or right.&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">anchor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The anchor vector of the text.</span>
-
-<span class="sd">        This controls the position of the text relative to the game object. Is a vector where the x value</span>
-<span class="sd">        controls the x anchor and the y value controls the y anchor. The values for each can be either -1, 0 or 1. This</span>
-<span class="sd">        offset the text around the game object center.</span>
-
-<span class="sd">        Example:</span>
-<span class="sd">            An anchor of ``Vector(0, 0)`` will center the text on the game object. An anchor of ``Vector(1, 1)`` will</span>
-<span class="sd">            move the text so that it&#39;s top left corner is at the game object&#39;s center.</span>
-
-<span class="sd">        Warning:</span>
-<span class="sd">            Previously was called align.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span>
-
-    <span class="nd">@anchor</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">anchor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span> <span class="o">=</span> <span class="n">new</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The maximum width of the text. Will automatically wrap the text. Use -1 to disable wrapping.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span>
@@ -416,11 +408,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">font_object</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Font</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The font object of the text.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">font_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The font size.</span>
@@ -428,37 +415,37 @@
 <span class="sd">        Warning:</span>
 <span class="sd">            Don&#39;t set this too high or font smoothing may misbehave on some systems.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">size</span>
 
     <span class="nd">@font_size</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">font_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The font color.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">color</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">color</span>
 
     <span class="nd">@font_color</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Text.add_style"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.add_style">[docs]</a>    <span class="k">def</span> <span class="nf">add_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a style to the font (bold, italic, underline, strikethrough, normal).&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">add_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">add_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Text.remove_style"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.remove_style">[docs]</a>    <span class="k">def</span> <span class="nf">remove_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove a style from a font.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">remove_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">remove_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Text.generate_surface"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.generate_surface">[docs]</a>    <span class="k">def</span> <span class="nf">generate_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;(Re)generates the surface of the text.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span>
-            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span>
+            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_justify</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
@@ -471,7 +458,7 @@
 
         <span class="n">Draw</span><span class="o">.</span><span class="n">queue_texture</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="p">,</span>
-            <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anchor</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">(),</span>
             <span class="n">angle</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">),</span>
         <span class="p">)</span></div>
@@ -479,19 +466,19 @@
 <div class="viewcode-block" id="Text.delete"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Deletes the text component.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># pylint: disable=protected-access</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># pylint: disable=protected-access</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Text.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Clones the text component.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Text</span><span class="p">(</span>
             <span class="n">text</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span>
-            <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="p">,</span>
-            <span class="n">anchor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">,</span>
+            <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
+            <span class="n">anchor</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">anchor</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">justify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_justify</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
-            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span>
             <span class="n">z_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">,</span>
         <span class="p">)</span></div></div>

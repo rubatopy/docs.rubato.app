@@ -704,7 +704,7 @@
 <span class="sd">        The current position of the mouse, in screen-coordinates.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Vector: A Vector representing position.</span>
+<span class="sd">            A Vector representing position.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">x_window</span><span class="p">,</span> <span class="n">y_window</span> <span class="o">=</span> <span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetMouseState</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">x_window</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">y_window</span><span class="p">))</span>
@@ -723,6 +723,7 @@
     <span class="k">def</span> <span class="nf">get_mouse_abs_pos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The current absolute position of the mouse. ie. screen coordinates.</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            A Vector representing position.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -730,9 +731,15 @@
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetMouseState</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">x_window</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">y_window</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x_window</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">y_window</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">set_mouse_pos</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WarpMouseInWindow</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">c_int</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="n">c_int</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+<div class="viewcode-block" id="Input.set_mouse_pos"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.set_mouse_pos">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">set_mouse_pos</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the position of the mouse.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            v: The position to set the mouse to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WarpMouseInWindow</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">c_int</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">c_int</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span></div>
 
 <div class="viewcode-block" id="Input.mouse_is_visible"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.mouse_is_visible">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">mouse_is_visible</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -756,40 +763,47 @@
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_ShowCursor</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_ENABLE</span> <span class="k">if</span> <span class="n">toggle</span> <span class="k">else</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_DISABLE</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Input.pt_in_poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.pt_in_poly">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">pt_in_poly</span><span class="p">(</span><span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">pt_in_poly</span><span class="p">(</span><span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Checks if a point is inside a polygon.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            pt (Vector): The point to check.</span>
-<span class="sd">            verts (list[Vector]): The polygon representation as a list of Vectors (vertices)</span>
+<span class="sd">            pt: The point to check.</span>
+<span class="sd">            verts: The polygon representation as a list of Vector | tuple[float, float]s (vertices)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the point is inside the polygon.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">last</span><span class="p">,</span> <span class="n">now</span><span class="p">,</span> <span class="n">odd</span> <span class="o">=</span> <span class="n">verts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">verts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">now</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">:</span>
-            <span class="k">if</span> <span class="p">((</span><span class="n">now</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">pt</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="n">last</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">pt</span><span class="o">.</span><span class="n">y</span><span class="p">))</span> <span class="ow">and</span> \
-                <span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">last</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">now</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">now</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">last</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">now</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">now</span><span class="o">.</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">now</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">!=</span> <span class="p">(</span><span class="n">last</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="ow">and</span> \
+                <span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">last</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">now</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">now</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">last</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">now</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="n">now</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
                 <span class="n">odd</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">odd</span>
             <span class="n">last</span> <span class="o">=</span> <span class="n">now</span>
 
         <span class="k">return</span> <span class="n">odd</span></div>
 
 <div class="viewcode-block" id="Input.mouse_in"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.mouse_in">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">mouse_in</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">mouse_in</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Checks if the mouse is inside a rectangle defined by its center</span>
 <span class="sd">        and dimensions</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            center: The center of the rectangle.</span>
-<span class="sd">            dims: The dimensions of the rectangle. Defaults to Vector(1, 1).</span>
+<span class="sd">            dims: The dimensions of the rectangle. Defaults to (1, 1).</span>
 <span class="sd">            angle: The angle of the rectangle in degrees. Defaults to 0.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the mouse is in the defined rectangle.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">dims</span><span class="p">)</span>
 
         <span class="n">mo</span> <span class="o">=</span> <span class="n">Input</span><span class="o">.</span><span class="n">get_mouse_pos</span><span class="p">()</span>  <span class="c1"># mouse</span>
 

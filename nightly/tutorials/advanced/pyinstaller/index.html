@@ -2,13 +2,13 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Bundling to an Application" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/tutorials/advanced/pyinstaller.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="Say you’ve just made an amazing game in Python and you want to share it with the world. You would need to share the Python file, make sure you add all of your sprites and tell your users to install python and the needed dependencies. This isn’t very user friendly. Instead with rubato, you can bun..." />
+  <meta property="og:description" content="Say you've just made an amazing game in Python and you want to share it with the world. You would need to share the Python file, make sure you add all of your sprites and tell your users to install python and the needed dependencies. This isn't very user friendly. Instead with rubato, you can bun..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="prev" title="Custom Components" href="../custom_components/" />
@@ -317,9 +317,9 @@
 </script>
 <section id="bundling-to-an-application">
 <h1>Bundling to an Application<a class="headerlink" href="#bundling-to-an-application" title="Permalink to this heading">#</a></h1>
-<p>Say you’ve just made an amazing game in Python and you want to share it with the world. You would need to share the
+<p>Say you've just made an amazing game in Python and you want to share it with the world. You would need to share the
 Python file, make sure you add all of your sprites and tell your users to install python and the needed dependencies. This
-isn’t very user friendly.</p>
+isn't very user friendly.</p>
 <p>Instead with rubato, you can bundle you game into a <code class="docutils literal notranslate"><span class="pre">.exe</span></code> or a <code class="docutils literal notranslate"><span class="pre">.app</span></code> file with everything bundled together, allowing for
 easy sharing with others. This tutorial will walk you through the process of bundling your game.</p>
 <p>First, make sure you have PyInstaller installed.</p>
@@ -342,15 +342,15 @@ in a folder called <code class="docutils literal notranslate"><span class="pre">
 <p>With this file structure run the following command to bundle your game. Make sure that in your python code, you always use
 relative paths.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="4e6f72ee-1ad9-4388-b4c2-d4fd0e119517" name="77e071d8-4d40-4f32-bda2-721dfc685473" type="radio">
-</input><label class="sd-tab-label" for="4e6f72ee-1ad9-4388-b4c2-d4fd0e119517">
+<input checked="checked" id="f589d68c-0319-4efd-988e-fcc5516a2fec" name="0386cf96-0371-4ca3-9c87-491d4abc94aa" type="radio">
+</input><label class="sd-tab-label" for="f589d68c-0319-4efd-988e-fcc5516a2fec">
 Windows</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources;resources&quot;</span> main.py
 </pre></div>
 </div>
 </div>
-<input id="fdad3b78-8a7c-497b-bbee-3a36061b19c7" name="77e071d8-4d40-4f32-bda2-721dfc685473" type="radio">
-</input><label class="sd-tab-label" for="fdad3b78-8a7c-497b-bbee-3a36061b19c7">
+<input id="37aef187-9404-4a26-916d-a3d17d4a7a30" name="0386cf96-0371-4ca3-9c87-491d4abc94aa" type="radio">
+</input><label class="sd-tab-label" for="37aef187-9404-4a26-916d-a3d17d4a7a30">
 Mac OS X</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyinstaller -F -w --add-data <span class="s2">&quot;resources:resources&quot;</span> main.py
 </pre></div>

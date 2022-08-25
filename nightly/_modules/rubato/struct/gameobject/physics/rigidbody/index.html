@@ -324,15 +324,15 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        mass: The mass of the rigidbody. Defaults to -1.</span>
-<span class="sd">        gravity: The gravity of the rigidbody. Defaults to Vector(0, 0).</span>
+<span class="sd">        gravity: The gravity of the rigidbody. Defaults to (0, 0).</span>
 <span class="sd">        friction: The friction of the rigidbody. Defaults to 0.</span>
 <span class="sd">        static: Whether the rigidbody is static. Defaults to False.</span>
 <span class="sd">        bounciness: The bounciness of the rigidbody. Defaults to 0.</span>
-<span class="sd">        max_speed: The maximum speed of the rigidbody. Defaults to Vector(INF, INF).</span>
-<span class="sd">        velocity: The velocity of the rigidbody. Defaults to Vector(0, 0).</span>
+<span class="sd">        max_speed: The maximum speed of the rigidbody. Defaults to (INF, INF).</span>
+<span class="sd">        velocity: The velocity of the rigidbody. Defaults to (0, 0).</span>
 <span class="sd">        ang_vel: The angular velocity of the rigidbody. Defaults to 0.</span>
 <span class="sd">        pos_correction: The positional correction of the rigidbody. Defaults to 0.25.</span>
-<span class="sd">        offset: The offset of the rigidbody from the gameobject. Defaults to Vector(0, 0).</span>
+<span class="sd">        offset: The offset of the rigidbody from the gameobject. Defaults to (0, 0).</span>
 <span class="sd">        rot_offset: The offset of the rigidbody&#39;s rotation from the gameobject. Defaults to 0.</span>
 <span class="sd">        z_index: The z-index of the rigidbody. Defaults to 0.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -340,15 +340,15 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mass</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">gravity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
+        <span class="n">gravity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">friction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">static</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">bounciness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">max_speed</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">),</span>
-        <span class="n">velocity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
+        <span class="n">max_speed</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">),</span>
+        <span class="n">velocity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">ang_vel</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">pos_correction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>
-        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">):</span>
@@ -357,17 +357,17 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">static</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">static</span>
         <span class="sd">&quot;&quot;&quot;Whether the rigidbody is static (as in, it does not move).&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">gravity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">gravity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gravity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">gravity</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The acceleration of the gravity that should be applied.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">friction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">friction</span>
         <span class="sd">&quot;&quot;&quot;The friction coefficient of the Rigidbody (usually a value between 0 and 1).&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">max_speed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">max_speed</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The maximum speed of the Rigidbody.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">pos_correction</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">pos_correction</span>
         <span class="sd">&quot;&quot;&quot;The positional correction of the rigidbody.&quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">velocity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">velocity</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The current velocity of the Rigidbody.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ang_vel</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">ang_vel</span>
         <span class="sd">&quot;&quot;&quot;The current angular velocity of the Rigidbody.&quot;&quot;&quot;</span>
@@ -414,35 +414,35 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_vel</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span></div>
 
-<div class="viewcode-block" id="RigidBody.add_force"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_force">[docs]</a>    <span class="k">def</span> <span class="nf">add_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
+<div class="viewcode-block" id="RigidBody.add_force"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_force">[docs]</a>    <span class="k">def</span> <span class="nf">add_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Applies a force to the Rigidbody.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            force (Vector): The force to add.</span>
+<span class="sd">            force: The force to add.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">accel</span> <span class="o">=</span> <span class="n">force</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_mass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">force</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_mass</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">force</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">inv_mass</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span></div>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">+=</span> <span class="n">accel</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span></div>
-
-<div class="viewcode-block" id="RigidBody.add_impulse"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_impulse">[docs]</a>    <span class="k">def</span> <span class="nf">add_impulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">impulse</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
+<div class="viewcode-block" id="RigidBody.add_impulse"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_impulse">[docs]</a>    <span class="k">def</span> <span class="nf">add_impulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">impulse</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Applies an impulse to the rigidbody.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            impulse (Vector): _description_</span>
+<span class="sd">            impulse: The impulse to add.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">+=</span> <span class="n">impulse</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">impulse</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">impulse</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span></div>
 
-<div class="viewcode-block" id="RigidBody.add_cont_force"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_cont_force">[docs]</a>    <span class="k">def</span> <span class="nf">add_cont_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="RigidBody.add_cont_force"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_cont_force">[docs]</a>    <span class="k">def</span> <span class="nf">add_cont_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a continuous force to the Rigidbody.</span>
 <span class="sd">        A continuous force is a force that is continuously applied over a time period.</span>
 <span class="sd">        (the force is added every frame for a specific duration).</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            force (Vector): The force to add.</span>
-<span class="sd">            time (int): The time in seconds that the force should be added.</span>
+<span class="sd">            force: The force to add.</span>
+<span class="sd">            time: The time in seconds that the force should be added.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">time</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span>
@@ -450,15 +450,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_force</span><span class="p">(</span><span class="n">force</span><span class="p">)</span>
             <span class="n">Time</span><span class="o">.</span><span class="n">delayed_frames</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_cont_force</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="n">time</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span><span class="p">)))</span></div>
 
-<div class="viewcode-block" id="RigidBody.add_cont_impulse"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_cont_impulse">[docs]</a>    <span class="k">def</span> <span class="nf">add_cont_impulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">impulse</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="RigidBody.add_cont_impulse"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_cont_impulse">[docs]</a>    <span class="k">def</span> <span class="nf">add_cont_impulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">impulse</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a continuous impulse to the Rigidbody.</span>
 <span class="sd">        A continuous impulse is a impulse that is continuously applied over a time period.</span>
 <span class="sd">        (the impulse is added every frame for a specific duration).</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            impulse (Vector): The impulse to add.</span>
-<span class="sd">            time (int): The time in seconds that the impulse should be added.</span>
+<span class="sd">            impulse: The impulse to add.</span>
+<span class="sd">            time: The time in seconds that the impulse should be added.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">time</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span>
@@ -474,15 +474,15 @@
 <div class="viewcode-block" id="RigidBody.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RigidBody</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">RigidBody</span><span class="p">(</span>
             <span class="n">mass</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span>
-            <span class="n">gravity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gravity</span><span class="p">,</span>
+            <span class="n">gravity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gravity</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">friction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">friction</span><span class="p">,</span>
             <span class="n">static</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">static</span><span class="p">,</span>
             <span class="n">bounciness</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bounciness</span><span class="p">,</span>
-            <span class="n">max_speed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">,</span>
-            <span class="n">velocity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="p">,</span>
+            <span class="n">max_speed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
+            <span class="n">velocity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">ang_vel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ang_vel</span><span class="p">,</span>
             <span class="n">pos_correction</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos_correction</span><span class="p">,</span>
-            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span>
             <span class="n">z_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z_index</span>
         <span class="p">)</span></div></div>

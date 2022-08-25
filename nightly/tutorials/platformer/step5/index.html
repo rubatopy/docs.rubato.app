@@ -2,13 +2,13 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Step 5 - Finishing Touches" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/tutorials/platformer/step5.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="This is the final step! We’ll be making small quality-of-life changes to the game to make it play more like a real platformer. Jump Limit: Right now, when you move around, you’ll find that you quickly run out of jumps. This is because we implemented a 2 jump limit. However, once you run out of ju..." />
+  <meta property="og:description" content="This is the final step! We'll be making small quality-of-life changes to the game to make it play more like a real platformer. Jump Limit: Right now, when you move around, you'll find that you quickly run out of jumps. This is because we implemented a 2 jump limit. However, once you run out of ju..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Custom Components" href="../../advanced/custom_components/" /><link rel="prev" title="Step 4 - Creating a Level" href="../step4/" />
@@ -317,7 +317,7 @@
 </script>
 <section id="step-5-finishing-touches">
 <h1>Step 5 - Finishing Touches<a class="headerlink" href="#step-5-finishing-touches" title="Permalink to this heading">#</a></h1>
-<p>This is the final step! We’ll be making small quality-of-life changes to the game to make it play more like a real platformer.</p>
+<p>This is the final step! We'll be making small quality-of-life changes to the game to make it play more like a real platformer.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>This step covers general game development concepts that are not unique to rubato (grounding detection, camera scrolling, etc). We will not be going
@@ -326,11 +326,11 @@ to start learning.</p>
 </div>
 <section id="jump-limit">
 <h2>Jump Limit<a class="headerlink" href="#jump-limit" title="Permalink to this heading">#</a></h2>
-<p>Right now, when you move around, you’ll find that you quickly run out of jumps. This is because we implemented a 2 jump limit. However,
-once you run out of jumps, you can’t do anything to reset your jump counter. We want this counter to be reset whenever you land on the ground. To do
+<p>Right now, when you move around, you'll find that you quickly run out of jumps. This is because we implemented a 2 jump limit. However,
+once you run out of jumps, you can't do anything to reset your jump counter. We want this counter to be reset whenever you land on the ground. To do
 this, we will add a ground detection hitbox to the player, making sure to set the <code class="docutils literal notranslate"><span class="pre">trigger</span></code> parameter to true.</p>
-<p>Making a hitbox a “trigger” prevents the hitbox from colliding. It will still detect collisions and call the relevant callbacks.
-We will define a player_collide callback that will be called when the player’s ground detector collides.
+<p>Making a hitbox a &quot;trigger&quot; prevents the hitbox from colliding. It will still detect collisions and call the relevant callbacks.
+We will define a player_collide callback that will be called when the player's ground detector collides.
 When this happens, we use the provided collision <a class="reference internal" href="../../../api/#rubato.struct.gameobject.physics.engine.Manifold" title="rubato.struct.gameobject.physics.engine.Manifold"><code class="xref py py-func docutils literal notranslate"><span class="pre">Manifold</span></code></a> to
 make sure the other collider is a ground hitbox, that we are not already grounded, and that we are indeed falling towards the ground.
 That code looks like this:</p>
@@ -373,7 +373,7 @@ That code looks like this:</p>
 <section id="camera-scroll">
 <h2>Camera Scroll<a class="headerlink" href="#camera-scroll" title="Permalink to this heading">#</a></h2>
 <p>In your testing, you may have also noticed that you are able to walk past the right side of your screen. This is because there is actually more level
-space there! Remember that we set our level to be 120% the width of the screen. Lets use rubato’s built-in lerp function to make our camera follow the player.</p>
+space there! Remember that we set our level to be 120% the width of the screen. Lets use rubato's built-in lerp function to make our camera follow the player.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a custom fixed update function</span>
 <span class="k">def</span> <span class="nf">fixed_update</span><span class="p">():</span>
     <span class="c1"># have the camera follow the player</span>
@@ -389,17 +389,17 @@ space there! Remember that we set our level to be 120% the width of the screen. 
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">lerp</span></code> and <code class="docutils literal notranslate"><span class="pre">clamp</span></code> are both built-in methods to the <a class="reference internal" href="../../../api/#rubato.utils.rb_math.Math" title="rubato.utils.rb_math.Math"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Math</span></code></a> class.
-Note that we’ve used <a class="reference internal" href="../../../api/#rubato.utils.rb_time.Time.fixed_delta" title="rubato.utils.rb_time.Time.fixed_delta"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Time.fixed_delta</span></code></a>, which represents the
+Note that we've used <a class="reference internal" href="../../../api/#rubato.utils.rb_time.Time.fixed_delta" title="rubato.utils.rb_time.Time.fixed_delta"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Time.fixed_delta</span></code></a>, which represents the
 time elapsed since the last update to the physics engine, in seconds. This is to make our camera follow the player more smoothly,
 in line with the fps.</p>
 </section>
 <section id="to-conclude">
 <h2>To Conclude<a class="headerlink" href="#to-conclude" title="Permalink to this heading">#</a></h2>
-<p><strong>That’s it! You’ve finished your first platformer in rubato!</strong></p>
+<p><strong>That's it! You've finished your first platformer in rubato!</strong></p>
 <p>This was just the tip of the iceberg of what rubato can do.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-If you got lost, here’s the full code, just for kicks:<div class="sd-summary-down docutils">
+If you got lost, here's the full code, just for kicks:<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -571,7 +571,7 @@ If you got lost, here’s the full code, just for kicks:<div class="sd-summary-d
 </pre></div>
 </div>
 </div>
-</details><p>We’re also including a version with some more in-depth features that weren’t covered in this tutorial, including
+</details><p>We're also including a version with some more in-depth features that weren't covered in this tutorial, including
 win detection, advanced animation switching, and a respawn system.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">

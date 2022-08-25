@@ -312,7 +312,7 @@
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 <span class="kn">from</span> <span class="nn">importlib.resources</span> <span class="kn">import</span> <span class="n">files</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Vector</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Color</span>
 
 
 <div class="viewcode-block" id="Font"><a class="viewcode-back" href="../../../../api/#rubato.utils.font.Font">[docs]</a><span class="k">class</span> <span class="nc">Font</span><span class="p">:</span>
@@ -386,13 +386,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">=</span> <span class="n">new</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">FontTTF</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
 
-<div class="viewcode-block" id="Font.generate_surface"><a class="viewcode-back" href="../../../../api/#rubato.utils.font.Font.generate_surface">[docs]</a>    <span class="k">def</span> <span class="nf">generate_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">align</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
+<div class="viewcode-block" id="Font.generate_surface"><a class="viewcode-back" href="../../../../api/#rubato.utils.font.Font.generate_surface">[docs]</a>    <span class="k">def</span> <span class="nf">generate_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">align</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Generate the surface containing the text.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            text: The text to render.</span>
-<span class="sd">            align: The alignment to use. Defaults to Vector(0, 0).</span>
+<span class="sd">            align: The alignment to use.</span>
 <span class="sd">            width: The maximum width to use. Defaults to -1.</span>
 <span class="sd">            rot: The rotation of the text in degrees. Defaults to 0.</span>
 
@@ -401,7 +401,7 @@
 <span class="sd">            ValueError: The size of the text is too large for the font.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            sdl2.SDL_Surface: The surface containing the text.</span>
+<span class="sd">            The surface containing the text.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">render_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="n">align</span><span class="o">=</span><span class="n">align</span><span class="p">)</span>
@@ -442,7 +442,13 @@
         <span class="k">for</span> <span class="n">style</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">:</span>
             <span class="n">s</span> <span class="o">|=</span> <span class="n">Font</span><span class="o">.</span><span class="n">_text_styles</span><span class="p">[</span><span class="n">style</span><span class="p">]</span>
 
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SetFontStyle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">s</span><span class="p">)</span></div></div>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SetFontStyle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">s</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Font.clone"><a class="viewcode-back" href="../../../../api/#rubato.utils.font.Font.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clones the font.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">clone</span><span class="p">())</span></div></div>
 </pre></div> 
         </article>
       </div>

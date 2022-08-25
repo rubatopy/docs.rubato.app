@@ -313,11 +313,12 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">walk</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 <span class="kn">import</span> <span class="nn">sdl2</span>
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Component</span>
 <span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Sprite</span>
-<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Camera</span>
+<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">deprecated_no_replacement</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Spritesheet</span>
@@ -328,24 +329,24 @@
 <span class="sd">    Animations are a series of images that update automatically in accordance with parameters.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        scale: The scale of the animation. Defaults to Vector(1, 1).</span>
+<span class="sd">        scale: The scale of the animation. Defaults to (1, 1).</span>
 <span class="sd">        fps: The frames per second of the animation. Defaults to 24.</span>
 <span class="sd">        af: Whether to use anisotropic filtering on the animation. Defaults to False.</span>
 <span class="sd">        flipx: Whether to flip the animation horizontally. Defaults to False.</span>
 <span class="sd">        flipy: Whether to flip the animation vertically. Defaults to False.</span>
-<span class="sd">        offset: The offset of the animation from the game object. Defaults to Vector(0, 0).</span>
+<span class="sd">        offset: The offset of the animation from the game object. Defaults to (0, 0).</span>
 <span class="sd">        rot_offset: The rotation offset of the animation from the game object. Defaults to 0.</span>
 <span class="sd">        z_index: The z-index of the animation. Defaults to 0.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
         <span class="n">fps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">24</span><span class="p">,</span>
         <span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">flipx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">):</span>
@@ -367,7 +368,7 @@
         <span class="sd">&quot;&quot;&quot;The current frame of the animation.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="sd">&quot;&quot;&quot;Whether the animation should loop.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The scale of the animation.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">af</span>
         <span class="sd">&quot;&quot;&quot;Whether to enable anisotropic filtering.&quot;&quot;&quot;</span>
@@ -442,16 +443,18 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The given state </span><span class="si">{</span><span class="n">new_state</span><span class="si">}</span><span class="s2"> is not in the initialized states&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Animation.resize"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.resize">[docs]</a>    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_size</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
+<div class="viewcode-block" id="Animation.resize"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.resize">[docs]</a>    <span class="nd">@deprecated_no_replacement</span>
+    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_size</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Resize the Animation to a given size in pixels.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            new_size: The new size of the Animation in pixels.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="k">for</span> <span class="n">anim_frame</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
-                <span class="n">anim_frame</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">new_size</span><span class="p">)</span></div>
+        <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Resizing isn&#39;t supported anymore. Use the scale property instead.&quot;</span><span class="p">)</span></div>
+        <span class="c1"># for value in self._states.values():</span>
+        <span class="c1">#     for anim_frame in value:</span>
+        <span class="c1">#         anim_frame.resize(new_size)</span>
 
 <div class="viewcode-block" id="Animation.reset"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reset the animation state back to the first frame.&quot;&quot;&quot;</span>
@@ -508,7 +511,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">state_name</span><span class="p">,</span> <span class="n">ret_list</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Animation.add_spritesheet"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.add_spritesheet">[docs]</a>    <span class="k">def</span> <span class="nf">add_spritesheet</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">state_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">spritesheet</span><span class="p">:</span> <span class="n">Spritesheet</span><span class="p">,</span> <span class="n">from_coord</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span> <span class="n">to_coord</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">state_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">spritesheet</span><span class="p">:</span> <span class="n">Spritesheet</span><span class="p">,</span>
+        <span class="n">from_coord</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">to_coord</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds a state from a spritesheet. Will include all sprites from the from_coord to the to_coord.</span>
@@ -516,8 +523,9 @@
 <span class="sd">        Args:</span>
 <span class="sd">            state_name: The key used to reference this state.</span>
 <span class="sd">            spritesheet: The spritesheet to use.</span>
-<span class="sd">            from_coord: The grid coordinate of the first frame. Defaults to Vector().</span>
-<span class="sd">            to_coord: The grid coordinate of the last coord. Defaults to Vector().</span>
+<span class="sd">            from_coord: The grid coordinate of the first frame. Defaults to (0, 0).</span>
+<span class="sd">            to_coord: The grid coordinate of the last coord. Defaults to (0, 0).</span>
+
 <span class="sd">        Example:</span>
 <span class="sd">            .. code-block:: python</span>
 
@@ -529,8 +537,8 @@
 <span class="sd">                # This will just load from the start to the end of the spritesheet.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">state</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">from_coord</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
-        <span class="n">to_x</span><span class="p">,</span> <span class="n">to_y</span> <span class="o">=</span> <span class="n">to_coord</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">from_coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">from_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">to_x</span><span class="p">,</span> <span class="n">to_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">to_coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">to_coord</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">state</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">spritesheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="n">to_y</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">==</span> <span class="n">to_x</span><span class="p">:</span>
@@ -578,12 +586,12 @@
 <div class="viewcode-block" id="Animation.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Clones the animation.&quot;&quot;&quot;</span>
         <span class="n">new</span> <span class="o">=</span> <span class="n">Animation</span><span class="p">(</span>
-            <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">fps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fps</span><span class="p">,</span>
             <span class="n">af</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">af</span><span class="p">,</span>
             <span class="n">flipx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">flipx</span><span class="p">,</span>
             <span class="n">flipy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">flipy</span><span class="p">,</span>
-            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span>
             <span class="n">z_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">,</span>
         <span class="p">)</span>

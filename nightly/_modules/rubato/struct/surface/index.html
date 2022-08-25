@@ -312,17 +312,18 @@
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 
 <span class="kn">from</span> <span class="nn">..c_src</span> <span class="kn">import</span> <span class="n">c_draw</span>
-<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Surf</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Display</span>
 
 
-<div class="viewcode-block" id="Surface"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface">[docs]</a><span class="k">class</span> <span class="nc">Surface</span><span class="p">(</span><span class="n">Surf</span><span class="p">):</span>
+<div class="viewcode-block" id="Surface"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface">[docs]</a><span class="k">class</span> <span class="nc">Surface</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A surface.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        width: The width of the surface in pixels. Once set this cannot be changed. Defaults to 32.</span>
 <span class="sd">        height: The height of the surface in pixels. Once set this cannot be changed. Defaults to 32.</span>
-<span class="sd">        scale: The scale of the surface. Defaults to Vector(1, 1).</span>
+<span class="sd">        scale: The scale of the surface. Defaults to (1, 1).</span>
+<span class="sd">        rotation: The clockwise rotation of the sprite.</span>
 <span class="sd">        af: Whether to use anisotropic filtering. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -330,18 +331,96 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span>
         <span class="n">height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span>
-        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
         <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">rotation</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">af</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">rotation</span>
+        <span class="sd">&quot;&quot;&quot;The clockwise rotation of the sprite.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;The scale of the sprite.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_af</span> <span class="o">=</span> <span class="n">af</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">pixel_format</span><span class="p">)</span><span class="o">.</span><span class="n">contents</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">pixel_format</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">contents</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="sd">&quot;&quot;&quot;(READ ONLY) The generated sprite texture.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Whether the texture is up to date with the surface.</span>
+<span class="sd">        Can be set to False to trigger a texture regeneration at the next draw cycle.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">width</span>
         <span class="sd">&quot;&quot;&quot;(READ ONLY) The width of the surface in pixels.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">height</span>
         <span class="sd">&quot;&quot;&quot;(READ ONLY) The height of the surface in pixels.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">surf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The surface that is rendered.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span>
+
+    <span class="nd">@surf</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">surf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the surface to be rendered.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span> <span class="o">=</span> <span class="n">new</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">af</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Whether to use anisotropic filtering.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_af</span>
+
+    <span class="nd">@af</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">af</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_af</span> <span class="o">=</span> <span class="n">new</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">set_scale_mode</span><span class="p">(</span><span class="s2">&quot;nearest&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">af</span> <span class="k">else</span> <span class="s2">&quot;linear&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Surface.get_size"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.get_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the current size of the image. (Scaled)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The size of the image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Surface.get_size_raw"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.get_size_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_size_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the current size of the image. (Unscaled)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The size of the image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Surface.merge"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Surface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Merges another surface into this one.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            other: The surface to merge into this one.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_BlitSurface</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">surf</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_size_raw</span><span class="p">()</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Surface.generate_tx"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.generate_tx">[docs]</a>    <span class="k">def</span> <span class="nf">generate_tx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Regenerates the texture from the surface.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Surface.delete"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Deletes the sprite&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Surface.clear"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -350,7 +429,7 @@
         <span class="n">c_draw</span><span class="o">.</span><span class="n">clear_pixels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Surface.draw_point"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_point">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Surface.draw_point"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_point">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draws a point on the surface.</span>
 
@@ -359,14 +438,14 @@
 <span class="sd">            color: The color of the point. Defaults to black.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">rgba32</span><span class="p">(),</span> <span class="n">blending</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
 
 <div class="viewcode-block" id="Surface.draw_line"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_line">[docs]</a>    <span class="k">def</span> <span class="nf">draw_line</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">start</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span>
-        <span class="n">end</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">end</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span>
         <span class="n">aa</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -383,8 +462,8 @@
 <span class="sd">            thickness: The thickness of the line. Defaults to 1.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">sx</span><span class="p">,</span> <span class="n">sy</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
-        <span class="n">ex</span><span class="p">,</span> <span class="n">ey</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
+        <span class="n">sx</span><span class="p">,</span> <span class="n">sy</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">ex</span><span class="p">,</span> <span class="n">ey</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_line</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">sx</span><span class="p">,</span> <span class="n">sy</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">ey</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">rgba32</span><span class="p">(),</span> <span class="n">aa</span><span class="p">,</span> <span class="n">blending</span><span class="p">,</span> <span class="n">thickness</span>
         <span class="p">)</span>
@@ -392,8 +471,8 @@
 
 <div class="viewcode-block" id="Surface.draw_rect"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_rect">[docs]</a>    <span class="k">def</span> <span class="nf">draw_rect</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">top_left</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span>
-        <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span>
+        <span class="n">top_left</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -410,8 +489,8 @@
 <span class="sd">            fill: The fill color of the rectangle. Set to None for no fill. Defaults to None.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">top_left</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
-        <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">dims</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">top_left</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">top_left</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_rect</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
@@ -429,7 +508,7 @@
 
 <div class="viewcode-block" id="Surface.draw_circle"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_circle">[docs]</a>    <span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -449,7 +528,7 @@
 <span class="sd">            aa: Whether to use anti-aliasing. Defaults to False.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">center</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
@@ -467,7 +546,7 @@
 
 <div class="viewcode-block" id="Surface.draw_poly"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_poly">[docs]</a>    <span class="k">def</span> <span class="nf">draw_poly</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span>
+        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -498,7 +577,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Surface.get_pixel"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.get_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+<div class="viewcode-block" id="Surface.get_pixel"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.get_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the color of a pixel on the surface.</span>
 
@@ -508,13 +587,13 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            The color of the pixel.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pos</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">from_rgba32</span><span class="p">(</span><span class="n">c_draw</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position is outside of the $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Surface.get_pixel_tuple"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.get_pixel_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="Surface.get_pixel_tuple"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.get_pixel_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the color of a pixel on the surface.</span>
 
@@ -561,7 +640,7 @@
         <span class="n">new</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
-            <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">rotation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span>
             <span class="n">af</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">af</span><span class="p">,</span>
         <span class="p">)</span>

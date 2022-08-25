@@ -326,7 +326,7 @@
 <span class="sd">        onrelease: The function to call when the button is released. Defaults to lambda: None.</span>
 <span class="sd">        onhover: The function to call when the mouse enters the button. Defaults to lambda: None.</span>
 <span class="sd">        onexit: The function to call when the mouse exits the button. Defaults to lambda: None.</span>
-<span class="sd">        offset: The offset of the button from the game object. Defaults to Vector(0, 0).</span>
+<span class="sd">        offset: The offset of the button from the game object. Defaults to (0, 0).</span>
 <span class="sd">        rot_offset: The rotation offset of the button from the game object. Defaults to 0.</span>
 <span class="sd">        z_index: The z-index of the button. Defaults to 0.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -339,7 +339,7 @@
         <span class="n">onrelease</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">onhover</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">onexit</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">):</span>
@@ -381,7 +381,7 @@
 
 <div class="viewcode-block" id="Button.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.button.Button.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Button</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Button</span><span class="p">(</span>
-            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
             <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>

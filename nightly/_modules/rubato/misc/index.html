@@ -310,6 +310,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;Miscellaneous helper functions for rubato developers.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">GameObject</span><span class="p">,</span> <span class="n">Component</span><span class="p">,</span> <span class="n">Game</span><span class="p">,</span> <span class="n">Input</span>
 
+
 <div class="viewcode-block" id="world_mouse"><a class="viewcode-back" href="../../../api/#rubato.misc.world_mouse">[docs]</a><span class="k">def</span> <span class="nf">world_mouse</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the mouse position in world-coordinates.</span>
@@ -319,10 +320,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">Game</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">i_transform</span><span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">get_mouse_pos</span><span class="p">())</span></div>
 
+
 <div class="viewcode-block" id="wrap"><a class="viewcode-back" href="../../../api/#rubato.misc.wrap">[docs]</a><span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span>
     <span class="n">comp</span><span class="p">:</span> <span class="n">Component</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Component</span><span class="p">],</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
+    <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -333,7 +335,7 @@
 <span class="sd">    Args:</span>
 <span class="sd">        comp: The component or list of components to wrap.</span>
 <span class="sd">        name: The name of the GameObject. Defaults to &quot;&quot;.</span>
-<span class="sd">        pos: The position of the GameObject. Defaults to Vector().</span>
+<span class="sd">        pos: The position of the GameObject. Defaults to (0, 0).</span>
 <span class="sd">        rotation: The rotation of the GameObject. Defaults to 0.</span>
 <span class="sd">        z_index: The z_index of the GameObject. Defaults to 0.</span>
 <span class="sd">        debug: Whether the GameObject is in debug mode. Defaults to False.</span>
@@ -344,7 +346,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        The wrapped GameObject.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">go</span> <span class="o">=</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="n">z_index</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
+    <span class="n">go</span> <span class="o">=</span> <span class="n">GameObject</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rotation</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="n">z_index</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="n">Component</span><span class="p">):</span>
         <span class="n">go</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">comp</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">comp</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>

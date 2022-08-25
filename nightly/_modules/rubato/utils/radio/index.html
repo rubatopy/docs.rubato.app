@@ -324,7 +324,7 @@
 <span class="kn">import</span> <span class="nn">sdl2</span>
 <span class="kn">import</span> <span class="nn">cython</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">InitError</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">InitError</span>
 
 
 <div class="viewcode-block" id="Events"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Events">[docs]</a><span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
@@ -397,7 +397,7 @@
                             <span class="s2">&quot;old_height&quot;</span><span class="p">:</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span>
                         <span class="p">}</span>
                     <span class="p">)</span>
-                    <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span>
+                    <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data1</span><span class="p">,</span>
                         <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data2</span><span class="p">,</span>
                     <span class="p">)</span>

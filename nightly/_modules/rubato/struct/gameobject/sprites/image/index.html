@@ -239,7 +239,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../tutorials/advanced/pixel_mutation/">Pixel Mutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -308,220 +307,42 @@
     }
 </script>
 <h1>Source code for rubato.struct.gameobject.sprites.image</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The image component that renders an image from the filesystem.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;Image is a Component that handles rendering of images.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">import</span> <span class="nn">sdl2</span>
-
-<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Component</span><span class="p">,</span> <span class="n">Rectangle</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Raster</span>
 <span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Sprite</span>
-<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Camera</span>
+<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span>
 
 
-<div class="viewcode-block" id="Image"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image">[docs]</a><span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+<div class="viewcode-block" id="Image"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image">[docs]</a><span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">Raster</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A component that handles Images.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        rel_path: The relative path to the image. Defaults to &quot;&quot;.</span>
-<span class="sd">        scale: The scale of the image. Defaults to Vector(1, 1).</span>
-<span class="sd">        anti_aliasing: Whether or not to use anti-aliasing. Defaults to False.</span>
-<span class="sd">        flipx: Whether or not to flip the image horizontally. Defaults to False.</span>
-<span class="sd">        flipy: Whether or not to flip the image vertically. Defaults to False.</span>
-<span class="sd">        offset: The offset of the image from the gameobject. Defaults to Vector(0, 0).</span>
+<span class="sd">        scale: The scale of the image. Defaults to (1, 1).</span>
+<span class="sd">        offset: The offset of the image from the gameobject. Defaults to (0, 0).</span>
 <span class="sd">        rot_offset: The rotation offset of the image. Defaults to 0.</span>
+<span class="sd">        af: Whether to use anisotropic filtering. Defaults to False.</span>
 <span class="sd">        z_index: The z-index of the image. Defaults to 0.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">rel_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">anti_aliasing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">flipx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">rel_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">rot_offset</span><span class="o">=</span><span class="n">rot_offset</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="n">z_index</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">rel_path</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Image rel_path cannot be an empty string.&quot;</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">singular</span> <span class="o">=</span> <span class="kc">False</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_aa</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">anti_aliasing</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_flipx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">flipx</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">flipy</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">scale</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_resize_scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># This scale factor is changed when the image is resized.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_original</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">clone_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The SDL Surface of the image.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">image</span>
-
-    <span class="nd">@image</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_original</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">clone_surface</span><span class="p">(</span><span class="n">new</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The scale of the image.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span>
-
-    <span class="nd">@scale</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">rot_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The rotation offset of the image.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rot</span>
-
-    <span class="nd">@rot_offset</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">rot_offset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rot</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">flipx</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Whether or not the image is flipped horizontally.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flipx</span>
-
-    <span class="nd">@flipx</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">flipx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_flipx</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">flipy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Whether or not the image is flipped vertically.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flipy</span>
-
-    <span class="nd">@flipy</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">flipy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_flipy</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">aa</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Whether or not the image is anti-aliased.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aa</span>
-
-    <span class="nd">@aa</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">aa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_aa</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
-
-<div class="viewcode-block" id="Image.get_rect"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image.get_rect">[docs]</a>    <span class="k">def</span> <span class="nf">get_rect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Rectangle</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Generates the rectangular bounding box of the image.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The Rectangle hitbox that bounds the image.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Image.get_size"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image.get_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the current size of the image.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The size of the image</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Image.get_size_original"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image.get_size_original">[docs]</a>    <span class="k">def</span> <span class="nf">get_size_original</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the original size of the image.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Vector: The original size of the image.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">get_size_original</span><span class="p">()</span></div>
-
-    <span class="k">def</span> <span class="nf">_update_sprite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">aa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aa</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span>
-                <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">x</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">flipx</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resize_scale</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-                <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">y</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">flipy</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resize_scale</span><span class="o">.</span><span class="n">y</span>
-            <span class="p">)</span>
-
-<div class="viewcode-block" id="Image.resize"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image.resize">[docs]</a>    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_size</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Resize the image to a given size in pixels.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            new_size: The new size of the image in pixels.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">new_size</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">new_size</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">new_size</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">new_size</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_resize_scale</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">new_size</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_size_original</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">new_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_size_original</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span></div>
-
-<div class="viewcode-block" id="Image.update"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span>
-            <span class="k">return</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_update_sprite</span><span class="p">()</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Image.draw"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span>
-            <span class="k">return</span>
-
-        <span class="n">Draw</span><span class="o">.</span><span class="n">queue_sprite</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="p">,</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">-</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span>
-        <span class="p">)</span></div>
-
-<div class="viewcode-block" id="Image.delete"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Deletes the image component&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sprite</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">rot_offset</span><span class="p">,</span> <span class="n">af</span><span class="p">,</span> <span class="n">z_index</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">:</span> <span class="n">Sprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="n">rel_path</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="n">rot_offset</span><span class="p">,</span> <span class="n">af</span><span class="o">=</span><span class="n">af</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Image.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.image.Image.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Clones the current image.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Image: The cloned image.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">new</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span>
-            <span class="s2">&quot;&quot;</span><span class="p">,</span>
-            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span>
-            <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span>
-            <span class="n">anti_aliasing</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">aa</span><span class="p">,</span>
-            <span class="n">flipx</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">flipx</span><span class="p">,</span>
-            <span class="n">flipy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">flipy</span><span class="p">,</span>
-            <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span>
-            <span class="n">z_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">new</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">clone_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">)</span>
-        <span class="n">new</span><span class="o">.</span><span class="n">rot_offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span>
-        <span class="k">return</span> <span class="n">new</span></div></div>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">af</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">)</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">img</span></div></div>
 </pre></div> 
         </article>
       </div>

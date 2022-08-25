@@ -2,13 +2,13 @@
 <html class="no-js" lang="en">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta property="og:title" content="Step 3 - Adding Player Behavior" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/tutorials/platformer/step3.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="In this step, we will be adding player behavior to our character. We want our dinosaur to be able to move left, right and jump. We also want to apply physics laws to him, such as gravity and collisions with future obstacles. First, let’s add physics to our player. To do this, we will add a RigidB..." />
+  <meta property="og:description" content="In this step, we will be adding player behavior to our character. We want our dinosaur to be able to move left, right and jump. We also want to apply physics laws to him, such as gravity and collisions with future obstacles. First, let's add physics to our player. To do this, we will add a RigidB..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Step 4 - Creating a Level" href="../step4/" /><link rel="prev" title="Step 2 - Creating a Player" href="../step2/" />
@@ -320,7 +320,7 @@
 <p>In this step, we will be adding player behavior to our character.</p>
 <p>We want our dinosaur to be able to move left, right and jump.
 We also want to apply physics laws to him, such as gravity and collisions with future obstacles.</p>
-<p>First, let’s add physics to our player. To do this, we will add a <a class="reference internal" href="../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody" title="rubato.struct.gameobject.physics.rigidbody.RigidBody"><code class="xref py py-func docutils literal notranslate"><span class="pre">RigidBody</span></code></a> component to our
+<p>First, let's add physics to our player. To do this, we will add a <a class="reference internal" href="../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody" title="rubato.struct.gameobject.physics.rigidbody.RigidBody"><code class="xref py py-func docutils literal notranslate"><span class="pre">RigidBody</span></code></a> component to our
 player. Add the following code after the animation code, but before the <code class="docutils literal notranslate"><span class="pre">main.add</span></code> call.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the player rigidbody</span>
 <span class="n">player_body</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">(</span>
@@ -338,7 +338,7 @@ player. Add the following code after the animation code, but before the <code cl
 </ul>
 </dd>
 </dl>
-<p>Let’s also add a hitbox to our player. For simplicity, we will use a rectangular hitbox. Add the following code right after the previous block.</p>
+<p>Let's also add a hitbox to our player. For simplicity, we will use a rectangular hitbox. Add the following code right after the previous block.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># add a hitbox to the player with the collider</span>
 <span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
     <span class="n">width</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
@@ -347,13 +347,13 @@ player. Add the following code after the animation code, but before the <code cl
 <span class="p">))</span>
 </pre></div>
 </div>
-<p>This rectangle won’t actually draw unless the following line is added.
-Feel free to remove the following line once you’ve confirmed that the rectangle was added properly.</p>
+<p>This rectangle won't actually draw unless the following line is added.
+Feel free to remove the following line once you've confirmed that the rectangle was added properly.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rb</span><span class="o">.</span><span class="n">Game</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="../../../_images/12.png"><img alt="../../../_images/12.png" class="align-center" src="../../../_images/12.png" style="width: 75%;" /></a>
-<p>Next let’s add movement. Since we need to check player input every frame, lets create a custom update function.</p>
+<p>Next let's add movement. Since we need to check player input every frame, lets create a custom update function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a custom update function</span>
 <span class="c1"># this function is run every frame</span>
 <span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
@@ -363,7 +363,7 @@ Feel free to remove the following line once you’ve confirmed that the rectangl
 </pre></div>
 </div>
 <p>Add the above code between the <code class="docutils literal notranslate"><span class="pre">main.add</span></code> and the <code class="docutils literal notranslate"><span class="pre">rb.begin</span></code> lines. Anything inside this custom update function will be run every frame. Inside
-this function, we will check for player input and update the player’s velocity accordingly:</p>
+this function, we will check for player input and update the player's velocity accordingly:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">):</span>
         <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">300</span>
@@ -375,14 +375,14 @@ this function, we will check for player input and update the player’s velocity
         <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
-<p>Here we check for player input using <a class="reference internal" href="../../../api/#rubato.utils.rb_input.Input.key_pressed" title="rubato.utils.rb_input.Input.key_pressed"><code class="xref py py-func docutils literal notranslate"><span class="pre">key_pressed()</span></code></a>. We then update the player’s horizontal velocity
-in the corresponding direction. We also flip the player’s animation depending on the direction we want to face. Now, when you press “a” or “d” you
+<p>Here we check for player input using <a class="reference internal" href="../../../api/#rubato.utils.rb_input.Input.key_pressed" title="rubato.utils.rb_input.Input.key_pressed"><code class="xref py py-func docutils literal notranslate"><span class="pre">key_pressed()</span></code></a>. We then update the player's horizontal velocity
+in the corresponding direction. We also flip the player's animation depending on the direction we want to face. Now, when you press &quot;a&quot; or &quot;d&quot; you
 should be able to move the player left and right.</p>
-<p>Finally, let’s add a jump behavior. Unlike moving left and right, we don’t want the user to be able to move up forever if they keep holding the jump
+<p>Finally, let's add a jump behavior. Unlike moving left and right, we don't want the user to be able to move up forever if they keep holding the jump
 key. We also want to limit the number of jumps the player gets. We will do this by creating a jump counter and process the jump through an event
 listener.</p>
 <p>An event listener is a piece of code that waits for an event to be broadcast and then runs a function. We will create a function to handle jumping
-that is called when the “w” key is pressed.</p>
+that is called when the &quot;w&quot; key is pressed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a custom input listener</span>
 <span class="k">def</span> <span class="nf">handle_keydown</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">jumps</span>
@@ -402,20 +402,20 @@ that is called when the “w” key is pressed.</p>
 <span class="n">jumps</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>Let’s break this down.</p>
+<p>Let's break this down.</p>
 <p>First, we use the <code class="docutils literal notranslate"><span class="pre">global</span></code> keyword to declare that we are changing the global jumps variable.
-This variable will be used later when dealing with ground contact. Next, we check if the keydown event’s key is “w” and if you still
+This variable will be used later when dealing with ground contact. Next, we check if the keydown event's key is &quot;w&quot; and if you still
 have jumps remaining. If so, we set your upwards velocity to 800 (remember that negative y values represent up on the screen).
 We also want to vary the jump animation on your last jump. The first is a regular jump and the second is a somersault.
-Finally, we decrement the number of jumps you have left, so you can’t jump infinitely.</p>
+Finally, we decrement the number of jumps you have left, so you can't jump infinitely.</p>
 <p>The <code class="code docutils literal notranslate"><span class="pre">rb.Radio.listen(&quot;KEYDOWN&quot;,</span> <span class="pre">handle_keydown)</span></code> line is where we tell rubato to listen for a keydown event and run the <code class="docutils literal notranslate"><span class="pre">handle_keydown</span></code> function
 whenever that event is broadcast. Note that you can also replace <code class="docutils literal notranslate"><span class="pre">&quot;KEYDOWN&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">rb.Events.KEYDOWN</span></code> and get the same functionality.
 <a class="reference internal" href="../../../api/#rubato.utils.radio.Events" title="rubato.utils.radio.Events"><code class="xref py py-func docutils literal notranslate"><span class="pre">Events</span></code></a> have all other rubato-triggered events that you can listen for.</p>
 <p>Running the script at this point should show a falling dinosaur, and let you dump twice and move a little left and right before falling to your doom.
-In the next step, we’ll be building the level for the player to explore.</p>
+In the next step, we'll be building the level for the player to explore.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
-Here’s the full source code if you’ve been following along:<div class="sd-summary-down docutils">
+Here's the full source code if you've been following along:<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
