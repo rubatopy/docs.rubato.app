@@ -343,6 +343,10 @@
     <span class="sd">&quot;&quot;&quot;Fired when a mouse button is released&quot;&quot;&quot;</span>
     <span class="n">MOUSEDOWN</span> <span class="o">=</span> <span class="s2">&quot;MOUSEDOWN&quot;</span>
     <span class="sd">&quot;&quot;&quot;Fired when a mouse button is pressed&quot;&quot;&quot;</span>
+    <span class="n">MOUSEWHEEL</span> <span class="o">=</span> <span class="s2">&quot;MOUSEWHEEL&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Fired when the mouse wheel is scrolled&quot;&quot;&quot;</span>
+    <span class="n">SCROLL</span> <span class="o">=</span> <span class="n">MOUSEWHEEL</span>
+    <span class="sd">&quot;&quot;&quot;Same as MOUSEWHEEL&quot;&quot;&quot;</span>
     <span class="n">JOYAXISMOTION</span> <span class="o">=</span> <span class="s2">&quot;JOYAXISMOTION&quot;</span>
     <span class="sd">&quot;&quot;&quot;Fired when a controller joystick axis is moved&quot;&quot;&quot;</span>
     <span class="n">JOYHATMOTION</span> <span class="o">=</span> <span class="s2">&quot;JOYHATMOTION&quot;</span>
@@ -441,13 +445,27 @@
                 <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                     <span class="n">event_name</span><span class="p">,</span>
                     <span class="p">{</span>
-                        <span class="s2">&quot;mouse_button&quot;</span><span class="p">:</span> <span class="n">mouse_button</span><span class="p">,</span>
+                        <span class="s2">&quot;button&quot;</span><span class="p">:</span> <span class="n">mouse_button</span><span class="p">,</span>
                         <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                         <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                         <span class="s2">&quot;clicks&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicks</span><span class="p">,</span>
                         <span class="s2">&quot;which&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
                         <span class="s2">&quot;windowID&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">windowID</span><span class="p">,</span>
                         <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEWHEEL</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                    <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEWHEEL</span><span class="p">,</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                        <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                        <span class="c1"># &quot;direction&quot;: event.wheel.direction,</span>
+                        <span class="s2">&quot;precise x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseX</span><span class="p">,</span>
+                        <span class="s2">&quot;precise y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseY</span><span class="p">,</span>
+                        <span class="s2">&quot;which&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                        <span class="s2">&quot;windowID&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">windowID</span><span class="p">,</span>
                     <span class="p">},</span>
                 <span class="p">)</span>
             <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYAXISMOTION</span><span class="p">:</span>

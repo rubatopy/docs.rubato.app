@@ -512,7 +512,7 @@
                 <span class="k">if</span> <span class="n">delay</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Delay</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">delay</span><span class="p">))</span>
 
-            <span class="c1"># dont allow updates to occur more than once in a millisecond</span>
+            <span class="c1"># don&#39;t allow updates to occur more than once in a millisecond</span>
             <span class="c1"># this will likely never occur but is a failsafe</span>
             <span class="k">while</span> <span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">==</span> <span class="n">Time</span><span class="o">.</span><span class="n">frame_start</span><span class="p">:</span>  <span class="c1"># pylint: disable= comparison-with-callable</span>
                 <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Delay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
