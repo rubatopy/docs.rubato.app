@@ -338,7 +338,7 @@ Defaults to None.</p></li>
 Defaults to &quot;off&quot;.</p></li>
 <li><p><strong>target_fps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The target frames per second. If set to 0, the target fps will be uncapped. Defaults to 0.</p></li>
 <li><p><strong>physics_fps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The physics simulation's frames per second. Defaults to 60.</p></li>
-<li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the window should be hidden. CANNOT BE CHANGED AFTER INIT CALL. Defaults to False.</p></li>
+<li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the window should be hidden. Defaults to False.</p></li>
 </ul>
 </dd>
 </dl>
@@ -4868,6 +4868,17 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.display.Display.hidden">
+<span class="sig-name descname"><span class="pre">hidden</span></span><a class="headerlink" href="#rubato.utils.display.Display.hidden" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether the window is currently hidden.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.display.Display.display_ratio">
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">display_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.utils.display.Display.display_ratio" title="Permalink to this definition">#</a></dt>
@@ -5007,6 +5018,18 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 <dd class="field-odd"><p>If save was successful.</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.display.Display.show_window">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">show_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/display/#Display.show_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.display.Display.show_window" title="Permalink to this definition">#</a></dt>
+<dd><p>Show the window.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.display.Display.hide_window">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hide_window</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/display/#Display.hide_window"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.display.Display.hide_window" title="Permalink to this definition">#</a></dt>
+<dd><p>Hide the window.</p>
 </dd></dl>
 
 <dl class="py property">
