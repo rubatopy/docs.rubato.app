@@ -307,7 +307,7 @@
     }
 </script>
 <h1>Source code for rubato.struct.surface</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;A Surface is a grid of pixels that you can draw shapes onto or edit individual pixels.&quot;&quot;&quot;</span>
+<span></span><span class="sd">&quot;&quot;&quot;An abstraction for a grid of pixels that can be drawn onto.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 
@@ -317,7 +317,7 @@
 
 <div class="viewcode-block" id="Surface"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface">[docs]</a><span class="k">class</span> <span class="nc">Surface</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A surface.</span>
+<span class="sd">    A grid of pixels that can be modified without being attached to a game object.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        width: The width of the surface in pixels. Once set this cannot be changed. Defaults to 32.</span>

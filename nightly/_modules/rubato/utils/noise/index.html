@@ -308,7 +308,7 @@
 </script>
 <h1>Source code for rubato.utils.noise</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">A utility for generating simple smooth noise in your projects.</span>
+<span class="sd">A modified implementation of the OpenSimplex2 algorithm.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">InitError</span>
 
@@ -316,7 +316,7 @@
 <span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Noise"><a class="viewcode-back" href="../../../../api/#rubato.utils.noise.Noise">[docs]</a><span class="k">class</span> <span class="nc">Noise</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A modified implementation of the OpenSimplex2 algorithm.</span>
+<span class="sd">    A utility for generating simple smooth noise, based on OpenSimplex2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="sd">&quot;&quot;&quot;The seed for the random noise. Setting to a fixed value will result in the same noise every time.&quot;&quot;&quot;</span>

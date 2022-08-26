@@ -310,7 +310,7 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">The Camera module handles where things are drawn.</span>
 <span class="sd">A camera can zoom, pan, and travel along the z-index.</span>
-<span class="sd">Items only render if their z-index is not more than that of the camera&#39;s.</span>
+<span class="sd">GameObjects only render if their z-index is not more than that of the camera&#39;s.</span>
 
 <span class="sd">The current scene&#39;s camera can be accessed through :code:`Game.camera`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -319,7 +319,7 @@
 
 <div class="viewcode-block" id="Camera"><a class="viewcode-back" href="../../../../api/#rubato.utils.camera.Camera">[docs]</a><span class="k">class</span> <span class="nc">Camera</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The camera class.</span>
+<span class="sd">    An abstraction describing how a scene is viewed.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        pos: The position of the camera. Defaults to center of Display.</span>

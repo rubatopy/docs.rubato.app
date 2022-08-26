@@ -308,7 +308,7 @@
 </script>
 <h1>Source code for rubato.utils.sound</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">A fully functional, multi-channel sound system.</span>
+<span class="sd">A multi-channel sound system for rubato.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">walk</span>
@@ -332,9 +332,9 @@
 <span class="n">mixer</span><span class="o">.</span><span class="n">Mix_ChannelFinished</span><span class="p">(</span><span class="n">channel_finish_callback</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Sound"><a class="viewcode-back" href="../../../../api/#rubato.utils.sound.Sound">[docs]</a><span class="k">class</span> <span class="nc">Sound</span><span class="p">():</span>
+<div class="viewcode-block" id="Sound"><a class="viewcode-back" href="../../../../api/#rubato.utils.sound.Sound">[docs]</a><span class="k">class</span> <span class="nc">Sound</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A sound class that is used to manage the sounds throughout the project. We support the following audio formats:</span>
+<span class="sd">    Used to play sounds in rubato. The following file formats are supported:</span>
 <span class="sd">        * MP3</span>
 <span class="sd">        * WAV</span>
 <span class="sd">        * OGG</span>

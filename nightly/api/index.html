@@ -8,7 +8,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/api.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="This page describes all user-accessible API components to the rubato project. Game: The main game module. It controls everything in the game. Scenes and Their Management: Scenes holds two Groups. It also manages a Camera. Scenes are used to compartmentalize code. For example, you could have each ..." />
+  <meta property="og:description" content="This page describes all user-accessible API components to the rubato project. Game: An abstraction surrounding the main game loop in rubato. Scenes and Their Management: Scenes holds two Groups. It also manages a Camera. Scenes are used to compartmentalize code. For example, you could have each l..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="next" title="Event Details" href="../events/" /><link rel="prev" title="Getting Started" href="../intro/" />
@@ -357,11 +357,11 @@ Defaults to &quot;off&quot;.</p></li>
 
 <section id="module-rubato.game">
 <span id="game"></span><span id="game-class"></span><h2>Game<a class="headerlink" href="#module-rubato.game" title="Permalink to this heading">#</a></h2>
-<p>The main game module. It controls everything in the game.</p>
+<p>An abstraction surrounding the main game loop in rubato.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.game.Game">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Game</span></span><a class="reference internal" href="../_modules/rubato/game/#Game"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game" title="Permalink to this definition">#</a></dt>
-<dd><p>The main game class.</p>
+<dd><p>A static class controlling rubato game flow.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.game.Game.debug">
 <span class="sig-name descname"><span class="pre">debug</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#rubato.game.Game.debug" title="Permalink to this definition">#</a></dt>
@@ -480,12 +480,12 @@ further compartmentalize items. For example, items in 2 different groups won't c
 we won't be using Groups as we don't need this functionality here.</p>
 <section id="scene">
 <span id="id1"></span><h3>Scene<a class="headerlink" href="#scene" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.struct.scene"></span><p>The Scene class which is a collection of groups. It also houses the current scene camera.
-Scenes are built with a root group that everything is added to.</p>
+<span class="target" id="module-rubato.struct.scene"></span><p>An abstraction for a &quot;level&quot;, or scene, in rubato.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.scene.Scene">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.white</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/scene/#Scene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.scene.Scene" title="Permalink to this definition">#</a></dt>
-<dd><p>A scene is a collection of groups.</p>
+<dd><p>A scene divides different, potentially unrelated, sections of a game into groups.
+For instance, there may be a scene for the main menu, a scene for each level, and a scene for the win screen.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -656,12 +656,12 @@ Is empty by default an can be overridden.</p>
 <span id="id2"></span><h4>Camera<a class="headerlink" href="#camera" title="Permalink to this heading">#</a></h4>
 <span class="target" id="module-rubato.utils.camera"></span><p>The Camera module handles where things are drawn.
 A camera can zoom, pan, and travel along the z-index.
-Items only render if their z-index is not more than that of the camera's.</p>
+GameObjects only render if their z-index is not more than that of the camera's.</p>
 <p>The current scene's camera can be accessed through <code class="code docutils literal notranslate"><span class="pre">Game.camera</span></code>.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.camera.Camera">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Math.INF</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/camera/#Camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.camera.Camera" title="Permalink to this definition">#</a></dt>
-<dd><p>The camera class.</p>
+<dd><p>An abstraction describing how a scene is viewed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -738,7 +738,9 @@ Items only render if their z-index is not more than that of the camera's.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.group.Group">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/group/#Group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.group.Group" title="Permalink to this definition">#</a></dt>
-<dd><p>The group class implementation.</p>
+<dd><p>A divider between separate categories of game objects.
+Can be used to differentiate between different &quot;groups&quot; of elements that you don't want to interact;
+i.e. you don't want a gameobject representing an enemy to collide with the coins in the scene.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -920,11 +922,12 @@ changes something about the Game Object. For example, an Image component draws a
 Game Object's position.</p>
 <section id="module-rubato.struct.gameobject.game_object">
 <span id="game-object"></span><span id="gameobj"></span><h3>Game Object<a class="headerlink" href="#module-rubato.struct.gameobject.game_object" title="Permalink to this heading">#</a></h3>
-<p>A game object is a basic element that holds components, postion, and z_index.</p>
+<p>A game object is a basic element describing a &quot;thing&quot; in rubato.
+Its functionality is defined by the components it holds.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.game_object.GameObject">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GameObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/game_object/#GameObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.game_object.GameObject" title="Permalink to this definition">#</a></dt>
-<dd><p>The base game object class.</p>
+<dd><p>An element describing a set of functionality grouped as a &quot;thing&quot;, such as a player or a wall.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1116,7 +1119,7 @@ Game Object's position.</p>
 <section id="components">
 <span id="id4"></span><h3>Components<a class="headerlink" href="#components" title="Permalink to this heading">#</a></h3>
 <p>The default Component class.</p>
-<span class="target" id="module-rubato.struct.gameobject.component"></span><p>The component module that represents the template for all components.</p>
+<span class="target" id="module-rubato.struct.gameobject.component"></span><p>The component abstraction that represents a template for all component types.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Each component can only be attached to one game object. To add one component to multiple game objects, use the
@@ -1262,7 +1265,7 @@ not be used directly. Instead, create another class and extend from this one.</p
 
 <section id="raster">
 <span id="id5"></span><h4>Raster<a class="headerlink" href="#raster" title="Permalink to this heading">#</a></h4>
-<span class="target" id="module-rubato.struct.gameobject.sprites.raster"></span><p>A module that contains a component wrappers for Surface and Sprite.</p>
+<span class="target" id="module-rubato.struct.gameobject.sprites.raster"></span><p>Abstract component for manipulating pixels attached to a game object.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Raster">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Raster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">af</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/raster/#Raster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Raster" title="Permalink to this definition">#</a></dt>
@@ -1619,7 +1622,7 @@ not be used directly. Instead, create another class and extend from this one.</p
 </section>
 <section id="image">
 <span id="id6"></span><h4>Image<a class="headerlink" href="#image" title="Permalink to this heading">#</a></h4>
-<span class="target" id="module-rubato.struct.gameobject.sprites.image"></span><p>Image is a Component that handles rendering of images.</p>
+<span class="target" id="module-rubato.struct.gameobject.sprites.image"></span><p>Static image component for game objects.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.image.Image">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rel_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">af</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/image/#Image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.image.Image" title="Permalink to this definition">#</a></dt>
@@ -1979,7 +1982,7 @@ not be used directly. Instead, create another class and extend from this one.</p
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Font()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">justify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/text/#Text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text" title="Permalink to this definition">#</a></dt>
-<dd><p>A text component subclass. Add this to game objects or UI elements to give them text.</p>
+<dd><p>A text component. Add this to game objects or UI elements to give them text.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2959,7 +2962,7 @@ Deprecated.</p>
 
 <section id="spritesheet">
 <span id="id11"></span><h5>Spritesheet<a class="headerlink" href="#spritesheet" title="Permalink to this heading">#</a></h5>
-<span class="target" id="module-rubato.struct.gameobject.sprites.spritesheet"></span><p>A module to load, manage, and interact with spritesheets.</p>
+<span class="target" id="module-rubato.struct.gameobject.sprites.spritesheet"></span><p>Utility class for loading spritesheets.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.spritesheet.Spritesheet">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Spritesheet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rel_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sprite_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(32,</span> <span class="pre">32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/spritesheet/#Spritesheet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.spritesheet.Spritesheet" title="Permalink to this definition">#</a></dt>
@@ -4280,8 +4283,7 @@ Creating concave polygons will result in undesired behavior.</p>
 </section>
 <section id="rigidbody">
 <span id="id14"></span><h4>RigidBody<a class="headerlink" href="#rigidbody" title="Permalink to this heading">#</a></h4>
-<span class="target" id="module-rubato.struct.gameobject.physics.rigidbody"></span><p>The Rigidbody component contains an implementation of rigidbody physics. They
-have hitboxes and can collide and interact with other rigidbodies.</p>
+<span class="target" id="module-rubato.struct.gameobject.physics.rigidbody"></span><p>The Rigidbody component describes how the physics engine handles a game object.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.physics.rigidbody.RigidBody">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RigidBody</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gravity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">friction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounciness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_speed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(Math.INF,</span> <span class="pre">Math.INF)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ang_vel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_correction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/rigidbody/#RigidBody"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.rigidbody.RigidBody" title="Permalink to this definition">#</a></dt>
@@ -4798,7 +4800,7 @@ Resolves the collision using Rigidbody impulse resolution if applicable.</p>
 or playing a sound.</p>
 <section id="display">
 <span id="id17"></span><h3>Display<a class="headerlink" href="#display" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.display"></span><p>Global display class that allows for easy screen and window management.</p>
+<span class="target" id="module-rubato.utils.display"></span><p>Static class that allows for intuitive window management.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.display.Display">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Display</span></span><a class="reference internal" href="../_modules/rubato/utils/display/#Display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.display.Display" title="Permalink to this definition">#</a></dt>
@@ -5212,7 +5214,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 </section>
 <section id="input">
 <span id="id18"></span><h3>Input<a class="headerlink" href="#input" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.rb_input"></span><p>The Input module is the way you collect input from the user.</p>
+<span class="target" id="module-rubato.utils.rb_input"></span><p>An abstraction for checking for hardware input from a user.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rb_input.Input">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Input</span></span><a class="reference internal" href="../_modules/rubato/utils/rb_input/#Input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_input.Input" title="Permalink to this definition">#</a></dt>
@@ -5668,12 +5670,12 @@ and dimensions</p>
 </section>
 <section id="sound">
 <span id="id19"></span><h3>Sound<a class="headerlink" href="#sound" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.sound"></span><p>A fully functional, multi-channel sound system.</p>
+<span class="target" id="module-rubato.utils.sound"></span><p>A multi-channel sound system for rubato.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.sound.Sound">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Sound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rel_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sound_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/sound/#Sound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.sound.Sound" title="Permalink to this definition">#</a></dt>
 <dd><dl class="simple">
-<dt>A sound class that is used to manage the sounds throughout the project. We support the following audio formats:</dt><dd><ul class="simple">
+<dt>Used to play sounds in rubato. The following file formats are supported:</dt><dd><ul class="simple">
 <li><p>MP3</p></li>
 <li><p>WAV</p></li>
 <li><p>OGG</p></li>
@@ -5831,11 +5833,11 @@ dictionary by filename.</p>
 <p>These classes are utility classes that are used to make certain tasks easier.</p>
 <section id="surface">
 <span id="id20"></span><h3>Surface<a class="headerlink" href="#surface" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.struct.surface"></span><p>A Surface is a grid of pixels that you can draw shapes onto or edit individual pixels.</p>
+<span class="target" id="module-rubato.struct.surface"></span><p>An abstraction for a grid of pixels that can be drawn onto.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.surface.Surface">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">af</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/surface/#Surface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.surface.Surface" title="Permalink to this definition">#</a></dt>
-<dd><p>A surface.</p>
+<dd><p>A grid of pixels that can be modified without being attached to a game object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -6120,11 +6122,11 @@ Can be set to False to trigger a texture regeneration at the next draw cycle.</p
 
 <section id="sprite">
 <span id="id21"></span><h4>Sprite<a class="headerlink" href="#sprite" title="Permalink to this heading">#</a></h4>
-<span class="target" id="module-rubato.struct.sprite"></span><p>A sprite is a class that handles rendering of images.</p>
+<span class="target" id="module-rubato.struct.sprite"></span><p>Utility class for rendering images to the screen without using a game object.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.struct.sprite.Sprite">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Sprite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rel_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">af</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/sprite/#Sprite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.sprite.Sprite" title="Permalink to this definition">#</a></dt>
-<dd><p>A sprite is a class that handles rendering of images from your file system independent of Game Objects.</p>
+<dd><p>Renders images from your file system without being constrained to a game object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -6410,11 +6412,11 @@ Can be set to False to trigger a texture regeneration at the next draw cycle.</p
 </section>
 <section id="draw">
 <span id="id22"></span><h3>Draw<a class="headerlink" href="#draw" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.draw"></span><p>A static draw class for drawing things directly to the renderer.</p>
+<span class="target" id="module-rubato.utils.draw"></span><p>A static class for drawing things directly to the window.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.draw.Draw">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Draw</span></span><a class="reference internal" href="../_modules/rubato/utils/draw/#Draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.draw.Draw" title="Permalink to this definition">#</a></dt>
-<dd><p>Draws things to the renderer. Don't instantiate, instead use it as a static class.</p>
+<dd><p>A static class allowing drawing items to the window.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.draw.Draw.clear">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">background_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.white</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/draw/#Draw.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.draw.Draw.clear" title="Permalink to this definition">#</a></dt>
@@ -6725,7 +6727,7 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 </section>
 <section id="vector">
 <span id="id23"></span><h3>Vector<a class="headerlink" href="#vector" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.vector"></span><p>A vector implementation.</p>
+<span class="target" id="module-rubato.utils.vector"></span><p>An abstraction for a container of x and y values.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.vector.Vector">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/vector/#Vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.vector.Vector" title="Permalink to this definition">#</a></dt>
@@ -7593,7 +7595,7 @@ Code by David Eppstein, UC Irvine, 28 Feb 2002
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.noise.Noise">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Noise</span></span><a class="reference internal" href="../_modules/rubato/utils/noise/#Noise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.noise.Noise" title="Permalink to this definition">#</a></dt>
-<dd><p>A modified implementation of the OpenSimplex2 algorithm.</p>
+<dd><p>A utility for generating simple smooth noise, based on OpenSimplex2.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.noise.Noise.seed">
 <span class="sig-name descname"><span class="pre">seed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#rubato.utils.noise.Noise.seed" title="Permalink to this definition">#</a></dt>
@@ -7644,7 +7646,7 @@ This is identical to <a class="reference internal" href="#rubato.utils.noise.Noi
 </section>
 <section id="time">
 <span id="id26"></span><h3>Time<a class="headerlink" href="#time" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.rb_time"></span><p>A static time class to monitor time and to call functions in the future.</p>
+<span class="target" id="module-rubato.utils.rb_time"></span><p>A static class to monitor time and to call functions at delay/interval.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.DelayedTask">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DelayedTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_stopped</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#DelayedTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.DelayedTask" title="Permalink to this definition">#</a></dt>
@@ -7712,7 +7714,7 @@ This is identical to <a class="reference internal" href="#rubato.utils.noise.Noi
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Time</span></span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#Time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.Time" title="Permalink to this definition">#</a></dt>
-<dd><p>The time class.</p>
+<dd><p>Implements time-related functions in rubato.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time.frames">
 <span class="sig-name descname"><span class="pre">frames</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#rubato.utils.rb_time.Time.frames" title="Permalink to this definition">#</a></dt>
@@ -7875,7 +7877,7 @@ This is a get-only property.</p>
 </section>
 <section id="color">
 <span id="id27"></span><h3>Color<a class="headerlink" href="#color" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.color"></span><p>This color module contains the Color class, which is used to represent colors in the game.</p>
+<span class="target" id="module-rubato.utils.color"></span><p>The representation for colors in rubato.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.color.Color">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color" title="Permalink to this definition">#</a></dt>
@@ -8393,17 +8395,19 @@ Defaults to &quot;mix&quot;.</p></li>
 </section>
 <section id="debug">
 <span id="id28"></span><h3>Debug<a class="headerlink" href="#debug" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.debug"></span><p>This Debug module provides a set of functions to help with debugging.</p>
+<span class="target" id="module-rubato.utils.debug"></span><p>A set of utility functions to help with debugging.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.debug.Debug">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Debug</span></span><a class="reference internal" href="../_modules/rubato/utils/debug/#Debug"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.debug.Debug" title="Permalink to this definition">#</a></dt>
-<dd><p>Debug comes with useful functions to help with debugging.</p>
+<dd><p>Useful static methods for debugging rubato projects.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.debug.Debug.draw_fps">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">draw_fps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/debug/#Debug.draw_fps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.debug.Debug.draw_fps" title="Permalink to this definition">#</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Draws the current FPS to the screen.
+Called automatically if <cite>Game.show_fps</cite> is True.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>font</strong> (<a class="reference internal" href="#rubato.utils.font.Font" title="rubato.utils.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a>) -- </p>
+<dd class="field-odd"><p><strong>font</strong> (<a class="reference internal" href="#rubato.utils.font.Font" title="rubato.utils.font.Font"><em>Font</em></a>) -- The font to use.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -8435,7 +8439,7 @@ Defaults to &quot;mix&quot;.</p></li>
 </section>
 <section id="font">
 <span id="debugdef"></span><span id="id29"></span><h3>Font<a class="headerlink" href="#font" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.font"></span><p>The font module for text rendering</p>
+<span class="target" id="module-rubato.utils.font"></span><p>A font abstraction used to render text.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.font.Font">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Roboto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">styles</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/font/#Font"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.font.Font" title="Permalink to this definition">#</a></dt>
@@ -8761,7 +8765,7 @@ broadcast. It may take in a params dictionary argument.</p></li>
 </section>
 <section id="errors">
 <span id="id31"></span><h3>Errors<a class="headerlink" href="#errors" title="Permalink to this heading">#</a></h3>
-<span class="target" id="module-rubato.utils.error"></span><p>Some custom errors</p>
+<span class="target" id="module-rubato.utils.error"></span><p>Custom errors for rubato.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="rubato.utils.error.Error">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Error</span></span><a class="reference internal" href="../_modules/rubato/utils/error/#Error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.error.Error" title="Permalink to this definition">#</a></dt>

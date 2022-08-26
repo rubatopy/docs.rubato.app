@@ -308,8 +308,7 @@
 </script>
 <h1>Source code for rubato.utils.rb_time</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">A static time class to monitor time and to call functions in the future.</span>
-
+<span class="sd">A static class to monitor time and to call functions at delay/interval.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
@@ -358,7 +357,7 @@
 <span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Time"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time">[docs]</a><span class="k">class</span> <span class="nc">Time</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The time class.</span>
+<span class="sd">    Implements time-related functions in rubato.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">frames</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>

@@ -308,7 +308,7 @@
 </script>
 <h1>Source code for rubato.utils.debug</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">This Debug module provides a set of functions to help with debugging.</span>
+<span class="sd">A set of utility functions to help with debugging.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">traceback</span>
 
@@ -318,7 +318,7 @@
 <span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Debug"><a class="viewcode-back" href="../../../../api/#rubato.utils.debug.Debug">[docs]</a><span class="k">class</span> <span class="nc">Debug</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Debug comes with useful functions to help with debugging.</span>
+<span class="sd">    Useful static methods for debugging rubato projects.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -326,6 +326,13 @@
 
 <div class="viewcode-block" id="Debug.draw_fps"><a class="viewcode-back" href="../../../../api/#rubato.utils.debug.Debug.draw_fps">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">draw_fps</span><span class="p">(</span><span class="n">font</span><span class="p">:</span> <span class="n">Font</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draws the current FPS to the screen.</span>
+<span class="sd">        Called automatically if `Game.show_fps` is True.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            font (Font): The font to use.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fs</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">smooth_fps</span><span class="p">)</span>
         <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">h</span> <span class="o">//</span> <span class="mi">2</span>
