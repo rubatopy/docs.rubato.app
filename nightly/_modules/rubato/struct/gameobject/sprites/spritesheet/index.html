@@ -364,9 +364,6 @@
 
                 <span class="n">sprite</span><span class="p">:</span> <span class="n">Sprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
                 <span class="n">sprite</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">contents</span>
-                <span class="c1"># pylint: disable=protected-access</span>
-                <span class="n">sprite</span><span class="o">.</span><span class="n">_original</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">contents</span>
-                <span class="n">sprite</span><span class="o">.</span><span class="n">_changed</span> <span class="o">=</span> <span class="kc">True</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">_sprites</span><span class="p">[</span><span class="n">y</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sprite</span><span class="p">)</span>
 

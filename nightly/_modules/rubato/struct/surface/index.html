@@ -345,7 +345,7 @@
             <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">pixel_format</span>
         <span class="p">)</span><span class="o">.</span><span class="n">contents</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span>
         <span class="sd">&quot;&quot;&quot;(READ ONLY) The generated sprite texture.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -359,7 +359,7 @@
         <span class="sd">&quot;&quot;&quot;(READ ONLY) The height of the surface in pixels.&quot;&quot;&quot;</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">surf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">surf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The surface that is rendered.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span>
 
@@ -379,7 +379,7 @@
     <span class="nd">@af</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">af</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_af</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;tx&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">set_scale_mode</span><span class="p">(</span><span class="s2">&quot;nearest&quot;</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">af</span> <span class="k">else</span> <span class="s2">&quot;linear&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Surface.get_size"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.get_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
@@ -418,9 +418,7 @@
 <div class="viewcode-block" id="Surface.delete"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Deletes the sprite&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tx</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tx</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Surface.clear"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -546,7 +544,7 @@
 
 <div class="viewcode-block" id="Surface.draw_poly"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.draw_poly">[docs]</a>    <span class="k">def</span> <span class="nf">draw_poly</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -613,8 +611,8 @@
 <span class="sd">            color: The color to switch.</span>
 <span class="sd">            new_color: The new color to switch to.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">)):</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="o">==</span> <span class="n">color</span><span class="p">:</span>
                     <span class="n">new_color</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pixel_tuple</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Preserve the alpha value.</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">draw_point</span><span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">new_color</span><span class="p">)</span>

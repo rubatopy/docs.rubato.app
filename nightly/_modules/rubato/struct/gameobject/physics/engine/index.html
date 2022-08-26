@@ -312,11 +312,11 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">import</span> <span class="nn">math</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">RigidBody</span><span class="p">,</span> <span class="n">Circle</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">RigidBody</span><span class="p">,</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Rectangle</span>
 <span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">InitError</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Hitbox</span><span class="p">,</span> <span class="n">Polygon</span><span class="p">,</span> <span class="n">Rectangle</span>
+    <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Hitbox</span>
 
 
 <span class="c1"># THIS IS A STATIC CLASS</span>
@@ -339,8 +339,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># INITIALIZATION STEP</span>
 
-        <span class="n">rb_a</span><span class="p">:</span> <span class="n">RigidBody</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">shape_a</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RigidBody</span><span class="p">)</span>
-        <span class="n">rb_b</span><span class="p">:</span> <span class="n">RigidBody</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">shape_b</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RigidBody</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">shape_a</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">col</span><span class="o">.</span><span class="n">shape_b</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">rb_a</span><span class="p">:</span> <span class="n">RigidBody</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">shape_a</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RigidBody</span><span class="p">)</span>
+        <span class="n">rb_b</span><span class="p">:</span> <span class="n">RigidBody</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">shape_b</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">RigidBody</span><span class="p">)</span>
 
         <span class="n">a_none</span> <span class="o">=</span> <span class="n">rb_a</span> <span class="ow">is</span> <span class="kc">None</span>
         <span class="n">b_none</span> <span class="o">=</span> <span class="n">rb_b</span> <span class="ow">is</span> <span class="kc">None</span>
@@ -353,10 +356,13 @@
 
         <span class="c1"># calculate friction coefficient</span>
         <span class="k">if</span> <span class="n">a_none</span><span class="p">:</span>
-            <span class="n">mu</span> <span class="o">=</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">friction</span> <span class="o">*</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">friction</span>
+            <span class="n">rv</span> <span class="o">=</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">velocity</span>  <span class="c1"># type: ignore</span>
+            <span class="n">mu</span> <span class="o">=</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">friction</span> <span class="o">*</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">friction</span>  <span class="c1"># type: ignore</span>
         <span class="k">elif</span> <span class="n">b_none</span><span class="p">:</span>
+            <span class="n">rv</span> <span class="o">=</span> <span class="o">-</span><span class="n">rb_a</span><span class="o">.</span><span class="n">velocity</span>
             <span class="n">mu</span> <span class="o">=</span> <span class="n">rb_a</span><span class="o">.</span><span class="n">friction</span> <span class="o">*</span> <span class="n">rb_a</span><span class="o">.</span><span class="n">friction</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="n">rv</span> <span class="o">=</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">velocity</span> <span class="o">-</span> <span class="n">rb_a</span><span class="o">.</span><span class="n">velocity</span>
             <span class="n">mu</span> <span class="o">=</span> <span class="p">(</span><span class="n">rb_a</span><span class="o">.</span><span class="n">friction</span> <span class="o">*</span> <span class="n">rb_a</span><span class="o">.</span><span class="n">friction</span> <span class="o">+</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">friction</span> <span class="o">*</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">friction</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 
         <span class="c1"># find inverse masses</span>
@@ -375,7 +381,6 @@
         <span class="n">col</span><span class="o">.</span><span class="n">normal</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
 
         <span class="c1"># RESOLUTION STEP</span>
-        <span class="n">rv</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">b_none</span> <span class="k">else</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">velocity</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">a_none</span> <span class="k">else</span> <span class="n">rb_a</span><span class="o">.</span><span class="n">velocity</span><span class="p">)</span>
 
         <span class="n">contact_vel</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">normal</span><span class="p">)</span>
 
@@ -408,16 +413,17 @@
         <span class="n">correction</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">penetration</span> <span class="o">-</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="n">col</span><span class="o">.</span><span class="n">normal</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">a_none</span> <span class="ow">or</span> <span class="n">rb_a</span><span class="o">.</span><span class="n">static</span><span class="p">):</span>
-            <span class="n">rb_a</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">-=</span> <span class="n">correction</span> <span class="o">*</span> <span class="n">rb_a</span><span class="o">.</span><span class="n">pos_correction</span>
+            <span class="n">col</span><span class="o">.</span><span class="n">shape_a</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">-=</span> <span class="n">correction</span> <span class="o">*</span> <span class="n">rb_a</span><span class="o">.</span><span class="n">pos_correction</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">b_none</span> <span class="ow">or</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">static</span><span class="p">):</span>
-            <span class="n">rb_b</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">correction</span> <span class="o">*</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">pos_correction</span></div>
+            <span class="n">col</span><span class="o">.</span><span class="n">shape_b</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">correction</span> <span class="o">*</span> <span class="n">rb_b</span><span class="o">.</span><span class="n">pos_correction</span></div>
 
 <div class="viewcode-block" id="Engine.overlap"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.overlap">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">overlap</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">:</span> <span class="n">Hitbox</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">:</span> <span class="n">Hitbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determines if there is overlap between two hitboxes.</span>
 <span class="sd">        Returns a Manifold manifold if a collision occurs but does not resolve.</span>
+<span class="sd">        Note that this is only implemented for native rubato hitbox types (Rectangle, Polygon, Circle).</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            hitbox_a: The first hitbox to collide with.</span>
@@ -426,23 +432,31 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Returns a collision info object if overlap is detected or None if no collision is detected.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span>
+                          <span class="n">Rectangle</span> <span class="o">|</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Circle</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hitbox_b</span><span class="p">,</span> <span class="n">Rectangle</span> <span class="o">|</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Circle</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Engine.overlap() only supports Rectangle, Polygon, and Circle objects.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">hitbox_a</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">hitbox_b</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hitbox_b</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">Engine</span><span class="o">.</span><span class="n">circle_circle_test</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_circle_circle_test</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span>
 
-            <span class="k">return</span> <span class="n">Engine</span><span class="o">.</span><span class="n">circle_polygon_test</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_circle_polygon_test</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hitbox_b</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>
-            <span class="n">r</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">circle_polygon_test</span><span class="p">(</span><span class="n">hitbox_b</span><span class="p">,</span> <span class="n">hitbox_a</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_circle_polygon_test</span><span class="p">(</span><span class="n">hitbox_b</span><span class="p">,</span> <span class="n">hitbox_a</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">r</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="n">Engine</span><span class="o">.</span><span class="n">polygon_polygon_test</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_polygon_polygon_test</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Engine.collide"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.collide">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">collide</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">:</span> <span class="n">Hitbox</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">:</span> <span class="n">Hitbox</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Collides two hitboxes (if they overlap), calling their callbacks if they exist.</span>
 <span class="sd">        Resolves the collision using Rigidbody impulse resolution if applicable.</span>
+<span class="sd">        Note that this is only implemented for native rubato hitbox types (Rectangle, Polygon, Circle).</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            hitbox_a: The first hitbox to collide with.</span>
@@ -474,8 +488,8 @@
         <span class="n">hitbox_a</span><span class="o">.</span><span class="n">on_collide</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
         <span class="n">hitbox_b</span><span class="o">.</span><span class="n">on_collide</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">flip</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="Engine.circle_circle_test"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.circle_circle_test">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">circle_circle_test</span><span class="p">(</span><span class="n">circle_a</span><span class="p">:</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">circle_b</span><span class="p">:</span> <span class="n">Circle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_circle_circle_test</span><span class="p">(</span><span class="n">circle_a</span><span class="p">:</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">circle_b</span><span class="p">:</span> <span class="n">Circle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Checks for overlap between two circles&quot;&quot;&quot;</span>
         <span class="n">a_rad</span> <span class="o">=</span> <span class="n">circle_a</span><span class="o">.</span><span class="n">true_radius</span><span class="p">()</span>
         <span class="n">b_rad</span> <span class="o">=</span> <span class="n">circle_b</span><span class="o">.</span><span class="n">true_radius</span><span class="p">()</span>
@@ -498,11 +512,14 @@
             <span class="n">pen</span> <span class="o">=</span> <span class="n">t_rad</span> <span class="o">-</span> <span class="n">dist</span>
             <span class="n">norm</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">d_x</span> <span class="o">/</span> <span class="n">dist</span><span class="p">,</span> <span class="n">d_y</span> <span class="o">/</span> <span class="n">dist</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">Manifold</span><span class="p">(</span><span class="n">circle_a</span><span class="p">,</span> <span class="n">circle_b</span><span class="p">,</span> <span class="n">pen</span><span class="p">,</span> <span class="n">norm</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Manifold</span><span class="p">(</span><span class="n">circle_a</span><span class="p">,</span> <span class="n">circle_b</span><span class="p">,</span> <span class="n">pen</span><span class="p">,</span> <span class="n">norm</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Engine.circle_polygon_test"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.circle_polygon_test">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">circle_polygon_test</span><span class="p">(</span><span class="n">circle</span><span class="p">:</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">polygon</span><span class="p">:</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_circle_polygon_test</span><span class="p">(</span><span class="n">circle</span><span class="p">:</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">polygon</span><span class="p">:</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Checks for overlap between a circle and a polygon&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">polygon</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
         <span class="n">verts</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">.</span><span class="n">offset_verts</span><span class="p">()</span>
         <span class="n">circle_rad</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">true_radius</span><span class="p">()</span>
         <span class="n">circle_pos</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">true_pos</span><span class="p">()</span>
@@ -514,7 +531,7 @@
         <span class="n">face_normal</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">verts</span><span class="p">)):</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">center</span> <span class="o">-</span> <span class="n">verts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">center</span> <span class="o">-</span> <span class="n">verts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 
             <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="n">circle_rad</span><span class="p">:</span>
                 <span class="k">return</span>
@@ -524,7 +541,7 @@
                 <span class="n">face_normal</span> <span class="o">=</span> <span class="n">i</span>
 
         <span class="k">if</span> <span class="n">separation</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">norm</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">face_normal</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+            <span class="n">norm</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">face_normal</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">Manifold</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">polygon</span><span class="p">,</span> <span class="n">circle_rad</span><span class="p">,</span> <span class="n">norm</span><span class="p">)</span>
 
         <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">verts</span><span class="p">[</span><span class="n">face_normal</span><span class="p">],</span> <span class="n">verts</span><span class="p">[(</span><span class="n">face_normal</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">verts</span><span class="p">)]</span>
@@ -546,24 +563,27 @@
 
             <span class="k">return</span> <span class="n">Manifold</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">polygon</span><span class="p">,</span> <span class="n">pen</span><span class="p">,</span> <span class="n">offs</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span><span class="o">.</span><span class="n">normalized</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">norm</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">face_normal</span><span class="p">)</span>
+            <span class="n">norm</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">face_normal</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">norm</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">center</span> <span class="o">-</span> <span class="n">v1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">circle_rad</span><span class="p">:</span>
                 <span class="k">return</span>
 
-            <span class="k">return</span> <span class="n">Manifold</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">polygon</span><span class="p">,</span> <span class="n">pen</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span></div>
+            <span class="k">return</span> <span class="n">Manifold</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">polygon</span><span class="p">,</span> <span class="n">pen</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">polygon</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Engine.polygon_polygon_test"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.polygon_polygon_test">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">polygon_polygon_test</span><span class="p">(</span><span class="n">shape_a</span><span class="p">:</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">shape_b</span><span class="p">:</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_polygon_polygon_test</span><span class="p">(</span><span class="n">shape_a</span><span class="p">:</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">shape_b</span><span class="p">:</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Checks for overlap between two polygons&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">shape_a</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">shape_b</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
         <span class="n">a_verts</span> <span class="o">=</span> <span class="n">shape_a</span><span class="o">.</span><span class="n">offset_verts</span><span class="p">()</span>
         <span class="n">b_verts</span> <span class="o">=</span> <span class="n">shape_b</span><span class="o">.</span><span class="n">offset_verts</span><span class="p">()</span>
 
-        <span class="n">pen_a</span><span class="p">,</span> <span class="n">face_a</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">axis_least_penetration</span><span class="p">(</span><span class="n">shape_a</span><span class="p">,</span> <span class="n">shape_b</span><span class="p">,</span> <span class="n">a_verts</span><span class="p">,</span> <span class="n">b_verts</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">pen_a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pen_a</span><span class="p">,</span> <span class="n">face_a</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_axis_least_penetration</span><span class="p">(</span><span class="n">shape_a</span><span class="p">,</span> <span class="n">shape_b</span><span class="p">,</span> <span class="n">a_verts</span><span class="p">,</span> <span class="n">b_verts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pen_a</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">face_a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 
-        <span class="n">pen_b</span><span class="p">,</span> <span class="n">face_b</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">axis_least_penetration</span><span class="p">(</span><span class="n">shape_b</span><span class="p">,</span> <span class="n">shape_a</span><span class="p">,</span> <span class="n">b_verts</span><span class="p">,</span> <span class="n">a_verts</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">pen_b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">pen_b</span><span class="p">,</span> <span class="n">face_b</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_axis_least_penetration</span><span class="p">(</span><span class="n">shape_b</span><span class="p">,</span> <span class="n">shape_a</span><span class="p">,</span> <span class="n">b_verts</span><span class="p">,</span> <span class="n">a_verts</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pen_b</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">face_b</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 
         <span class="k">if</span> <span class="n">pen_b</span> <span class="o">&lt;</span> <span class="n">pen_a</span><span class="p">:</span>
@@ -583,19 +603,22 @@
             <span class="n">side_plane_normal</span> <span class="o">=</span> <span class="p">(</span><span class="n">v2</span> <span class="o">-</span> <span class="n">v1</span><span class="p">)</span><span class="o">.</span><span class="n">normalized</span><span class="p">()</span>
             <span class="n">man</span><span class="o">.</span><span class="n">normal</span> <span class="o">=</span> <span class="n">side_plane_normal</span><span class="o">.</span><span class="n">perpendicular</span><span class="p">()</span> <span class="o">*</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">pen_b</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">man</span></div>
+        <span class="k">return</span> <span class="n">man</span>
 
-<div class="viewcode-block" id="Engine.axis_least_penetration"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.axis_least_penetration">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">axis_least_penetration</span><span class="p">(</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_axis_least_penetration</span><span class="p">(</span>
         <span class="n">a</span><span class="p">:</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Polygon</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">a_verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">b_verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Finds the axis of least penetration between two possibly colliding polygons.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">b</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
         <span class="n">best_dist</span> <span class="o">=</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
         <span class="n">best_ind</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a_verts</span><span class="p">)):</span>
-            <span class="n">n</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">get_normal</span><span class="p">(</span><span class="n">a_verts</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">get_support</span><span class="p">(</span><span class="n">b_verts</span><span class="p">,</span> <span class="o">-</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_get_normal</span><span class="p">(</span><span class="n">a_verts</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_get_support</span><span class="p">(</span><span class="n">b_verts</span><span class="p">,</span> <span class="o">-</span><span class="n">n</span><span class="p">)</span>
             <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_verts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span>
             <span class="n">d</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">s</span> <span class="o">-</span> <span class="n">v</span><span class="p">)</span>
 
@@ -605,10 +628,10 @@
                 <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
 
-        <span class="k">return</span> <span class="n">best_dist</span><span class="p">,</span> <span class="n">best_ind</span></div>
+        <span class="k">return</span> <span class="n">best_dist</span><span class="p">,</span> <span class="n">best_ind</span>
 
-<div class="viewcode-block" id="Engine.get_support"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.get_support">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_support</span><span class="p">(</span><span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_support</span><span class="p">(</span><span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Gets the furthest support vertex in a given direction.&quot;&quot;&quot;</span>
         <span class="n">best_proj</span> <span class="o">=</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
         <span class="n">best_vert</span> <span class="o">=</span> <span class="kc">None</span>
@@ -620,14 +643,14 @@
                 <span class="n">best_vert</span> <span class="o">=</span> <span class="n">v</span>
                 <span class="n">best_proj</span> <span class="o">=</span> <span class="n">projection</span>
 
-        <span class="k">return</span> <span class="n">best_vert</span></div>
+        <span class="k">return</span> <span class="n">best_vert</span>
 
-<div class="viewcode-block" id="Engine.get_normal"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Engine.get_normal">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_normal</span><span class="p">(</span><span class="n">verts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Finds a vector perpendicular to a side&quot;&quot;&quot;</span>
         <span class="n">face</span> <span class="o">=</span> <span class="p">(</span><span class="n">verts</span><span class="p">[(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">verts</span><span class="p">)]</span> <span class="o">-</span> <span class="n">verts</span><span class="p">[</span><span class="n">index</span><span class="p">])</span><span class="o">.</span><span class="n">perpendicular</span><span class="p">()</span>
         <span class="n">face</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">face</span></div></div>
+        <span class="k">return</span> <span class="n">face</span></div>
 
 
 <div class="viewcode-block" id="Manifold"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Manifold">[docs]</a><span class="k">class</span> <span class="nc">Manifold</span><span class="p">:</span>
@@ -643,14 +666,14 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">shape_a</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hitbox</span><span class="p">],</span>
-        <span class="n">shape_b</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hitbox</span><span class="p">],</span>
+        <span class="n">shape_a</span><span class="p">:</span> <span class="n">Hitbox</span><span class="p">,</span>
+        <span class="n">shape_b</span><span class="p">:</span> <span class="n">Hitbox</span><span class="p">,</span>
         <span class="n">penetration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">normal</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hitbox</span><span class="p">]</span> <span class="o">=</span> <span class="n">shape_a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span><span class="p">:</span> <span class="n">Hitbox</span> <span class="o">=</span> <span class="n">shape_a</span>
         <span class="sd">&quot;&quot;&quot;A reference to the first shape.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Hitbox</span><span class="p">]</span> <span class="o">=</span> <span class="n">shape_b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span><span class="p">:</span> <span class="n">Hitbox</span> <span class="o">=</span> <span class="n">shape_b</span>
         <span class="sd">&quot;&quot;&quot;A reference to the second shape.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">penetration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">penetration</span>
         <span class="sd">&quot;&quot;&quot;The amount by which the colliders are intersecting.&quot;&quot;&quot;</span>

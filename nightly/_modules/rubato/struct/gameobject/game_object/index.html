@@ -404,7 +404,7 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="GameObject.remove"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+<div class="viewcode-block" id="GameObject.remove"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Component</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Removes the first instance of a component from the game object.</span>
 
@@ -416,7 +416,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_ind</span><span class="p">(</span><span class="n">comp_type</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GameObject.remove_ind"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove_ind">[docs]</a>    <span class="k">def</span> <span class="nf">remove_ind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="n">ind</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="GameObject.remove_ind"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove_ind">[docs]</a>    <span class="k">def</span> <span class="nf">remove_ind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Component</span><span class="p">],</span> <span class="n">ind</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Removes a component from the game object.</span>
 
@@ -438,7 +438,7 @@
             <span class="sa">f</span><span class="s2">&quot;There are no components of type &#39;</span><span class="si">{</span><span class="n">comp_type</span><span class="si">}</span><span class="s2">&#39; in game object &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; or the index is out of bounds.&quot;</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="GameObject.remove_all"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove_all">[docs]</a>    <span class="k">def</span> <span class="nf">remove_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">]):</span>
+<div class="viewcode-block" id="GameObject.remove_all"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.remove_all">[docs]</a>    <span class="k">def</span> <span class="nf">remove_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Component</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Removes all components of a type from the game object.</span>
 
@@ -468,7 +468,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">):</span>
-                <span class="k">return</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># type: ignore</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="GameObject.get_all"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.game_object.GameObject.get_all">[docs]</a>    <span class="k">def</span> <span class="nf">get_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comp_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">T</span><span class="p">]:</span>
@@ -520,7 +520,7 @@
         <span class="n">all_comps</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_components</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
         <span class="k">for</span> <span class="n">comps</span> <span class="ow">in</span> <span class="n">all_comps</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">comp</span> <span class="ow">in</span> <span class="n">comps</span><span class="p">:</span>
-                <span class="n">comp</span><span class="o">.</span><span class="n">private_update</span><span class="p">()</span>
+                <span class="n">comp</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>  <span class="c1"># pylint: disable=protected-access</span>
 
     <span class="k">def</span> <span class="nf">fixed_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>

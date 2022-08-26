@@ -323,10 +323,10 @@
 
 <span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
 <span class="k">class</span> <span class="nc">DrawTask</span><span class="p">:</span>
-    <span class="n">priority</span><span class="p">:</span> <span class="n">cython</span><span class="o">.</span><span class="n">int</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="n">cython</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
-    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>
+    <span class="n">priority</span><span class="p">:</span> <span class="n">cython</span><span class="o">.</span><span class="n">int</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="n">cython</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">priority</span><span class="p">:</span> <span class="n">cython</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">priority</span><span class="p">:</span> <span class="n">cython</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">priority</span> <span class="o">=</span> <span class="n">priority</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">func</span>
 
@@ -341,7 +341,8 @@
 
 <div class="viewcode-block" id="Draw.clear"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.clear">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">white</span><span class="p">,</span> <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Clears the renderer and draws the background of the frame.</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clears the renderer and draws the background of the frame.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            background_color: The background color. Defaults to white.</span>
@@ -565,7 +566,7 @@
 <div class="viewcode-block" id="Draw.queue_poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_poly">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_poly</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -585,7 +586,7 @@
 
 <div class="viewcode-block" id="Draw.poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.poly">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">poly</span><span class="p">(</span>
-        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>

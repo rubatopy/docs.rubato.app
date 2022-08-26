@@ -374,21 +374,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">singular</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">if</span> <span class="n">mass</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">static</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_inv_mass</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inv_mass</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="sd">&quot;&quot;&quot;The inverse mass of the Rigidbody.&quot;&quot;&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_inv_mass</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mass</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inv_mass</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">mass</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">bounciness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">bounciness</span>
         <span class="sd">&quot;&quot;&quot;How bouncy the rigidbody is (usually a value between 0 and 1).&quot;&quot;&quot;</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">inv_mass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The inverse mass of the Rigidbody.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inv_mass</span>
-
-    <span class="nd">@inv_mass</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">inv_mass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_inv_mass</span> <span class="o">=</span> <span class="n">new</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -407,8 +399,11 @@
 
 <div class="viewcode-block" id="RigidBody.physics"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.physics">[docs]</a>    <span class="k">def</span> <span class="nf">physics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Applies general kinematic laws to the rigidbody.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gravity</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">)</span>  <span class="c1"># pylint: disable=invalid-unary-operand-type</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_vel</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span></div>
@@ -433,7 +428,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">impulse</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">impulse</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span></div>
 
-<div class="viewcode-block" id="RigidBody.add_cont_force"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_cont_force">[docs]</a>    <span class="k">def</span> <span class="nf">add_cont_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="RigidBody.add_cont_force"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_cont_force">[docs]</a>    <span class="k">def</span> <span class="nf">add_cont_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a continuous force to the Rigidbody.</span>
 <span class="sd">        A continuous force is a force that is continuously applied over a time period.</span>
@@ -449,7 +444,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_force</span><span class="p">(</span><span class="n">force</span><span class="p">)</span>
             <span class="n">Time</span><span class="o">.</span><span class="n">delayed_frames</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_cont_force</span><span class="p">(</span><span class="n">force</span><span class="p">,</span> <span class="n">time</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span><span class="p">)))</span></div>
 
-<div class="viewcode-block" id="RigidBody.add_cont_impulse"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_cont_impulse">[docs]</a>    <span class="k">def</span> <span class="nf">add_cont_impulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">impulse</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">time</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="RigidBody.add_cont_impulse"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_cont_impulse">[docs]</a>    <span class="k">def</span> <span class="nf">add_cont_impulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">impulse</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a continuous impulse to the Rigidbody.</span>
 <span class="sd">        A continuous impulse is a impulse that is continuously applied over a time period.</span>

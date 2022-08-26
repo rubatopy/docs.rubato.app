@@ -322,6 +322,7 @@
 
 
 <span class="k">class</span> <span class="nc">_DisplayProperties</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+    <span class="c1"># pyright: reportGeneralTypeIssues=false</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
@@ -395,8 +396,8 @@
 <span class="sd">        hidden (bool): Whether the window is currently hidden.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">window</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Window</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">renderer</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Renderer</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">window</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Window</span>
+    <span class="n">renderer</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Renderer</span>
     <span class="n">pixel_format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_RGBA8888</span>
     <span class="nb">format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">pixel_format</span><span class="p">)</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">format</span><span class="o">.</span><span class="n">contents</span>
     <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
@@ -529,7 +530,7 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span>
             <span class="n">tx</span><span class="p">,</span>
             <span class="n">dstrect</span><span class="o">=</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_dim</span> <span class="k">if</span> <span class="n">flipx</span> <span class="k">else</span> <span class="mi">0</span><span class="p">),</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x_dim</span><span class="p">,</span> <span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">])),</span>
-            <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span>
+            <span class="n">angle</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
             <span class="n">flip</span><span class="o">=</span><span class="n">flip</span>
         <span class="p">)</span></div>
 
@@ -599,7 +600,7 @@
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not create surface: </span><span class="si">{</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetError</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderReadPixels</span><span class="p">(</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span><span class="p">),</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span><span class="p">)),</span>
                 <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_ARGB8888</span><span class="p">,</span> <span class="n">render_surface</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="n">render_surface</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">pitch</span>
             <span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not read screenshot: </span><span class="si">{</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetError</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -616,6 +617,7 @@
                 <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlimage</span><span class="o">.</span><span class="n">IMG_SaveJPG</span><span class="p">(</span><span class="n">render_surface</span><span class="p">,</span> <span class="n">path_bytes</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;bmp&quot;</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SaveBMP</span><span class="p">(</span><span class="n">render_surface</span><span class="p">,</span> <span class="n">path_bytes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="kc">False</span>
 
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">render_surface</span><span class="p">)</span></div>

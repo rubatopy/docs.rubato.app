@@ -384,11 +384,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Raster.update"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span></div>
 
 <div class="viewcode-block" id="Raster.draw"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span>
@@ -444,7 +448,9 @@
         <span class="n">top_left</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span>
-        <span class="n">fill</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">fill</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draws a rectangle on the image.</span>
@@ -453,9 +459,11 @@
 <span class="sd">            top_left: The top left corner of the rectangle.</span>
 <span class="sd">            dims: The dimensions of the rectangle.</span>
 <span class="sd">            border: The border color of the rectangle. Defaults to black.</span>
+<span class="sd">            border_thickness: The thickness of the border. Defaults to 1.</span>
 <span class="sd">            fill: The fill color of the rectangle. Set to None for no fill. Defaults to None.</span>
+<span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">draw_rect</span><span class="p">(</span><span class="n">top_left</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">draw_rect</span><span class="p">(</span><span class="n">top_left</span><span class="p">,</span> <span class="n">dims</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">blending</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Raster.draw_circle"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.draw_circle">[docs]</a>    <span class="k">def</span> <span class="nf">draw_circle</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -483,7 +491,7 @@
 
 <div class="viewcode-block" id="Raster.draw_poly"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.draw_poly">[docs]</a>    <span class="k">def</span> <span class="nf">draw_poly</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
