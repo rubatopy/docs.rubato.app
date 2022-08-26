@@ -323,19 +323,20 @@
 <span class="sd">    Args:</span>
 <span class="sd">        name: The name of the group. Defaults to &quot;&quot; and is set to &quot;Group #&quot; when it is added to another Group or Scene.</span>
 <span class="sd">        active: Whether the group is active or not. Defaults to True.</span>
+<span class="sd">        hidden: Whether the group is hidden or not. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">active</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span>
         <span class="sd">&quot;&quot;&quot;The name of the group.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">active</span>
-        <span class="sd">&quot;&quot;&quot;Whether the group is active or not.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Whether to update and draw this group&#39;s contents.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Group</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="sd">&quot;&quot;&quot;A list of groups that are children of this group.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="sd">&quot;&quot;&quot;A list of game objects that are children of this group.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="sd">&quot;&quot;&quot;Whether the game objects and sub-groups in the group will draw, does not affect their hidden status.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">hidden</span>
+        <span class="sd">&quot;&quot;&quot;Whether to hide (not draw) this group&#39;s contents.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Group.add"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">GameObject</span> <span class="o">|</span> <span class="n">Group</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -399,34 +400,38 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The item </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is not in the group </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span></div>
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
-                <span class="n">group</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
-                <span class="n">game_obj</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
+            <span class="n">game_obj</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Group.fixed_update"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.fixed_update">[docs]</a>    <span class="k">def</span> <span class="nf">fixed_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs a physics iteration on the group.</span>
 <span class="sd">        Called automatically by rubato as long as the group is added to a scene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
-                <span class="n">group</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
+            <span class="k">return</span>
 
-            <span class="n">all_hts</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
-                <span class="n">game_obj</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
-                <span class="n">hts</span> <span class="o">=</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
-                    <span class="n">all_hts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hts</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
 
-            <span class="n">qtree</span> <span class="o">=</span> <span class="n">QTree</span><span class="p">(</span><span class="n">all_hts</span><span class="p">)</span>
+        <span class="n">all_hts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
+            <span class="n">game_obj</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
+            <span class="n">hts</span> <span class="o">=</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
+                <span class="n">all_hts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hts</span><span class="p">)</span>
 
-            <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_gameobjects</span><span class="p">():</span>
-                <span class="n">hts</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
-                    <span class="n">qtree</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">hts</span><span class="p">,</span> <span class="n">qtree</span><span class="o">.</span><span class="n">calc_bb</span><span class="p">(</span><span class="n">hts</span><span class="p">))</span></div>
+        <span class="n">qtree</span> <span class="o">=</span> <span class="n">QTree</span><span class="p">(</span><span class="n">all_hts</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_gameobjects</span><span class="p">():</span>
+            <span class="n">hts</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
+                <span class="n">qtree</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">hts</span><span class="p">,</span> <span class="n">qtree</span><span class="o">.</span><span class="n">calc_bb</span><span class="p">(</span><span class="n">hts</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Group.all_gameobjects"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.all_gameobjects">[docs]</a>    <span class="k">def</span> <span class="nf">all_gameobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_self</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -444,13 +449,15 @@
         <span class="k">return</span> <span class="n">ret</span></div>
 
     <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
-                <span class="n">group</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span>
+            <span class="k">return</span>
 
-            <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;=</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span><span class="p">:</span>
-                    <span class="n">game_obj</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;=</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span><span class="p">:</span>
+                <span class="n">game_obj</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Group.count"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.count">[docs]</a>    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

@@ -334,9 +334,16 @@
 <span class="sd">        offset: The offset of the component from the game object. Defaults to (0, 0).</span>
 <span class="sd">        rot_offset: The rotation offset of the component from the game object. Defaults to 0.</span>
 <span class="sd">        z_index: The vertical offset of where to draw the component. Defaults to 0.</span>
+<span class="sd">        hidden: Whether the component is hidden or not. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="p">:</span> <span class="n">GameObject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="sd">&quot;&quot;&quot;The game object this component is attached to.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">singular</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -349,8 +356,8 @@
         <span class="sd">&quot;&quot;&quot;Where to draw the component in the z direction.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="sd">&quot;&quot;&quot;Whether the component has run its setup method.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="sd">&quot;&quot;&quot;Whether the component should not draw.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">hidden</span>
+        <span class="sd">&quot;&quot;&quot;Whether the component is hidden (not drawn).&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Component.true_z"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.component.Component.true_z">[docs]</a>    <span class="k">def</span> <span class="nf">true_z</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Returns the z_index of the component offset by its parent gameobject z_index.&quot;&quot;&quot;</span>
@@ -396,7 +403,9 @@
 
 <div class="viewcode-block" id="Component.clone"><a class="viewcode-back" href="../../../../../api/#rubato.struct.gameobject.component.Component.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Component</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Clones the component.&quot;&quot;&quot;</span>
-        <span class="n">new</span> <span class="o">=</span> <span class="n">Component</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span> <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">)</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="n">Component</span><span class="p">(</span>
+            <span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span> <span class="n">rot_offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">,</span> <span class="n">hidden</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden</span>
+        <span class="p">)</span>
         <span class="n">new</span><span class="o">.</span><span class="n">singular</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">singular</span>
         <span class="k">return</span> <span class="n">new</span></div>
 
