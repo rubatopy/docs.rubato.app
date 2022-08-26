@@ -383,6 +383,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            scene: The scene to add.</span>
+<span class="sd">            name: The name of the scene. If None, a unique name is generated.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            IdError: The given scene id is already used.</span>
@@ -419,7 +420,7 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">camera</span> <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span> <span class="k">else</span> <span class="kc">None</span>  <span class="c1"># pylint: disable=using-constant-test</span>
 
 <div class="viewcode-block" id="Game.quit"><a class="viewcode-back" href="../../../api/#rubato.game.Game.quit">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>  <span class="c1"># test: skip</span>
+    <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Quit the game and close the python process.&quot;&quot;&quot;</span>
         <span class="n">Radio</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">Events</span><span class="o">.</span><span class="n">EXIT</span><span class="p">)</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">STOPPED</span>
@@ -429,7 +430,7 @@
         <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Game.start"><a class="viewcode-back" href="../../../api/#rubato.game.Game.start">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>  <span class="c1"># test: skip</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Starts the main game loop. Called automatically by :meth:`rubato.begin`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -451,7 +452,7 @@
             <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Game.loop"><a class="viewcode-back" href="../../../api/#rubato.game.Game.loop">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>  <span class="c1"># test: skip</span>
+    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Rubato&#39;s main game loop. Called automatically by :meth:`rubato.Game.start`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -519,7 +520,7 @@
                 <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Delay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
             <span class="c1"># clock the time the update call took</span>
-            <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">Time</span><span class="o">.</span><span class="n">frame_start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>  <span class="c1"># pylint: disable= comparison-with-callable</span></div>
+            <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">=</span> <span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">Time</span><span class="o">.</span><span class="n">frame_start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>  <span class="c1"># pylint: disable=comparison-with-callable</span></div>
 
 <div class="viewcode-block" id="Game.update"><a class="viewcode-back" href="../../../api/#rubato.game.Game.update">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">update</span><span class="p">():</span>  <span class="c1"># test: skip</span>
