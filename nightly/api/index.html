@@ -394,7 +394,7 @@ Defaults to &quot;off&quot;.</p></li>
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.game.Game.current">
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><span class="pre">rubato.struct.scene.Scene</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></em><a class="headerlink" href="#rubato.game.Game.current" title="Permalink to this definition">#</a></dt>
-<dd><p>The current scene. (getonly)</p>
+<dd><p>The current scene. (get-only)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</p>
@@ -419,8 +419,7 @@ Defaults to &quot;off&quot;.</p></li>
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.game.Game.camera">
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">camera</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.camera.Camera" title="rubato.utils.camera.Camera"><span class="pre">rubato.utils.camera.Camera</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><span class="pre">None</span></a></em><a class="headerlink" href="#rubato.game.Game.camera" title="Permalink to this definition">#</a></dt>
-<dd><p>A shortcut getter allowing easy access to the current camera.
-This is a get-only property.</p>
+<dd><p>A shortcut getter allowing easy access to the current camera. (get-only)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Returns a pointer to the current camera object.
@@ -428,11 +427,8 @@ This is so you can access/change the current camera properties faster, but you'd
 use <a class="reference internal" href="#rubato.struct.scene.Scene.camera" title="rubato.struct.scene.Scene.camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Game.current.camera</span></code></a> to access the camera directly.</p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The current scene's camera</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.camera.Camera" title="rubato.utils.camera.Camera">Camera</a></p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.camera.Camera" title="rubato.utils.camera.Camera"><code class="xref py py-class docutils literal notranslate"><span class="pre">Camera</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -447,6 +443,11 @@ use <a class="reference internal" href="#rubato.struct.scene.Scene.camera" title
 <dt class="sig sig-object py" id="rubato.game.Game.start">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.start" title="Permalink to this definition">#</a></dt>
 <dd><p>Starts the main game loop. Called automatically by <a class="reference internal" href="#rubato.begin" title="rubato.begin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rubato.begin()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -3377,7 +3378,7 @@ Instead, use Polygon or Circle, which inherit Hitbox properties.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Rectangle.verts">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">verts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><span class="pre">rubato.utils.vector.Vector</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Rectangle.verts" title="Permalink to this definition">#</a></dt>
-<dd><p>The list of Rectangle vertices. (getonly)</p>
+<dd><p>The list of Rectangle vertices. (get-only)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="#rubato.utils.vector.Vector" title="rubato.utils.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]</p>
@@ -3388,7 +3389,7 @@ Instead, use Polygon or Circle, which inherit Hitbox properties.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Rectangle.radius">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Rectangle.radius" title="Permalink to this definition">#</a></dt>
-<dd><p>The radius of the Rectangle. (getonly)</p>
+<dd><p>The radius of the Rectangle. (get-only)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
@@ -3745,7 +3746,7 @@ Creating concave polygons will result in undesired behavior.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.physics.hitbox.Polygon.radius">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">radius</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.hitbox.Polygon.radius" title="Permalink to this definition">#</a></dt>
-<dd><p>The radius of the Polygon. (getonly)</p>
+<dd><p>The radius of the Polygon. (get-only)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
@@ -5112,7 +5113,7 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.rb_input.Input.controllers">
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">controllers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_input.Input.controllers" title="Permalink to this definition">#</a></dt>
-<dd><p>The number of controllers currently registered. (getonly)</p>
+<dd><p>The number of controllers currently registered. (get-only)</p>
 <p>If non-zero, the controllers are registered from 0 to n-1 where n is the number of controllers.
 This number index is passed to events that are propagated when controllers are inputted to.</p>
 <dl class="field-list simple">
@@ -7625,7 +7626,7 @@ This is identical to <a class="reference internal" href="#rubato.utils.noise.Noi
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time.fps">
 <span class="sig-name descname"><span class="pre">fps</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60</span></em><a class="headerlink" href="#rubato.utils.rb_time.Time.fps" title="Permalink to this definition">#</a></dt>
-<dd><p>The current fps of thi frame.</p>
+<dd><p>The fps estimate using the last frame.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -7643,7 +7644,7 @@ This is identical to <a class="reference internal" href="#rubato.utils.noise.Noi
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time.smooth_fps">
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smooth_fps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.Time.smooth_fps" title="Permalink to this definition">#</a></dt>
-<dd><p>The average fps over the past 120 frames. This is a get-only property.</p>
+<dd><p>The average fps over the past 120 frames. (get-only).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
@@ -7665,8 +7666,7 @@ This is identical to <a class="reference internal" href="#rubato.utils.noise.Noi
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time.frame_start">
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame_start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.Time.frame_start" title="Permalink to this definition">#</a></dt>
-<dd><p>The time since the start of the game, in milliseconds, taken at the start of the frame.
-This is a get-only property.</p>
+<dd><p>Time from the start of the game to the start of the current frame, in milliseconds. (get-only)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
@@ -7723,6 +7723,17 @@ This is a get-only property.</p>
 <li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The interval (in milliseconds) to run the function at.</p></li>
 <li><p><strong>func</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>) -- The function to call.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.next_frame">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">next_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#Time.next_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.Time.next_frame" title="Permalink to this definition">#</a></dt>
+<dd><p>Calls the function func on the next frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>func</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>) -- The function to call.</p>
 </dd>
 </dl>
 </dd></dl>
