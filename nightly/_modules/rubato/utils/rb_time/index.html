@@ -496,26 +496,22 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">_next_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Time.milli_to_sec"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.milli_to_sec">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">milli_to_sec</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">milli</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">milli_to_sec</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">milli</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts milliseconds to seconds.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            milli: A number in milliseconds.</span>
 <span class="sd">        Returns:</span>
-<span class="sd">            float: The converted number in seconds.</span>
+<span class="sd">            The converted number in seconds.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">milli</span> <span class="o">/</span> <span class="mi">1000</span></div>
 
 <div class="viewcode-block" id="Time.sec_to_milli"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.sec_to_milli">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">sec_to_milli</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sec</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">sec_to_milli</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sec</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Converts seconds to milliseconds.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            sec: A number in seconds.</span>
 <span class="sd">        Returns:</span>
-<span class="sd">            float: The converted number in milliseconds.</span>
+<span class="sd">            The converted number in milliseconds.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">sec</span> <span class="o">*</span> <span class="mi">1000</span></div>
 
