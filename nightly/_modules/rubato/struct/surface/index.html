@@ -309,7 +309,7 @@
 <h1>Source code for rubato.struct.surface</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;An abstraction for a grid of pixels that can be drawn onto.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
+<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span><span class="o">,</span> <span class="nn">ctypes</span>
 
 <span class="kn">from</span> <span class="nn">..c_src</span> <span class="kn">import</span> <span class="n">c_draw</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Display</span>
@@ -645,7 +645,27 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">:</span>
             <span class="n">new</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">clone_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">new</span></div></div>
+        <span class="k">return</span> <span class="n">new</span></div>
+
+<div class="viewcode-block" id="Surface.set_alpha"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.set_alpha">[docs]</a>    <span class="k">def</span> <span class="nf">set_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets surface wide alpha.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            new: The new alpha. (value between 0-255)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetSurfaceAlphaMod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_surf</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Surface.get_alpha"><a class="viewcode-back" href="../../../../api/#rubato.struct.surface.Surface.get_alpha">[docs]</a>    <span class="k">def</span> <span class="nf">get_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the surface wide alpha.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint8</span><span class="p">()</span>
+
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetSurfaceAlphaMod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_surf</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span></div></div>
 </pre></div> 
         </article>
       </div>

@@ -562,6 +562,21 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">set_colorkey</span><span class="p">(</span><span class="n">color</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="Raster.set_alpha"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.set_alpha">[docs]</a>    <span class="k">def</span> <span class="nf">set_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets surface wide alpha.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            new: The new alpha. (value between 0-255)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="n">new</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Raster.get_alpha"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.get_alpha">[docs]</a>    <span class="k">def</span> <span class="nf">get_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the surface wide alpha.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="Raster.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Raster</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clones the current raster.</span>
