@@ -651,9 +651,9 @@
 
         <span class="k">return</span> <span class="n">out</span></div>
 
-<div class="viewcode-block" id="Vector.dir_to"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.dir_to">[docs]</a>    <span class="k">def</span> <span class="nf">dir_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<div class="viewcode-block" id="Vector.dir_to"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.dir_to">[docs]</a>    <span class="k">def</span> <span class="nf">dir_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Direction from the Vector to another Vector.</span>
+<span class="sd">        Direction from the Vector to another Vector (or tuple of floats).</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            other: the position to which you are pointing</span>
@@ -661,20 +661,32 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            A unit vector that is in the pointing to the other position passed in</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">base</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span> <span class="o">-</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">normalized</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">base</span></div>
+        <span class="k">return</span> <span class="p">(</span><span class="n">other</span> <span class="o">-</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">normalized</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Vector.dist_to"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.dist_to">[docs]</a>    <span class="k">def</span> <span class="nf">dist_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<div class="viewcode-block" id="Vector.dist_to"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.dist_to">[docs]</a>    <span class="k">def</span> <span class="nf">dist_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Finds the pythagorean distance between two vectors.</span>
+<span class="sd">        Finds the pythagorean distance to another vector (or tuple of floats).</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            other (Vector): The other vector.</span>
+<span class="sd">            other: The other vector.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            float: The distance.</span>
+<span class="sd">            The distance.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">other</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">other</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vector.within"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.within">[docs]</a>    <span class="k">def</span> <span class="nf">within</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the vector is within a certain distance of another vector (or tuple of floats).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            other: The other vector</span>
+<span class="sd">            distance: The distance to check</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            True if the vector is within the distance, False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">other</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">other</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">distance</span></div>
 
     <span class="nd">@deprecated</span><span class="p">(</span><span class="n">dist_to</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">distance_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -692,9 +704,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector from the given direction and distance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">angle</span> <span class="o">-</span> <span class="mi">90</span><span class="p">))</span>
-
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">radians</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">magnitude</span><span class="p">,</span> <span class="o">-</span><span class="nb">round</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">radians</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="n">magnitude</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Vector</span><span class="o">.</span><span class="n">up</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="o">*</span> <span class="n">magnitude</span></div>
 
 <div class="viewcode-block" id="Vector.clamp_magnitude"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Vector.clamp_magnitude">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">clamp_magnitude</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">max_magnitude</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_magnitude</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>

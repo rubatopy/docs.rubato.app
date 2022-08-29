@@ -328,6 +328,7 @@
     <span class="c1"># CONTROLLER METHODS</span>
 
     <span class="n">_controllers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Joystick</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_joystick_max</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32768</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
@@ -392,39 +393,39 @@
         <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickNameForIndex</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Input.controller_axis"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.controller_axis">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">controller_axis</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">controller_axis</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the value of a given joystick axis on a controller.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            controller (int): The index of the controller.</span>
-<span class="sd">            axis (int): The index of the joystick axis.</span>
+<span class="sd">            controller: The index of the controller.</span>
+<span class="sd">            axis: The index of the joystick axis.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            IndexError: The given controller index is out of range.</span>
 <span class="sd">                Note that no error is thrown if controller is negative.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            int: The value of the axis. If controller is less than 0, returns 0.</span>
+<span class="sd">            The value of the axis. If controller is less than 0, returns 0.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickGetAxis</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="n">axis</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickGetAxis</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="n">axis</span><span class="p">)</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_joystick_max</span></div>
 
 <div class="viewcode-block" id="Input.axis_centered"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.axis_centered">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">axis_centered</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">axis_centered</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Check whether a given axis value is within the 10% bounds of deadzone considered the &quot;center&quot;.</span>
+<span class="sd">        Check whether a given axis value is within the +/-10% bounds of deadzone considered the &quot;center&quot;.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            val (int): The value of the axis.</span>
+<span class="sd">            val: The value of the axis.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: Whether the axis is centered.</span>
+<span class="sd">            Whether the axis is centered.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">3200</span> <span class="o">&lt;</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="mi">3200</span></div>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">0.1</span> <span class="o">&lt;</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="mf">0.1</span></div>
 
 <div class="viewcode-block" id="Input.controller_button"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.controller_button">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">controller_button</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">button</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>

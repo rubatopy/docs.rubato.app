@@ -675,20 +675,24 @@ Here is what that code looks like:<div class="sd-summary-down docutils">
 
 <span class="c1"># create platforms</span>
 <span class="n">platforms</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">140</span><span class="p">)</span>
-                 <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
-                     <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
-                     <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
-                     <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
-                     <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
-                 <span class="p">)),</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">340</span><span class="p">)</span>
-                 <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
-                     <span class="n">width</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
-                     <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
-                     <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
-                     <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
-                 <span class="p">)),</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span>
+        <span class="mi">200</span><span class="p">,</span>
+        <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">140</span><span class="p">,</span>
+    <span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+    <span class="p">)),</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span>
+        <span class="mi">400</span><span class="p">,</span>
+        <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">340</span><span class="p">,</span>
+    <span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
+    <span class="p">)),</span>
 <span class="p">]</span>
 
 <span class="c1"># create obstacles</span>
@@ -712,13 +716,15 @@ Here is what that code looks like:<div class="sd-summary-down docutils">
 
 <span class="c1"># create triggers</span>
 <span class="n">triggers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">950</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span>
-                                <span class="mi">45</span><span class="p">),)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
-                                    <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
-                                    <span class="n">height</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-                                    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;retry_collider&quot;</span><span class="p">,</span>
-                                    <span class="n">trigger</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                <span class="p">)),</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span>
+        <span class="mi">950</span><span class="p">,</span>
+        <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
+    <span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+        <span class="n">width</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;retry_collider&quot;</span><span class="p">,</span>
+        <span class="n">trigger</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)),</span>
 <span class="p">]</span>
 
 <span class="c1"># Create animation for portal</span>

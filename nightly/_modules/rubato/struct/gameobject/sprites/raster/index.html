@@ -406,13 +406,22 @@
 
 <div class="viewcode-block" id="Raster.clear"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Clears the image.</span>
+<span class="sd">        Clears the surface.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
 
+<div class="viewcode-block" id="Raster.fill"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.fill">[docs]</a>    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fill the surface with a color.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            color: The color to fill with.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">color</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="Raster.draw_point"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.draw_point">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draws a point on the image.</span>
+<span class="sd">        Draws a point on the surface.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pos: The position to draw the point.</span>
@@ -431,7 +440,7 @@
         <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draws a line on the image.</span>
+<span class="sd">        Draws a line on the surface.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            start: The start of the line.</span>
@@ -453,7 +462,7 @@
         <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draws a rectangle on the image.</span>
+<span class="sd">        Draws a rectangle on the surface.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            top_left: The top left corner of the rectangle.</span>
@@ -476,7 +485,7 @@
         <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draws a circle on the image.</span>
+<span class="sd">        Draws a circle on the surface.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            center: The center of the circle.</span>
@@ -499,7 +508,7 @@
         <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draws a polygon on the image.</span>
+<span class="sd">        Draws a polygon on the surface.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            points: The points of the polygon.</span>
@@ -513,7 +522,7 @@
 
 <div class="viewcode-block" id="Raster.get_size"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.get_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the current size of the image.</span>
+<span class="sd">        Gets the current size of the surface.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The size of the surface</span>
@@ -522,7 +531,7 @@
 
 <div class="viewcode-block" id="Raster.get_pixel"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.get_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the color of a pixel on the image.</span>
+<span class="sd">        Gets the color of a pixel on the surface.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pos: The position of the pixel.</span>
@@ -534,7 +543,7 @@
 
 <div class="viewcode-block" id="Raster.get_pixel_tuple"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.get_pixel_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the color of a pixel on the image.</span>
+<span class="sd">        Gets the color of a pixel on the surface.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pos: The position of the pixel.</span>
@@ -546,7 +555,7 @@
 
 <div class="viewcode-block" id="Raster.switch_color"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.switch_color">[docs]</a>    <span class="k">def</span> <span class="nf">switch_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">,</span> <span class="n">new_color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Switches a color in the image.</span>
+<span class="sd">        Switches a color in the surface.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            color: The color to switch.</span>
@@ -556,7 +565,7 @@
 
 <div class="viewcode-block" id="Raster.set_colorkey"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.set_colorkey">[docs]</a>    <span class="k">def</span> <span class="nf">set_colorkey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Sets the colorkey of the image.</span>
+<span class="sd">        Sets the colorkey of the surface.</span>
 <span class="sd">        Args:</span>
 <span class="sd">            color: Color to set as the colorkey.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
