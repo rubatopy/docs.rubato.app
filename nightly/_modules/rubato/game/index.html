@@ -357,17 +357,20 @@
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Scene</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># test: skip</span>
+    <span class="k">def</span> <span class="nf">current</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Scene</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The current scene. (get-only)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            The current scene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_current</span><span class="p">)</span>
+        <span class="n">scene</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_current</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">scene</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">scene</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The current scene is not set. Make sure to create a scene or switch to it.&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Game.set_scene"><a class="viewcode-back" href="../../../api/#rubato.game.Game.set_scene">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">set_scene</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">scene_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># test: skip</span>
+    <span class="k">def</span> <span class="nf">set_scene</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">scene_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Changes the current scene. Takes effect on the next frame.</span>
 
@@ -404,7 +407,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">camera</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># test: skip</span>
+    <span class="k">def</span> <span class="nf">camera</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Camera</span><span class="p">:</span>  <span class="c1"># test: skip</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A shortcut getter allowing easy access to the current camera. (get-only)</span>
 
@@ -413,7 +416,7 @@
 <span class="sd">            This is so you can access/change the current camera properties faster, but you&#39;d still need to</span>
 <span class="sd">            use :func:`Game.current.camera &lt;rubato.struct.scene.Scene.camera&gt;` to access the camera directly.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">camera</span> <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span> <span class="k">else</span> <span class="kc">None</span>  <span class="c1"># pylint: disable=using-constant-test</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">camera</span>
 
 <div class="viewcode-block" id="Game.quit"><a class="viewcode-back" href="../../../api/#rubato.game.Game.quit">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">quit</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
@@ -474,7 +477,7 @@
 
             <span class="bp">cls</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
-            <span class="n">curr</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">current</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_current</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">curr</span><span class="p">:</span>  <span class="c1"># pylint: disable=using-constant-test</span>
                 <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">Game</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">:</span>
                     <span class="c1"># process user set pause update</span>

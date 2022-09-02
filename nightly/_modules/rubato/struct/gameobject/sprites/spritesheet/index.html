@@ -314,8 +314,8 @@
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Animation</span>
-<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Sprite</span>
-<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">Display</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Surface</span>
+<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">get_path</span>
 
 
 <div class="viewcode-block" id="Spritesheet"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.spritesheet.Spritesheet">[docs]</a><span class="k">class</span> <span class="nc">Spritesheet</span><span class="p">:</span>
@@ -323,7 +323,7 @@
 <span class="sd">    A spritesheet from the filesystem.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        rel_path: The relative path to the spritesheet.</span>
+<span class="sd">        path: The relative path to the spritesheet.</span>
 <span class="sd">        sprite_size: The size of each sprite in the spritesheet. Defaults to (32, 32).</span>
 <span class="sd">        grid_size: The size of the grid of sprites in the spritesheet. Set to None to automatically determine the</span>
 <span class="sd">            grid size. Defaults to None.</span>
@@ -334,13 +334,13 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">rel_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">sprite_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>
         <span class="n">grid_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">sprite_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sheet</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="n">rel_path</span><span class="o">=</span><span class="n">rel_path</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sprites</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Sprite</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sheet</span> <span class="o">=</span> <span class="n">Surface</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sprites</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Surface</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">grid_size</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sheet</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">)</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
@@ -352,20 +352,16 @@
         <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_sprites</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
             <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-                <span class="n">sub</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span>
-                    <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">32</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">pixel_format</span>
-                <span class="p">)</span>
+                <span class="n">surface</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
                 <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_BlitSurface</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_sheet</span><span class="o">.</span><span class="n">surf</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sheet</span><span class="o">.</span><span class="n">_surf</span><span class="p">,</span>
                     <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                    <span class="n">sub</span><span class="p">,</span>
+                    <span class="n">surface</span><span class="o">.</span><span class="n">_surf</span><span class="p">,</span>
                     <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
                 <span class="p">)</span>
 
-                <span class="n">sprite</span><span class="p">:</span> <span class="n">Sprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-                <span class="n">sprite</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="n">sub</span><span class="o">.</span><span class="n">contents</span>
-
-                <span class="bp">self</span><span class="o">.</span><span class="n">_sprites</span><span class="p">[</span><span class="n">y</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sprite</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sprites</span><span class="p">[</span><span class="n">y</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">surface</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">grid_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
@@ -378,12 +374,12 @@
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_sprite_size</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sprite</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">sheet</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Surface</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The actual spritesheet sprite (readonly).&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sheet</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">sprites</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Sprite</span><span class="p">]]:</span>
+    <span class="k">def</span> <span class="nf">sprites</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Surface</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;The list of all the sprites as sprites (readonly).&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sprites</span>
 
@@ -397,7 +393,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_size</span> <span class="o">-</span> <span class="n">Vector</span><span class="o">.</span><span class="n">one</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Spritesheet.get"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.spritesheet.Spritesheet.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sprite</span><span class="p">:</span>
+<div class="viewcode-block" id="Spritesheet.get"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.spritesheet.Spritesheet.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Surface</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Gets the Sprite at the corresponding grid coordinate of the spritesheet.</span>
 
@@ -417,9 +413,9 @@
 
 <div class="viewcode-block" id="Spritesheet.from_folder"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.spritesheet.Spritesheet.from_folder">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">from_folder</span><span class="p">(</span>
-        <span class="n">rel_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">sprite_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
-        <span class="n">default_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">default_state</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -428,7 +424,7 @@
 <span class="sd">        Added alphabetically. Default is the first sheet loaded.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            rel_path: The relative path to the folder you wish to import</span>
+<span class="sd">            path: The relative path to the folder you wish to import</span>
 <span class="sd">            sprite_size: The size of a single sprite in your spritesheet, should be the same in all imported sheets.</span>
 <span class="sd">            default_state: Sets the default state of the animation.</span>
 <span class="sd">            recursive: Whether it will import an animation shallowly or recursively. Defaults to True.</span>
@@ -438,7 +434,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">anim</span> <span class="o">=</span> <span class="n">Animation</span><span class="p">()</span>
 
-        <span class="n">path</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">recursive</span><span class="p">:</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
@@ -447,7 +443,7 @@
             <span class="k">for</span> <span class="n">sprite_path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
                 <span class="n">path_to_spritesheet</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sprite_path</span><span class="p">)</span>
                 <span class="n">sprite_sheet</span> <span class="o">=</span> <span class="n">Spritesheet</span><span class="p">(</span>
-                    <span class="n">rel_path</span><span class="o">=</span><span class="n">path_to_spritesheet</span><span class="p">,</span>
+                    <span class="n">path</span><span class="o">=</span><span class="n">path_to_spritesheet</span><span class="p">,</span>
                     <span class="n">sprite_size</span><span class="o">=</span><span class="n">sprite_size</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="n">anim</span><span class="o">.</span><span class="n">add_spritesheet</span><span class="p">(</span><span class="n">sprite_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sprite_sheet</span><span class="p">,</span> <span class="n">to_coord</span><span class="o">=</span><span class="n">sprite_sheet</span><span class="o">.</span><span class="n">end</span><span class="p">)</span>
@@ -458,7 +454,7 @@
                 <span class="k">for</span> <span class="n">sprite_path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
                     <span class="n">path_to_spritesheet</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">sprite_path</span><span class="p">)</span>
                     <span class="n">sprite_sheet</span> <span class="o">=</span> <span class="n">Spritesheet</span><span class="p">(</span>
-                        <span class="n">rel_path</span><span class="o">=</span><span class="n">path_to_spritesheet</span><span class="p">,</span>
+                        <span class="n">path</span><span class="o">=</span><span class="n">path_to_spritesheet</span><span class="p">,</span>
                         <span class="n">sprite_size</span><span class="o">=</span><span class="n">sprite_size</span><span class="p">,</span>
                     <span class="p">)</span>
                     <span class="n">anim</span><span class="o">.</span><span class="n">add_spritesheet</span><span class="p">(</span><span class="n">sprite_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">sprite_sheet</span><span class="p">,</span> <span class="n">to_coord</span><span class="o">=</span><span class="n">sprite_sheet</span><span class="o">.</span><span class="n">end</span><span class="p">)</span>

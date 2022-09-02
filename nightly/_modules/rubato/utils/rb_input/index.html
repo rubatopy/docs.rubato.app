@@ -315,7 +315,7 @@
 <span class="kn">import</span> <span class="nn">sdl2</span>
 <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">c_char_p</span><span class="p">,</span> <span class="n">c_float</span><span class="p">,</span> <span class="n">c_int</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">deprecated</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">InitError</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">InitError</span>
 
 
 <span class="c1"># THIS IS A STATIC CLASS</span>
@@ -668,36 +668,6 @@
 <span class="sd">            True if any button is pressed, false otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">mouse_state</span><span class="p">())</span></div>
-
-<div class="viewcode-block" id="Input.mouse_is_pressed"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.mouse_is_pressed">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">mouse_state</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">mouse_is_pressed</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Checks which mouse buttons are pressed.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            tuple[bool]: A tuple with 5 booleans representing the state of each</span>
-<span class="sd">            mouse button. (button1, button2, button3, button4, button5)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">info</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetMouseState</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="p">(</span><span class="n">info</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_BUTTON_LMASK</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="p">(</span><span class="n">info</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_BUTTON_MMASK</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="p">(</span><span class="n">info</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_BUTTON_RMASK</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="p">(</span><span class="n">info</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_BUTTON_X1MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="p">(</span><span class="n">info</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_BUTTON_X2MASK</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="p">)</span>  <span class="c1"># type: ignore</span></div>
-
-<div class="viewcode-block" id="Input.any_mouse_button_pressed"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.any_mouse_button_pressed">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="nd">@deprecated</span><span class="p">(</span><span class="n">mouse_pressed</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">any_mouse_button_pressed</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Checks if any mouse button is pressed.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            True if any button is pressed, false otherwise.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">mouse_is_pressed</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Input.get_mouse_pos"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.get_mouse_pos">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_mouse_pos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>

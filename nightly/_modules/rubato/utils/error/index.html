@@ -310,8 +310,6 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Custom errors for rubato.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">import</span> <span class="nn">functools</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -382,9 +380,10 @@
 
 
 <div class="viewcode-block" id="deprecated"><a class="viewcode-back" href="../../../../api/#rubato.utils.error.deprecated">[docs]</a><span class="k">def</span> <span class="nf">deprecated</span><span class="p">(</span><span class="n">other_func</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This is a decorator which can be used to mark functions</span>
-<span class="sd">        as deprecated. It will result in a warning being emitted</span>
-<span class="sd">        when the function is used.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a decorator which can be used to mark functions as deprecated.</span>
+<span class="sd">    It will result in a warning being emitted when the function is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
 
@@ -407,9 +406,10 @@
 
 
 <div class="viewcode-block" id="deprecated_no_replacement"><a class="viewcode-back" href="../../../../api/#rubato.utils.error.deprecated_no_replacement">[docs]</a><span class="k">def</span> <span class="nf">deprecated_no_replacement</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This is a decorator which can be used to mark functions</span>
-<span class="sd">        as deprecated. It will result in a warning being emitted</span>
-<span class="sd">        when the function is used.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a decorator which can be used to mark functions as deprecated.</span>
+<span class="sd">    It will result in a warning being emitted when the function is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">new_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -427,8 +427,9 @@
 
 
 <div class="viewcode-block" id="removed"><a class="viewcode-back" href="../../../../api/#rubato.utils.error.removed">[docs]</a><span class="k">def</span> <span class="nf">removed</span><span class="p">(</span><span class="n">other_func</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This is a decorator which can be used to mark functions</span>
-<span class="sd">        as removed, they will no longer work.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is a decorator which can be used to mark functions as removed, they will no longer work.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
 
@@ -448,10 +449,6 @@
     <span class="n">wrapper</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">other_func</span><span class="o">.</span><span class="vm">__doc__</span>
     <span class="n">wrapper</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">other_func</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">wrapper</span></div>
-
-
-<span class="k">def</span> <span class="nf">raise_operator_error</span><span class="p">(</span><span class="n">op</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">obj1</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">obj2</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;unsupported operand type(s) for </span><span class="si">{</span><span class="n">op</span><span class="si">}</span><span class="s2">: &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj1</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; and &#39;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj2</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
 </pre></div> 
         </article>
       </div>

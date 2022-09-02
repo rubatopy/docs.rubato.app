@@ -342,9 +342,6 @@
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">rot_offset</span><span class="p">,</span> <span class="n">z_index</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">:</span> <span class="n">Surface</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">rot_offset</span><span class="p">,</span> <span class="n">af</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">singular</span> <span class="o">=</span> <span class="kc">False</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
@@ -383,26 +380,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Raster.update"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span></div>
-
 <div class="viewcode-block" id="Raster.draw"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_go_rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
-
-        <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">(),</span> <span class="n">camera</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Raster.delete"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Deletes the raster component&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
+        <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">(),</span> <span class="n">camera</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Raster.clear"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -604,6 +584,39 @@
         <span class="p">)</span>
         <span class="n">r</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">r</span></div></div>
+
+
+<div class="viewcode-block" id="Image"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Image">[docs]</a><span class="k">class</span> <span class="nc">Image</span><span class="p">(</span><span class="n">Raster</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An image is a raster subclass that generates the surface from an image file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path: The path to the file.</span>
+<span class="sd">        scale: The scale of the Raster. Defaults to (1, 1).</span>
+<span class="sd">        offset: The offset of the Raster. Defaults to (0, 0).</span>
+<span class="sd">        rot_offset: The rotation offset of the Raster. Defaults to 0.</span>
+<span class="sd">        af: Whether to use anisotropic filtering. Defaults to False.</span>
+<span class="sd">        z_index: The z-index of the Raster. Defaults to 0.</span>
+<span class="sd">        hidden: Whether to hide the Raster. Defaults to False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">rot_offset</span><span class="o">=</span><span class="n">rot_offset</span><span class="p">,</span> <span class="n">z_index</span><span class="o">=</span><span class="n">z_index</span><span class="p">,</span> <span class="n">hidden</span><span class="o">=</span><span class="n">hidden</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">rot_offset</span><span class="p">,</span> <span class="n">af</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Image.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Image.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">af</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_index</span><span class="p">)</span>
+        <span class="n">img</span><span class="o">.</span><span class="n">surf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">img</span></div></div>
 </pre></div> 
         </article>
       </div>

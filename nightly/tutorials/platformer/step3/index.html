@@ -389,9 +389,9 @@ that is called when the &quot;w&quot; key is pressed.</p>
     <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span> <span class="ow">and</span> <span class="n">jumps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
         <span class="k">if</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="n">freeze</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="n">freeze</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;somer&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;somer&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
         <span class="n">jumps</span> <span class="o">-=</span> <span class="mi">1</span>
 
 <span class="n">rb</span><span class="o">.</span><span class="n">Radio</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="s2">&quot;KEYDOWN&quot;</span><span class="p">,</span> <span class="n">handle_keydown</span><span class="p">)</span>
@@ -446,7 +446,7 @@ Here's the full source code if you've been following along:<div class="sd-summar
 
 <span class="c1"># Create animation and initialize states</span>
 <span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
-    <span class="n">rel_path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
     <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
     <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -498,9 +498,9 @@ Here's the full source code if you've been following along:<div class="sd-summar
     <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span> <span class="ow">and</span> <span class="n">jumps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
         <span class="k">if</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="n">freeze</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="n">freeze</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="s2">&quot;somer&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="n">p_animation</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;somer&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
         <span class="n">jumps</span> <span class="o">-=</span> <span class="mi">1</span>
 
 

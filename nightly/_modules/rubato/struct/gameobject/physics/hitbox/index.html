@@ -411,8 +411,6 @@
 <span class="sd">                The top left and bottom right corners of the bounding box as Vectors as a tuple.</span>
 <span class="sd">                (top left, bottom right)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Vector</span><span class="p">(),</span> <span class="n">Vector</span><span class="p">()</span>
         <span class="n">true_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">true_pos</span><span class="p">,</span> <span class="n">true_pos</span></div>
 
@@ -441,12 +439,12 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
 
-            <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">(),</span> <span class="n">camera</span><span class="p">)</span>
+            <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">(),</span> <span class="n">camera</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span> <span class="ow">or</span> <span class="n">Game</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
 
-            <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="n">camera</span><span class="o">=</span><span class="n">camera</span><span class="p">)</span></div></div>
+            <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="n">camera</span><span class="o">=</span><span class="n">camera</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="Polygon"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon">[docs]</a><span class="k">class</span> <span class="nc">Polygon</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">):</span>
@@ -554,8 +552,6 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of the Polygon&#39;s vertices in world coordinates. Accounts for gameobject position and rotation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset_verts</span><span class="p">()</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset_verts</span><span class="p">()]</span></div>
 
 <div class="viewcode-block" id="Polygon.regen"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon.regen">[docs]</a>    <span class="k">def</span> <span class="nf">regen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -565,7 +561,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">redraw</span><span class="p">()</span>
 
         <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">r</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">width</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
 
@@ -696,8 +692,6 @@
 
     <span class="nd">@top_left</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">top_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot set top_left without a gameobject.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="nd">@property</span>
@@ -711,8 +705,6 @@
 
     <span class="nd">@bottom_left</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">bottom_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot set bottom_left without a gameobject.&quot;</span><span class="p">)</span>
         <span class="n">aabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="n">Vector</span><span class="p">(</span><span class="n">aabb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">aabb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
@@ -727,8 +719,6 @@
 
     <span class="nd">@top_right</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">top_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot set top_right without a gameobject.&quot;</span><span class="p">)</span>
         <span class="n">aabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="n">Vector</span><span class="p">(</span><span class="n">aabb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">aabb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
@@ -742,8 +732,6 @@
 
     <span class="nd">@bottom_right</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">bottom_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot set bottom_right without a gameobject.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="nd">@property</span>
@@ -756,8 +744,6 @@
 
     <span class="nd">@top</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot set top without a gameobject.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
 
     <span class="nd">@property</span>
@@ -770,8 +756,6 @@
 
     <span class="nd">@left</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot set left without a gameobject.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span>
 
     <span class="nd">@property</span>
@@ -784,8 +768,6 @@
 
     <span class="nd">@bottom</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">bottom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot set bottom without a gameobject.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
 
     <span class="nd">@property</span>
@@ -798,8 +780,6 @@
 
     <span class="nd">@right</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot set right without a gameobject.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">x</span>
 
 <div class="viewcode-block" id="Rectangle.get_aabb"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle.get_aabb">[docs]</a>    <span class="k">def</span> <span class="nf">get_aabb</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Vector</span><span class="p">,</span> <span class="n">Vector</span><span class="p">]:</span>
@@ -826,8 +806,6 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of the Rectangle&#39;s vertices in world coordinates. Accounts for gameobject position and rotation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset_verts</span><span class="p">()</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">v</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">offset_verts</span><span class="p">()]</span></div>
 
 <div class="viewcode-block" id="Rectangle.regen"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle.regen">[docs]</a>    <span class="k">def</span> <span class="nf">regen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -841,7 +819,7 @@
 
         <span class="n">w</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
         <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">w</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span> <span class="ow">or</span> <span class="n">h</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">h</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">w</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">width</span> <span class="ow">or</span> <span class="n">h</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">height</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
 
@@ -949,7 +927,7 @@
         <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="n">int_r</span><span class="p">,</span> <span class="n">int_r</span><span class="p">)</span>
         <span class="n">size</span> <span class="o">=</span> <span class="n">int_r</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">w</span> <span class="o">!=</span> <span class="n">size</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">width</span> <span class="o">!=</span> <span class="n">size</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 

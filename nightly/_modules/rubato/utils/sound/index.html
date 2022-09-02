@@ -311,8 +311,9 @@
 <span class="sd">A multi-channel sound system for rubato.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">walk</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span> <span class="k">as</span> <span class="n">os_path</span><span class="p">,</span> <span class="n">walk</span>
 <span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">c_int</span><span class="p">,</span> <span class="n">CFUNCTYPE</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 
 <span class="kn">import</span> <span class="nn">sdl2.sdlmixer</span> <span class="k">as</span> <span class="nn">mixer</span>
 <span class="kn">from</span> <span class="nn">sdl2</span> <span class="kn">import</span> <span class="n">AUDIO_F32</span>
@@ -320,7 +321,7 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">IdError</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">Math</span>
 
 <span class="k">if</span> <span class="n">mixer</span><span class="o">.</span><span class="n">Mix_OpenAudio</span><span class="p">(</span><span class="mi">48000</span><span class="p">,</span> <span class="n">AUDIO_F32</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2048</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Could not open audio device.&quot;</span><span class="p">)</span>
+    <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Could not open audio device.&quot;</span><span class="p">)</span>
 
 
 <span class="nd">@CFUNCTYPE</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">c_int</span><span class="p">)</span>
@@ -346,7 +347,7 @@
 <span class="sd">        * VOC</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        rel_path: The relative path to the sound file you wish to import.</span>
+<span class="sd">        path: The relative path to the sound file you wish to import.</span>
 <span class="sd">        sound_name: The name of the sound. Defaults to the name of the file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">STOPPED</span> <span class="o">=</span> <span class="mi">0</span>
@@ -358,14 +359,14 @@
     <span class="n">active_channels</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Sound</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="sd">&quot;&quot;&quot;A dictionary housing all the active sounds, stored by their name.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rel_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sound_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chunk</span> <span class="o">=</span> <span class="n">mixer</span><span class="o">.</span><span class="n">Mix_LoadWAV</span><span class="p">(</span><span class="n">rel_path</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sound_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chunk</span> <span class="o">=</span> <span class="n">mixer</span><span class="o">.</span><span class="n">Mix_LoadWAV</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_paused</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_volume</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mixer</span><span class="o">.</span><span class="n">MIX_MAX_VOLUME</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">sound_name</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">rel_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">sound_name</span>
 
@@ -470,24 +471,24 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_volume</span></div>
 
 <div class="viewcode-block" id="Sound.import_sound_folder"><a class="viewcode-back" href="../../../../api/#rubato.utils.sound.Sound.import_sound_folder">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">import_sound_folder</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">rel_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">duplicate_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">import_sound_folder</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">duplicate_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Imports a folder of sounds, saving each one in the loaded_sounds</span>
 <span class="sd">        dictionary by filename.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            rel_path: The relative path to the folder you wish to import.</span>
+<span class="sd">            path: The relative path to the folder you wish to import.</span>
 <span class="sd">            duplicate_names: if you wish to have duplicate names to your sounds,</span>
 <span class="sd">            it will use the relative and the sound path for the sounds name</span>
 <span class="sd">            recursive: Whether it will import an animation shallowly or recursively. Defaults to True.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">recursive</span><span class="p">:</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">walk</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
             <span class="c1"># walk to directory path and ignore name and subdirectories</span>
             <span class="k">for</span> <span class="n">sound_path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-                <span class="n">path_to_sound</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">sound_path</span><span class="p">)</span>
+                <span class="n">path_to_sound</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">sound_path</span><span class="p">)</span>
                 <span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">sound_path</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">duplicate_names</span> <span class="k">else</span> <span class="n">sound_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="bp">cls</span><span class="p">(</span><span class="n">path_to_sound</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
@@ -500,8 +501,8 @@
             <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">walk</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
                 <span class="c1"># walk to directory path and ignore name and subdirectories</span>
                 <span class="k">for</span> <span class="n">sound_path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-                    <span class="n">path_to_sound</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">sound_path</span><span class="p">)</span>
-                    <span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="n">rel_path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">sound_path</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">duplicate_names</span> <span class="k">else</span> <span class="n">sound_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">path_to_sound</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">sound_path</span><span class="p">)</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">sound_path</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">duplicate_names</span> <span class="k">else</span> <span class="n">sound_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
                     <span class="k">try</span><span class="p">:</span>
                         <span class="bp">cls</span><span class="p">(</span><span class="n">path_to_sound</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
                     <span class="k">except</span> <span class="n">IdError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>

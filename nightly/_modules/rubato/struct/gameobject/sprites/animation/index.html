@@ -312,13 +312,11 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
-<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span><span class="p">,</span> <span class="n">walk</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-<span class="kn">import</span> <span class="nn">sdl2</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span> <span class="k">as</span> <span class="n">os_path</span><span class="p">,</span> <span class="n">walk</span>
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Component</span>
-<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Sprite</span>
-<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">deprecated_no_replacement</span>
+<span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">Surface</span>
+<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Camera</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Spritesheet</span>
@@ -357,7 +355,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_fps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">fps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">singular</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Sprite</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Surface</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">default_state</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -402,17 +400,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_current_frame</span> <span class="o">=</span> <span class="n">new</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">animation_frames_left</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">])</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_frame</span><span class="p">)</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The current SDL Surface holding the image.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">current_frame</span><span class="p">]</span><span class="o">.</span><span class="n">surf</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">anim_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sprite</span><span class="p">:</span>
+<div class="viewcode-block" id="Animation.anim_frame"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.anim_frame">[docs]</a>    <span class="k">def</span> <span class="nf">anim_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Surface</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The current animation frame.&quot;&quot;&quot;</span>
-        <span class="n">sprite</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">current_frame</span><span class="p">]</span>
-        <span class="n">sprite</span><span class="o">.</span><span class="n">af</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">af</span>
-        <span class="n">sprite</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
+        <span class="n">surface</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">current_frame</span><span class="p">]</span>
+        <span class="n">surface</span><span class="o">.</span><span class="n">af</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">af</span>
+        <span class="n">surface</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
 
         <span class="n">calculated_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">flipx</span><span class="p">:</span>
@@ -420,10 +412,12 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">flipy</span><span class="p">:</span>
             <span class="n">calculated_scale</span><span class="o">.</span><span class="n">y</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
 
-        <span class="n">sprite</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">calculated_scale</span>
-        <span class="k">return</span> <span class="n">sprite</span>
+        <span class="n">surface</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">calculated_scale</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">surface</span><span class="o">.</span><span class="n">uptodate</span><span class="p">:</span>
+            <span class="n">surface</span><span class="o">.</span><span class="n">regen</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">surface</span></div>
 
-<div class="viewcode-block" id="Animation.set_current_state"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.set_current_state">[docs]</a>    <span class="k">def</span> <span class="nf">set_current_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_state</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">loop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">freeze</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+<div class="viewcode-block" id="Animation.set_state"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.set_state">[docs]</a>    <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_state</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">loop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">freeze</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the current animation state.</span>
 
@@ -437,32 +431,18 @@
 <span class="sd">            KeyError: The new_state key is not in the initialized states.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">new_state</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">new_state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">loop</span> <span class="o">=</span> <span class="n">loop</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="n">new_state</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span> <span class="o">=</span> <span class="n">freeze</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The given state </span><span class="si">{</span><span class="n">new_state</span><span class="si">}</span><span class="s2"> is not in the initialized states&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Animation.resize"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.resize">[docs]</a>    <span class="nd">@deprecated_no_replacement</span>
-    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_size</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Resize the Animation to a given size in pixels.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            new_size: The new size of the Animation in pixels.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Resizing isn&#39;t supported anymore. Use the scale property instead.&quot;</span><span class="p">)</span></div>
-        <span class="c1"># for value in self._states.values():</span>
-        <span class="c1">#     for anim_frame in value:</span>
-        <span class="c1">#         anim_frame.resize(new_size)</span>
+            <span class="k">if</span> <span class="n">new_state</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The given state </span><span class="si">{</span><span class="n">new_state</span><span class="si">}</span><span class="s2"> is not in the initialized states&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loop</span> <span class="o">=</span> <span class="n">loop</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="n">new_state</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_freeze</span> <span class="o">=</span> <span class="n">freeze</span></div>
 
 <div class="viewcode-block" id="Animation.reset"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reset the animation state back to the first frame.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_frame</span> <span class="o">=</span> <span class="mi">0</span></div>
 
-<div class="viewcode-block" id="Animation.add"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">images</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Sprite</span><span class="p">]):</span>
+<div class="viewcode-block" id="Animation.add"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">images</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Surface</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds a state to the animation.</span>
 
@@ -477,24 +457,24 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">current_state</span> <span class="o">=</span> <span class="n">state_name</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Animation.add_folder"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.add_folder">[docs]</a>    <span class="k">def</span> <span class="nf">add_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rel_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Animation.add_folder"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.add_folder">[docs]</a>    <span class="k">def</span> <span class="nf">add_folder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds a state from a folder of images. Directory must be solely comprised of images.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            state_name: The key used to reference this state.</span>
-<span class="sd">            rel_path: The relative path to the folder you wish to import</span>
+<span class="sd">            path: The relative path to the folder you wish to import</span>
 <span class="sd">            recursive: Whether it will import an animation shallowly or recursively. Defaults to True.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ret_list</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">rel_path</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">get_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">recursive</span><span class="p">:</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">files</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">walk</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
             <span class="n">files</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">path_to_image</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">image_path</span><span class="p">)</span>
-                    <span class="n">image</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="n">rel_path</span><span class="o">=</span><span class="n">path_to_image</span><span class="p">)</span>
+                    <span class="n">path_to_image</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">image_path</span><span class="p">)</span>
+                    <span class="n">image</span> <span class="o">=</span> <span class="n">Surface</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">path_to_image</span><span class="p">)</span>
                     <span class="n">ret_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
                     <span class="k">continue</span>
@@ -504,8 +484,8 @@
                 <span class="n">files</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">image_path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
                     <span class="k">try</span><span class="p">:</span>
-                        <span class="n">path_to_image</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">image_path</span><span class="p">)</span>
-                        <span class="n">image</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="n">rel_path</span><span class="o">=</span><span class="n">path_to_image</span><span class="p">)</span>
+                        <span class="n">path_to_image</span> <span class="o">=</span> <span class="n">os_path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">image_path</span><span class="p">)</span>
+                        <span class="n">image</span> <span class="o">=</span> <span class="n">Surface</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">path_to_image</span><span class="p">)</span>
                         <span class="n">ret_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
                     <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
                         <span class="k">continue</span>
@@ -563,7 +543,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">anim_tick</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_time_count</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time_step</span>
 
-        <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anim_frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">(),</span> <span class="n">camera</span><span class="p">)</span></div>
+        <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anim_frame</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">(),</span> <span class="n">camera</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Animation.anim_tick"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.anim_tick">[docs]</a>    <span class="k">def</span> <span class="nf">anim_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;An animation processing tick.&quot;&quot;&quot;</span>
@@ -574,14 +554,7 @@
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">:</span>  <span class="c1"># we reached the end of our state</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">set_current_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_state</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Animation.delete"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Deletes the animation component&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
-                <span class="n">image</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_states</span> <span class="o">=</span> <span class="p">{}</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_state</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Animation.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.animation.Animation.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Clones the animation.&quot;&quot;&quot;</span>
