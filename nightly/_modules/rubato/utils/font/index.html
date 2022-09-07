@@ -311,6 +311,7 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 <span class="kn">from</span> <span class="nn">importlib.resources</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Color</span>
 
@@ -321,7 +322,7 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        font: The font to use. Can also be a path to a font file. Defaults to Roboto.</span>
-<span class="sd">        size: The size of the font. Defaults to 16.</span>
+<span class="sd">        size: The size of the font in pixels. Defaults to 16.</span>
 <span class="sd">        styles: The styles to apply to the font. Defaults to [].</span>
 <span class="sd">            Fill with only the following: bold, italic, underline, strikethrough.</span>
 <span class="sd">        color: The color of the font. Defaults to Color(0, 0, 0).</span>
@@ -333,7 +334,7 @@
         <span class="s2">&quot;Merriweather&quot;</span><span class="p">:</span> <span class="s2">&quot;Merriweather-Regular.ttf&quot;</span><span class="p">,</span>
         <span class="s2">&quot;Roboto&quot;</span><span class="p">:</span> <span class="s2">&quot;Roboto-Regular.ttf&quot;</span><span class="p">,</span>
         <span class="s2">&quot;SourceCodePro&quot;</span><span class="p">:</span> <span class="s2">&quot;SourceCodePro-Regular.ttf&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;PressStart&quot;</span><span class="p">:</span> <span class="s2">&quot;PressStart2P-Regular.ttf&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mozart&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozart-Regular.ttf&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="n">_text_styles</span> <span class="o">=</span> <span class="p">{</span>
@@ -345,7 +346,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Comfortaa&quot;</span><span class="p">,</span> <span class="s2">&quot;Fredoka&quot;</span><span class="p">,</span> <span class="s2">&quot;Merriweather&quot;</span><span class="p">,</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span> <span class="s2">&quot;SourceCodePro&quot;</span><span class="p">,</span> <span class="s2">&quot;PressStart&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span>
+        <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Comfortaa&quot;</span><span class="p">,</span> <span class="s2">&quot;Fredoka&quot;</span><span class="p">,</span> <span class="s2">&quot;Merriweather&quot;</span><span class="p">,</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span> <span class="s2">&quot;SourceCodePro&quot;</span><span class="p">,</span> <span class="s2">&quot;Mozart&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span>
         <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
         <span class="n">styles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
@@ -360,7 +361,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span> <span class="o">=</span> <span class="n">font</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">FontTTF</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">FontTTF</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Font </span><span class="si">{</span><span class="n">font</span><span class="si">}</span><span class="s2"> cannot be found.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
@@ -404,11 +405,25 @@
 <span class="sd">            The surface containing the text.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">render_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="n">align</span><span class="o">=</span><span class="n">align</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">render_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="n">align</span><span class="o">=</span><span class="n">align</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The width </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2"> is too small for the text.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
         <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The size </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="si">}</span><span class="s2"> is too big for the text.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span></div>
+
+<div class="viewcode-block" id="Font.size_text"><a class="viewcode-back" href="../../../../api/#rubato.utils.font.Font.size_text">[docs]</a>    <span class="k">def</span> <span class="nf">size_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculated the dimensions of a string of text using a given font.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text: The string of text to calculate dimensions for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The dimensions of the string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text_w</span><span class="p">,</span> <span class="n">text_h</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SizeText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">text_w</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">text_h</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">text_w</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">text_h</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Font.add_style"><a class="viewcode-back" href="../../../../api/#rubato.utils.font.Font.add_style">[docs]</a>    <span class="k">def</span> <span class="nf">add_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

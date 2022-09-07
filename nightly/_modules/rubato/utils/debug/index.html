@@ -310,9 +310,9 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">A set of utility functions to help with debugging.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">traceback</span><span class="o">,</span> <span class="nn">math</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">InitError</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">InitError</span>
 
 
 <span class="c1"># THIS IS A STATIC CLASS</span>
@@ -331,13 +331,23 @@
 <span class="sd">        Called automatically if `Game.show_fps` is True.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            font (Font): The font to use.</span>
+<span class="sd">            font: The font to use.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">fs</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">smooth_fps</span><span class="p">)</span>
-        <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">5</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">h</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="n">Draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">fs</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">h</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">fs</span><span class="p">)</span> <span class="o">+</span> <span class="n">p</span><span class="p">,</span> <span class="n">h</span> <span class="o">+</span> <span class="n">p</span><span class="p">,</span> <span class="n">Color</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">200</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="n">Color</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
-        <span class="n">Draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">fs</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">Vector</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">3</span><span class="p">),</span> <span class="n">align</span><span class="o">=</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span></div>
+        <span class="n">pad</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">64</span><span class="p">)</span>
+        <span class="n">height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">pad</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="n">scale</span> <span class="o">=</span> <span class="n">height</span> <span class="o">/</span> <span class="n">font</span><span class="o">.</span><span class="n">size</span>
+
+        <span class="n">Draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="nb">str</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">smooth_fps</span><span class="p">),</span>
+            <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span>
+            <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="n">pad</span><span class="p">,</span> <span class="n">pad</span><span class="p">),</span>
+            <span class="n">align</span><span class="o">=</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
+            <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">scale</span><span class="p">),</span>
+            <span class="n">shadow</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">shadow_pad</span><span class="o">=</span><span class="n">pad</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="Debug.find_my_print"><a class="viewcode-back" href="../../../../api/#rubato.utils.debug.Debug.find_my_print">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">find_my_print</span><span class="p">():</span>
