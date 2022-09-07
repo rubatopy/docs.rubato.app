@@ -7745,12 +7745,6 @@ This is identical to <a class="reference internal" href="#rubato.utils.noise.Noi
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.delta_time">
-<span class="sig-name descname"><span class="pre">delta_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.001</span></em><a class="headerlink" href="#rubato.utils.rb_time.Time.delta_time" title="Permalink to this definition">#</a></dt>
-<dd><p>The number of seconds between the last frame and the current frame.</p>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time.fixed_delta">
 <span class="sig-name descname"><span class="pre">fixed_delta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#rubato.utils.rb_time.Time.fixed_delta" title="Permalink to this definition">#</a></dt>
 <dd><p>The number of seconds since the last fixed update.</p>
@@ -7772,6 +7766,17 @@ This is identical to <a class="reference internal" href="#rubato.utils.noise.Noi
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time.physics_fps">
 <span class="sig-name descname"><span class="pre">physics_fps</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60</span></em><a class="headerlink" href="#rubato.utils.rb_time.Time.physics_fps" title="Permalink to this definition">#</a></dt>
 <dd><p>The fps that the physics should run at. Defaults to 60.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.delta_time">
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delta_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.Time.delta_time" title="Permalink to this definition">#</a></dt>
+<dd><p>The number of seconds between the last frame and the current frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py property">
@@ -8070,11 +8075,14 @@ Defaults to &quot;mix&quot;.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.color.Color.random_default">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grayscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.random_default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.random_default" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grayscale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/color/#Color.random_default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.color.Color.random_default" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns a random default Color.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>grayscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a><em>, </em><em>optional</em>) -- Whether to add grayscale colors. Defaults to False.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grayscale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a><em>, </em><em>optional</em>) -- Whether to add grayscale colors -1 - no, 0 - yes, 1 - only. Defaults to -1,</p></li>
+<li><p><strong>colors</strong><strong>)</strong><strong>.</strong> (<em>(</em><em>only default</em>) -- </p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A random default Color.</p>
