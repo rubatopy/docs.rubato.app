@@ -425,8 +425,6 @@
                     <span class="p">},</span>
                 <span class="p">)</span>
             <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONDOWN</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONUP</span><span class="p">):</span>
-                <span class="n">button</span> <span class="o">=</span> <span class="s2">&quot;mouse &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">button</span><span class="p">)</span>
-
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONUP</span><span class="p">:</span>
                     <span class="n">event_name</span> <span class="o">=</span> <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEUP</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -435,7 +433,7 @@
                 <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                     <span class="n">event_name</span><span class="p">,</span>
                     <span class="p">{</span>
-                        <span class="s2">&quot;button&quot;</span><span class="p">:</span> <span class="n">button</span><span class="p">,</span>
+                        <span class="s2">&quot;button&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">button</span><span class="p">,</span>
                         <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                         <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                         <span class="s2">&quot;clicks&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicks</span><span class="p">,</span>
@@ -450,7 +448,6 @@
                     <span class="p">{</span>
                         <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
                         <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
-                        <span class="c1"># &quot;direction&quot;: event.wheel.direction,</span>
                         <span class="s2">&quot;precise x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseX</span><span class="p">,</span>
                         <span class="s2">&quot;precise y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseY</span><span class="p">,</span>
                         <span class="s2">&quot;which&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>

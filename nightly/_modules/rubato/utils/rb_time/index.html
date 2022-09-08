@@ -392,11 +392,13 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">delta_time</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The number of seconds between the last frame and the current frame.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_delta_time</span>
+
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">smooth_fps</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -430,7 +432,7 @@
         <span class="k">while</span> <span class="bp">cls</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_frame_start</span><span class="p">:</span>
             <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Delay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">delta_time</span> <span class="o">=</span> <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_frame_start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_delta_time</span> <span class="o">=</span> <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_frame_start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>
 
 <div class="viewcode-block" id="Time.schedule"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.schedule">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">schedule</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">DelayedTask</span> <span class="o">|</span> <span class="n">FramesTask</span> <span class="o">|</span> <span class="n">ScheduledTask</span><span class="p">):</span>

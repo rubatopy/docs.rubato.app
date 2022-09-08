@@ -498,22 +498,22 @@
         <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">/</span> <span class="mi">255</span></div>
 
 <div class="viewcode-block" id="Color.random_default"><a class="viewcode-back" href="../../../../api/#rubato.utils.color.Color.random_default">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">random_default</span><span class="p">(</span><span class="n">grayscale</span><span class="p">:</span><span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">random_default</span><span class="p">(</span><span class="n">grayscale</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a random default Color.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            grayscale (int, optional): Whether to add grayscale colors -1 - no, 0 - yes, 1 - only. Defaults to -1,</span>
-<span class="sd">            (only default colors).</span>
+<span class="sd">            grayscale: Grayscale color option (-1 excludes, 0 includes, and 1 only chooses from grayscale colors).</span>
+<span class="sd">            Defaults to -1.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Color: A random default Color.</span>
+<span class="sd">            A random default Color.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span>
             <span class="o">*</span><span class="n">choice</span><span class="p">(</span>
-                <span class="nb">list</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span> <span class="n">grayscale</span> <span class="o">&lt;=</span><span class="mi">0</span> <span class="k">else</span> <span class="p">[]</span>
-                <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">grayscale</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[])</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="k">if</span> <span class="n">grayscale</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[]</span> <span class="o">+</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">grayscale</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">[])</span>
             <span class="p">)</span>
         <span class="p">)</span></div>
 
