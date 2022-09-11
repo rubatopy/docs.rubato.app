@@ -431,7 +431,7 @@
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hitbox_b</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_circle_polygon_test</span><span class="p">(</span><span class="n">hitbox_b</span><span class="p">,</span> <span class="n">hitbox_a</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">r</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">r</span><span class="o">.</span><span class="n">_flip</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">Engine</span><span class="o">.</span><span class="n">_polygon_polygon_test</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span></div>
 
@@ -470,7 +470,7 @@
             <span class="n">Engine</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
 
         <span class="n">hitbox_a</span><span class="o">.</span><span class="n">on_collide</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
-        <span class="n">hitbox_b</span><span class="o">.</span><span class="n">on_collide</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">flip</span><span class="p">())</span></div>
+        <span class="n">hitbox_b</span><span class="o">.</span><span class="n">on_collide</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">_flip</span><span class="p">())</span></div>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_circle_circle_test</span><span class="p">(</span><span class="n">circle_a</span><span class="p">:</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">circle_b</span><span class="p">:</span> <span class="n">Circle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Manifold</span><span class="p">]:</span>
@@ -630,11 +630,11 @@
 
 <div class="viewcode-block" id="Manifold"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Manifold">[docs]</a><span class="k">class</span> <span class="nc">Manifold</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A class that represents information returned in a successful collision.</span>
+<span class="sd">    A class that represents information returned in collision callbacks.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        shape_a: The first shape involved in the collision.</span>
-<span class="sd">        shape_b: The second shape involved in the collision.</span>
+<span class="sd">        shape_a: The first shape involved in the collision (the reference shape).</span>
+<span class="sd">        shape_b: The second shape involved in the collision (the incident shape).</span>
 <span class="sd">        penetration: The amount of penetration between the two shapes.</span>
 <span class="sd">        normal: The normal of the collision.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -647,28 +647,30 @@
         <span class="n">normal</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(),</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span><span class="p">:</span> <span class="n">Hitbox</span> <span class="o">=</span> <span class="n">shape_a</span>
-        <span class="sd">&quot;&quot;&quot;A reference to the first shape.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;The reference shape.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span><span class="p">:</span> <span class="n">Hitbox</span> <span class="o">=</span> <span class="n">shape_b</span>
-        <span class="sd">&quot;&quot;&quot;A reference to the second shape.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;The incident (colliding) shape.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">penetration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">penetration</span>
         <span class="sd">&quot;&quot;&quot;The amount by which the colliders are intersecting.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">normal</span>
         <span class="sd">&quot;&quot;&quot;The direction that would most quickly separate the two colliders.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Manifold &lt;shape_a: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span><span class="si">}</span><span class="s2">, shape_b: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span><span class="si">}</span><span class="s2">, &quot;</span> <span class="o">+</span> \
-            <span class="sa">f</span><span class="s2">&quot;penetration: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">penetration</span><span class="si">}</span><span class="s2">, normal: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Manifold(shape_a=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span><span class="si">}</span><span class="s2">, shape_b=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span><span class="si">}</span><span class="s2">, penetration=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">penetration</span><span class="si">}</span><span class="s2">, &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;normal=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">normal</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span>
 
-<div class="viewcode-block" id="Manifold.flip"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.engine.Manifold.flip">[docs]</a>    <span class="k">def</span> <span class="nf">flip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Manifold</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_flip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Manifold</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Flips the reference shape in a collision manifold</span>
+<span class="sd">        Flips the reference shape in a collision manifold and inverts the normal vector.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            A reference to self.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape_b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape_a</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">normal</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">return</span> <span class="bp">self</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span></div>
 </pre></div> 
         </article>
       </div>
