@@ -321,31 +321,34 @@
 the getting started and have an understanding of how to use the built-in components.</p>
 <p>Simply put, custom components are a very powerful way of adding a behavior to your GameObjects. Your custom components are
 used just like any other component. Below is an example of a custom component PlayerController being added to a GameObject.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="s2">&quot;Player&quot;</span><span class="p">)</span>
-<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">red</span><span class="p">))</span>
-<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">PlayerController</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">PlayerController</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>Below is what this PlayerController component might look like.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PlayerController</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Component</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A custom component that adds player behavior to a GameObject.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Here you set up all the variables of the component.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span> <span class="c1"># you must call super().__init__()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>  <span class="c1"># you must call super().__init__()</span>
 
-        <span class="c1"># Assign arguments to attributes</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-
-        <span class="c1"># Change any attributes inhertied from Component.</span>
+        <span class="c1"># Change any attributes inherited from Component.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">singular</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 
         <span class="c1"># Initialize any attributes that you want to use in your component.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">health</span> <span class="o">=</span> <span class="mi">100</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">10</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># We are going to get this later.</span>
+
+        <span class="c1"># The hitbox (circle) that is drawn to the screen</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="p">:</span> <span class="n">rb</span><span class="o">.</span><span class="n">Hitbox</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">red</span><span class="p">)</span>
+
+        <span class="c1"># The text that is drawn to the screen, will use the game object&#39;s name in setup.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="p">:</span> <span class="n">rb</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="o">.</span><span class="n">radius</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">font_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -353,21 +356,34 @@ used just like any other component. Below is an example of a custom component Pl
 <span class="sd">        on the GameObject.</span>
 <span class="sd">        Automatically run once before the first update call.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Hitbox</span><span class="p">)</span>
+        <span class="c1"># once we have access to the game object, we can set the text to the game object&#39;s name.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="c1"># here we need to add all of our components to the game object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="p">)</span>
+
+        <span class="c1"># subscribe to the mouse down event</span>
+        <span class="n">rb</span><span class="o">.</span><span class="n">Radio</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Events</span><span class="o">.</span><span class="n">MOUSEDOWN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_press</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_mouse_press</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">world_mouse</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Called once per frame. Before the draw function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">mouse_pressed</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">get_mouse_pos</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;shift&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A custom function that can add even move behavior to your component.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello! My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello! My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Next we will break down each section of the PlayerController component.</p>
@@ -378,23 +394,26 @@ used just like any other component. Below is an example of a custom component Pl
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Here you set up all the variables of the component.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span> <span class="c1"># you must call super().__init__()</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>  <span class="c1"># you must call super().__init__()</span>
 
-    <span class="c1"># Assign arguments to attributes</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-
-    <span class="c1"># Change any attributes inhertied from Component.</span>
+    <span class="c1"># Change any attributes inherited from Component.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">singular</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 
     <span class="c1"># Initialize any attributes that you want to use in your component.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">health</span> <span class="o">=</span> <span class="mi">100</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">speed</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># We are going to get this later.</span>
+
+    <span class="c1"># The hitbox (circle) that is drawn to the screen</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="p">:</span> <span class="n">rb</span><span class="o">.</span><span class="n">Hitbox</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">red</span><span class="p">)</span>
+
+    <span class="c1"># The text that is drawn to the screen, will use the game object&#39;s name in setup.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="p">:</span> <span class="n">rb</span><span class="o">.</span><span class="n">Text</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="o">.</span><span class="n">radius</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">font_size</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In the initalizer for your component, you must first call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function. This will setup the structure
@@ -411,12 +430,20 @@ will get it from the GameObject later.</p>
 <span class="sd">    on the GameObject.</span>
 <span class="sd">    Automatically run once before the first update call.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Hitbox</span><span class="p">)</span>
+    <span class="c1"># once we have access to the game object, we can set the text to the game object&#39;s name.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="c1"># here we need to add all of our components to the game object</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="p">)</span>
+
+    <span class="c1"># subscribe to the mouse down event</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">Radio</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Events</span><span class="o">.</span><span class="n">MOUSEDOWN</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_mouse_press</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The setup function is the first time you get access to the GameObject of the component. This is where you should set any
-attributes that require knowledge of the GameObject. In our example, we set our hitbox attribute to the the hitbox of the
-GameObject.</p>
+attributes that require knowledge of the GameObject. In our example, we set our name tags text. As well as adding our
+components to the game object.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -424,9 +451,10 @@ GameObject.</p>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Called once per frame. Before the draw function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">mouse_pressed</span><span class="p">():</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hitbox</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">get_mouse_pos</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">rb</span><span class="o">.</span><span class="n">Input</span><span class="o">.</span><span class="n">key_pressed</span><span class="p">(</span><span class="s2">&quot;shift&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nametag</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div>
 <p>As you should know, components have a couple functions that can be overriden:
@@ -440,7 +468,7 @@ hitbox and move the player whenever the mouse is pressed.</p>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A custom function that can add even move behavior to your component.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello! My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello! My name is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The last thing to know about custom components is that you can define any functions you want. In our example, we are defining
