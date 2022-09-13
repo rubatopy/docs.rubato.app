@@ -320,7 +320,7 @@
 <p>In this step, we will be adding player behavior to our character.</p>
 <p>We want our dinosaur to be able to move left, right and jump.
 We also want to apply physics laws to him, such as gravity and collisions with future obstacles.</p>
-<p>First, let's add physics to our player. To do this, we will add a <a class="reference internal" href="../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody" title="rubato.struct.gameobject.physics.rigidbody.RigidBody"><code class="xref py py-func docutils literal notranslate"><span class="pre">RigidBody</span></code></a> component to our
+<p>First, let's add physics to our player. To do this, we will add a <code class="xref py py-func docutils literal notranslate"><span class="pre">RigidBody</span></code> component to our
 player. Add the following code after the animation code, but before the <code class="docutils literal notranslate"><span class="pre">main.add</span></code> call.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the player rigidbody</span>
 <span class="n">player_body</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">(</span>
@@ -375,7 +375,7 @@ this function, we will check for player input and update the player's velocity a
         <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
-<p>Here we check for player input using <a class="reference internal" href="../../../api/#rubato.utils.rb_input.Input.key_pressed" title="rubato.utils.rb_input.Input.key_pressed"><code class="xref py py-func docutils literal notranslate"><span class="pre">key_pressed()</span></code></a>. We then update the player's horizontal velocity
+<p>Here we check for player input using <code class="xref py py-func docutils literal notranslate"><span class="pre">key_pressed()</span></code>. We then update the player's horizontal velocity
 in the corresponding direction. We also flip the player's animation depending on the direction we want to face. Now, when you press &quot;a&quot; or &quot;d&quot; you
 should be able to move the player left and right.</p>
 <p>Finally, let's add a jump behavior. Unlike moving left and right, we don't want the user to be able to move up forever if they keep holding the jump
@@ -410,7 +410,7 @@ We also want to vary the jump animation on your last jump. The first is a regula
 Finally, we decrement the number of jumps you have left, so you can't jump infinitely.</p>
 <p>The <code class="code docutils literal notranslate"><span class="pre">rb.Radio.listen(&quot;KEYDOWN&quot;,</span> <span class="pre">handle_keydown)</span></code> line is where we tell rubato to listen for a keydown event and run the <code class="docutils literal notranslate"><span class="pre">handle_keydown</span></code> function
 whenever that event is broadcast. Note that you can also replace <code class="docutils literal notranslate"><span class="pre">&quot;KEYDOWN&quot;</span></code> with <code class="docutils literal notranslate"><span class="pre">rb.Events.KEYDOWN</span></code> and get the same functionality.
-<a class="reference internal" href="../../../api/#rubato.utils.radio.Events" title="rubato.utils.radio.Events"><code class="xref py py-func docutils literal notranslate"><span class="pre">Events</span></code></a> have all other rubato-triggered events that you can listen for.</p>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">Events</span></code> have all other rubato-triggered events that you can listen for.</p>
 <p>Running the script at this point should show a falling dinosaur, and let you dump twice and move a little left and right before falling to your doom.
 In the next step, we'll be building the level for the player to explore.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">

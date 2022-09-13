@@ -331,7 +331,7 @@ once you run out of jumps, you can't do anything to reset your jump counter. We 
 this, we will add a ground detection hitbox to the player, making sure to set the <code class="docutils literal notranslate"><span class="pre">trigger</span></code> parameter to true.</p>
 <p>Making a hitbox a &quot;trigger&quot; prevents the hitbox from colliding. It will still detect collisions and call the relevant callbacks.
 We will define a player_collide callback that will be called when the player's ground detector collides.
-When this happens, we use the provided collision <a class="reference internal" href="../../../api/#rubato.struct.gameobject.physics.engine.Manifold" title="rubato.struct.gameobject.physics.engine.Manifold"><code class="xref py py-func docutils literal notranslate"><span class="pre">Manifold</span></code></a> to
+When this happens, we use the provided collision <code class="xref py py-func docutils literal notranslate"><span class="pre">Manifold</span></code> to
 make sure the other collider is a ground hitbox, that we are not already grounded, and that we are indeed falling towards the ground.
 That code looks like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grounded</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># This line should be under the jump counter variable</span>
@@ -388,8 +388,8 @@ space there! Remember that we set our level to be 120% the width of the screen. 
 <span class="n">main</span><span class="o">.</span><span class="n">fixed_update</span> <span class="o">=</span> <span class="n">fixed_update</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">lerp</span></code> and <code class="docutils literal notranslate"><span class="pre">clamp</span></code> are both built-in methods to the <a class="reference internal" href="../../../api/#rubato.utils.rb_math.Math" title="rubato.utils.rb_math.Math"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Math</span></code></a> class.
-Note that we've used <a class="reference internal" href="../../../api/#rubato.utils.rb_time.Time.fixed_delta" title="rubato.utils.rb_time.Time.fixed_delta"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Time.fixed_delta</span></code></a>, which represents the
+<p><code class="docutils literal notranslate"><span class="pre">lerp</span></code> and <code class="docutils literal notranslate"><span class="pre">clamp</span></code> are both built-in methods to the <code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Math</span></code> class.
+Note that we've used <code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Time.fixed_delta</span></code>, which represents the
 time elapsed since the last update to the physics engine, in seconds. This is to make our camera follow the player more smoothly,
 in line with the fps.</p>
 </section>

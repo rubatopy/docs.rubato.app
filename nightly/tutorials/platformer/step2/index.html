@@ -322,19 +322,19 @@ animated character.</p>
 <p>At this point, you should have a white window with a resolution of 1920 by 1080 pixels.</p>
 <p>First, we need to understand the rubato heirarchy (we'll explain it first, then walk you
 through it). rubato has 4 levels of structure, in order: Scenes, Groups, Game Objects, and Components.</p>
-<p><a class="reference internal" href="../../../api/#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> hold 2 Groups. One for menu items (the UI) and
-one for the main Game Objects. It also manages a <a class="reference internal" href="../../../api/#rubato.utils.camera.Camera" title="rubato.utils.camera.Camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code></a>.
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code> hold 2 Groups. One for menu items (the UI) and
+one for the main Game Objects. It also manages a <code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code>.
 Scenes are used to separate different sections of a game. For example, you could have each game
 level in a different scene. Then to move between levels, you would simply switch scenes, and rubato will
 automatically change which scene is updated and drawn to the window.</p>
-<p><a class="reference internal" href="../../../api/#rubato.struct.group.Group" title="rubato.struct.group.Group"><code class="xref py py-func docutils literal notranslate"><span class="pre">Groups</span></code></a> are the next layer down. They can hold either Game Objects or other Groups.
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">Groups</span></code> are the next layer down. They can hold either Game Objects or other Groups.
 Their main purpose is divide different &quot;groups&quot; of items (hence the name!). For example,
 items in 2 different groups won't automatically collide with each other, but items sharing a Group will (even if the group is a shared ancestor of both!).
 We won't explicitly use Groups in this tutorial as because their functionality isn't necessary for the platformer.</p>
-<p><a class="reference internal" href="../../../api/#rubato.struct.gameobject.game_object.GameObject" title="rubato.struct.gameobject.game_object.GameObject"><code class="xref py py-func docutils literal notranslate"><span class="pre">Game</span> <span class="pre">Objects</span></code></a> are the main objects in a game.
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">Game</span> <span class="pre">Objects</span></code> are the main objects in a game.
 They have a position and z-index, and represent a &quot;thing&quot;, such as a player, or an enemy, or a platform. Their behavior is almost entirely
 determined by the Components that are assigned to them.</p>
-<p><a class="reference internal" href="../../../api/#rubato.struct.gameobject.component.Component" title="rubato.struct.gameobject.component.Component"><code class="xref py py-func docutils literal notranslate"><span class="pre">Components</span></code></a> are lightweight &quot;modules&quot; that add to the behavior of a Game Object.
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">Components</span></code> are lightweight &quot;modules&quot; that add to the behavior of a Game Object.
 For example, an Image component draws an image from your filesystem at the Game Object's position. A RigidBody
 component registers the Game Object into the built-in physics engine. A Hitbox component gives a Game Object shape.</p>
 <p>If this explanation was confusing, it'll hopefully make more sense seeing the system in action.
@@ -343,10 +343,10 @@ Let's create a scene right after <code class="code docutils literal notranslate"
 <span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>Here we introduce the <a class="reference internal" href="../../../api/#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-func docutils literal notranslate"><span class="pre">Color</span></code></a> class. Colors
+<p>Here we introduce the <code class="xref py py-func docutils literal notranslate"><span class="pre">Color</span></code> class. Colors
 are stored in RGBA format but can be loaded from HSV and HEX. The class comes
-preloaded with pastel-inspired <a class="reference internal" href="../../../api/#rubato.utils.color.Color.random" title="rubato.utils.color.Color.random"><code class="xref py py-func docutils literal notranslate"><span class="pre">default</span> <span class="pre">colors</span></code></a> as
-well as several methods to mix and manipulate them. In the code above, we use <a class="reference internal" href="../../../api/#rubato.utils.color.Color.lighter" title="rubato.utils.color.Color.lighter"><code class="xref py py-func docutils literal notranslate"><span class="pre">lighter()</span></code></a>
+preloaded with pastel-inspired <code class="xref py py-func docutils literal notranslate"><span class="pre">default</span> <span class="pre">colors</span></code> as
+well as several methods to mix and manipulate them. In the code above, we use <code class="xref py py-func docutils literal notranslate"><span class="pre">lighter()</span></code>
 to lighten the shade a little.</p>
 <p>Next, we need to create a player and add it to the scene.
 Remember to insert the following code before the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> call but after creating the scene.</p>
@@ -360,15 +360,15 @@ Remember to insert the following code before the <code class="docutils literal n
 <span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../../../api/#rubato.utils.display.Display.center_left" title="rubato.utils.display.Display.center_left"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Display.center_left</span></code></a> is just the Vector position for the center of the
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Display.center_left</span></code> is just the Vector position for the center of the
 left side of the screen.</p>
 <p>If we ran this now, we won't see our player because Game Objects don't draw anything by themselves. Let's change that
 by adding a simple Animation to the player.</p>
 <p>You will see a few image files inside the <code class="docutils literal notranslate"><span class="pre">files/dino</span></code> directory. Each of these image
 files is a spritesheet for a single animation. Instead of loading each frame and image ourselves, we can use
-<a class="reference internal" href="../../../api/#rubato.struct.gameobject.sprites.spritesheet.Spritesheet.from_folder" title="rubato.struct.gameobject.sprites.spritesheet.Spritesheet.from_folder"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Spritesheet.from_folder()</span></code></a> to load them
+<code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Spritesheet.from_folder()</span></code> to load them
 all at once. This function takes the path to a folder and returns an
-<a class="reference internal" href="../../../api/#rubato.struct.gameobject.sprites.animation.Animation" title="rubato.struct.gameobject.sprites.animation.Animation"><code class="xref py py-func docutils literal notranslate"><span class="pre">Animation</span></code></a> component that can then be added to a GameObject.</p>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">Animation</span></code> component that can then be added to a GameObject.</p>
 <p>Our spritesheets have a couple of frames. Each frame is 24 pixels by 24 pixels. Be sure to specify the sprite size
 when you load them. This will let rubato correctly subdivide the spritesheet into frames.</p>
 <p>Animations are made up of different states which we'll be able to switch between. When loading from a folder, the
