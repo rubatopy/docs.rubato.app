@@ -445,13 +445,13 @@
 
 <div class="viewcode-block" id="Text.generate_surface"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.generate_surface">[docs]</a>    <span class="k">def</span> <span class="nf">generate_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;(Re)generates the surface of the text.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span>
-            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_justify</span><span class="p">,</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="p">)</span></div>
+        <span class="n">surf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_justify</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="n">surf</span><span class="p">)</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">surf</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Text.draw"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
 

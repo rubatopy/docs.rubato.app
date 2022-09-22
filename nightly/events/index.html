@@ -317,12 +317,12 @@
 </script>
 <section id="event-details">
 <h1>Event Details<a class="headerlink" href="#event-details" title="Permalink to this heading">#</a></h1>
-<p>Events can be broadcast with <code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Radio.broadcast()</span></code>:</p>
+<p>Events can be broadcast with <a class="reference internal" href="../api/#rubato.utils.radio.Radio.broadcast" title="rubato.utils.radio.Radio.broadcast"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Radio.broadcast()</span></code></a>:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rb</span><span class="o">.</span><span class="n">Radio</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="s2">&quot;EVENT_NAME&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">data</span><span class="p">})</span>
 </pre></div>
 </div>
 <p>rubato broadcasts some events already, but you can also define your own events using this function!</p>
-<p>These events can also be listened to with <code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Radio.listen()</span></code>. Here is an example
+<p>These events can also be listened to with <a class="reference internal" href="../api/#rubato.utils.radio.Radio.listen" title="rubato.utils.radio.Radio.listen"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Radio.listen()</span></code></a>. Here is an example
 of how you can listen for a key down event:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">listener</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>

@@ -435,7 +435,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">RUNNING</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">loop</span><span class="p">()</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_tick</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">PrintError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -450,65 +451,61 @@
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Game.loop"><a class="viewcode-back" href="../../../api/#rubato.game.Game.loop">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">loop</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Rubato&#39;s main game loop. Called automatically by :meth:`rubato.Game.start`.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="c1"># start a new frame</span>
-            <span class="n">Time</span><span class="o">.</span><span class="n">_start_frame</span><span class="p">()</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="c1"># start a new frame</span>
+        <span class="n">Time</span><span class="o">.</span><span class="n">_start_frame</span><span class="p">()</span>
 
-            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">STOPPED</span><span class="p">:</span>
-                <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PushEvent</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Event</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_QUIT</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">STOPPED</span><span class="p">:</span>
+            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PushEvent</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Event</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_QUIT</span><span class="p">))</span>
 
-            <span class="c1"># Pump SDL events</span>
-            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PumpEvents</span><span class="p">()</span>
+        <span class="c1"># Pump SDL events</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PumpEvents</span><span class="p">()</span>
 
-            <span class="c1"># Event handling</span>
-            <span class="k">if</span> <span class="n">Radio</span><span class="o">.</span><span class="n">handle</span><span class="p">():</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+        <span class="c1"># Event handling</span>
+        <span class="k">if</span> <span class="n">Radio</span><span class="o">.</span><span class="n">handle</span><span class="p">():</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 
-            <span class="c1"># Register controllers</span>
-            <span class="n">Input</span><span class="o">.</span><span class="n">update_controllers</span><span class="p">()</span>
+        <span class="c1"># Register controllers</span>
+        <span class="n">Input</span><span class="o">.</span><span class="n">update_controllers</span><span class="p">()</span>
 
-            <span class="c1"># process delayed calls</span>
-            <span class="n">Time</span><span class="o">.</span><span class="n">process_calls</span><span class="p">()</span>
+        <span class="c1"># process delayed calls</span>
+        <span class="n">Time</span><span class="o">.</span><span class="n">process_calls</span><span class="p">()</span>
 
-            <span class="bp">cls</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
-            <span class="n">curr</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_current</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">curr</span><span class="p">:</span>  <span class="c1"># pylint: disable=using-constant-test</span>
-                <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">Game</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">:</span>
-                    <span class="c1"># process user set pause update</span>
-                    <span class="n">curr</span><span class="o">.</span><span class="n">_paused_update</span><span class="p">()</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="c1"># normal update</span>
-                    <span class="n">curr</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>
-
-                    <span class="c1"># fixed update</span>
-                    <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">+=</span> <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span>
-
-                    <span class="k">while</span> <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">&gt;=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span><span class="p">:</span>
-                        <span class="n">curr</span><span class="o">.</span><span class="n">_fixed_update</span><span class="p">()</span>
-                        <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">-=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
-
-                <span class="n">curr</span><span class="o">.</span><span class="n">_draw</span><span class="p">()</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_scenes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_current</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="p">:</span>  <span class="c1"># pylint: disable=using-constant-test</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">Game</span><span class="o">.</span><span class="n">PAUSED</span><span class="p">:</span>
+                <span class="c1"># process user set pause update</span>
+                <span class="n">curr</span><span class="o">.</span><span class="n">_paused_update</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">Draw</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="c1"># normal update</span>
+                <span class="n">curr</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>
 
-            <span class="bp">cls</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+                <span class="c1"># fixed update</span>
+                <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">+=</span> <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span>
 
-            <span class="n">Draw</span><span class="o">.</span><span class="n">dump</span><span class="p">()</span>
+                <span class="k">while</span> <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">&gt;=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span><span class="p">:</span>
+                    <span class="n">curr</span><span class="o">.</span><span class="n">_fixed_update</span><span class="p">()</span>
+                    <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">-=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
 
-            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">show_fps</span><span class="p">:</span>
-                <span class="n">Debug</span><span class="o">.</span><span class="n">draw_fps</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">debug_font</span><span class="p">)</span>
+            <span class="n">curr</span><span class="o">.</span><span class="n">_draw</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Draw</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
-            <span class="c1"># update renderers</span>
-            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">present</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 
-            <span class="c1"># end frame</span>
-            <span class="n">Time</span><span class="o">.</span><span class="n">_end_frame</span><span class="p">()</span></div>
+        <span class="n">Draw</span><span class="o">.</span><span class="n">dump</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">show_fps</span><span class="p">:</span>
+            <span class="n">Debug</span><span class="o">.</span><span class="n">draw_fps</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">debug_font</span><span class="p">)</span>
+
+        <span class="c1"># update renderers</span>
+        <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">present</span><span class="p">()</span>
+
+        <span class="c1"># end frame</span>
+        <span class="n">Time</span><span class="o">.</span><span class="n">_end_frame</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Game.update"><a class="viewcode-back" href="../../../api/#rubato.game.Game.update">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">update</span><span class="p">():</span>  <span class="c1"># test: skip</span>
