@@ -520,6 +520,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span> <span class="ow">or</span> <span class="n">Game</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debug_cross</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotation</span>
 
+            <span class="c1"># Done like this because we don&#39;t want the crosshair to be affected by the camera&#39;s zoom</span>
             <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_debug_cross</span><span class="p">,</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
