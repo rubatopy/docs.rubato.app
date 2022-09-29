@@ -309,16 +309,12 @@
 <h1>Source code for rubato.utils.draw</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;A static class for drawing things directly to the window.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="n">c_int16</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Callable</span>
 <span class="kn">import</span> <span class="nn">cython</span>
 
-<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlgfx</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
+<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">InitError</span><span class="p">,</span> <span class="n">Camera</span>
-
-<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..struct</span> <span class="kn">import</span> <span class="n">Surface</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">InitError</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">Surface</span><span class="p">,</span> <span class="n">Math</span>
 
 
 <span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
@@ -335,6 +331,12 @@
 <div class="viewcode-block" id="Draw"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw">[docs]</a><span class="k">class</span> <span class="nc">Draw</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A static class allowing drawing items to the window.&quot;&quot;&quot;</span>
     <span class="n">_queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DrawTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">_pt_surfs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Color</span><span class="p">,</span> <span class="n">Surface</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_line_surfs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">Surface</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_rect_surfs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">Surface</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_circle_surfs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">Surface</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_poly_surfs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">Surface</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -400,8 +402,8 @@
             <span class="k">return</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Draw.point"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.point">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Draw.point"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.point">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw a point onto the renderer immediately.</span>
 
@@ -410,10 +412,12 @@
 <span class="sd">            color: The color to use for the pixel. Defaults to Color.cyan.</span>
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">surf</span> <span class="o">:=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_pt_surfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">surf</span><span class="o">.</span><span class="n">draw_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_pt_surfs</span><span class="p">[</span><span class="n">color</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf</span>
 
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">pixelRGBA</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="o">*</span><span class="n">color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.queue_line"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_line">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_line</span><span class="p">(</span>
@@ -458,15 +462,16 @@
 <span class="sd">            width: The width of the line. Defaults to 1.</span>
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">p1</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
-            <span class="n">p2</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
-            <span class="n">width</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">width</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span> <span class="o">-</span> <span class="n">p1</span>
+        <span class="n">hashing</span> <span class="o">=</span> <span class="n">dims</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">width</span>
 
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">thickLineRGBA</span><span class="p">(</span>
-            <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="n">color</span><span class="o">.</span><span class="n">r</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">.</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">a</span>
-        <span class="p">)</span></div>
+        <span class="k">if</span> <span class="p">(</span><span class="n">surf</span> <span class="o">:=</span> <span class="n">Draw</span><span class="o">.</span><span class="n">_line_surfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hashing</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">dims</span><span class="o">.</span><span class="n">x</span><span class="p">)),</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">dims</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+            <span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="o">*</span><span class="n">size</span><span class="p">)</span>
+            <span class="n">surf</span><span class="o">.</span><span class="n">draw_line</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">width</span><span class="p">))</span>
+            <span class="n">Draw</span><span class="o">.</span><span class="n">_line_surfs</span><span class="p">[</span><span class="n">hashing</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf</span>
+
+        <span class="n">Draw</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">dims</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.queue_rect"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_rect">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_rect</span><span class="p">(</span>
@@ -474,7 +479,7 @@
         <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span>
-        <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
+        <span class="n">border</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -488,7 +493,7 @@
 <span class="sd">            center: The center of the rectangle.</span>
 <span class="sd">            width: The width of the rectangle.</span>
 <span class="sd">            height: The height of the rectangle.</span>
-<span class="sd">            border: The border color. Defaults to Color.clear.</span>
+<span class="sd">            border: The border color. Defaults to Color.cyan.</span>
 <span class="sd">            border_thickness: The border thickness. Defaults to 1.</span>
 <span class="sd">            fill: The fill color. Defaults to None.</span>
 <span class="sd">            angle: The angle in degrees. Defaults to 0.</span>
@@ -505,7 +510,7 @@
         <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span>
-        <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
+        <span class="n">border</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -518,29 +523,28 @@
 <span class="sd">            center: The center of the rectangle.</span>
 <span class="sd">            width: The width of the rectangle.</span>
 <span class="sd">            height: The height of the rectangle.</span>
-<span class="sd">            border: The border color. Defaults to Color.clear.</span>
+<span class="sd">            border: The border color. Defaults to Color.cyan.</span>
 <span class="sd">            border_thickness: The border thickness. Defaults to 1.</span>
 <span class="sd">            fill: The fill color. Defaults to None.</span>
 <span class="sd">            angle: The angle in degrees. Defaults to 0.</span>
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">center</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
-            <span class="n">width</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">width</span>
-            <span class="n">height</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">height</span>
-            <span class="n">border_thickness</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">border_thickness</span>
+        <span class="n">hashing</span> <span class="o">=</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span>
 
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">verts</span> <span class="o">=</span> <span class="p">(</span><span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">y</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">surf</span> <span class="o">:=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_rect_surfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hashing</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
+            <span class="n">surf</span><span class="o">.</span><span class="n">draw_rect</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">border</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">border_thickness</span><span class="p">),</span> <span class="n">fill</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_rect_surfs</span><span class="p">[</span><span class="n">hashing</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">poly</span><span class="p">([</span><span class="n">center</span> <span class="o">+</span> <span class="n">v</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">],</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">)</span></div>
+        <span class="n">surf</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="n">angle</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.queue_circle"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_circle">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_circle</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
+        <span class="n">border</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -552,7 +556,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            center: The center.</span>
 <span class="sd">            radius: The radius. Defaults to 4.</span>
-<span class="sd">            border: The border color. Defaults to green.</span>
+<span class="sd">            border: The border color. Defaults to Color.cyan.</span>
 <span class="sd">            border_thickness: The border thickness. Defaults to 1.</span>
 <span class="sd">            fill: The fill color. Defaults to None.</span>
 <span class="sd">            z_index: Where to draw it in the drawing order. Defaults to 0.</span>
@@ -562,11 +566,12 @@
             <span class="k">return</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Draw.circle"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.circle">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="Draw.circle"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.circle">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">circle</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
         <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">radius</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
+        <span class="n">border</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -577,45 +582,26 @@
 <span class="sd">        Args:</span>
 <span class="sd">            center: The center.</span>
 <span class="sd">            radius: The radius. Defaults to 4.</span>
-<span class="sd">            border: The border color. Defaults to green.</span>
+<span class="sd">            border: The border color. Defaults to Color.cyan.</span>
 <span class="sd">            border_thickness: The border thickness. Defaults to 1.</span>
 <span class="sd">            fill: The fill color. Defaults to None.</span>
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">center</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
-            <span class="n">radius</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">radius</span>
-            <span class="n">border_thickness</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">border_thickness</span>
+        <span class="n">hashing</span> <span class="o">=</span> <span class="n">radius</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span>
 
-        <span class="k">if</span> <span class="n">fill</span><span class="p">:</span>
-            <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">filledCircleRGBA</span><span class="p">(</span>
-                <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
-                <span class="nb">round</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-                <span class="nb">round</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                <span class="nb">round</span><span class="p">(</span><span class="n">radius</span><span class="p">),</span>
-                <span class="n">fill</span><span class="o">.</span><span class="n">r</span><span class="p">,</span>
-                <span class="n">fill</span><span class="o">.</span><span class="n">g</span><span class="p">,</span>
-                <span class="n">fill</span><span class="o">.</span><span class="n">b</span><span class="p">,</span>
-                <span class="n">fill</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">surf</span> <span class="o">:=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_circle_surfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hashing</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">radius</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">surf</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">((</span><span class="n">radius</span><span class="p">,</span> <span class="n">radius</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">radius</span><span class="p">),</span> <span class="n">border</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">border_thickness</span><span class="p">),</span> <span class="n">fill</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_circle_surfs</span><span class="p">[</span><span class="n">hashing</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">border_thickness</span><span class="p">)):</span>
-            <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">aacircleRGBA</span><span class="p">(</span>
-                <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
-                <span class="nb">round</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-                <span class="nb">round</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
-                <span class="nb">round</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span>
-                <span class="n">border</span><span class="o">.</span><span class="n">r</span><span class="p">,</span>
-                <span class="n">border</span><span class="o">.</span><span class="n">g</span><span class="p">,</span>
-                <span class="n">border</span><span class="o">.</span><span class="n">b</span><span class="p">,</span>
-                <span class="n">border</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
-            <span class="p">)</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.queue_poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_poly">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_poly</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
-        <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">border</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -625,8 +611,9 @@
 <span class="sd">        Draws a polygon onto the renderer at the end of the frame.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            points: The list of points to draw.</span>
-<span class="sd">            border: The border color. Defaults to green.</span>
+<span class="sd">            points: The list of points to draw relative to the center.</span>
+<span class="sd">            center: The center of the polygon.</span>
+<span class="sd">            border: The border color. Defaults to Color.cyan.</span>
 <span class="sd">            border_thickness: The border thickness. Defaults to 1.</span>
 <span class="sd">            fill: The fill color. Defaults to None.</span>
 <span class="sd">            z_index: Where to draw it in the drawing order. Defaults to 0.</span>
@@ -634,13 +621,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">poly</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">poly</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.poly"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.poly">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">poly</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
-        <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">border</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Color</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -649,59 +637,29 @@
 <span class="sd">        Draws a polygon onto the renderer immediately.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            points: The list of points to draw.</span>
-<span class="sd">            border: The border color. Defaults to green.</span>
+<span class="sd">            points: The list of points to draw relative to the center.</span>
+<span class="sd">            center: The center of the polygon.</span>
+<span class="sd">            border: The border color. Defaults to Color.cyan.</span>
 <span class="sd">            border_thickness: The border thickness. Defaults to 1.</span>
 <span class="sd">            fill: The fill color. Defaults to None.</span>
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">]</span>
-            <span class="n">border_thickness</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">border_thickness</span>
+        <span class="n">hashing</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">points</span><span class="p">),</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span>
 
-        <span class="n">x_coords</span><span class="p">,</span> <span class="n">y_coords</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">((</span><span class="nb">round</span><span class="p">(</span><span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">points</span><span class="p">))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">surf</span> <span class="o">:=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_poly_surfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hashing</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
+            <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
+            <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
+                <span class="n">min_x</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="n">min_y</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_y</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="n">max_x</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_x</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                <span class="n">max_y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_y</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="n">off</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">)</span>
+            <span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">max_x</span> <span class="o">-</span> <span class="n">min_x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">-</span> <span class="n">min_y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">surf</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">([</span><span class="n">p</span> <span class="o">-</span> <span class="n">off</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">],</span> <span class="n">border</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">border_thickness</span><span class="p">),</span> <span class="n">fill</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_poly_surfs</span><span class="p">[</span><span class="n">hashing</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf</span>
 
-        <span class="n">vx</span> <span class="o">=</span> <span class="p">(</span><span class="n">c_int16</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_coords</span><span class="p">))(</span><span class="o">*</span><span class="n">x_coords</span><span class="p">)</span>
-        <span class="n">vy</span> <span class="o">=</span> <span class="p">(</span><span class="n">c_int16</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_coords</span><span class="p">))(</span><span class="o">*</span><span class="n">y_coords</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">fill</span><span class="p">:</span>
-            <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">filledPolygonRGBA</span><span class="p">(</span>
-                <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
-                <span class="n">vx</span><span class="p">,</span>
-                <span class="n">vy</span><span class="p">,</span>
-                <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">),</span>
-                <span class="n">fill</span><span class="o">.</span><span class="n">r</span><span class="p">,</span>
-                <span class="n">fill</span><span class="o">.</span><span class="n">g</span><span class="p">,</span>
-                <span class="n">fill</span><span class="o">.</span><span class="n">b</span><span class="p">,</span>
-                <span class="n">fill</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
-            <span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">border_thickness</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="k">elif</span> <span class="n">border_thickness</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlgfx</span><span class="o">.</span><span class="n">aapolygonRGBA</span><span class="p">(</span>
-                <span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
-                <span class="n">vx</span><span class="p">,</span>
-                <span class="n">vy</span><span class="p">,</span>
-                <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">),</span>
-                <span class="n">border</span><span class="o">.</span><span class="n">r</span><span class="p">,</span>
-                <span class="n">border</span><span class="o">.</span><span class="n">g</span><span class="p">,</span>
-                <span class="n">border</span><span class="o">.</span><span class="n">b</span><span class="p">,</span>
-                <span class="n">border</span><span class="o">.</span><span class="n">a</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)):</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
-                    <span class="p">(</span>
-                        <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
-                        <span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
-                    <span class="p">),</span>
-                    <span class="p">(</span>
-                        <span class="n">points</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)][</span><span class="mi">0</span><span class="p">],</span>
-                        <span class="n">points</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)][</span><span class="mi">1</span><span class="p">],</span>
-                    <span class="p">),</span>
-                    <span class="n">border</span><span class="p">,</span>
-                    <span class="n">border_thickness</span><span class="p">,</span>
-                <span class="p">)</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.queue_text"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_text">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_text</span><span class="p">(</span>
@@ -781,7 +739,7 @@
             <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">align</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">shadow</span><span class="p">:</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">w</span> <span class="o">+</span> <span class="n">shadow_pad</span><span class="p">,</span> <span class="n">h</span> <span class="o">+</span> <span class="n">shadow_pad</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">Color</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">w</span> <span class="o">+</span> <span class="n">shadow_pad</span><span class="p">,</span> <span class="n">h</span> <span class="o">+</span> <span class="n">shadow_pad</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">Color</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
         <span class="n">Display</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
         <span class="n">tx</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div>
 
@@ -871,7 +829,25 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">surface</span><span class="o">.</span><span class="n">uptodate</span><span class="p">:</span>
             <span class="n">surface</span><span class="o">.</span><span class="n">regen</span><span class="p">()</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">texture</span><span class="p">(</span><span class="n">surface</span><span class="o">.</span><span class="n">_tx</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">texture</span><span class="p">(</span><span class="n">surface</span><span class="o">.</span><span class="n">_tx</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Draw.clear_cache"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.clear_cache">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clears the cache of surfaces.</span>
+<span class="sd">        Use this if you are drawing things without using Surfaces and need to free memory.</span>
+<span class="sd">        Note that if you need this method, it is probably just smarter to use Surfaces yourself instead.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_pt_surfs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_line_surfs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_rect_surfs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_circle_surfs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_poly_surfs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_cache_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_pt_surfs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_line_surfs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_rect_surfs</span><span class="p">)</span> \
+            <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_circle_surfs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_poly_surfs</span><span class="p">)</span></div>
 </pre></div> 
         </article>
       </div>
