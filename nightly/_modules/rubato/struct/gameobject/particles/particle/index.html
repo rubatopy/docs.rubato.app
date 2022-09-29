@@ -329,7 +329,7 @@
 <span class="sd">        rotation: The rotation of the particle. Defaults to 0.</span>
 <span class="sd">        rot_velocity: The rotational velocity of the particle. Defaults to 0.</span>
 <span class="sd">        rot_acceleration: The rotational acceleration of the particle. Defaults to 0.</span>
-<span class="sd">        scale: The scale of the particle. Defaults to 1.</span>
+<span class="sd">        scale: The scale of the particle. Defaults to (1, 1).</span>
 <span class="sd">        lifespan: The lifespan of the particle (in seconds). Defaults to 1.</span>
 <span class="sd">        z_index: The z-index of the particle. Defaults to 0.</span>
 <span class="sd">        age: The starting age of the particle (in seconds). Defaults to 0.</span>
@@ -345,7 +345,7 @@
         <span class="n">rotation</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">rot_velocity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">rot_acceleration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
         <span class="n">lifespan</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">age</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -366,7 +366,7 @@
         <span class="sd">&quot;&quot;&quot;The rotational velocity of the particle.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rot_acceleration</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">rot_acceleration</span>
         <span class="sd">&quot;&quot;&quot;The rotational acceleration of the particle.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The scale of the particle.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lifespan</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">lifespan</span>
         <span class="sd">&quot;&quot;&quot;The lifespan of the particle. (in seconds)&quot;&quot;&quot;</span>
