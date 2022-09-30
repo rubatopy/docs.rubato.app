@@ -495,10 +495,12 @@
                 <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_pos</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetWindowFullscreen</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Display.update"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.update">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">,</span>
+        <span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Texture</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -510,6 +512,8 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            tx: The texture to draw on the screen.</span>
+<span class="sd">            width: The width of the texture.</span>
+<span class="sd">            height: The height of the texture.</span>
 <span class="sd">            pos: The position to draw the texture on.</span>
 <span class="sd">            scale: The scale of the texture. Defaults to (1, 1).</span>
 <span class="sd">            angle: The clockwise rotation of the texture. Defaults to 0.</span>
@@ -525,39 +529,23 @@
         <span class="k">if</span> <span class="n">flipy</span><span class="p">:</span>
             <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_VERTICAL</span>
 
-        <span class="n">x_dim</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">x_dim</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">y_dim</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderCopyEx</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
             <span class="n">tx</span><span class="p">,</span>
-            <span class="n">dstrect</span><span class="o">=</span><span class="p">(</span>
-                <span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_dim</span> <span class="k">if</span> <span class="n">flipx</span> <span class="k">else</span> <span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-                <span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span>
+                <span class="nb">round</span><span class="p">((</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_dim</span> <span class="k">if</span> <span class="n">flipx</span> <span class="k">else</span> <span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+                <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
                 <span class="n">x_dim</span><span class="p">,</span>
-                <span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">y_dim</span><span class="p">,</span>
             <span class="p">),</span>
-            <span class="n">angle</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
-            <span class="n">flip</span><span class="o">=</span><span class="n">flip</span>
-        <span class="p">)</span></div>
-
-<div class="viewcode-block" id="Display.clone_surface"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.clone_surface">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">clone_surface</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">surface</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Clones an SDL surface.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            surface: The surface to clone.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            sdl2.SDL_Surface: The cloned surface.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormatFrom</span><span class="p">(</span>
-            <span class="n">surface</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span>
-            <span class="n">surface</span><span class="o">.</span><span class="n">w</span><span class="p">,</span>
-            <span class="n">surface</span><span class="o">.</span><span class="n">h</span><span class="p">,</span>
-            <span class="mi">32</span><span class="p">,</span>
-            <span class="n">surface</span><span class="o">.</span><span class="n">pitch</span><span class="p">,</span>
-            <span class="n">surface</span><span class="o">.</span><span class="n">format</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">format</span><span class="p">,</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">contents</span></div>
+            <span class="nb">round</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">flip</span><span class="p">,</span>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="Display.get_window_border_size"><a class="viewcode-back" href="../../../../api/#rubato.utils.display.Display.get_window_border_size">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_window_border_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>

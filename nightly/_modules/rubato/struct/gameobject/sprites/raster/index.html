@@ -370,14 +370,26 @@
         <span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">size</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">size</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Raster.merge"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.merge">[docs]</a>    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Raster</span><span class="p">):</span>
+<div class="viewcode-block" id="Raster.blit"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.blit">[docs]</a>    <span class="k">def</span> <span class="nf">blit</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">other</span><span class="p">:</span> <span class="n">Raster</span><span class="p">,</span>
+        <span class="n">src_rect</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dst_rect</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Merges the surface of another component into this one.</span>
+<span class="sd">        Blits (merges / copies) another Raster onto this one.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            other: The other component to merge into this one.</span>
+<span class="sd">            other: The Raster to blit onto this one.</span>
+<span class="sd">            src_rect: The area (x, y, width, height) to blit from in the source raster (other).</span>
+<span class="sd">                Defaults to the whole surface.</span>
+<span class="sd">            dst_rect: The area (x, y, width, height) to blit to in the destination raster (self).</span>
+<span class="sd">                Defaults to the whole surface.</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            Will not stretch the other raster to fit the destination rectangle.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">surf</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">surf</span><span class="p">,</span> <span class="n">src_rect</span><span class="p">,</span> <span class="n">dst_rect</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Raster.draw"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>

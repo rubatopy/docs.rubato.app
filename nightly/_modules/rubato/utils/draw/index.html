@@ -650,12 +650,12 @@
             <span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
             <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
             <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">:</span>
-                <span class="n">min_x</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-                <span class="n">min_y</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_y</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-                <span class="n">max_x</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_x</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-                <span class="n">max_y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_y</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+                <span class="n">min_x</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">min_y</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min_y</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">max_x</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_x</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">max_y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_y</span><span class="p">,</span> <span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="n">off</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">)</span>
-            <span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">max_x</span> <span class="o">-</span> <span class="n">min_x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">-</span> <span class="n">min_y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">max_x</span> <span class="o">-</span> <span class="n">min_x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">max_y</span> <span class="o">-</span> <span class="n">min_y</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
             <span class="n">surf</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">([</span><span class="n">p</span> <span class="o">-</span> <span class="n">off</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">],</span> <span class="n">border</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">border_thickness</span><span class="p">),</span> <span class="n">fill</span><span class="p">)</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">_poly_surfs</span><span class="p">[</span><span class="n">hashing</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf</span>
 
@@ -672,7 +672,7 @@
         <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
         <span class="n">shadow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">shadow_pad</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">shadow_pad</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
@@ -688,7 +688,7 @@
 <span class="sd">            width: The maximum width of the text. Will automatically wrap the text. Defaults to -1.</span>
 <span class="sd">            scale: The scale of the text. Defaults to (1, 1).</span>
 <span class="sd">            shadow: Whether to draw a basic shadow box behind the text. Defaults to False.</span>
-<span class="sd">            shadow_pad: What padding to use for the shadow. Defaults to 0.</span>
+<span class="sd">            shadow_pad: What padding to use for the shadow. Defaults to (0, 0).</span>
 <span class="sd">            z_index: Where to draw it in the drawing order. Defaults to 0.</span>
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -707,7 +707,7 @@
         <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
         <span class="n">shadow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">shadow_pad</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">shadow_pad</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -722,75 +722,40 @@
 <span class="sd">            width: The maximum width of the text. Will automatically wrap the text. Defaults to -1.</span>
 <span class="sd">            scale: The scale of the text. Defaults to (1, 1).</span>
 <span class="sd">            shadow: Whether to draw a basic shadow box behind the text. Defaults to False.</span>
-<span class="sd">            shadow_pad: What padding to use for the shadow. Defaults to 0.</span>
+<span class="sd">            shadow_pad: What padding to use for the shadow. Defaults to (0, 0).</span>
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">shadow_pad</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">shadow_pad</span><span class="p">)</span>
+
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">pos</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
             <span class="n">scale</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">shadow_pad</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">shadow_pad</span><span class="p">)</span>
+            <span class="n">shadow_pad</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">shadow_pad</span>
 
         <span class="n">surf</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">justify</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
-        <span class="n">tx</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="p">,</span> <span class="n">surf</span><span class="p">)</span>
+        <span class="n">tx</span> <span class="o">=</span> <span class="n">Surface</span><span class="o">.</span><span class="n">_from_surf</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">surf</span><span class="p">)</span>
-        <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">font</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">center</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">align</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">align</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="p">)</span>
+
+        <span class="n">pad_x</span><span class="p">,</span> <span class="n">pad_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">shadow_pad</span> <span class="o">/</span> <span class="n">scale</span><span class="p">)</span><span class="o">.</span><span class="n">tuple_int</span><span class="p">()</span>
+
         <span class="k">if</span> <span class="n">shadow</span><span class="p">:</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">w</span> <span class="o">+</span> <span class="n">shadow_pad</span><span class="p">,</span> <span class="n">h</span> <span class="o">+</span> <span class="n">shadow_pad</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">Color</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
-        <span class="n">Display</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
-        <span class="n">tx</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span></div>
+            <span class="n">tx_dims</span> <span class="o">=</span> <span class="n">tx</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pad_x</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pad_y</span>
+            <span class="n">final_tx</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="o">*</span><span class="n">tx_dims</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
+            <span class="n">final_tx</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">200</span><span class="p">))</span>
+            <span class="n">final_tx</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span>
+                <span class="n">tx</span><span class="p">,</span>
+                <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">tx</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">font</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">tx</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+                <span class="p">(</span><span class="n">pad_x</span><span class="p">,</span> <span class="n">pad_y</span><span class="p">,</span> <span class="n">tx</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">font</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">final_tx</span> <span class="o">=</span> <span class="n">tx</span>
 
-<div class="viewcode-block" id="Draw.queue_texture"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_texture">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">queue_texture</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">texture</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">,</span>
-        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draws an texture onto the renderer at the end of the frame.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            texture: The texture to draw.</span>
-<span class="sd">            pos: The position of the texture. Defaults to (0, 0).</span>
-<span class="sd">            z_index: Where to draw it in the drawing order. Defaults to 0.</span>
-<span class="sd">            scale: The scale of the texture. Defaults to (1, 1).</span>
-<span class="sd">            angle: The clockwise rotation of the texture. Defaults to 0.</span>
-<span class="sd">            camera: The camera to use. Defaults to None.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">texture</span><span class="p">(</span><span class="n">texture</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="Draw.texture"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.texture">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">texture</span><span class="p">(</span>
-        <span class="n">texture</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Texture</span><span class="p">,</span>
-        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Draws an SDL Texture onto the renderer immediately.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            texture: The texture to draw.</span>
-<span class="sd">            pos: The position to draw the texture at. Defaults to (0, 0).</span>
-<span class="sd">            scale: The scale of the texture. Defaults to (1, 1).</span>
-<span class="sd">            angle: The clockwise rotation of the texture. Defaults to 0.</span>
-<span class="sd">            camera: The camera to use. Defaults to None.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-            <span class="n">scale</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-        <span class="n">Display</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">texture</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span></div>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">final_tx</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">align</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">align</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">final_tx</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.queue_surface"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.queue_surface">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_surface</span><span class="p">(</span>
@@ -823,13 +788,16 @@
 <span class="sd">            pos: The position to draw the surface at. Defaults to (0, 0).</span>
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">surface</span><span class="o">.</span><span class="n">_surf</span><span class="p">:</span>
-            <span class="k">return</span>
-
         <span class="k">if</span> <span class="ow">not</span> <span class="n">surface</span><span class="o">.</span><span class="n">uptodate</span><span class="p">:</span>
             <span class="n">surface</span><span class="o">.</span><span class="n">regen</span><span class="p">()</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">texture</span><span class="p">(</span><span class="n">surface</span><span class="o">.</span><span class="n">_tx</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">surface</span><span class="o">.</span><span class="n">scale</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="n">surface</span><span class="o">.</span><span class="n">scale</span>
+
+        <span class="n">Display</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">surface</span><span class="o">.</span><span class="n">_tx</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">surface</span><span class="o">.</span><span class="n">rotation</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Draw.clear_cache"><a class="viewcode-back" href="../../../../api/#rubato.utils.draw.Draw.clear_cache">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
