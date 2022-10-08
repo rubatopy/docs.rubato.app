@@ -1,0 +1,493 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta property="og:title" content="Step 2 - Creating a Player" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://docs.rubato.app/tutorials/platformer/step2.html" />
+  <meta property="og:site_name" content="rubato docs" />
+  <meta property="og:description" content="Welcome to the second part of making a platformer in rubato. In this step, we will be building a simple animated character. At this point, you should have a white window with a resolution of 1920 by 1080 pixels. First, we need to understand the rubato heirarchy (we'll explain it first, then walk ..." />
+  <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
+  <meta property="og:image:alt" content="rubato docs" />
+  <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Step 3 - Adding Player Behavior" href="../step3/" /><link rel="prev" title="Step 1 - Basic Structure" href="../step1/" />
+        <link rel="canonical" href="https://docs.rubato.app/tutorials/platformer/step2.html" />
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
+        <title>Step 2 - Creating a Player - rubato docs</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  --font-stack: Fredoka, sans-serif;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+      }
+    }
+  }
+</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WM5S826BXJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-WM5S826BXJ");
+</script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../"><div class="brand">rubato docs</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><div id="vtag-name"></div>
+<style>
+    div#vtag-name {
+        color: var(--color-sidebar-caption-text);
+        font-size: var(--sidebar-caption-font-size);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: right;
+        position: relative;
+        right: 1.25rem;
+        top: 1.75rem;
+        margin: -0.25rem 0;
+    }
+</style>
+<script>
+    let vtag = document.getElementById("vtag-name");
+    function waitForElement() {
+        if (typeof window.current !== "undefined") {
+            vtag.innerHTML = window.current;
+        } else {
+            setTimeout(waitForElement, 250);
+        }
+    }
+    waitForElement();
+</script>
+<a class="sidebar-brand centered" href="https://www.rubato.app">
+    
+    <div class="sidebar-logo-container">
+        <img
+            class="sidebar-logo"
+            src="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png"
+            alt="Logo"
+            width="240"
+            draggable="false"
+            style="user-select: none; -moz-user-select: none; -webkit-user-select: none; -webkit-user-drag: none"
+        />
+    </div>
+    
+</a><form class="sidebar-search-container" method="get" action="../../../search/" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro/">Getting Started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../events/">Event Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../key-names/">Key Names</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../">Simple Platformer</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/custom_components/">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced/pyinstaller/">Bundling to an Application</a></li>
+</ul>
+
+</div><div id="versionSidebarInclude"></div>
+<script>
+    if (window.location.hostname == "localhost") {
+        console.log("loading test version sidebar from localhost:8001");
+        $("#versionSidebarInclude").load("http://localhost:8001/version_sidebar.html");
+    } else {
+        $("#versionSidebarInclude").load("https://test.rubato.app/version_sidebar.html");
+    }
+</script></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<div id="topWarning"></div>
+
+<script>
+    function genWarning() {
+        if (window.current != window.latest && window.current != "latest") {
+            div = document.getElementById("topWarning");
+            div.classList.add("admonition", "warning");
+            let title = document.createElement("p");
+            title.classList.add("admonition-title");
+            title.innerText = "Warning";
+
+            let content = document.createElement("p");
+            if (current == "nightly") {
+                content.innerText =
+                    "You're reading the documentation for a development version. For the latest released version, ";
+            } else {
+                content.innerText =
+                    "You're reading an old version of this documentation. If you want up-to-date information, ";
+            }
+            content.innerHTML += `please have a look at <a href='/latest'>${window.latest}</a>.`;
+
+            div.appendChild(title);
+            div.appendChild(content);
+        }
+    }
+</script>
+<section id="step-2-creating-a-player">
+<h1>Step 2 - Creating a Player<a class="headerlink" href="#step-2-creating-a-player" title="Permalink to this heading">#</a></h1>
+<p>Welcome to the second part of making a platformer in rubato. In this step, we will be building a simple
+animated character.</p>
+<p>At this point, you should have a white window with a resolution of 1920 by 1080 pixels.</p>
+<p>First, we need to understand the rubato heirarchy (we'll explain it first, then walk you
+through it). rubato has 4 levels of structure, in order: Scenes, Groups, Game Objects, and Components.</p>
+<p><a class="reference internal" href="../../../api/#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> hold 2 Groups. One for menu items (the UI) and
+one for the main Game Objects. It also manages a <a class="reference internal" href="../../../api/#rubato.utils.camera.Camera" title="rubato.utils.camera.Camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code></a>.
+Scenes are used to separate different sections of a game. For example, you could have each game
+level in a different scene. Then to move between levels, you would simply switch scenes, and rubato will
+automatically change which scene is updated and drawn to the window.</p>
+<p><a class="reference internal" href="../../../api/#rubato.struct.group.Group" title="rubato.struct.group.Group"><code class="xref py py-func docutils literal notranslate"><span class="pre">Groups</span></code></a> are the next layer down. They can hold either Game Objects or other Groups.
+Their main purpose is divide different &quot;groups&quot; of items (hence the name!). For example,
+items in 2 different groups won't automatically collide with each other, but items sharing a Group will (even if the group is a shared ancestor of both!).
+We won't explicitly use Groups in this tutorial as because their functionality isn't necessary for the platformer.</p>
+<p><a class="reference internal" href="../../../api/#rubato.struct.gameobject.game_object.GameObject" title="rubato.struct.gameobject.game_object.GameObject"><code class="xref py py-func docutils literal notranslate"><span class="pre">Game</span> <span class="pre">Objects</span></code></a> are the main objects in a game.
+They have a position and z-index, and represent a &quot;thing&quot;, such as a player, or an enemy, or a platform. Their behavior is almost entirely
+determined by the Components that are assigned to them.</p>
+<p><a class="reference internal" href="../../../api/#rubato.struct.gameobject.component.Component" title="rubato.struct.gameobject.component.Component"><code class="xref py py-func docutils literal notranslate"><span class="pre">Components</span></code></a> are lightweight &quot;modules&quot; that add to the behavior of a Game Object.
+For example, an Image component draws an image from your filesystem at the Game Object's position. A RigidBody
+component registers the Game Object into the built-in physics engine. A Hitbox component gives a Game Object shape.</p>
+<p>If this explanation was confusing, it'll hopefully make more sense seeing the system in action.
+Let's create a scene right after <code class="code docutils literal notranslate"><span class="pre">rb.init()</span></code> but before <code class="code docutils literal notranslate"><span class="pre">rb.begin()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scene</span>
+<span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Here we introduce the <a class="reference internal" href="../../../api/#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-func docutils literal notranslate"><span class="pre">Color</span></code></a> class. Colors
+are stored in RGBA format but can be loaded from HSV and HEX. The class comes
+preloaded with pastel-inspired <a class="reference internal" href="../../../api/#rubato.utils.color.Color.random" title="rubato.utils.color.Color.random"><code class="xref py py-func docutils literal notranslate"><span class="pre">default</span> <span class="pre">colors</span></code></a> as
+well as several methods to mix and manipulate them. In the code above, we use <a class="reference internal" href="../../../api/#rubato.utils.color.Color.lighter" title="rubato.utils.color.Color.lighter"><code class="xref py py-func docutils literal notranslate"><span class="pre">lighter()</span></code></a>
+to lighten the shade a little.</p>
+<p>Next, we need to create a player and add it to the scene.
+Remember to insert the following code before the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> call but after creating the scene.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the player and set its starting position</span>
+<span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
+    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Add the player to the scene</span>
+<span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../../../api/#rubato.utils.display.Display.center_left" title="rubato.utils.display.Display.center_left"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Display.center_left</span></code></a> is just the Vector position for the center of the
+left side of the screen.</p>
+<p>If we ran this now, we won't see our player because Game Objects don't draw anything by themselves. Let's change that
+by adding a simple Animation to the player.</p>
+<p>You will see a few image files inside the <code class="docutils literal notranslate"><span class="pre">files/dino</span></code> directory. Each of these image
+files is a spritesheet for a single animation. Instead of loading each frame and image ourselves, we can use
+<a class="reference internal" href="../../../api/#rubato.struct.gameobject.sprites.spritesheet.Spritesheet.from_folder" title="rubato.struct.gameobject.sprites.spritesheet.Spritesheet.from_folder"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Spritesheet.from_folder()</span></code></a> to load them
+all at once. This function takes the path to a folder and returns an
+<a class="reference internal" href="../../../api/#rubato.struct.gameobject.sprites.animation.Animation" title="rubato.struct.gameobject.sprites.animation.Animation"><code class="xref py py-func docutils literal notranslate"><span class="pre">Animation</span></code></a> component that can then be added to a GameObject.</p>
+<p>Our spritesheets have a couple of frames. Each frame is 24 pixels by 24 pixels. Be sure to specify the sprite size
+when you load them. This will let rubato correctly subdivide the spritesheet into frames.</p>
+<p>Animations are made up of different states which we'll be able to switch between. When loading from a folder, the
+state names are the names of the files. Some states we have in our example are idle, jump, crouch, and run.</p>
+<p>We also should specify the default state. This is the state that the animation will start at and the one that it will
+return to when other states finish. In our case, this will be the idle state.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create animation and initialize states</span>
+<span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
+    <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+    <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">p_animation</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">p_animation</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># The frames will change 10 times a second</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p_animation</span><span class="p">)</span> <span class="c1"># Add the animation component to the player</span>
+</pre></div>
+</div>
+<p>Now you should have a cute dinosaur bobbing up and down on the left side of the screen:</p>
+<a class="reference internal image-reference" href="../../../_images/11.png"><img alt="../../../_images/11.png" class="align-center" src="../../../_images/11.png" style="width: 75%;" /></a>
+<p>Adorable :)</p>
+<p>Here is what you should have so far if you've been following along:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
+
+<span class="c1"># initialize a new game</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+    <span class="n">res</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (pixel length and height).</span>
+        <span class="c1"># note that since we didn&#39;t also specify a window size,</span>
+        <span class="c1"># the window will be automatically resized to half of the resolution.</span>
+<span class="p">)</span>
+
+<span class="c1"># Create a scene</span>
+<span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
+
+<span class="c1"># Create the player and set its starting position</span>
+<span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
+    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Create animation and initialize states</span>
+<span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
+    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
+    <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+    <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">p_animation</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">p_animation</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># The frames will change 10 times a second</span>
+<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p_animation</span><span class="p">)</span> <span class="c1"># Add the animation component to the player</span>
+
+<span class="c1"># Add the player to the scene</span>
+<span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+
+<span class="c1"># begin the game</span>
+<span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+ 
+        </article>
+      </div>
+      <footer>
+        
+<div class="related-pages">
+    <a class="next-page" href="../step3/">
+        <div class="page-info">
+            <div class="context">
+                <span>Next</span>
+            </div>
+            <div class="title">Step 3 - Adding Player Behavior</div>
+        </div>
+        <svg><use href="#svg-arrow-right"></use></svg>
+    </a> <a class="prev-page" href="../step1/">
+        <svg><use href="#svg-arrow-right"></use></svg>
+        <div class="page-info">
+            <div class="context">
+                <span>Previous</span>
+            </div>
+            
+            <div class="title">Step 1 - Basic Structure</div>
+            
+        </div>
+    </a>
+</div>
+<div class="bottom-of-page">
+    <div class="left-details">
+        <div class="copyright"> Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave
+        </div>
+    </div>
+    <div class="right-details">
+        <div class="icons"><a class="muted-link" href="https://github.com/rubatopy/rubato" aria-label="On GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    ></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    </body>
+</html>
