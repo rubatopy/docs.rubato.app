@@ -322,7 +322,7 @@ animated character.</p>
 <p>First, we need to understand the rubato heirarchy (we'll explain it first, then walk you
 through it). rubato has 4 levels of structure, in order: Scenes, Groups, Game Objects, and Components.</p>
 <p><a class="reference internal" href="../../../api/#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> hold 2 Groups. One for menu items (the UI) and
-one for the main Game Objects. It also manages a <a class="reference internal" href="../../../api/#rubato.utils.camera.Camera" title="rubato.utils.camera.Camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code></a>.
+one for the main Game Objects. It also manages a <code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code>.
 Scenes are used to separate different sections of a game. For example, you could have each game
 level in a different scene. Then to move between levels, you would simply switch scenes, and rubato will
 automatically change which scene is updated and drawn to the window.</p>
@@ -359,7 +359,7 @@ Remember to insert the following code before the <code class="docutils literal n
 <span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../../../api/#rubato.utils.display.Display.center_left" title="rubato.utils.display.Display.center_left"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Display.center_left</span></code></a> is just the Vector position for the center of the
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Display.center_left</span></code> is just the Vector position for the center of the
 left side of the screen.</p>
 <p>If we ran this now, we won't see our player because Game Objects don't draw anything by themselves. Let's change that
 by adding a simple Animation to the player.</p>

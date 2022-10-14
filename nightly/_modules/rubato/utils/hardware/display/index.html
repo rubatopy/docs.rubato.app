@@ -1,0 +1,755 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="search" title="Search" href="../../../../../search/" />
+        <link rel="canonical" href="https://docs.rubato.app/_modules/rubato/utils/hardware/display.html" />
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
+        <title>rubato.utils.hardware.display - rubato docs</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  --font-stack: Fredoka, sans-serif;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+      }
+    }
+  }
+</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WM5S826BXJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-WM5S826BXJ");
+</script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../../"><div class="brand">rubato docs</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><div id="vtag-name"></div>
+<style>
+    div#vtag-name {
+        color: var(--color-sidebar-caption-text);
+        font-size: var(--sidebar-caption-font-size);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: right;
+        position: relative;
+        right: 1.25rem;
+        top: 1.75rem;
+        margin: -0.25rem 0;
+    }
+</style>
+<script>
+    let vtag = document.getElementById("vtag-name");
+    function waitForElement() {
+        if (typeof window.current !== "undefined") {
+            vtag.innerHTML = window.current;
+        } else {
+            setTimeout(waitForElement, 250);
+        }
+    }
+    waitForElement();
+</script>
+<a class="sidebar-brand centered" href="https://www.rubato.app">
+    
+    <div class="sidebar-logo-container">
+        <img
+            class="sidebar-logo"
+            src="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png"
+            alt="Logo"
+            width="240"
+            draggable="false"
+            style="user-select: none; -moz-user-select: none; -webkit-user-select: none; -webkit-user-drag: none"
+        />
+    </div>
+    
+</a><form class="sidebar-search-container" method="get" action="../../../../../search/" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../intro/">Getting Started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../key-names/">Key Names</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../tutorials/platformer/">Simple Platformer</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
+</ul>
+
+</div><div id="versionSidebarInclude"></div>
+<script>
+    if (window.location.hostname == "localhost") {
+        console.log("loading test version sidebar from localhost:8001");
+        $("#versionSidebarInclude").load("http://localhost:8001/version_sidebar.html");
+    } else {
+        $("#versionSidebarInclude").load("https://test.rubato.app/version_sidebar.html");
+    }
+</script></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<div id="topWarning"></div>
+
+<script>
+    function genWarning() {
+        if (window.current != window.latest && window.current != "latest") {
+            div = document.getElementById("topWarning");
+            div.classList.add("admonition", "warning");
+            let title = document.createElement("p");
+            title.classList.add("admonition-title");
+            title.innerText = "Warning";
+
+            let content = document.createElement("p");
+            if (current == "nightly") {
+                content.innerText =
+                    "You're reading the documentation for a development version. For the latest released version, ";
+            } else {
+                content.innerText =
+                    "You're reading an old version of this documentation. If you want up-to-date information, ";
+            }
+            content.innerHTML += `please have a look at <a href='/latest'>${window.latest}</a>.`;
+
+            div.appendChild(title);
+            div.appendChild(content);
+        }
+    }
+</script>
+<h1>Source code for rubato.utils.hardware.display</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Static class that allows for intuitive window management.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+
+<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span><span class="o">,</span> <span class="nn">sdl2.sdlimage</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">get_path</span><span class="p">,</span> <span class="n">InitError</span><span class="p">,</span> <span class="n">Math</span>
+
+
+<span class="k">class</span> <span class="nc">_DisplayProperties</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>  <span class="c1"># pylint: disable=missing-class-docstring</span>
+    <span class="c1"># pyright: reportGeneralTypeIssues=false</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="c1"># Another way to do this.</span>
+        <span class="c1"># wp, hp = ctypes.c_int(), ctypes.c_int()</span>
+        <span class="c1"># if sdl2.SDL_GetRendererOutputSize(cls.renderer.sdlrenderer, ctypes.pointer(wp), ctypes.pointer(hp)) != 0:</span>
+        <span class="c1">#     raise RuntimeError(f&quot;Could not get renderer size: {sdl2.SDL_GetError()}&quot;)</span>
+        <span class="c1"># w, h = wp.value, hp.value</span>
+
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+    <span class="nd">@window_size</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">res</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">logical_size</span><span class="p">)</span>
+
+    <span class="nd">@res</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">res</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">logical_size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">window_pos</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+
+    <span class="nd">@window_pos</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">window_pos</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">window_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">title</span>
+
+    <span class="nd">@window_name</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">window_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">new</span>
+
+
+<span class="c1"># THIS IS A STATIC CLASS</span>
+<div class="viewcode-block" id="Display"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display">[docs]</a><span class="k">class</span> <span class="nc">Display</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_DisplayProperties</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A static class that houses all of the display information</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        window (sdl2.Window): The pysdl2 window element.</span>
+<span class="sd">        renderer (sdl2.Renderer): The pysdl2 renderer element.</span>
+<span class="sd">        format (sdl2.PixelFormat): The pysdl2 pixel format element.</span>
+<span class="sd">        window_size (Vector): The pixel size of the physical window.</span>
+
+<span class="sd">            Warning:</span>
+<span class="sd">                Using this value to determine the placement of your game objects may</span>
+<span class="sd">                lead to unexpected results. You should instead use</span>
+<span class="sd">                :func:`Display.res &lt;rubato.utils.display.Display.res&gt;`</span>
+<span class="sd">        res (Vector): The pixel resolution of the game. This is the number of virtual pixels on the window.</span>
+
+<span class="sd">            Example:</span>
+<span class="sd">                The window (:func:`Display.window_size &lt;rubato.utils.display.DisplayProperties.window_size&gt;`)</span>
+<span class="sd">                could be rendered at 500x500 while the resolution is at 1000x1000.</span>
+<span class="sd">                This would mean that you can place game objects at 900, 900 and still see them despite</span>
+<span class="sd">                the window not being 900 pixels tall.</span>
+
+<span class="sd">            Warning:</span>
+<span class="sd">                While this value can be changed, it is recommended that you do not</span>
+<span class="sd">                alter it after initialization as it will scale your entire project in unexpected ways.</span>
+<span class="sd">                If you wish to achieve scaling across an entire scene, simply utilize the</span>
+<span class="sd">                :func:`camera zoom &lt;rubato.struct.camera.Camera.zoom&gt;` property in your scene&#39;s camera.</span>
+<span class="sd">        window_pos (Vector): The current position of the window in terms of screen pixels.</span>
+<span class="sd">        window_name (str): The name of the window.</span>
+<span class="sd">        hidden (bool): Whether the window is currently hidden.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">window</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Window</span>
+    <span class="n">renderer</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">Renderer</span>
+    <span class="n">pixel_format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_RGBA8888</span>
+    <span class="nb">format</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">pixel_format</span><span class="p">)</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">format</span><span class="o">.</span><span class="n">contents</span>
+    <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="n">_saved_window_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_saved_window_pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">display_ratio</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The ratio of the renderer resolution to the window size. This is a read-only property.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Vector: The ratio of the renderer resolution to the window size seperated by x and y.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">border_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The size of the black border on either side of the drawing area when the aspect ratios don&#39;t match.&quot;&quot;&quot;</span>
+        <span class="c1"># if a smart programmer can actually understand this, please check that its working correctly.</span>
+        <span class="c1"># Thank you.</span>
+        <span class="n">render_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">window_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span>
+
+        <span class="k">if</span> <span class="n">render_rat</span> <span class="o">&gt;</span> <span class="n">window_rat</span><span class="p">:</span>  <span class="c1"># side burns</span>
+            <span class="n">rat</span> <span class="o">=</span> <span class="n">render_rat</span> <span class="o">/</span> <span class="n">window_rat</span>  <span class="c1"># how much fatter the window is than the render</span>
+            <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">rat</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">render_rat</span> <span class="o">&lt;</span> <span class="n">window_rat</span><span class="p">:</span>  <span class="c1"># top burns</span>
+            <span class="n">rat</span> <span class="o">=</span> <span class="n">window_rat</span> <span class="o">/</span> <span class="n">render_rat</span>  <span class="c1"># how thinner the window is than the render</span>
+            <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">rat</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="Display.has_x_border"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.has_x_border">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">has_x_border</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether the window has a black border on the left or right side.&quot;&quot;&quot;</span>
+        <span class="n">render_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">window_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span>
+
+        <span class="k">return</span> <span class="n">render_rat</span> <span class="o">&gt;</span> <span class="n">window_rat</span></div>
+
+<div class="viewcode-block" id="Display.has_y_border"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.has_y_border">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">has_y_border</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Whether the window has a black border on the top or bottom.&quot;&quot;&quot;</span>
+        <span class="n">render_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">window_rat</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span>
+
+        <span class="k">return</span> <span class="n">render_rat</span> <span class="o">&lt;</span> <span class="n">window_rat</span></div>
+
+<div class="viewcode-block" id="Display.set_window_icon"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.set_window_icon">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">set_window_icon</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the icon of the window.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path: The path to the icon.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">image</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load_img</span><span class="p">(</span><span class="n">get_path</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetWindowIcon</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span>
+            <span class="n">image</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Display.set_fullscreen"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.set_fullscreen">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">set_fullscreen</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">on</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;desktop&quot;</span><span class="p">,</span> <span class="s2">&quot;exclusive&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;desktop&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set the window to fullscreen.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            on: Whether to set the window to fullscreen.</span>
+<span class="sd">            mode: The type of fullscreen to use. Can be either &quot;desktop&quot; or &quot;exclusive&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">on</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_pos</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_size</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_pos</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_pos</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;desktop&quot;</span><span class="p">:</span>
+                <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetWindowFullscreen</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WINDOW_FULLSCREEN_DESKTOP</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;exclusive&quot;</span><span class="p">:</span>
+                <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetWindowFullscreen</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WINDOW_FULLSCREEN</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid fullscreen type: </span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_pos</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_size</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">window_pos</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_pos</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_size</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_pos</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetWindowFullscreen</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Texture</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">flipx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update the current screen.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tx: The texture to draw on the screen.</span>
+<span class="sd">            width: The width of the texture.</span>
+<span class="sd">            height: The height of the texture.</span>
+<span class="sd">            pos: The position to draw the texture on.</span>
+<span class="sd">            scale: The scale of the texture. Defaults to (1, 1).</span>
+<span class="sd">            angle: The clockwise rotation of the texture. Defaults to 0.</span>
+<span class="sd">            flipx: Whether to flip the texture horizontally. Defaults to False.</span>
+<span class="sd">            flipy: Whether to flip the texture vertically. Defaults to False.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">flipx</span> <span class="o">|=</span> <span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">flipy</span> <span class="o">|=</span> <span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="n">flip</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_NONE</span>
+        <span class="k">if</span> <span class="n">flipx</span><span class="p">:</span>
+            <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_HORIZONTAL</span>
+        <span class="k">if</span> <span class="n">flipy</span><span class="p">:</span>
+            <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_VERTICAL</span>
+
+        <span class="n">x_dim</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">y_dim</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderCopyEx</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
+            <span class="n">tx</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span>
+                <span class="nb">round</span><span class="p">((</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_dim</span> <span class="k">if</span> <span class="n">flipx</span> <span class="k">else</span> <span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+                <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
+                <span class="n">x_dim</span><span class="p">,</span>
+                <span class="n">y_dim</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">flip</span><span class="p">,</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="Display.get_window_border_size"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.get_window_border_size">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_window_border_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the size of the window border. pixels on the top sides and bottom of the window.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The size of the window border.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">top</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">()</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetWindowBordersSize</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">top</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">bottom</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">top</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">left</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">bottom</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">right</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="Display.save_screenshot"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.save_screenshot">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">save_screenshot</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span>
+        <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;png&quot;</span><span class="p">,</span>
+        <span class="n">save_to_temp_path</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">quality</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the current screen to a file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename: The name of the file to save to.</span>
+<span class="sd">            path: Path to output folder.</span>
+<span class="sd">            extension: The extension to save the file as. (png, jpg, bmp supported)</span>
+<span class="sd">            save_to_temp_path: Whether to save the file to a temporary path (i.e. MEIPASS used in exe).</span>
+<span class="sd">            quality: The quality of the jpg 0-100 (only used for jpgs).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            If save was successful.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extension</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="s2">&quot;jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;bmp&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid extension. Only png, jpg, bmp are supported.&quot;</span><span class="p">)</span>
+
+        <span class="n">render_surface</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormat</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_ARGB8888</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">render_surface</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not create surface: </span><span class="si">{</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetError</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderReadPixels</span><span class="p">(</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span><span class="p">)),</span>
+                <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_PIXELFORMAT_ARGB8888</span><span class="p">,</span> <span class="n">render_surface</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">pixels</span><span class="p">,</span> <span class="n">render_surface</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">pitch</span>
+            <span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not read screenshot: </span><span class="si">{</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetError</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="n">path_bytes</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">save_to_temp_path</span><span class="p">:</span>
+                <span class="n">path_bytes</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">get_path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">extension</span><span class="p">)),</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">path_bytes</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">extension</span><span class="p">),</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;png&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlimage</span><span class="o">.</span><span class="n">IMG_SavePNG</span><span class="p">(</span><span class="n">render_surface</span><span class="p">,</span> <span class="n">path_bytes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;jpg&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlimage</span><span class="o">.</span><span class="n">IMG_SaveJPG</span><span class="p">(</span><span class="n">render_surface</span><span class="p">,</span> <span class="n">path_bytes</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;bmp&quot;</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SaveBMP</span><span class="p">(</span><span class="n">render_surface</span><span class="p">,</span> <span class="n">path_bytes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">render_surface</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Display.show_window"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.show_window">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">show_window</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Show the window.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Display</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">open</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Display.hide_window"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.hide_window">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">hide_window</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Hide the window.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Display</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">hide</span><span class="p">()</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">top_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top left of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">top_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top right of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bottom_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom left of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bottom_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom right of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">top_center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top center of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bottom_center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom center of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">center_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the center left of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">center_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the center right of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the center of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the right of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the left of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bottom</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span></div>
+</pre></div> 
+        </article>
+      </div>
+      <footer>
+        
+<div class="related-pages">
+     
+</div>
+<div class="bottom-of-page">
+    <div class="left-details">
+        <div class="copyright"> Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave
+        </div>
+    </div>
+    <div class="right-details">
+        <div class="icons"><a class="muted-link" href="https://github.com/rubatopy/rubato" aria-label="On GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    ></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/scripts/furo.js"></script>
+    <script src="../../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../../_static/copybutton.js"></script>
+    <script src="../../../../../_static/tabs.js"></script>
+    <script src="../../../../../_static/design-tabs.js"></script>
+    </body>
+</html>
