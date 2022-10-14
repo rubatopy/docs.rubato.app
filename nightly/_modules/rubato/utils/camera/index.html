@@ -223,7 +223,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../intro/">Getting Started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../events/">Event Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../key-names/">Key Names</a></li>
 </ul>
 </li>
@@ -314,7 +313,7 @@
 
 <span class="sd">The current scene&#39;s camera can be accessed through :code:`Game.camera`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Radio</span><span class="p">,</span> <span class="n">Events</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Math</span>
 
 
 <div class="viewcode-block" id="Camera"><a class="viewcode-back" href="../../../../api/#rubato.utils.camera.Camera">[docs]</a><span class="k">class</span> <span class="nc">Camera</span><span class="p">:</span>
@@ -342,7 +341,6 @@
     <span class="nd">@zoom</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">zoom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_zoom</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">new</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">)</span>
-        <span class="n">Radio</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">Events</span><span class="o">.</span><span class="n">ZOOM</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;camera&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="p">})</span>
 
 <div class="viewcode-block" id="Camera.transform"><a class="viewcode-back" href="../../../../api/#rubato.utils.camera.Camera.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -354,10 +352,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            The translated coordinates.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span>
-            <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">+</span> <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-            <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">+</span> <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">y</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">((</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">+</span> <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">+</span> <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Camera.i_transform"><a class="viewcode-back" href="../../../../api/#rubato.utils.camera.Camera.i_transform">[docs]</a>    <span class="k">def</span> <span class="nf">i_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -369,10 +365,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            The translated coordinates.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span>
-            <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-            <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span>
-        <span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">((</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">zoom</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span><span class="p">)</span></div></div>
 </pre></div> 
         </article>
       </div>

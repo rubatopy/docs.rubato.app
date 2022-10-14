@@ -223,7 +223,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../intro/">Getting Started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../events/">Event Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../key-names/">Key Names</a></li>
 </ul>
 </li>
@@ -318,11 +317,6 @@
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Component</span>
 <span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Math</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Surface</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">cython</span><span class="o">.</span><span class="n">compiled</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">enum_tools</span> <span class="kn">import</span> <span class="n">document_enum</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">document_enum</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="kc">None</span>
-
 
 <div class="viewcode-block" id="ParticleSystemMode"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.particles.system.ParticleSystemMode">[docs]</a><span class="nd">@unique</span>
 <span class="k">class</span> <span class="nc">ParticleSystemMode</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
@@ -340,6 +334,7 @@
 
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">cython</span><span class="o">.</span><span class="n">compiled</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">enum_tools</span> <span class="kn">import</span> <span class="n">document_enum</span>
     <span class="n">document_enum</span><span class="p">(</span><span class="n">ParticleSystemMode</span><span class="p">)</span>
 
 

@@ -223,7 +223,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../intro/">Getting Started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../events/">Event Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../key-names/">Key Names</a></li>
 </ul>
 </li>
@@ -669,16 +668,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">any</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">mouse_state</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="Input.get_mouse_pos"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.get_mouse_pos">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_mouse_pos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The current position of the mouse, in screen-coordinates.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            A Vector representing position.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x_window</span><span class="p">,</span> <span class="n">y_window</span> <span class="o">=</span> <span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetMouseState</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">x_window</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">y_window</span><span class="p">))</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_display_to_screen</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Converts display coordinates to screen coordinates.&quot;&quot;&quot;</span>
+        <span class="n">x_window</span><span class="p">,</span> <span class="n">y_window</span> <span class="o">=</span> <span class="n">c_int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">c_int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
 
         <span class="n">x_render</span><span class="p">,</span> <span class="n">y_render</span> <span class="o">=</span> <span class="n">c_float</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">c_float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">size</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">border_size</span>
@@ -688,12 +681,22 @@
             <span class="n">y_window</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">y_window</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">size</span><span class="p">))</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderWindowToLogical</span><span class="p">(</span><span class="n">Display</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span> <span class="n">x_window</span><span class="p">,</span> <span class="n">y_window</span><span class="p">,</span> <span class="n">x_render</span><span class="p">,</span> <span class="n">y_render</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">x_render</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">y_render</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">x_render</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">y_render</span><span class="o">.</span><span class="n">value</span>
+
+<div class="viewcode-block" id="Input.get_mouse_pos"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.get_mouse_pos">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_mouse_pos</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The current position of the mouse, in screen-coordinates.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A Vector representing position.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_display_to_screen</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">get_mouse_abs_pos</span><span class="p">()))</span></div>
 
 <div class="viewcode-block" id="Input.get_mouse_abs_pos"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_input.Input.get_mouse_abs_pos">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_mouse_abs_pos</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The current absolute position of the mouse. ie. screen coordinates.</span>
+<span class="sd">        The current absolute position of the mouse, in display coordinates.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            A Vector representing position.</span>

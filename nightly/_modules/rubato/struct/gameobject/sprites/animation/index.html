@@ -223,7 +223,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../intro/">Getting Started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../events/">Event Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../key-names/">Key Names</a></li>
 </ul>
 </li>
@@ -331,6 +330,7 @@
 <span class="sd">        af: Whether to use anisotropic filtering on the animation. Defaults to False.</span>
 <span class="sd">        flipx: Whether to flip the animation horizontally. Defaults to False.</span>
 <span class="sd">        flipy: Whether to flip the animation vertically. Defaults to False.</span>
+<span class="sd">        alpha: The alpha of the animation. Defaults to 255.</span>
 <span class="sd">        offset: The offset of the animation from the game object. Defaults to (0, 0).</span>
 <span class="sd">        rot_offset: The rotation offset of the animation from the game object. Defaults to 0.</span>
 <span class="sd">        z_index: The z-index of the animation. Defaults to 0.</span>
@@ -344,6 +344,7 @@
         <span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">flipx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">255</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -375,6 +376,8 @@
         <span class="sd">&quot;&quot;&quot;Whether to flip the animation along the x axis.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">flipy</span>
         <span class="sd">&quot;&quot;&quot;Whether to flip the animation along the y axis.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="sd">&quot;&quot;&quot;The alpha of the animation.&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_time_step</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_time_count</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
@@ -404,6 +407,7 @@
         <span class="n">surface</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_state</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">current_frame</span><span class="p">]</span>
         <span class="n">surface</span><span class="o">.</span><span class="n">af</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">af</span>
         <span class="n">surface</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
+        <span class="n">surface</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
 
         <span class="n">calculated_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">flipx</span><span class="p">:</span>

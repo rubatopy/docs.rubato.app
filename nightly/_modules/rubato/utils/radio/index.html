@@ -223,7 +223,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../intro/">Getting Started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../events/">Event Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../key-names/">Key Names</a></li>
 </ul>
 </li>
@@ -315,52 +314,17 @@
 <span class="sd">:meth:`Radio.listen` function. Then from anywhere else in the code, you can</span>
 <span class="sd">broadcast that event key using :meth:`Radio.broadcast`.</span>
 
-<span class="sd">:doc:`Go here &lt;events&gt;` to see all the events that can be broadcast.</span>
+<span class="sd">:ref:`Go here &lt;api:events&gt;` to see all the events that can be broadcast.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span> <span class="nn">ctypes</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">suppress</span>
 <span class="kn">import</span> <span class="nn">sdl2</span>
 <span class="kn">import</span> <span class="nn">cython</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">InitError</span>
-
-
-<div class="viewcode-block" id="Events"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Events">[docs]</a><span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
-<span class="k">class</span> <span class="nc">Events</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Describes all rubato-fired events that can be listened for.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">KEYUP</span> <span class="o">=</span> <span class="s2">&quot;KEYUP&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a key is released&quot;&quot;&quot;</span>
-    <span class="n">KEYDOWN</span> <span class="o">=</span> <span class="s2">&quot;KEYDOWN&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a key is pressed&quot;&quot;&quot;</span>
-    <span class="n">KEYHOLD</span> <span class="o">=</span> <span class="s2">&quot;KEYHOLD&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a key is held down (After the initial keydown)&quot;&quot;&quot;</span>
-    <span class="n">MOUSEUP</span> <span class="o">=</span> <span class="s2">&quot;MOUSEUP&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a mouse button is released&quot;&quot;&quot;</span>
-    <span class="n">MOUSEDOWN</span> <span class="o">=</span> <span class="s2">&quot;MOUSEDOWN&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a mouse button is pressed&quot;&quot;&quot;</span>
-    <span class="n">MOUSEWHEEL</span> <span class="o">=</span> <span class="s2">&quot;MOUSEWHEEL&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when the mouse wheel is scrolled&quot;&quot;&quot;</span>
-    <span class="n">SCROLL</span> <span class="o">=</span> <span class="n">MOUSEWHEEL</span>
-    <span class="sd">&quot;&quot;&quot;Same as MOUSEWHEEL&quot;&quot;&quot;</span>
-    <span class="n">JOYAXISMOTION</span> <span class="o">=</span> <span class="s2">&quot;JOYAXISMOTION&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a controller joystick axis is moved&quot;&quot;&quot;</span>
-    <span class="n">JOYHATMOTION</span> <span class="o">=</span> <span class="s2">&quot;JOYHATMOTION&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a controller hat button is changed&quot;&quot;&quot;</span>
-    <span class="n">JOYBUTTONDOWN</span> <span class="o">=</span> <span class="s2">&quot;JOYBUTTONDOWN&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a controller button is pressed&quot;&quot;&quot;</span>
-    <span class="n">JOYBUTTONUP</span> <span class="o">=</span> <span class="s2">&quot;JOYBUTTONUP&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when a controller button is released&quot;&quot;&quot;</span>
-    <span class="n">ZOOM</span> <span class="o">=</span> <span class="s2">&quot;ZOOM&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when the camera is zoomed&quot;&quot;&quot;</span>
-    <span class="n">EXIT</span> <span class="o">=</span> <span class="s2">&quot;EXIT&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when the game is exiting&quot;&quot;&quot;</span>
-    <span class="n">RESIZE</span> <span class="o">=</span> <span class="s2">&quot;RESIZE&quot;</span>
-    <span class="sd">&quot;&quot;&quot;Fired when the window is resized&quot;&quot;&quot;</span></div>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">InitError</span><span class="p">,</span> <span class="n">Events</span><span class="p">,</span> <span class="n">EventResponse</span><span class="p">,</span> <span class="n">ResizeResponse</span><span class="p">,</span> <span class="n">KeyResponse</span><span class="p">,</span> <span class="n">MouseButtonResponse</span><span class="p">,</span> \
+    <span class="n">MouseWheelResponse</span><span class="p">,</span> <span class="n">MouseMotionResponse</span><span class="p">,</span> <span class="n">JoyAxisMotionResponse</span><span class="p">,</span> <span class="n">JoyHatMotionResponse</span><span class="p">,</span> <span class="n">JoyButtonResponse</span><span class="p">,</span> <span class="n">Time</span>
 
 
 <span class="c1"># THIS IS A STATIC CLASS</span>
@@ -376,8 +340,8 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Radio.handle"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.handle">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_handle</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handle the current SDL event queue.</span>
 
@@ -393,14 +357,17 @@
                 <span class="k">return</span> <span class="kc">True</span>
             <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WINDOWEVENT</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">event</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_WINDOWEVENT_RESIZED</span><span class="p">:</span>
-                    <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
-                        <span class="n">Events</span><span class="o">.</span><span class="n">RESIZE</span><span class="p">,</span> <span class="p">{</span>
-                            <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data1</span><span class="p">,</span>
-                            <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data2</span><span class="p">,</span>
-                            <span class="s2">&quot;old_width&quot;</span><span class="p">:</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-                            <span class="s2">&quot;old_height&quot;</span><span class="p">:</span> <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span>
-                        <span class="p">}</span>
-                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">Events</span><span class="o">.</span><span class="n">RESIZE</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                        <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                            <span class="n">Events</span><span class="o">.</span><span class="n">RESIZE</span><span class="p">,</span>
+                            <span class="n">ResizeResponse</span><span class="p">(</span>
+                                <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                                <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data1</span><span class="p">,</span>
+                                <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data2</span><span class="p">,</span>
+                                <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
+                                <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
                     <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data1</span><span class="p">,</span>
                         <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data2</span><span class="p">,</span>
@@ -415,97 +382,126 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">event_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">Events</span><span class="o">.</span><span class="n">KEYDOWN</span><span class="p">,</span> <span class="n">Events</span><span class="o">.</span><span class="n">KEYHOLD</span><span class="p">)[</span><span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">repeat</span><span class="p">]</span>
 
-                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
-                    <span class="n">event_name</span><span class="p">,</span>
-                    <span class="p">{</span>
-                        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="n">Input</span><span class="o">.</span><span class="n">get_name</span><span class="p">(</span><span class="n">key_info</span><span class="o">.</span><span class="n">sym</span><span class="p">),</span>
-                        <span class="s2">&quot;unicode&quot;</span><span class="p">:</span> <span class="n">unicode</span><span class="p">,</span>
-                        <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">key_info</span><span class="o">.</span><span class="n">sym</span><span class="p">),</span>
-                        <span class="s2">&quot;mods&quot;</span><span class="p">:</span> <span class="n">key_info</span><span class="o">.</span><span class="n">mod</span><span class="p">,</span>
-                    <span class="p">},</span>
-                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">event_name</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                        <span class="n">event_name</span><span class="p">,</span>
+                        <span class="n">KeyResponse</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">Input</span><span class="o">.</span><span class="n">get_name</span><span class="p">(</span><span class="n">key_info</span><span class="o">.</span><span class="n">sym</span><span class="p">),</span>
+                            <span class="n">unicode</span><span class="p">,</span>
+                            <span class="nb">int</span><span class="p">(</span><span class="n">key_info</span><span class="o">.</span><span class="n">sym</span><span class="p">),</span>
+                            <span class="n">key_info</span><span class="o">.</span><span class="n">mod</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
             <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONDOWN</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONUP</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEBUTTONUP</span><span class="p">:</span>
                     <span class="n">event_name</span> <span class="o">=</span> <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEUP</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">event_name</span> <span class="o">=</span> <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEDOWN</span>
 
-                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
-                    <span class="n">event_name</span><span class="p">,</span>
-                    <span class="p">{</span>
-                        <span class="s2">&quot;button&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">button</span><span class="p">,</span>
-                        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-                        <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
-                        <span class="s2">&quot;clicks&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicks</span><span class="p">,</span>
-                        <span class="s2">&quot;which&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
-                        <span class="s2">&quot;windowID&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">windowID</span><span class="p">,</span>
-                        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
-                    <span class="p">},</span>
-                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">event_name</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                        <span class="n">event_name</span><span class="p">,</span>
+                        <span class="n">MouseButtonResponse</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">button</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicks</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
             <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEWHEEL</span><span class="p">:</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
-                    <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEWHEEL</span><span class="p">,</span>
-                    <span class="p">{</span>
-                        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-                        <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
-                        <span class="s2">&quot;precise x&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseX</span><span class="p">,</span>
-                        <span class="s2">&quot;precise y&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseY</span><span class="p">,</span>
-                        <span class="s2">&quot;which&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
-                        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
-                        <span class="s2">&quot;windowID&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">windowID</span><span class="p">,</span>
-                    <span class="p">},</span>
-                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEWHEEL</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                        <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEWHEEL</span><span class="p">,</span>
+                        <span class="n">MouseWheelResponse</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseX</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseY</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_MOUSEMOTION</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEMOTION</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                        <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEMOTION</span><span class="p">,</span>
+                        <span class="n">MouseMotionResponse</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">xrel</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">yrel</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
             <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYAXISMOTION</span><span class="p">:</span>
                 <span class="n">mag</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">Input</span><span class="o">.</span><span class="n">_joystick_max</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
-                    <span class="n">Events</span><span class="o">.</span><span class="n">JOYAXISMOTION</span><span class="p">,</span>
-                    <span class="p">{</span>
-                        <span class="s2">&quot;controller&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
-                        <span class="s2">&quot;axis&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">axis</span><span class="p">,</span>
-                        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">mag</span><span class="p">,</span>
-                        <span class="s2">&quot;centered&quot;</span><span class="p">:</span> <span class="n">Input</span><span class="o">.</span><span class="n">axis_centered</span><span class="p">(</span><span class="n">mag</span><span class="p">),</span>
-                    <span class="p">},</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYBUTTONDOWN</span><span class="p">:</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
-                    <span class="n">Events</span><span class="o">.</span><span class="n">JOYBUTTONDOWN</span><span class="p">,</span>
-                    <span class="p">{</span>
-                        <span class="s2">&quot;controller&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
-                        <span class="s2">&quot;button&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">button</span>
-                    <span class="p">},</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYBUTTONUP</span><span class="p">:</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
-                    <span class="n">Events</span><span class="o">.</span><span class="n">JOYBUTTONUP</span><span class="p">,</span>
-                    <span class="p">{</span>
-                        <span class="s2">&quot;controller&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
-                        <span class="s2">&quot;button&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">button</span>
-                    <span class="p">},</span>
-                <span class="p">)</span>
-            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYHATMOTION</span><span class="p">:</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
-                    <span class="n">Events</span><span class="o">.</span><span class="n">JOYHATMOTION</span><span class="p">,</span>
-                    <span class="p">{</span>
-                        <span class="s2">&quot;controller&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
-                        <span class="s2">&quot;hat&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">hat</span><span class="p">,</span>
-                        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-                        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">Input</span><span class="o">.</span><span class="n">translate_hat</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
-                    <span class="p">},</span>
-                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">Events</span><span class="o">.</span><span class="n">JOYAXISMOTION</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                        <span class="n">Events</span><span class="o">.</span><span class="n">JOYAXISMOTION</span><span class="p">,</span>
+                        <span class="n">JoyAxisMotionResponse</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">axis</span><span class="p">,</span>
+                            <span class="n">mag</span><span class="p">,</span>
+                            <span class="n">Input</span><span class="o">.</span><span class="n">axis_centered</span><span class="p">(</span><span class="n">mag</span><span class="p">),</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYBUTTONDOWN</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYBUTTONUP</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYBUTTONUP</span><span class="p">:</span>
+                    <span class="n">event_name</span> <span class="o">=</span> <span class="n">Events</span><span class="o">.</span><span class="n">JOYBUTTONUP</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">event_name</span> <span class="o">=</span> <span class="n">Events</span><span class="o">.</span><span class="n">JOYBUTTONDOWN</span>
 
-        <span class="k">return</span> <span class="kc">False</span></div>
+                <span class="k">if</span> <span class="n">event_name</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                        <span class="n">event_name</span><span class="p">,</span>
+                        <span class="n">JoyButtonResponse</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">button</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYHATMOTION</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">Events</span><span class="o">.</span><span class="n">JOYHATMOTION</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                    <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
+                        <span class="n">Events</span><span class="o">.</span><span class="n">JOYHATMOTION</span><span class="p">,</span>
+                        <span class="n">JoyHatMotionResponse</span><span class="p">(</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">hat</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                            <span class="n">Input</span><span class="o">.</span><span class="n">translate_hat</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">value</span><span class="p">),</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="Radio.broadcast"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.broadcast">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Events</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Broadcast an event to be caught by listeners.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event: The event key to broadcast.</span>
+<span class="sd">            params: The event parameters (usually a dictionary). Defaults to None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># pylint: disable=isinstance-second-argument-not-valid-type</span>
+        <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">Events</span><span class="p">)</span> <span class="k">else</span> <span class="n">event</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">listener</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="n">params</span> <span class="ow">or</span> <span class="n">EventResponse</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span></div>
 
 <div class="viewcode-block" id="Radio.listen"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.listen">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Events</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates an event listener and registers it.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            event: The event key to listen for.</span>
-<span class="sd">            func: The function to run once the event is</span>
-<span class="sd">                broadcast. It may take in a params dictionary argument.</span>
+<span class="sd">            func: The function to run once the event is broadcast. It may take in an EventResponse as an argument.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Listener</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">func</span><span class="p">))</span></div>
+        <span class="c1"># pylint: disable=isinstance-second-argument-not-valid-type</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Listener</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">Events</span><span class="p">)</span> <span class="k">else</span> <span class="n">event</span><span class="p">,</span> <span class="n">func</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Radio.register"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.register">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">listener</span><span class="p">:</span> <span class="n">Listener</span><span class="p">):</span>
@@ -527,19 +523,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">[</span><span class="n">listener</span><span class="o">.</span><span class="n">event</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">listener</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">listener</span></div>
-
-<div class="viewcode-block" id="Radio.broadcast"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Radio.broadcast">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">broadcast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{}):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Broadcast an event to be caught by listeners.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            event: The event key to broadcast.</span>
-<span class="sd">            params: The event parameters (usually a dictionary)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="p">[]):</span>
-            <span class="n">listener</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="n">params</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">listener</span></div></div>
 
 
 <div class="viewcode-block" id="Listener"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Listener">[docs]</a><span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
@@ -553,7 +537,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">event</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
     <span class="sd">&quot;&quot;&quot;The event descriptor&quot;&quot;&quot;</span>
-    <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+    <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
     <span class="sd">&quot;&quot;&quot;The function called when the event occurs&quot;&quot;&quot;</span>
     <span class="n">registered</span><span class="p">:</span> <span class="n">cython</span><span class="o">.</span><span class="n">bint</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="n">cython</span><span class="o">.</span><span class="n">bint</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
     <span class="sd">&quot;&quot;&quot;Describes whether the listener is registered&quot;&quot;&quot;</span>
@@ -563,7 +547,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">registered</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="Listener.ping"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Listener.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+<div class="viewcode-block" id="Listener.ping"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Listener.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">EventResponse</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calls the callback of this listener.</span>
 
@@ -571,9 +555,9 @@
 <span class="sd">            params: The event parameters (usually a dictionary)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span>  <span class="c1"># type: ignore</span></div>
 
 <div class="viewcode-block" id="Listener.remove"><a class="viewcode-back" href="../../../../api/#rubato.utils.radio.Listener.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -583,10 +567,15 @@
 <span class="sd">            ValueError: Raises error when listener is not registered</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">Radio</span><span class="o">.</span><span class="n">listeners</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">registered</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event</span> <span class="ow">in</span> <span class="n">Radio</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                <span class="n">Radio</span><span class="o">.</span><span class="n">listeners</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">Radio</span><span class="o">.</span><span class="n">listeners</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="p">]:</span>
+                    <span class="k">del</span> <span class="n">Radio</span><span class="o">.</span><span class="n">listeners</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">registered</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Listener not registered&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Listener not registered in the radio&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Listener not registered&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span></div></div>
 </pre></div> 
         </article>
       </div>

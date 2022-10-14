@@ -223,7 +223,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../../intro/">Getting Started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../../../events/">Event Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../../key-names/">Key Names</a></li>
 </ul>
 </li>
@@ -397,13 +396,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">inv_mass</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">new</span>
 
-<div class="viewcode-block" id="RigidBody.physics"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.physics">[docs]</a>    <span class="k">def</span> <span class="nf">physics</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Applies general kinematic laws to the rigidbody.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gravity</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_speed</span><span class="p">)</span>  <span class="c1"># pylint: disable=invalid-unary-operand-type</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_vel</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ang_vel</span> <span class="o">*</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
 
 <div class="viewcode-block" id="RigidBody.add_force"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.add_force">[docs]</a>    <span class="k">def</span> <span class="nf">add_force</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -460,7 +459,13 @@
 <div class="viewcode-block" id="RigidBody.fixed_update"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.fixed_update">[docs]</a>    <span class="k">def</span> <span class="nf">fixed_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The physics loop for the rigidbody component.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">static</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">physics</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tick</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="RigidBody.stop"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Stops the rigidbody by setting velocity and ang_vel to 0.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ang_vel</span> <span class="o">=</span> <span class="mi">0</span></div>
 
 <div class="viewcode-block" id="RigidBody.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.rigidbody.RigidBody.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RigidBody</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">RigidBody</span><span class="p">(</span>

@@ -232,7 +232,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../intro/">Getting Started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../events/">Event Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../key-names/">Key Names</a></li>
 </ul>
 </li>
@@ -640,7 +639,7 @@ Here is what that code looks like:<div class="sd-summary-down docutils">
                 <span class="k">global</span> <span class="n">retry_allowed</span>
                 <span class="n">retry_allowed</span> <span class="o">=</span> <span class="kc">True</span>
 
-            <span class="n">rb</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">delayed_call</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">re_allow</span><span class="p">)</span>
+            <span class="n">rb</span><span class="o">.</span><span class="n">Time</span><span class="o">.</span><span class="n">delayed_call</span><span class="p">(</span><span class="n">re_allow</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">col_info</span><span class="o">.</span><span class="n">shape_b</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;portal&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">won</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;WIN!&quot;</span><span class="p">)</span>

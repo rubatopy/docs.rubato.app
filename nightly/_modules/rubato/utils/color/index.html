@@ -223,7 +223,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../intro/">Getting Started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../events/">Event Details</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../key-names/">Key Names</a></li>
 </ul>
 </li>
@@ -333,18 +332,18 @@
 
     <span class="c1"># [colordef]</span>
     <span class="n">_color_defaults</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;yellow&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">253</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">110</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;scarlet&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">214</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;violet&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">108</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">231</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;turquoize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">201</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;orange&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">225</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;magenta&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">232</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">147</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;blue&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">227</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;green&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">148</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;red&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">118</span><span class="p">,</span> <span class="mi">117</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;purple&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">162</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">254</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;cyan&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">116</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;lime&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">196</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
+        <span class="s2">&quot;yellow&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">253</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">110</span><span class="p">),</span>
+        <span class="s2">&quot;scarlet&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">214</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">),</span>
+        <span class="s2">&quot;violet&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">108</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">231</span><span class="p">),</span>
+        <span class="s2">&quot;turquoize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">201</span><span class="p">),</span>
+        <span class="s2">&quot;orange&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">225</span><span class="p">,</span> <span class="mi">112</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span>
+        <span class="s2">&quot;magenta&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">232</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">147</span><span class="p">),</span>
+        <span class="s2">&quot;blue&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">227</span><span class="p">),</span>
+        <span class="s2">&quot;green&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">148</span><span class="p">),</span>
+        <span class="s2">&quot;red&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">118</span><span class="p">,</span> <span class="mi">117</span><span class="p">),</span>
+        <span class="s2">&quot;purple&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">162</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">254</span><span class="p">),</span>
+        <span class="s2">&quot;cyan&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">116</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+        <span class="s2">&quot;lime&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">196</span><span class="p">),</span>
 
         <span class="c1"># colorwheel used (rgb values are not identical):</span>
         <span class="c1"># https://upload.wikimedia.org/wikipedia/commons/5/54/RGV_color_wheel_1908.png</span>
@@ -352,13 +351,13 @@
     <span class="c1"># [/colordef]</span>
     <span class="c1"># [grayscaledef]</span>
     <span class="n">_grayscale_defaults</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;black&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;white&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;night&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;darkgray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">54</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;gray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">114</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;lightgray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">178</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">195</span><span class="p">),</span>  <span class="c1">#. . . . . . . . . . . . . . tuple</span>
-        <span class="s2">&quot;snow&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">233</span><span class="p">),</span>  <span class="c1"># . . . . . . . . . . . . . . . . tuple</span>
+        <span class="s2">&quot;black&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s2">&quot;white&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span>
+        <span class="s2">&quot;night&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span>
+        <span class="s2">&quot;darkgray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">54</span><span class="p">),</span>
+        <span class="s2">&quot;gray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">114</span><span class="p">),</span>
+        <span class="s2">&quot;lightgray&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">178</span><span class="p">,</span> <span class="mi">190</span><span class="p">,</span> <span class="mi">195</span><span class="p">),</span>
+        <span class="s2">&quot;snow&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">233</span><span class="p">),</span>
     <span class="p">}</span>
 
     <span class="c1"># [/grayscaledef]</span>
@@ -504,7 +503,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            grayscale: Grayscale color option (-1 excludes, 0 includes, and 1 only chooses from grayscale colors).</span>
-<span class="sd">            Defaults to -1.</span>
+<span class="sd">                Defaults to -1.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            A random default Color.</span>
@@ -589,7 +588,8 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">black</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default black color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        The default black color. To see the RGB values, check out the</span>
+<span class="sd">        :ref:`Grayscale defaults &lt;api:default grayscale colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="p">[</span><span class="s2">&quot;black&quot;</span><span class="p">])</span></div>
 
@@ -597,7 +597,8 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">white</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default white color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        The default white color. To see the RGB values, check out the</span>
+<span class="sd">        :ref:`Grayscale defaults &lt;api:default grayscale colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="p">[</span><span class="s2">&quot;white&quot;</span><span class="p">])</span></div>
 
@@ -605,7 +606,8 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">night</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default night color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        The default night color. To see the RGB values, check out the</span>
+<span class="sd">        :ref:`Grayscale defaults &lt;api:default grayscale colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="p">[</span><span class="s2">&quot;night&quot;</span><span class="p">])</span></div>
 
@@ -613,7 +615,8 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">darkgray</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default darkgray color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        The default darkgray color. To see the RGB values, check out the</span>
+<span class="sd">        :ref:`Grayscale defaults &lt;api:default grayscale colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="p">[</span><span class="s2">&quot;darkgray&quot;</span><span class="p">])</span></div>
 
@@ -621,7 +624,8 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">gray</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default gray color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        The default gray color. To see the RGB values, check out the</span>
+<span class="sd">        :ref:`Grayscale defaults &lt;api:default grayscale colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="p">[</span><span class="s2">&quot;gray&quot;</span><span class="p">])</span></div>
 
@@ -629,7 +633,8 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">lightgray</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default lightgray color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        The default lightgray color. To see the RGB values, check out the</span>
+<span class="sd">        :ref:`Grayscale defaults &lt;api:default grayscale colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="p">[</span><span class="s2">&quot;lightgray&quot;</span><span class="p">])</span></div>
 
@@ -637,7 +642,8 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">snow</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default snow color. To see the RGB values, check out the :ref:`Grayscale defaults &lt;grayscaledef&gt;`.</span>
+<span class="sd">        The default snow color. To see the RGB values, check out the</span>
+<span class="sd">        :ref:`Grayscale defaults &lt;api:default grayscale colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_grayscale_defaults</span><span class="p">[</span><span class="s2">&quot;snow&quot;</span><span class="p">])</span></div>
 
@@ -645,7 +651,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">yellow</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default yellow color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default yellow color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;yellow&quot;</span><span class="p">])</span></div>
 
@@ -653,7 +659,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">orange</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default orange color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default orange color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;orange&quot;</span><span class="p">])</span></div>
 
@@ -661,7 +667,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">red</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default red color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default red color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">])</span></div>
 
@@ -669,7 +675,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">scarlet</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default scarlet color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default scarlet color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;scarlet&quot;</span><span class="p">])</span></div>
 
@@ -677,7 +683,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">magenta</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default magenta color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default magenta color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;magenta&quot;</span><span class="p">])</span></div>
 
@@ -685,7 +691,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">purple</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default purple color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default purple color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;purple&quot;</span><span class="p">])</span></div>
 
@@ -693,7 +699,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">violet</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default violet color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default violet color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;violet&quot;</span><span class="p">])</span></div>
 
@@ -701,7 +707,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">blue</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default blue color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default blue color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">])</span></div>
 
@@ -709,7 +715,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">cyan</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default cyan color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default cyan color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;cyan&quot;</span><span class="p">])</span></div>
 
@@ -717,7 +723,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">turquoize</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default turquoize color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default turquoize color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;turquoize&quot;</span><span class="p">])</span></div>
 
@@ -725,7 +731,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">green</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default green color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default green color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;green&quot;</span><span class="p">])</span></div>
 
@@ -733,7 +739,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">lime</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The default lime color. To see the RGB values, check out the :ref:`Color defaults &lt;colordef&gt;`.</span>
+<span class="sd">        The default lime color. To see the RGB values, check out the :ref:`Color defaults &lt;api:default colors&gt;`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Color</span><span class="p">(</span><span class="o">*</span><span class="n">Color</span><span class="o">.</span><span class="n">_color_defaults</span><span class="p">[</span><span class="s2">&quot;lime&quot;</span><span class="p">])</span></div>
 
