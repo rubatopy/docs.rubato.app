@@ -1,0 +1,514 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="search" title="Search" href="../../../../../search/" />
+        <link rel="canonical" href="https://docs.rubato.app/_modules/rubato/utils/rendering/font.html" />
+
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/logo_filled.png"/><meta name="generator" content="sphinx-5.1.1, furo 2022.06.21"/>
+        <title>rubato.utils.rendering.font - rubato docs</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  --font-stack: Fredoka, sans-serif;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #ff9484;
+  --color-brand-content: #ff9484;
+  --color-api-name: #ff9484;
+  
+      }
+    }
+  }
+</style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WM5S826BXJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-WM5S826BXJ");
+</script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../../../"><div class="brand">rubato docs</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><div class="sidebar-scroll"><div id="vtag-name"></div>
+<style>
+    div#vtag-name {
+        color: var(--color-sidebar-caption-text);
+        font-size: var(--sidebar-caption-font-size);
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: right;
+        position: relative;
+        right: 1.25rem;
+        top: 1.75rem;
+        margin: -0.25rem 0;
+    }
+</style>
+<script>
+    let vtag = document.getElementById("vtag-name");
+    function waitForElement() {
+        if (typeof window.current !== "undefined") {
+            vtag.innerHTML = window.current;
+        } else {
+            setTimeout(waitForElement, 250);
+        }
+    }
+    waitForElement();
+</script>
+<a class="sidebar-brand centered" href="https://www.rubato.app">
+    
+    <div class="sidebar-logo-container">
+        <img
+            class="sidebar-logo"
+            src="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png"
+            alt="Logo"
+            width="240"
+            draggable="false"
+            style="user-select: none; -moz-user-select: none; -webkit-user-select: none; -webkit-user-drag: none"
+        />
+    </div>
+    
+</a><form class="sidebar-search-container" method="get" action="../../../../../search/" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../intro/">Getting Started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../api/">Full API Documentation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../key-names/">Key Names</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../tutorials/platformer/">Simple Platformer</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step1/">Step 1 - Basic Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step2/">Step 2 - Creating a Player</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step3/">Step 3 - Adding Player Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step4/">Step 4 - Creating a Level</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../tutorials/platformer/step5/">Step 5 - Finishing Touches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorials/advanced/custom_components/">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorials/advanced/pyinstaller/">Bundling to an Application</a></li>
+</ul>
+
+</div><div id="versionSidebarInclude"></div>
+<script>
+    if (window.location.hostname == "localhost") {
+        console.log("loading test version sidebar from localhost:8001");
+        $("#versionSidebarInclude").load("http://localhost:8001/version_sidebar.html");
+    } else {
+        $("#versionSidebarInclude").load("https://test.rubato.app/version_sidebar.html");
+    }
+</script></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          
+<div id="topWarning"></div>
+
+<script>
+    function genWarning() {
+        if (window.current != window.latest && window.current != "latest") {
+            div = document.getElementById("topWarning");
+            div.classList.add("admonition", "warning");
+            let title = document.createElement("p");
+            title.classList.add("admonition-title");
+            title.innerText = "Warning";
+
+            let content = document.createElement("p");
+            if (current == "nightly") {
+                content.innerText =
+                    "You're reading the documentation for a development version. For the latest released version, ";
+            } else {
+                content.innerText =
+                    "You're reading an old version of this documentation. If you want up-to-date information, ";
+            }
+            content.innerHTML += `please have a look at <a href='/latest'>${window.latest}</a>.`;
+
+            div.appendChild(title);
+            div.appendChild(content);
+        }
+    }
+</script>
+<h1>Source code for rubato.utils.rendering.font</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;A font abstraction used to render text.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Literal</span>
+<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
+<span class="kn">from</span> <span class="nn">importlib.resources</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Color</span>
+
+
+<div class="viewcode-block" id="Font"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font">[docs]</a><span class="k">class</span> <span class="nc">Font</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the font object that is used to render text.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        font: The font to use. Can also be a path to a font file. Defaults to Roboto.</span>
+<span class="sd">        size: The size of the font in pixels. Defaults to 16.</span>
+<span class="sd">        styles: The styles to apply to the font. Defaults to [].</span>
+<span class="sd">            Fill with only the following: bold, italic, underline, strikethrough.</span>
+<span class="sd">        color: The color of the font. Defaults to Color(0, 0, 0).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_text_fonts</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Comfortaa&quot;</span><span class="p">:</span> <span class="s2">&quot;Comfortaa-Regular.ttf&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Fredoka&quot;</span><span class="p">:</span> <span class="s2">&quot;Fredoka-Regular.ttf&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Merriweather&quot;</span><span class="p">:</span> <span class="s2">&quot;Merriweather-Regular.ttf&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Roboto&quot;</span><span class="p">:</span> <span class="s2">&quot;Roboto-Regular.ttf&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;SourceCodePro&quot;</span><span class="p">:</span> <span class="s2">&quot;SourceCodePro-Regular.ttf&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mozart&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozart-Regular.ttf&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">_text_styles</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;bold&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_BOLD</span><span class="p">,</span>
+        <span class="s2">&quot;italic&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_ITALIC</span><span class="p">,</span>
+        <span class="s2">&quot;underline&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_UNDERLINE</span><span class="p">,</span>
+        <span class="s2">&quot;strikethrough&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_STRIKETHROUGH</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Comfortaa&quot;</span><span class="p">,</span> <span class="s2">&quot;Fredoka&quot;</span><span class="p">,</span> <span class="s2">&quot;Merriweather&quot;</span><span class="p">,</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span> <span class="s2">&quot;SourceCodePro&quot;</span><span class="p">,</span> <span class="s2">&quot;Mozart&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span>
+        <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
+        <span class="n">styles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span> <span class="o">=</span> <span class="n">styles</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">=</span> <span class="n">color</span>
+
+        <span class="k">if</span> <span class="n">font</span> <span class="ow">in</span> <span class="n">Font</span><span class="o">.</span><span class="n">_text_fonts</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">files</span><span class="p">(</span><span class="s2">&quot;rubato.static.fonts&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="n">Font</span><span class="o">.</span><span class="n">_text_fonts</span><span class="p">[</span><span class="n">font</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span> <span class="o">=</span> <span class="n">font</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">FontTTF</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Font </span><span class="si">{</span><span class="n">font</span><span class="si">}</span><span class="s2"> cannot be found.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_styles</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The size of the text in points.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span>
+
+    <span class="nd">@size</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">new</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SetFontSize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">new</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The color of the text.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span>
+
+    <span class="nd">@color</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">=</span> <span class="n">new</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">FontTTF</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
+
+<div class="viewcode-block" id="Font.generate_surface"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.generate_surface">[docs]</a>    <span class="k">def</span> <span class="nf">generate_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">align</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generate the surface containing the text.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text: The text to render.</span>
+<span class="sd">            align: The alignment to use.</span>
+<span class="sd">            width: The maximum width to use. Defaults to -1.</span>
+<span class="sd">            rot: The rotation of the text in degrees. Defaults to 0.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: The width is too small for the text.</span>
+<span class="sd">            ValueError: The size of the text is too large for the font.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The surface containing the text.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">render_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="kc">None</span> <span class="k">if</span> <span class="n">width</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span><span class="p">),</span> <span class="n">align</span><span class="o">=</span><span class="n">align</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The width </span><span class="si">{</span><span class="n">width</span><span class="si">}</span><span class="s2"> is too small for the text.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+        <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The size </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="si">}</span><span class="s2"> is too big for the text.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span></div>
+
+<div class="viewcode-block" id="Font.size_text"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.size_text">[docs]</a>    <span class="k">def</span> <span class="nf">size_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculated the dimensions of a string of text using a given font.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            text: The string of text to calculate dimensions for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The dimensions of the string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text_w</span><span class="p">,</span> <span class="n">text_h</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SizeText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">text_w</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">text_h</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">text_w</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">text_h</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Font.add_style"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.add_style">[docs]</a>    <span class="k">def</span> <span class="nf">add_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a style to the font.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            style: The style to add. Can be one of the following: bold, italic, underline, strikethrough.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">Font</span><span class="o">.</span><span class="n">_text_styles</span> <span class="ow">and</span> <span class="n">style</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apply_styles</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Style </span><span class="si">{</span><span class="n">style</span><span class="si">}</span><span class="s2"> is not valid or is already applied.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Font.remove_style"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.remove_style">[docs]</a>    <span class="k">def</span> <span class="nf">remove_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes a style from the font.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            style: The style to remove. Can be one of the following: bold, italic, underline, strikethrough.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">style</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apply_styles</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Style </span><span class="si">{</span><span class="n">style</span><span class="si">}</span><span class="s2"> is not currently applied.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Font.apply_styles"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.apply_styles">[docs]</a>    <span class="k">def</span> <span class="nf">apply_styles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Applies the styles to the font.&quot;&quot;&quot;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mh">0x00</span>
+        <span class="k">for</span> <span class="n">style</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">|=</span> <span class="n">Font</span><span class="o">.</span><span class="n">_text_styles</span><span class="p">[</span><span class="n">style</span><span class="p">]</span>
+
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SetFontStyle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">s</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Font.clone"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clones the font.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Font</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">clone</span><span class="p">())</span></div>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</pre></div> 
+        </article>
+      </div>
+      <footer>
+        
+<div class="related-pages">
+     
+</div>
+<div class="bottom-of-page">
+    <div class="left-details">
+        <div class="copyright"> Copyright &#169; 2022, Martin Chaperot, Tomer Sedan, Yamm Elnekave
+        </div>
+    </div>
+    <div class="right-details">
+        <div class="icons"><a class="muted-link" href="https://github.com/rubatopy/rubato" aria-label="On GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                    ></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/scripts/furo.js"></script>
+    <script src="../../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../../_static/copybutton.js"></script>
+    <script src="../../../../../_static/tabs.js"></script>
+    <script src="../../../../../_static/design-tabs.js"></script>
+    </body>
+</html>
