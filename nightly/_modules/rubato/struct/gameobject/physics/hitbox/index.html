@@ -402,12 +402,12 @@
 
 <div class="viewcode-block" id="Hitbox.get_aabb"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Hitbox.get_aabb">[docs]</a>    <span class="k">def</span> <span class="nf">get_aabb</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Vector</span><span class="p">,</span> <span class="n">Vector</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets top left and bottom right corners of the axis-aligned bounding box of the hitbox in world coordinates.</span>
+<span class="sd">        Gets bottom left and top right corners of the axis-aligned bounding box of the hitbox in world coordinates.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            tuple[Vector, Vector]:</span>
-<span class="sd">                The top left and bottom right corners of the bounding box as Vectors as a tuple.</span>
-<span class="sd">                (top left, bottom right)</span>
+<span class="sd">                The bottom left and top right right corners of the bounding box as Vectors as a tuple.</span>
+<span class="sd">                (bottom left, top right)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">true_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">true_pos</span><span class="p">,</span> <span class="n">true_pos</span></div>
@@ -438,7 +438,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debug</span> <span class="ow">or</span> <span class="n">Game</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
 
-            <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="n">camera</span><span class="o">=</span><span class="n">camera</span><span class="p">)</span></div></div>
+            <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surface</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">(),</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">camera</span><span class="o">=</span><span class="n">camera</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="Polygon"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon">[docs]</a><span class="k">class</span> <span class="nc">Polygon</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">):</span>
@@ -524,19 +524,19 @@
 
 <div class="viewcode-block" id="Polygon.get_aabb"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon.get_aabb">[docs]</a>    <span class="k">def</span> <span class="nf">get_aabb</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Vector</span><span class="p">,</span> <span class="n">Vector</span><span class="p">]:</span>
         <span class="n">verts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_verts</span><span class="p">()</span>
-        <span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
+        <span class="n">bottom</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
 
         <span class="k">for</span> <span class="n">vert</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">bottom</span><span class="p">:</span>
-                <span class="n">bottom</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span>
-            <span class="k">elif</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">top</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">top</span><span class="p">:</span>
                 <span class="n">top</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span>
+            <span class="k">elif</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">bottom</span><span class="p">:</span>
+                <span class="n">bottom</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span>
             <span class="k">if</span> <span class="n">vert</span><span class="o">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">:</span>
                 <span class="n">right</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">x</span>
             <span class="k">elif</span> <span class="n">vert</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">left</span><span class="p">:</span>
                 <span class="n">left</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">x</span>
 
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Polygon.offset_verts"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon.offset_verts">[docs]</a>    <span class="k">def</span> <span class="nf">offset_verts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;The list of polygon vertices offset by the Polygon&#39;s offsets.&quot;&quot;&quot;</span>
@@ -560,11 +560,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
 
-        <span class="n">verts</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="o">+</span> <span class="n">Vector</span><span class="p">(</span><span class="n">w</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">h</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">]</span>
-
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">aa</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">blending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">aa</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">verts</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">Color</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">blending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Polygon.contains_pt"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Polygon.contains_pt">[docs]</a>    <span class="k">def</span> <span class="nf">contains_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Input</span><span class="o">.</span><span class="n">pt_in_poly</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_verts</span><span class="p">())</span></div>
@@ -683,11 +681,13 @@
 <span class="sd">        The top left corner of the AABB surrounding the rectangle.</span>
 <span class="sd">        Setting to this value changes the gameobject&#39;s position, not the hitbox offset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">aabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">aabb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">aabb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="nd">@top_left</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">top_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">x</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bottom_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -695,13 +695,12 @@
 <span class="sd">        The bottom left corner of the AABB surrounding the rectangle.</span>
 <span class="sd">        Setting to this value changes the gameobject&#39;s position, not the hitbox offset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">aabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">aabb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">aabb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="nd">@bottom_left</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">bottom_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="n">aabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="n">Vector</span><span class="p">(</span><span class="n">aabb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">aabb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">x</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">top_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -709,13 +708,12 @@
 <span class="sd">        The top right corner of the AABB surrounding the rectangle.</span>
 <span class="sd">        Setting to this value changes the gameobject&#39;s position, not the hitbox offset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">aabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">aabb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">aabb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="nd">@top_right</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">top_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="n">aabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="n">Vector</span><span class="p">(</span><span class="n">aabb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">aabb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">x</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bottom_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -723,11 +721,13 @@
 <span class="sd">        The bottom right corner of the AABB surrounding the rectangle.</span>
 <span class="sd">        Setting to this value changes the gameobject&#39;s position, not the hitbox offset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">aabb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">aabb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">aabb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="nd">@bottom_right</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">bottom_right</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">new</span><span class="o">.</span><span class="n">x</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -735,11 +735,11 @@
 <span class="sd">        The y value of the top side of the AABB surrounding the rectangle.</span>
 <span class="sd">        Setting to this value changes the gameobject&#39;s position, not the hitbox offset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
 
     <span class="nd">@top</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -759,11 +759,11 @@
 <span class="sd">        The y value of the bottom side of the AABB surrounding the rectangle.</span>
 <span class="sd">        Setting to this value changes the gameobject&#39;s position, not the hitbox offset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
 
     <span class="nd">@bottom</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">bottom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">new</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_aabb</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -779,19 +779,19 @@
 
 <div class="viewcode-block" id="Rectangle.get_aabb"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle.get_aabb">[docs]</a>    <span class="k">def</span> <span class="nf">get_aabb</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Vector</span><span class="p">,</span> <span class="n">Vector</span><span class="p">]:</span>
         <span class="n">verts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_verts</span><span class="p">()</span>
-        <span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
+        <span class="n">bottom</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">INF</span><span class="p">,</span> <span class="o">-</span><span class="n">Math</span><span class="o">.</span><span class="n">INF</span>
 
         <span class="k">for</span> <span class="n">vert</span> <span class="ow">in</span> <span class="n">verts</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">bottom</span><span class="p">:</span>
-                <span class="n">bottom</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span>
-            <span class="k">elif</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">top</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">top</span><span class="p">:</span>
                 <span class="n">top</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span>
+            <span class="k">elif</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">bottom</span><span class="p">:</span>
+                <span class="n">bottom</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">y</span>
             <span class="k">if</span> <span class="n">vert</span><span class="o">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">:</span>
                 <span class="n">right</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">x</span>
             <span class="k">elif</span> <span class="n">vert</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">left</span><span class="p">:</span>
                 <span class="n">left</span> <span class="o">=</span> <span class="n">vert</span><span class="o">.</span><span class="n">x</span>
 
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">),</span> <span class="n">Vector</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Rectangle.offset_verts"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Rectangle.offset_verts">[docs]</a>    <span class="k">def</span> <span class="nf">offset_verts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;The list of rectangle vertices offset by the Rectangles&#39;s offsets.&quot;&quot;&quot;</span>
@@ -919,7 +919,6 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">redraw</span><span class="p">()</span>
 
         <span class="n">int_r</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-        <span class="n">center</span> <span class="o">=</span> <span class="p">(</span><span class="n">int_r</span><span class="p">,</span> <span class="n">int_r</span><span class="p">)</span>
         <span class="n">size</span> <span class="o">=</span> <span class="n">int_r</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
 
         <span class="k">if</span> <span class="n">size</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">width</span><span class="p">:</span>
@@ -927,8 +926,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">int_r</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">aa</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">int_r</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">blending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">int_r</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">aa</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_debug_image</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">int_r</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">debug</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">blending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Circle.contains_pt"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.physics.hitbox.Circle.contains_pt">[docs]</a>    <span class="k">def</span> <span class="nf">contains_pt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_radius</span><span class="p">()</span>

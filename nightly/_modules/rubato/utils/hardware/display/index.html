@@ -325,12 +325,6 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="c1"># Another way to do this.</span>
-        <span class="c1"># wp, hp = ctypes.c_int(), ctypes.c_int()</span>
-        <span class="c1"># if sdl2.SDL_GetRendererOutputSize(cls.renderer.sdlrenderer, ctypes.pointer(wp), ctypes.pointer(hp)) != 0:</span>
-        <span class="c1">#     raise RuntimeError(f&quot;Could not get renderer size: {sdl2.SDL_GetError()}&quot;)</span>
-        <span class="c1"># w, h = wp.value, hp.value</span>
-
         <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="o">*</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 
     <span class="nd">@window_size</span><span class="o">.</span><span class="n">setter</span>
@@ -344,6 +338,7 @@
     <span class="nd">@res</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">res</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]):</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">logical_size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span> <span class="o">=</span> <span class="p">(</span><span class="n">new</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">new</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">window_pos</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
@@ -407,8 +402,103 @@
     <span class="n">_saved_window_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_saved_window_pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
+    <span class="n">_half_res</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Texture</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">flipx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Note:</span>
+<span class="sd">            pos is the center of the texture in cartesian coordinates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">flipx</span> <span class="o">|=</span> <span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">flipy</span> <span class="o">|=</span> <span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="n">flip</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_NONE</span>
+        <span class="k">if</span> <span class="n">flipx</span><span class="p">:</span>
+            <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_HORIZONTAL</span>
+        <span class="k">if</span> <span class="n">flipy</span><span class="p">:</span>
+            <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_VERTICAL</span>
+
+        <span class="n">x_dim</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">y_dim</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="n">final_pos</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_center_cart_to_tl_sdl</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="p">(</span><span class="n">x_dim</span><span class="p">,</span> <span class="n">y_dim</span><span class="p">))</span>
+
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderCopyEx</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
+            <span class="n">tx</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span>
+                <span class="nb">round</span><span class="p">(</span><span class="n">final_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                <span class="nb">round</span><span class="p">(</span><span class="n">final_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">x_dim</span><span class="p">,</span>
+                <span class="n">y_dim</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">flip</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_tl_sdl_to_center_cart</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_top_left_to_center</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_sdl_to_cartesian</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="n">dims</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_center_cart_to_tl_sdl</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_center_to_top_left</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_cartesian_to_sdl</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="n">dims</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_cartesian_to_sdl</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_sdl_to_cartesian</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_center_to_top_left</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Note:</span>
+<span class="sd">            Assumes sdl coordinates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_top_left_to_center</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Note:</span>
+<span class="sd">            Assumes sdl coordinates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span> <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
@@ -497,58 +587,6 @@
                 <span class="bp">cls</span><span class="o">.</span><span class="n">_saved_window_pos</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetWindowFullscreen</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">window</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">tx</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Texture</span><span class="p">,</span>
-        <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
-        <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">flipx</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">flipy</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Update the current screen.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            tx: The texture to draw on the screen.</span>
-<span class="sd">            width: The width of the texture.</span>
-<span class="sd">            height: The height of the texture.</span>
-<span class="sd">            pos: The position to draw the texture on.</span>
-<span class="sd">            scale: The scale of the texture. Defaults to (1, 1).</span>
-<span class="sd">            angle: The clockwise rotation of the texture. Defaults to 0.</span>
-<span class="sd">            flipx: Whether to flip the texture horizontally. Defaults to False.</span>
-<span class="sd">            flipy: Whether to flip the texture vertically. Defaults to False.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">flipx</span> <span class="o">|=</span> <span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">flipy</span> <span class="o">|=</span> <span class="n">Math</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
-
-        <span class="n">flip</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_NONE</span>
-        <span class="k">if</span> <span class="n">flipx</span><span class="p">:</span>
-            <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_HORIZONTAL</span>
-        <span class="k">if</span> <span class="n">flipy</span><span class="p">:</span>
-            <span class="n">flip</span> <span class="o">|=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FLIP_VERTICAL</span>
-
-        <span class="n">x_dim</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-        <span class="n">y_dim</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_RenderCopyEx</span><span class="p">(</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">sdlrenderer</span><span class="p">,</span>
-            <span class="n">tx</span><span class="p">,</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Rect</span><span class="p">(</span>
-                <span class="nb">round</span><span class="p">((</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_dim</span> <span class="k">if</span> <span class="n">flipx</span> <span class="k">else</span> <span class="mi">0</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
-                <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
-                <span class="n">x_dim</span><span class="p">,</span>
-                <span class="n">y_dim</span><span class="p">,</span>
-            <span class="p">),</span>
-            <span class="nb">round</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span>
-            <span class="kc">None</span><span class="p">,</span>
-            <span class="n">flip</span><span class="p">,</span>
-        <span class="p">)</span>
-
 <div class="viewcode-block" id="Display.get_window_border_size"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Display.get_window_border_size">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_window_border_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -635,81 +673,81 @@
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">top_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The position of the top left of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">top_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The position of the top right of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">bottom_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The position of the bottom left of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">bottom_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The position of the bottom right of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">top_center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The position of the top center of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">bottom_center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The position of the bottom center of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">center_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The position of the center left of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">center_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The position of the center right of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The position of the center of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">top</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The position of the top of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The position of the right of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The position of the left of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="o">-</span><span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">bottom</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The position of the bottom of the window.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span></div>
+        <span class="k">return</span> <span class="o">-</span><span class="bp">cls</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">top_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top left of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">top</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">top_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top right of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">top</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bottom_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom left of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bottom_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom right of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">top_center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the top center of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">top</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bottom_center</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the bottom center of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">center_left</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the center left of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">center_right</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The position of the center right of the window.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 </pre></div> 
         </article>
       </div>

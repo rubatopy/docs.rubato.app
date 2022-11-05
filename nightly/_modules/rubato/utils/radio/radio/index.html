@@ -406,8 +406,8 @@
                         <span class="n">MouseButtonResponse</span><span class="p">(</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">button</span><span class="p">,</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">Display</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="n">Display</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">clicks</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
                         <span class="p">)</span>
@@ -419,7 +419,7 @@
                         <span class="n">MouseWheelResponse</span><span class="p">(</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseX</span><span class="p">,</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseY</span><span class="p">,</span>
+                            <span class="o">-</span><span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseY</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
@@ -429,10 +429,10 @@
                         <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEMOTION</span><span class="p">,</span>
                         <span class="n">MouseMotionResponse</span><span class="p">(</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">Display</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="n">Display</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">xrel</span><span class="p">,</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">yrel</span><span class="p">,</span>
+                            <span class="o">-</span><span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">yrel</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
                         <span class="p">)</span>
                     <span class="p">)</span>

@@ -461,6 +461,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">draw_rect</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="n">color</span><span class="p">)</span></div>
 
+    <span class="k">def</span> <span class="nf">_convert_to_surface_space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Simple function that converts cartesian coordinates to surface space.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
 <div class="viewcode-block" id="Surface.draw_point"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.draw_point">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draws a point on the surface.</span>
@@ -470,7 +474,8 @@
 <span class="sd">            color: The color of the point. Defaults to black.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">cart_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_surface_space</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">cart_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">cart_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">argb32</span><span class="p">(),</span> <span class="n">blending</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
 
@@ -494,8 +499,10 @@
 <span class="sd">            thickness: The thickness of the line. Defaults to 1.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">sx</span><span class="p">,</span> <span class="n">sy</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">ex</span><span class="p">,</span> <span class="n">ey</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">start_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_surface_space</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+        <span class="n">end_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_surface_space</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+        <span class="n">sx</span><span class="p">,</span> <span class="n">sy</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">start_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">start_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">ex</span><span class="p">,</span> <span class="n">ey</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">end_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">end_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_line</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">,</span> <span class="n">sx</span><span class="p">,</span> <span class="n">sy</span><span class="p">,</span> <span class="n">ex</span><span class="p">,</span> <span class="n">ey</span><span class="p">,</span> <span class="n">color</span><span class="o">.</span><span class="n">argb32</span><span class="p">(),</span> <span class="n">aa</span><span class="p">,</span> <span class="n">blending</span><span class="p">,</span> <span class="n">thickness</span>
         <span class="p">)</span>
@@ -503,7 +510,7 @@
 
 <div class="viewcode-block" id="Surface.draw_rect"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.draw_rect">[docs]</a>    <span class="k">def</span> <span class="nf">draw_rect</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">top_left</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">dims</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -514,13 +521,14 @@
 <span class="sd">        Draws a rectangle on the surface.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            top_left: The top left corner of the rectangle.</span>
+<span class="sd">            center: The top left corner of the rectangle.</span>
 <span class="sd">            dims: The dimensions of the rectangle.</span>
 <span class="sd">            border: The border color of the rectangle. Defaults to None.</span>
 <span class="sd">            border_thickness: The thickness of the border. Defaults to 1.</span>
 <span class="sd">            fill: The fill color of the rectangle. Set to None for no fill. Defaults to None.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">top_left</span> <span class="o">=</span> <span class="n">Display</span><span class="o">.</span><span class="n">_center_to_top_left</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_surface_space</span><span class="p">(</span><span class="n">center</span><span class="p">),</span> <span class="n">dims</span><span class="p">)</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">top_left</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">top_left</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_rect</span><span class="p">(</span>
@@ -560,7 +568,8 @@
 <span class="sd">            aa: Whether to use anti-aliasing. Defaults to False.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">center_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_surface_space</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">center_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">center_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_circle</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
@@ -579,6 +588,7 @@
 <div class="viewcode-block" id="Surface.draw_poly"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.draw_poly">[docs]</a>    <span class="k">def</span> <span class="nf">draw_poly</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">center</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">border</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">border_thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">fill</span><span class="p">:</span> <span class="n">Color</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -590,14 +600,17 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            points: The points of the polygon.</span>
+<span class="sd">            center: The center of the polygon.</span>
 <span class="sd">            border: The border color of the polygon. Defaults to None.</span>
 <span class="sd">            border_thickness: The thickness of the border. Defaults to 1.</span>
 <span class="sd">            fill: The fill color of the polygon. Set to None for no fill. Defaults to None.</span>
 <span class="sd">            aa: Whether to use anti-aliasing. Defaults to False.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">center_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convert_to_surface_space</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
         <span class="n">c_draw</span><span class="o">.</span><span class="n">draw_poly</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span><span class="p">,</span>
+            <span class="n">center_pos</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">,</span>
             <span class="n">points</span><span class="p">,</span>

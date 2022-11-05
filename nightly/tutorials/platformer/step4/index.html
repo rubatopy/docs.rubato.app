@@ -337,7 +337,7 @@ used later to determine if the player is on the ground.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">ground</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can also change the player gravity to <code class="docutils literal notranslate"><span class="pre">1.5</span> <span class="pre">*</span> <span class="pre">rb.Display.res.y</span></code>, which will make the game more realistic. It should look like this
+<p>You can also change the player gravity to <code class="docutils literal notranslate"><span class="pre">-1.5</span> <span class="pre">*</span> <span class="pre">rb.Display.res.y</span></code>, which will make the game more realistic. It should look like this
 now:</p>
 <a class="reference internal image-reference" href="../../../_images/13.png"><img alt="../../../_images/13.png" class="align-center" src="../../../_images/13.png" style="width: 75%;" /></a>
 <p>The process for adding all of the remaining platforms is the same as what we've done to add the floor. To have cleaner code, we actually create some
@@ -358,14 +358,14 @@ Code that made the above level<div class="sd-summary-down docutils">
 </summary><div class="sd-summary-content sd-card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create platforms</span>
 <span class="n">platforms</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">140</span><span class="p">)</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="mi">760</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">+</span> <span class="mi">140</span><span class="p">)</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
                     <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
                     <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
                     <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
                     <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
                 <span class="p">)),</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">340</span><span class="p">)</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="mi">560</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">+</span> <span class="mi">340</span><span class="p">)</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
                     <span class="n">width</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
                     <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
@@ -376,13 +376,13 @@ Code that made the above level<div class="sd-summary-down docutils">
 
 <span class="c1"># create obstacles</span>
 <span class="n">obstacles</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">700</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="mi">260</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
         <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
         <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
         <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">purple</span><span class="p">,</span>
     <span class="p">)),</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1200</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">240</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
         <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span>
         <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span>
         <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
@@ -391,7 +391,7 @@ Code that made the above level<div class="sd-summary-down docutils">
 <span class="p">]</span>
 
 <span class="k">for</span> <span class="n">obstacle</span> <span class="ow">in</span> <span class="n">obstacles</span><span class="p">:</span>
-    <span class="n">obstacle</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">)</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">30</span>
+    <span class="n">obstacle</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">)</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">+</span> <span class="mi">30</span>
 
 <span class="c1"># add them all to the scene</span>
 <span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">ground</span><span class="p">,</span> <span class="o">*</span><span class="n">platforms</span><span class="p">,</span> <span class="o">*</span><span class="n">obstacles</span><span class="p">)</span>
@@ -461,7 +461,7 @@ Our game file is now getting pretty big! It should currently look like this (wit
 
 <span class="c1"># define the player rigidbody</span>
 <span class="n">player_body</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">(</span>
-    <span class="n">gravity</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">),</span>
+    <span class="n">gravity</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">),</span>
     <span class="n">pos_correction</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">friction</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
 <span class="p">)</span>
@@ -481,14 +481,14 @@ Our game file is now getting pretty big! It should currently look like this (wit
 
 <span class="c1"># create platforms</span>
 <span class="n">platforms</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">140</span><span class="p">)</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="mi">760</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">+</span> <span class="mi">140</span><span class="p">)</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
                     <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
                     <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
                     <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
                     <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">blue</span><span class="p">,</span>
                 <span class="p">)),</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">340</span><span class="p">)</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="mi">560</span><span class="p">,</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">+</span> <span class="mi">340</span><span class="p">)</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
                     <span class="n">width</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
                     <span class="n">height</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
@@ -499,13 +499,13 @@ Our game file is now getting pretty big! It should currently look like this (wit
 
 <span class="c1"># create obstacles</span>
 <span class="n">obstacles</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">700</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="mi">260</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
         <span class="n">width</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
         <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
         <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
         <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">purple</span><span class="p">,</span>
     <span class="p">)),</span>
-    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1200</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
+    <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">240</span><span class="p">))</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">(</span>
         <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span>
         <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span>
         <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;ground&quot;</span><span class="p">,</span>
@@ -514,7 +514,7 @@ Our game file is now getting pretty big! It should currently look like this (wit
 <span class="p">]</span>
 
 <span class="k">for</span> <span class="n">obstacle</span> <span class="ow">in</span> <span class="n">obstacles</span><span class="p">:</span>
-    <span class="n">obstacle</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">)</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">-</span> <span class="mi">30</span>
+    <span class="n">obstacle</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rb</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">)</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">bottom</span> <span class="o">+</span> <span class="mi">30</span>
 
 <span class="c1"># Side boundary</span>
 <span class="n">left</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">-</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
@@ -548,7 +548,7 @@ Our game file is now getting pretty big! It should currently look like this (wit
 <span class="k">def</span> <span class="nf">handle_keydown</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">jumps</span>
     <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span> <span class="ow">and</span> <span class="n">jumps</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
+        <span class="n">player_body</span><span class="o">.</span><span class="n">velocity</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">200</span>
         <span class="k">if</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">p_animation</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="s2">&quot;jump&quot;</span><span class="p">,</span> <span class="n">freeze</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">jumps</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>

@@ -357,7 +357,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">angle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;The angle of the vector degrees (readonly).&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="n">PI_HALF</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="n">PI_HALF</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">rationalized_mag</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -467,6 +467,44 @@
         <span class="c1"># note using matrix determinant</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span></div>
 
+<div class="viewcode-block" id="Vector.negate_x"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.negate_x">[docs]</a>    <span class="k">def</span> <span class="nf">negate_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Negates the x value of the vector.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            out: The output vector to set to. Defaults to a new vector.</span>
+<span class="sd">                If you want the function to act on itself, set this value to the reference of the vector.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The vector output of the operation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">()</span>
+
+        <span class="n">out</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
+
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="Vector.negate_y"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.negate_y">[docs]</a>    <span class="k">def</span> <span class="nf">negate_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Negates the y value of the vector.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            out: The output vector to set to. Defaults to a new vector.</span>
+<span class="sd">                If you want the function to act on itself, set this value to the reference of the vector.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The vector output of the operation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">()</span>
+
+        <span class="n">out</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span>
+
+        <span class="k">return</span> <span class="n">out</span></div>
+
 <div class="viewcode-block" id="Vector.perpendicular"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.perpendicular">[docs]</a>    <span class="k">def</span> <span class="nf">perpendicular</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes a scaled 90 degree clockwise rotation on a given vector.</span>
@@ -538,7 +576,7 @@
         <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">out</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">()</span>
 
-        <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">radians</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="o">-</span><span class="n">angle</span><span class="p">)</span>
         <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">radians</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">radians</span><span class="p">)</span>
         <span class="n">out</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">out</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">c</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">s</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">c</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
@@ -761,20 +799,20 @@
 <span class="sd">        Returns a list of vectors representing a polygon with the given number of sides and radius.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            num_sides (int): The number of sides of the polygon.</span>
-<span class="sd">            radius (float | int, optional): The radius of the polygon. Defaults to 1.</span>
+<span class="sd">            num_sides: The number of sides of the polygon.</span>
+<span class="sd">            radius: The radius of the polygon. Defaults to 1.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            SideError: If num_sides is less than 3.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            list[Vector]: The list of vectors representing the polygon.</span>
+<span class="sd">            The list of vectors representing the polygon.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">num_sides</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">SideError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t create a polygon with less than three sides.&quot;</span><span class="p">)</span>
 
         <span class="n">rotangle</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">/</span> <span class="n">num_sides</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">Vector</span><span class="o">.</span><span class="n">from_radial</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">i</span> <span class="o">*</span> <span class="n">rotangle</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sides</span><span class="p">)]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Vector</span><span class="o">.</span><span class="n">from_radial</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="o">-</span><span class="n">i</span> <span class="o">*</span> <span class="n">rotangle</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sides</span><span class="p">)]</span></div>
 
 <div class="viewcode-block" id="Vector.rect"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.rect">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">rect</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector</span><span class="p">]:</span>
@@ -805,7 +843,7 @@
 <div class="viewcode-block" id="Vector.up"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.up">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">up</span><span class="p">():</span>
         <span class="sd">&quot;&quot;&quot;A Vector in the up direction&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Vector.left"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.left">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">left</span><span class="p">():</span>
@@ -815,7 +853,7 @@
 <div class="viewcode-block" id="Vector.down"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.down">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">down</span><span class="p">():</span>
         <span class="sd">&quot;&quot;&quot;A Vector in the down direction&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Vector.right"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.right">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">right</span><span class="p">():</span>
