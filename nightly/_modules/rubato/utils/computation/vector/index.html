@@ -356,7 +356,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">angle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The angle of the vector degrees (readonly).&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;The angle of the vector in north-degrees (readonly).&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">Math</span><span class="o">.</span><span class="n">PI_HALF</span><span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -466,44 +466,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># note using matrix determinant</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">other</span><span class="o">.</span><span class="n">x</span></div>
-
-<div class="viewcode-block" id="Vector.negate_x"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.negate_x">[docs]</a>    <span class="k">def</span> <span class="nf">negate_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Negates the x value of the vector.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            out: The output vector to set to. Defaults to a new vector.</span>
-<span class="sd">                If you want the function to act on itself, set this value to the reference of the vector.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The vector output of the operation.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">()</span>
-
-        <span class="n">out</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span>
-        <span class="n">out</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
-
-        <span class="k">return</span> <span class="n">out</span></div>
-
-<div class="viewcode-block" id="Vector.negate_y"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.negate_y">[docs]</a>    <span class="k">def</span> <span class="nf">negate_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Negates the y value of the vector.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            out: The output vector to set to. Defaults to a new vector.</span>
-<span class="sd">                If you want the function to act on itself, set this value to the reference of the vector.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The vector output of the operation.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">()</span>
-
-        <span class="n">out</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span>
-        <span class="n">out</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span>
-
-        <span class="k">return</span> <span class="n">out</span></div>
 
 <div class="viewcode-block" id="Vector.perpendicular"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.display.Vector.perpendicular">[docs]</a>    <span class="k">def</span> <span class="nf">perpendicular</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scalar</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">out</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>

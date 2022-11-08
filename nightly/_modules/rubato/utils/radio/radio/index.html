@@ -490,7 +490,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># pylint: disable=isinstance-second-argument-not-valid-type</span>
         <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">Events</span><span class="p">)</span> <span class="k">else</span> <span class="n">event</span><span class="p">,</span> <span class="p">[]):</span>
-            <span class="n">listener</span><span class="o">.</span><span class="n">ping</span><span class="p">(</span><span class="n">params</span> <span class="ow">or</span> <span class="n">EventResponse</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span></div>
+            <span class="n">listener</span><span class="o">.</span><span class="n">_ping</span><span class="p">(</span><span class="n">params</span> <span class="ow">or</span> <span class="n">EventResponse</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">now</span><span class="p">()))</span></div>
 
 <div class="viewcode-block" id="Radio.listen"><a class="viewcode-back" href="../../../../../api/#rubato.utils.radio.radio.Radio.listen">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Events</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="kc">None</span><span class="p">]):</span>
@@ -548,7 +548,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">callback</span> <span class="o">=</span> <span class="n">callback</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">registered</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="Listener.ping"><a class="viewcode-back" href="../../../../../api/#rubato.utils.radio.radio.Listener.ping">[docs]</a>    <span class="k">def</span> <span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_ping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calls the callback of this listener.</span>
 
@@ -558,7 +558,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span>  <span class="c1"># type: ignore</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span>  <span class="c1"># type: ignore</span>
 
 <div class="viewcode-block" id="Listener.remove"><a class="viewcode-back" href="../../../../../api/#rubato.utils.radio.radio.Listener.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

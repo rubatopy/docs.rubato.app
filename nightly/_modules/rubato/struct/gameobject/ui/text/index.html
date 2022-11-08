@@ -369,7 +369,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span> <span class="o">=</span> <span class="n">Font</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -379,7 +379,7 @@
     <span class="nd">@text</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">justify</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">]:</span>
@@ -395,7 +395,7 @@
         <span class="k">if</span> <span class="n">new</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Justification </span><span class="si">{</span><span class="n">new</span><span class="si">}</span><span class="s2"> is not left, center or right.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_justify</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -405,7 +405,7 @@
     <span class="nd">@width</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="n">new</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">font_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -420,7 +420,7 @@
     <span class="nd">@font_size</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">font_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
@@ -430,33 +430,33 @@
     <span class="nd">@font_color</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Text.add_style"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.add_style">[docs]</a>    <span class="k">def</span> <span class="nf">add_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a style to the font (bold, italic, underline, strikethrough, normal).&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">add_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Text.remove_style"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.remove_style">[docs]</a>    <span class="k">def</span> <span class="nf">remove_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Remove a style from a font.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">remove_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Text.generate_surface"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.generate_surface">[docs]</a>    <span class="k">def</span> <span class="nf">generate_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_regen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;(Re)generates the surface of the text.&quot;&quot;&quot;</span>
-        <span class="n">surf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span>
+        <span class="n">surf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_justify</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="o">.</span><span class="n">_from_surf</span><span class="p">(</span><span class="n">surf</span><span class="p">)</span>
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">surf</span><span class="p">)</span></div>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">surf</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Text.draw"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.ui.text.Text.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
         <span class="n">Draw</span><span class="o">.</span><span class="n">queue_surface</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">true_pos</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_surf</span><span class="o">.</span><span class="n">size_scaled</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">true_z</span><span class="p">(),</span>
             <span class="n">camera</span><span class="p">,</span>
         <span class="p">)</span></div>

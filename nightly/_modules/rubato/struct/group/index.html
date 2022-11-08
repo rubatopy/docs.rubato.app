@@ -311,7 +311,8 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">GameObject</span><span class="p">,</span> <span class="n">Hitbox</span><span class="p">,</span> <span class="n">QTree</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">GameObject</span><span class="p">,</span> <span class="n">Hitbox</span>
+<span class="kn">from</span> <span class="nn">.gameobject.physics.qtree</span> <span class="kn">import</span> <span class="n">_QTree</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Error</span><span class="p">,</span> <span class="n">Camera</span>
 
 
@@ -399,16 +400,16 @@
             <span class="n">success</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">success</span></div>
 
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span><span class="p">:</span>
             <span class="k">return</span>
 
         <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
-            <span class="n">group</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
-            <span class="n">game_obj</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="n">game_obj</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Group.fixed_update"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.fixed_update">[docs]</a>    <span class="k">def</span> <span class="nf">fixed_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_fixed_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs a physics iteration on the group.</span>
 <span class="sd">        Called automatically by rubato as long as the group is added to a scene.</span>
@@ -417,21 +418,21 @@
             <span class="k">return</span>
 
         <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
-            <span class="n">group</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">_fixed_update</span><span class="p">()</span>
 
         <span class="n">all_hts</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
-            <span class="n">game_obj</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
+            <span class="n">game_obj</span><span class="o">.</span><span class="n">_fixed_update</span><span class="p">()</span>
             <span class="n">hts</span> <span class="o">=</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
                 <span class="n">all_hts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hts</span><span class="p">)</span>
 
-        <span class="n">qtree</span> <span class="o">=</span> <span class="n">QTree</span><span class="p">(</span><span class="n">all_hts</span><span class="p">)</span>
+        <span class="n">qtree</span> <span class="o">=</span> <span class="n">_QTree</span><span class="p">(</span><span class="n">all_hts</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_gameobjects</span><span class="p">():</span>
             <span class="n">hts</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
-                <span class="n">qtree</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">hts</span><span class="p">,</span> <span class="n">qtree</span><span class="o">.</span><span class="n">calc_bb</span><span class="p">(</span><span class="n">hts</span><span class="p">))</span></div>
+                <span class="n">qtree</span><span class="o">.</span><span class="n">collide</span><span class="p">(</span><span class="n">hts</span><span class="p">,</span> <span class="n">qtree</span><span class="o">.</span><span class="n">calc_bb</span><span class="p">(</span><span class="n">hts</span><span class="p">))</span>
 
 <div class="viewcode-block" id="Group.all_gameobjects"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.all_gameobjects">[docs]</a>    <span class="k">def</span> <span class="nf">all_gameobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include_self</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -448,16 +449,16 @@
             <span class="n">ret</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">all_gameobjects</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">active</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden</span><span class="p">:</span>
             <span class="k">return</span>
 
         <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">:</span>
-            <span class="n">group</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">_draw</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">game_obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">game_obj</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;=</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span><span class="p">:</span>
-                <span class="n">game_obj</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
+                <span class="n">game_obj</span><span class="o">.</span><span class="n">_draw</span><span class="p">(</span><span class="n">camera</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Group.count"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.count">[docs]</a>    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -465,7 +466,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The total number of GameObjects and subgroups contained in this group.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Group.clone"><a class="viewcode-back" href="../../../../api/#rubato.struct.group.Group.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -495,10 +496,10 @@
 <span class="sd">            bool: Whether the group contains the object or not.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">GameObject</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">other</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span> <span class="ow">or</span> <span class="nb">sum</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="n">other</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">game_objects</span> <span class="ow">or</span> <span class="nb">sum</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Group</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">other</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="ow">or</span> <span class="nb">sum</span><span class="p">([</span><span class="n">group</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="n">other</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span> <span class="ow">or</span> <span class="nb">sum</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
 
         <span class="k">return</span> <span class="kc">False</span></div></div>
 </pre></div> 

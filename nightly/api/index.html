@@ -390,16 +390,16 @@ Defaults to &quot;off&quot;.</p></li>
 </div>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.game.Game.current">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><span class="pre">Scene</span></a></em><a class="headerlink" href="#rubato.game.Game.current" title="Permalink to this definition">#</a></dt>
-<dd><p>The current scene. (get-only)</p>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.current"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.current" title="Permalink to this definition">#</a></dt>
+<dd><p>The current scene of the game.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The current scene.</p>
+<dd class="field-even"><p>The current Scene.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -415,38 +415,10 @@ Defaults to &quot;off&quot;.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="rubato.game.Game.camera">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">camera</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.rendering.camera.Camera" title="rubato.utils.rendering.camera.Camera"><span class="pre">Camera</span></a></em><a class="headerlink" href="#rubato.game.Game.camera" title="Permalink to this definition">#</a></dt>
-<dd><p>A shortcut getter allowing easy access to the current camera. (get-only)</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Returns a pointer to the current camera object.
-This is so you can access/change the current camera properties faster, but you'd still need to
-use <a class="reference internal" href="#rubato.struct.scene.Scene.camera" title="rubato.struct.scene.Scene.camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Game.current.camera</span></code></a> to access the camera directly.</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.rendering.camera.Camera" title="rubato.utils.rendering.camera.Camera"><code class="xref py py-class docutils literal notranslate"><span class="pre">Camera</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.game.Game.quit">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.quit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.quit" title="Permalink to this definition">#</a></dt>
 <dd><p>Quit the game and close the python process.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.game.Game.start">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/game/#Game.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.game.Game.start" title="Permalink to this definition">#</a></dt>
-<dd><p>Starts the main game loop. Called automatically by <a class="reference internal" href="#rubato.begin" title="rubato.begin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rubato.begin()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -652,7 +624,7 @@ Is empty by default an can beoverridden.</p>
 <p>The Camera module handles where things are drawn.
 A camera can zoom, pan, and travel along the z-index.
 GameObjects only render if their z-index is not more than that of the camera's.</p>
-<p>The current scene's camera can be accessed through <code class="code docutils literal notranslate"><span class="pre">Game.camera</span></code>.</p>
+<p>The current scene's camera can be accessed through <code class="code docutils literal notranslate"><span class="pre">Game.current().camera</span></code>.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rendering.camera.Camera">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zoom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Math.INF</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/camera/#Camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.camera.Camera" title="Permalink to this definition">#</a></dt>
@@ -692,7 +664,7 @@ GameObjects only render if their z-index is not more than that of the camera's.<
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rendering.camera.Camera.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/camera/#Camera.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.camera.Camera.transform" title="Permalink to this definition">#</a></dt>
-<dd><p>World space coordinates to Screen space coordinates.</p>
+<dd><p>World space coordinates to camera coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>point</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The point to transform (world space).</p>
@@ -709,7 +681,7 @@ GameObjects only render if their z-index is not more than that of the camera's.<
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rendering.camera.Camera.i_transform">
 <span class="sig-name descname"><span class="pre">i_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/camera/#Camera.i_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.camera.Camera.i_transform" title="Permalink to this definition">#</a></dt>
-<dd><p>Inverts the transform process, screen space coordinates to world space coordinates.</p>
+<dd><p>Inverts the transform process, camera coordinates to world space coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>point</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The point to transform (screen space).</p>
@@ -825,13 +797,6 @@ i.e. you don't want a gameobject representing an enemy to collide with the coins
 <dd class="field-odd"><p>Whether it was removed successfully.</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.group.Group.fixed_update">
-<span class="sig-name descname"><span class="pre">fixed_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/group/#Group.fixed_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.group.Group.fixed_update" title="Permalink to this definition">#</a></dt>
-<dd><p>Runs a physics iteration on the group.
-Called automatically by rubato as long as the group is added to a scene.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2224,12 +2189,6 @@ move the text so that it's top left corner is at the game object's center.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.generate_surface">
-<span class="sig-name descname"><span class="pre">generate_surface</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/text/#Text.generate_surface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.generate_surface" title="Permalink to this definition">#</a></dt>
-<dd><p>(Re)generates the surface of the text.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.draw">
 <span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/text/#Text.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>The draw function for a component.</p>
@@ -2757,12 +2716,6 @@ move the text so that it's top left corner is at the game object's center.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.animation.Animation.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.sprites.animation.Animation.update" title="Permalink to this definition">#</a></dt>
-<dd><p>The update function for a component.</p>
-</dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.animation.Animation.offset">
 <span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.sprites.animation.Animation.offset" title="Permalink to this definition">#</a></dt>
@@ -2897,15 +2850,15 @@ Use -1 to never freeze. Defaults to -1.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.animation.Animation.draw">
-<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/animation/#Animation.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.animation.Animation.draw" title="Permalink to this definition">#</a></dt>
-<dd><p>Draws the animation frame and steps the animation forward.</p>
+<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.animation.Animation.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/animation/#Animation.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.animation.Animation.update" title="Permalink to this definition">#</a></dt>
+<dd><p>Steps the animation forwards.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.animation.Animation.anim_tick">
-<span class="sig-name descname"><span class="pre">anim_tick</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/animation/#Animation.anim_tick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.animation.Animation.anim_tick" title="Permalink to this definition">#</a></dt>
-<dd><p>An animation processing tick.</p>
+<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.animation.Animation.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/animation/#Animation.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.animation.Animation.draw" title="Permalink to this definition">#</a></dt>
+<dd><p>Draws the animation frame.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -4653,6 +4606,49 @@ Creating concave polygons will result in undesired behavior.</p>
 </dd></dl>
 
 </section>
+<section id="manifold">
+<h5>Manifold<a class="headerlink" href="#manifold" title="Permalink to this heading">#</a></h5>
+<dl class="py class">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Manifold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">penetration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/engine/#Manifold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold" title="Permalink to this definition">#</a></dt>
+<dd><p>A class that represents information returned in collision callbacks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape_a</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) -- The first shape involved in the collision (the reference shape).</p></li>
+<li><p><strong>shape_b</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) -- The second shape involved in the collision (the incident shape).</p></li>
+<li><p><strong>penetration</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The amount of penetration between the two shapes.</p></li>
+<li><p><strong>normal</strong> (<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) -- The normal of the collision.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold.shape_a">
+<span class="sig-name descname"><span class="pre">shape_a</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><span class="pre">Hitbox</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold.shape_a" title="Permalink to this definition">#</a></dt>
+<dd><p>The reference shape.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold.shape_b">
+<span class="sig-name descname"><span class="pre">shape_b</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><span class="pre">Hitbox</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold.shape_b" title="Permalink to this definition">#</a></dt>
+<dd><p>The incident (colliding) shape.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold.penetration">
+<span class="sig-name descname"><span class="pre">penetration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold.penetration" title="Permalink to this definition">#</a></dt>
+<dd><p>The amount by which the colliders are intersecting.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold.normal">
+<span class="sig-name descname"><span class="pre">normal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold.normal" title="Permalink to this definition">#</a></dt>
+<dd><p>The direction that would most quickly separate the two colliders.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 <section id="module-rubato.struct.gameobject.physics.rigidbody">
 <span id="rigidbody"></span><h4>RigidBody<a class="headerlink" href="#module-rubato.struct.gameobject.physics.rigidbody" title="Permalink to this heading">#</a></h4>
@@ -4917,121 +4913,6 @@ A continuous impulse is a impulse that is continuously applied over a time perio
 </dd></dl>
 
 </section>
-</section>
-</section>
-<section id="physics">
-<h2>Physics<a class="headerlink" href="#physics" title="Permalink to this heading">#</a></h2>
-<p>The Engine and Manifold classes comprise rubato's collision engine. Collision and overlap tests inside groups are
-automatically handled by rubato, so these classes are here mainly for reference.</p>
-<p>In general, it is recommended that you define callback functions for Hitbox objects instead of calling Engine
-functions yourself.</p>
-<section id="engine">
-<h3>Engine<a class="headerlink" href="#engine" title="Permalink to this heading">#</a></h3>
-<dl class="py class">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Engine">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Engine</span></span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/engine/#Engine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Engine" title="Permalink to this definition">#</a></dt>
-<dd><p>rubato's physics engine.
-Handles overlap tests for Hitboxes and resolves Rigidbody collisions.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Engine.resolve">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/engine/#Engine.resolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Engine.resolve" title="Permalink to this definition">#</a></dt>
-<dd><p>Resolve the collision between two rigidbodies.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>col</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.engine.Manifold" title="rubato.struct.gameobject.physics.engine.Manifold"><code class="xref py py-class docutils literal notranslate"><span class="pre">Manifold</span></code></a>) -- The collision information.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Engine.overlap">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">overlap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hitbox_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hitbox_b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/engine/#Engine.overlap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Engine.overlap" title="Permalink to this definition">#</a></dt>
-<dd><p>Determines if there is overlap between two hitboxes.
-Returns a Manifold manifold if a collision occurs but does not resolve.
-Note that this is only implemented for native rubato hitbox types (Rectangle, Polygon, Circle).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>hitbox_a</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) -- The first hitbox to collide with.</p></li>
-<li><p><strong>hitbox_b</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) -- The second hitbox to collide with.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="#rubato.struct.gameobject.physics.engine.Manifold" title="rubato.struct.gameobject.physics.engine.Manifold"><code class="xref py py-class docutils literal notranslate"><span class="pre">Manifold</span></code></a>]</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Returns a collision info object if overlap is detected or None if no collision is detected.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Engine.collide">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">collide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hitbox_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hitbox_b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/engine/#Engine.collide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Engine.collide" title="Permalink to this definition">#</a></dt>
-<dd><p>Collides two hitboxes (if they overlap), calling their callbacks if they exist.
-Resolves the collision using Rigidbody impulse resolution if applicable.
-Note that this is only implemented for native rubato hitbox types (Rectangle, Polygon, Circle).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>hitbox_a</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) -- The first hitbox to collide with.</p></li>
-<li><p><strong>hitbox_b</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) -- The second hitbox to collide with.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="#rubato.struct.gameobject.physics.engine.Manifold" title="rubato.struct.gameobject.physics.engine.Manifold"><code class="xref py py-class docutils literal notranslate"><span class="pre">Manifold</span></code></a>]</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Returns a collision info object if a collision is detected or None if no collision is detected.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="manifold">
-<h3>Manifold<a class="headerlink" href="#manifold" title="Permalink to this heading">#</a></h3>
-<dl class="py class">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Manifold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">penetration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/physics/engine/#Manifold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold" title="Permalink to this definition">#</a></dt>
-<dd><p>A class that represents information returned in collision callbacks.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>shape_a</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) -- The first shape involved in the collision (the reference shape).</p></li>
-<li><p><strong>shape_b</strong> (<a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hitbox</span></code></a>) -- The second shape involved in the collision (the incident shape).</p></li>
-<li><p><strong>penetration</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The amount of penetration between the two shapes.</p></li>
-<li><p><strong>normal</strong> (<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) -- The normal of the collision.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold.shape_a">
-<span class="sig-name descname"><span class="pre">shape_a</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><span class="pre">Hitbox</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold.shape_a" title="Permalink to this definition">#</a></dt>
-<dd><p>The reference shape.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold.shape_b">
-<span class="sig-name descname"><span class="pre">shape_b</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.struct.gameobject.physics.hitbox.Hitbox" title="rubato.struct.gameobject.physics.hitbox.Hitbox"><span class="pre">Hitbox</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold.shape_b" title="Permalink to this definition">#</a></dt>
-<dd><p>The incident (colliding) shape.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold.penetration">
-<span class="sig-name descname"><span class="pre">penetration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold.penetration" title="Permalink to this definition">#</a></dt>
-<dd><p>The amount by which the colliders are intersecting.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.physics.engine.Manifold.normal">
-<span class="sig-name descname"><span class="pre">normal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.physics.engine.Manifold.normal" title="Permalink to this definition">#</a></dt>
-<dd><p>The direction that would most quickly separate the two colliders.</p>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 </section>
 <section id="hardware-interaction">
@@ -6064,8 +5945,8 @@ Can be set to False to trigger a texture regeneration at the next draw cycle.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.get_size">
-<span class="sig-name descname"><span class="pre">get_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.get_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.get_size" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.size_scaled">
+<span class="sig-name descname"><span class="pre">size_scaled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.size_scaled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.size_scaled" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the current size of the Surface. (Scaled)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -6078,8 +5959,8 @@ Can be set to False to trigger a texture regeneration at the next draw cycle.</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.get_size_raw">
-<span class="sig-name descname"><span class="pre">get_size_raw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.get_size_raw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.get_size_raw" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.size" title="Permalink to this definition">#</a></dt>
 <dd><p>Gets the current size of the Surface. (Unscaled)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -6110,12 +5991,6 @@ Defaults to the whole surface.</p></li>
 <p class="admonition-title">Note</p>
 <p>Will not stretch the other surface to fit the destination rectangle.</p>
 </div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.regen">
-<span class="sig-name descname"><span class="pre">regen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.regen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.regen" title="Permalink to this definition">#</a></dt>
-<dd><p>Updates the texture.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -6360,7 +6235,7 @@ Defaults to the whole surface.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rendering.draw.Draw.clear">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">background_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.white</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/draw/#Draw.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.draw.Draw.clear" title="Permalink to this definition">#</a></dt>
-<dd><p>Clears the renderer and draws the background of the frame.</p>
+<dd><p>Clears the screen and draws a background.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -6370,26 +6245,6 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.draw.Draw.push">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/draw/#Draw.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.draw.Draw.push" title="Permalink to this definition">#</a></dt>
-<dd><p>Add a custom draw function to the frame queue.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>z_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The z_index to call at (lower z_indexes get called first).</p></li>
-<li><p><strong>callback</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>) -- The function to call.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.draw.Draw.dump">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dump</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/draw/#Draw.dump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.draw.Draw.dump" title="Permalink to this definition">#</a></dt>
-<dd><p>Draws all queued items. Is called automatically at the end of every frame.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -6658,9 +6513,10 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rendering.draw.Draw.clear_cache">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/draw/#Draw.clear_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.draw.Draw.clear_cache" title="Permalink to this definition">#</a></dt>
-<dd><p>Clears the cache of surfaces.
-Use this if you are drawing things without using Surfaces and need to free memory.
-Note that if you need this method, it is probably just smarter to use Surfaces yourself instead.</p>
+<dd><p>Clears the draw cache.</p>
+<p>Generally, you shouldn't need to call this method, but it can help free up memory if you're running low;
+the true best way to avoid this though is to rely on surfaces for shapes that change/recolor often,
+and call the draw surface method directly instead of the draw shape methods.</p>
 </dd></dl>
 
 </dd></dl>
@@ -6718,7 +6574,7 @@ Note that if you need this method, it is probably just smarter to use Surfaces y
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.computation.vector.Vector.angle">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angle</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.computation.vector.Vector.angle" title="Permalink to this definition">#</a></dt>
-<dd><p>The angle of the vector degrees (readonly).</p>
+<dd><p>The angle of the vector in north-degrees (readonly).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
@@ -6845,42 +6701,6 @@ If you want the function to act on itself, set this value to the reference of th
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The resultant scalar magnitude of the orthogonal vector along an imaginary z-axis.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.computation.vector.Vector.negate_x">
-<span class="sig-name descname"><span class="pre">negate_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/computation/vector/#Vector.negate_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.computation.vector.Vector.negate_x" title="Permalink to this definition">#</a></dt>
-<dd><p>Negates the x value of the vector.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]) -- The output vector to set to. Defaults to a new vector.
-If you want the function to act on itself, set this value to the reference of the vector.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The vector output of the operation.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.computation.vector.Vector.negate_y">
-<span class="sig-name descname"><span class="pre">negate_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/computation/vector/#Vector.negate_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.computation.vector.Vector.negate_y" title="Permalink to this definition">#</a></dt>
-<dd><p>Negates the y value of the vector.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>out</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>]) -- The output vector to set to. Defaults to a new vector.
-If you want the function to act on itself, set this value to the reference of the vector.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The vector output of the operation.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -7977,12 +7797,6 @@ This method may take a RecurrentTask as an argument, which will be passed to it 
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.process_calls">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process_calls</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#Time.process_calls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.Time.process_calls" title="Permalink to this definition">#</a></dt>
-<dd><p>Processes the delayed function call as needed</p>
-</dd></dl>
-
 </dd></dl>
 
 </section>
@@ -8583,34 +8397,6 @@ Fill with only the following: bold, italic, underline, strikethrough.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.font.Font.generate_surface">
-<span class="sig-name descname"><span class="pre">generate_surface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/font/#Font.generate_surface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.font.Font.generate_surface" title="Permalink to this definition">#</a></dt>
-<dd><p>Generate the surface containing the text.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>text</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The text to render.</p></li>
-<li><p><strong>align</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The alignment to use.</p></li>
-<li><p><strong>width</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]) -- The maximum width to use. Defaults to -1.</p></li>
-<li><p><strong>rot</strong> -- The rotation of the text in degrees. Defaults to 0.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> -- The width is too small for the text.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> -- The size of the text is too large for the font.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SDL_Surface</span></code></p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The surface containing the text.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rendering.font.Font.size_text">
 <span class="sig-name descname"><span class="pre">size_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/font/#Font.size_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.font.Font.size_text" title="Permalink to this definition">#</a></dt>
 <dd><p>Calculated the dimensions of a string of text using a given font.</p>
@@ -8753,17 +8539,6 @@ Handles event callbacks during the beginning of each
 <dt class="sig sig-object py" id="rubato.utils.radio.radio.Listener.registered">
 <span class="sig-name descname"><span class="pre">registered</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bint</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#rubato.utils.radio.radio.Listener.registered" title="Permalink to this definition">#</a></dt>
 <dd><p>Describes whether the listener is registered</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.radio.radio.Listener.ping">
-<span class="sig-name descname"><span class="pre">ping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/radio/radio/#Listener.ping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.radio.radio.Listener.ping" title="Permalink to this definition">#</a></dt>
-<dd><p>Calls the callback of this listener.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>params</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>) -- The event parameters (usually a dictionary)</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -9477,16 +9252,12 @@ string if there are no removal plans yet. Defaults to &quot;&quot;.</p></li>
 <li><a class="reference internal" href="#rectangle">Rectangle</a></li>
 <li><a class="reference internal" href="#polygon">Polygon</a></li>
 <li><a class="reference internal" href="#circle">Circle</a></li>
+<li><a class="reference internal" href="#manifold">Manifold</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#module-rubato.struct.gameobject.physics.rigidbody">RigidBody</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a class="reference internal" href="#physics">Physics</a><ul>
-<li><a class="reference internal" href="#engine">Engine</a></li>
-<li><a class="reference internal" href="#manifold">Manifold</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#hardware-interaction">Hardware Interaction</a><ul>

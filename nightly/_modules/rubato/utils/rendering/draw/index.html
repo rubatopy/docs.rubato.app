@@ -321,7 +321,7 @@
 
 
 <span class="nd">@cython</span><span class="o">.</span><span class="n">cclass</span>
-<span class="k">class</span> <span class="nc">DrawTask</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">_DrawTask</span><span class="p">:</span>
     <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
     <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">cython</span><span class="o">.</span><span class="n">declare</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="s2">&quot;public&quot;</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
@@ -333,7 +333,7 @@
 <span class="c1"># THIS IS A STATIC CLASS</span>
 <div class="viewcode-block" id="Draw"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw">[docs]</a><span class="k">class</span> <span class="nc">Draw</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A static class allowing drawing items to the window.&quot;&quot;&quot;</span>
-    <span class="n">_queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DrawTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">_DrawTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="n">_pt_surfs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Color</span><span class="p">,</span> <span class="n">Surface</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">_line_surfs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">Surface</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -372,7 +372,7 @@
 <div class="viewcode-block" id="Draw.clear"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.clear">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">white</span><span class="p">,</span> <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Clears the renderer and draws the background of the frame.</span>
+<span class="sd">        Clears the screen and draws a background.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            background_color: The background color. Defaults to white.</span>
@@ -385,8 +385,8 @@
             <span class="n">background_color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">(),</span>
         <span class="p">)</span></div>
 
-<div class="viewcode-block" id="Draw.push"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.push">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_push</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Add a custom draw function to the frame queue.</span>
 
@@ -394,10 +394,10 @@
 <span class="sd">            z_index: The z_index to call at (lower z_indexes get called first).</span>
 <span class="sd">            callback: The function to call.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DrawTask</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="n">callback</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_DrawTask</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="n">callback</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Draw.dump"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.dump">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">dump</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_dump</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Draws all queued items. Is called automatically at the end of every frame.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="p">:</span>
             <span class="k">return</span>
@@ -407,7 +407,7 @@
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="p">:</span>
             <span class="n">task</span><span class="o">.</span><span class="n">func</span><span class="p">()</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Draw.queue_point"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.queue_point">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">queue_point</span><span class="p">(</span>
@@ -428,7 +428,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.point"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.point">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -470,7 +470,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.line"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.line">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">line</span><span class="p">(</span>
@@ -537,7 +537,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.rect"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.rect">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">rect</span><span class="p">(</span>
@@ -606,7 +606,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.circle"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.circle">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">circle</span><span class="p">(</span>
@@ -670,7 +670,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">poly</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">poly</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">border_thickness</span><span class="p">,</span> <span class="n">fill</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.poly"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.poly">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">poly</span><span class="p">(</span>
@@ -743,7 +743,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">font</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">justify</span><span class="p">,</span> <span class="n">align</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">shadow</span><span class="p">,</span> <span class="n">shadow_pad</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">font</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">justify</span><span class="p">,</span> <span class="n">align</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="n">shadow</span><span class="p">,</span> <span class="n">shadow_pad</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.text"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.text">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">text</span><span class="p">(</span>
@@ -781,7 +781,7 @@
             <span class="n">scale</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">scale</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">shadow_pad</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">zoom</span> <span class="o">*</span> <span class="n">shadow_pad</span>
 
-        <span class="n">surf</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">generate_surface</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">justify</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+        <span class="n">surf</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">justify</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
         <span class="n">tx</span> <span class="o">=</span> <span class="n">Surface</span><span class="o">.</span><span class="n">_from_surf</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">surf</span><span class="p">)</span>
 
@@ -799,7 +799,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">final_tx</span> <span class="o">=</span> <span class="n">tx</span>
 
-        <span class="n">size</span> <span class="o">=</span> <span class="n">final_tx</span><span class="o">.</span><span class="n">get_size</span><span class="p">()</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">final_tx</span><span class="o">.</span><span class="n">size_scaled</span><span class="p">()</span>
         <span class="n">center</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">align</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
             <span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">align</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
@@ -825,7 +825,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">surface</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">surface</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Draw.surface"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.surface">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">surface</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">surface</span><span class="p">:</span> <span class="n">Surface</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -838,7 +838,7 @@
 <span class="sd">            camera: The camera to use. Defaults to None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">surface</span><span class="o">.</span><span class="n">uptodate</span><span class="p">:</span>
-            <span class="n">surface</span><span class="o">.</span><span class="n">regen</span><span class="p">()</span>
+            <span class="n">surface</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">pos</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
@@ -851,9 +851,11 @@
 <div class="viewcode-block" id="Draw.clear_cache"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.clear_cache">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">clear_cache</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Clears the cache of surfaces.</span>
-<span class="sd">        Use this if you are drawing things without using Surfaces and need to free memory.</span>
-<span class="sd">        Note that if you need this method, it is probably just smarter to use Surfaces yourself instead.</span>
+<span class="sd">        Clears the draw cache.</span>
+
+<span class="sd">        Generally, you shouldn&#39;t need to call this method, but it can help free up memory if you&#39;re running low;</span>
+<span class="sd">        the true best way to avoid this though is to rely on surfaces for shapes that change/recolor often,</span>
+<span class="sd">        and call the draw surface method directly instead of the draw shape methods.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">_pt_surfs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">_line_surfs</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
