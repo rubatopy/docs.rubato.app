@@ -344,7 +344,7 @@
 
 <div class="viewcode-block" id="Camera.transform"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.camera.Camera.transform">[docs]</a>    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        World space coordinates to camera coordinates.</span>
+<span class="sd">        World space coordinates to screen space coordinates.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            point: The point to transform (world space).</span>
@@ -357,7 +357,7 @@
 
 <div class="viewcode-block" id="Camera.i_transform"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.camera.Camera.i_transform">[docs]</a>    <span class="k">def</span> <span class="nf">i_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Inverts the transform process, camera coordinates to world space coordinates.</span>
+<span class="sd">        Inverts the transform process, screen space coordinates to world space coordinates.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            point: The point to transform (screen space).</span>

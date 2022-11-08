@@ -574,14 +574,14 @@ Is empty be default and can be overriden.</p>
 <dt class="sig sig-object py" id="rubato.struct.scene.Scene.update">
 <span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/scene/#Scene.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.scene.Scene.update" title="Permalink to this definition">#</a></dt>
 <dd><p>The update loop for this scene. It is run once every frame, before <a class="reference internal" href="#rubato.struct.scene.Scene.draw" title="rubato.struct.scene.Scene.draw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">draw()</span></code></a>.
-Is empty by default an can be overridden.</p>
+Is empty by default and can be overridden.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.scene.Scene.fixed_update">
 <span class="sig-name descname"><span class="pre">fixed_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/scene/#Scene.fixed_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.scene.Scene.fixed_update" title="Permalink to this definition">#</a></dt>
 <dd><p>The fixed update loop for this scene. It is run (potentially) many times a frame.
-Is empty by default an can be overridden.</p>
+Is empty by default and can be overridden.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You should define fixed_update only for high priority calculations that need to match the physics fps.</p>
@@ -592,14 +592,14 @@ Is empty by default an can be overridden.</p>
 <dt class="sig sig-object py" id="rubato.struct.scene.Scene.paused_update">
 <span class="sig-name descname"><span class="pre">paused_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/scene/#Scene.paused_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.scene.Scene.paused_update" title="Permalink to this definition">#</a></dt>
 <dd><p>The paused update loop for this scene. It is run once a frame when the game is paused.
-Is empty by default an can be overridden.</p>
+Is empty by default and can be overridden.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.scene.Scene.draw">
 <span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/scene/#Scene.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.scene.Scene.draw" title="Permalink to this definition">#</a></dt>
 <dd><p>The draw loop for this scene. It is run once every frame.
-Is empty by default an can beoverridden.</p>
+Is empty by default and can beoverridden.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -664,7 +664,7 @@ GameObjects only render if their z-index is not more than that of the camera's.<
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rendering.camera.Camera.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/camera/#Camera.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.camera.Camera.transform" title="Permalink to this definition">#</a></dt>
-<dd><p>World space coordinates to camera coordinates.</p>
+<dd><p>World space coordinates to screen space coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>point</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The point to transform (world space).</p>
@@ -681,7 +681,7 @@ GameObjects only render if their z-index is not more than that of the camera's.<
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rendering.camera.Camera.i_transform">
 <span class="sig-name descname"><span class="pre">i_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/camera/#Camera.i_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.camera.Camera.i_transform" title="Permalink to this definition">#</a></dt>
-<dd><p>Inverts the transform process, camera coordinates to world space coordinates.</p>
+<dd><p>Inverts the transform process, screen space coordinates to world space coordinates.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>point</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The point to transform (screen space).</p>
@@ -2023,10 +2023,6 @@ offset the text around the game object center.</p>
 <p>An anchor of <code class="docutils literal notranslate"><span class="pre">Vector(0,</span> <span class="pre">0)</span></code> will center the text on the game object. An anchor of <code class="docutils literal notranslate"><span class="pre">Vector(1,</span> <span class="pre">1)</span></code> will
 move the text so that it's top left corner is at the game object's center.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Previously was called align.</p>
-</div>
 </dd></dl>
 
 <dl class="py property">
@@ -2084,6 +2080,17 @@ move the text so that it's top left corner is at the game object's center.</p>
 <dd><p>The physics function for a component.</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.font_color">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font_color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.font_color" title="Permalink to this definition">#</a></dt>
+<dd><p>The font color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.setup">
 <span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.setup" title="Permalink to this definition">#</a></dt>
@@ -2123,12 +2130,6 @@ move the text so that it's top left corner is at the game object's center.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.update" title="Permalink to this definition">#</a></dt>
-<dd><p>The update function for a component.</p>
-</dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.singular">
 <span class="sig-name descname"><span class="pre">singular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.singular" title="Permalink to this definition">#</a></dt>
@@ -2165,17 +2166,6 @@ move the text so that it's top left corner is at the game object's center.</p>
 <dd><p>Whether the component is hidden (not drawn).</p>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.font_color">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font_color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><span class="pre">Color</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.font_color" title="Permalink to this definition">#</a></dt>
-<dd><p>The font color.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.add_style">
 <span class="sig-name descname"><span class="pre">add_style</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/text/#Text.add_style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.add_style" title="Permalink to this definition">#</a></dt>
@@ -2186,6 +2176,12 @@ move the text so that it's top left corner is at the game object's center.</p>
 <dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.remove_style">
 <span class="sig-name descname"><span class="pre">remove_style</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/text/#Text.remove_style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.remove_style" title="Permalink to this definition">#</a></dt>
 <dd><p>Remove a style from a font.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.text.Text.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/text/#Text.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.text.Text.update" title="Permalink to this definition">#</a></dt>
+<dd><p>The update function for a component.</p>
 </dd></dl>
 
 <dl class="py method">
