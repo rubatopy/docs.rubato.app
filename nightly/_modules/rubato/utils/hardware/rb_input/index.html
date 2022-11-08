@@ -325,6 +325,10 @@
 
 <span class="sd">    Go :doc:`here &lt;key-names&gt;` for a list of all the available keys.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
     <span class="c1"># CONTROLLER METHODS</span>
 
     <span class="n">_controllers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Joystick</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -340,7 +344,7 @@
 <span class="sd">        This number index is passed to events that are propagated when controllers are inputted to.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            int: The total number of controllers.</span>
+<span class="sd">            The total number of controllers.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">)</span>
 
@@ -354,7 +358,6 @@
 
         <span class="k">if</span> <span class="n">conts</span> <span class="o">==</span> <span class="n">length</span><span class="p">:</span>
             <span class="k">return</span>
-
         <span class="k">elif</span> <span class="n">conts</span> <span class="o">&gt;</span> <span class="n">length</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickEventState</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_ENABLE</span><span class="p">)</span>
@@ -364,6 +367,7 @@
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
             <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickClose</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
         <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">conts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">conts</span><span class="p">):</span>
@@ -377,14 +381,13 @@
 <span class="sd">        Get the name of the controller at the given index.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            index (int): The index of the controller to get the name of.</span>
+<span class="sd">            index: The index of the controller to get the name of.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            IndexError: If the index is out of range.</span>
-<span class="sd">                Note that no error is thrown if controller is negative.</span>
+<span class="sd">            IndexError: If the index is out of range. Note that no error is thrown if controller is negative.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The name of the controller. If controller is less than 0, returns an empty string.</span>
+<span class="sd">            The name of the controller. If controller is less than 0, returns an empty string.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
@@ -433,15 +436,15 @@
 <span class="sd">        Get whether a given button on a controller is pressed.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            controller (int): The index of the controller.</span>
-<span class="sd">            button (int): The index of the button.</span>
+<span class="sd">            controller: The index of the controller.</span>
+<span class="sd">            button: The index of the button.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            IndexError: The given controller index is out of range.</span>
 <span class="sd">                Note that no error is thrown if controller is negative.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: Whether the button is pressed. If controller is less than 0, returns False.</span>
+<span class="sd">            Whether the button is pressed. If controller is less than 0, returns False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -455,8 +458,8 @@
 <span class="sd">        Get the value of a given hat on a controller.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            controller (int): The index of the controller.</span>
-<span class="sd">            hat (int): The index of the hat.</span>
+<span class="sd">            controller: The index of the controller.</span>
+<span class="sd">            hat: The index of the hat.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            IndexError: The given controller index is out of range.</span>
@@ -478,28 +481,28 @@
 <span class="sd">        Translate a hat value to a string.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            val (int): The hat value.</span>
+<span class="sd">            val: The hat value.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The string representation of the hat value.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_CENTERED</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_CENTERED</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;center&quot;</span>
-        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_UP</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_UP</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;up&quot;</span>
-        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHT</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHT</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;right&quot;</span>
-        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_DOWN</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_DOWN</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;down&quot;</span>
-        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFT</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFT</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;left&quot;</span>
-        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHTUP</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHTUP</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;right up&quot;</span>
-        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHTDOWN</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_RIGHTDOWN</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;right down&quot;</span>
-        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFTUP</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFTUP</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;left up&quot;</span>
-        <span class="k">elif</span> <span class="n">val</span> <span class="o">&amp;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFTDOWN</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">val</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_HAT_LEFTDOWN</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;left down&quot;</span>
         <span class="k">return</span> <span class="s2">&quot;unknown&quot;</span></div>
 
@@ -522,9 +525,6 @@
         <span class="s2">&quot;caps lock&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">KMOD_CAPS</span><span class="p">,</span>
         <span class="s2">&quot;altgr&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">KMOD_MODE</span><span class="p">,</span>
     <span class="p">}</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Input.key_pressed"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.key_pressed">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">key_pressed</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">keys</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>

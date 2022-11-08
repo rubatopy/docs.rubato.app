@@ -5432,11 +5432,11 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 <p>If non-zero, the controllers are registered from 0 to n-1 where n is the number of controllers.
 This number index is passed to events that are propagated when controllers are inputted to.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The total number of controllers.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The total number of controllers.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5458,17 +5458,16 @@ This number index is passed to events that are propagated when controllers are i
 <dd><p>Get the name of the controller at the given index.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- The index of the controller to get the name of.</p>
+<dd class="field-odd"><p><strong>index</strong> -- The index of the controller to get the name of.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- If the index is out of range.
-    Note that no error is thrown if controller is negative.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- If the index is out of range. Note that no error is thrown if controller is negative.</p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The name of the controller. If controller is less than 0, returns an empty string.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the controller. If controller is less than 0, returns an empty string.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5521,19 +5520,19 @@ This number index is passed to events that are propagated when controllers are i
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>controller</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- The index of the controller.</p></li>
-<li><p><strong>button</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- The index of the button.</p></li>
+<li><p><strong>controller</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The index of the controller.</p></li>
+<li><p><strong>button</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The index of the button.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The given controller index is out of range.
     Note that no error is thrown if controller is negative.</p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether the button is pressed. If controller is less than 0, returns False.</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the button is pressed. If controller is less than 0, returns False.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5545,8 +5544,8 @@ This number index is passed to events that are propagated when controllers are i
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>controller</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- The index of the controller.</p></li>
-<li><p><strong>hat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- The index of the hat.</p></li>
+<li><p><strong>controller</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The index of the controller.</p></li>
+<li><p><strong>hat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The index of the hat.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -5572,7 +5571,7 @@ This number index is passed to events that are propagated when controllers are i
 <dd><p>Translate a hat value to a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) -- The hat value.</p>
+<dd class="field-odd"><p><strong>val</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The hat value.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The string representation of the hat value.</p>
@@ -9300,12 +9299,12 @@ set self.__traceback__ to tb and return self.</p>
 </dd></dl>
 
 <dl class="py exception">
-<dt class="sig sig-object py" id="rubato.utils.error.RemovalWarning">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemovalWarning</span></span><a class="reference internal" href="../_modules/rubato/utils/error/#RemovalWarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.error.RemovalWarning" title="Permalink to this definition">#</a></dt>
-<dd><p>A warning that is raised when you try to use a removed function.</p>
+<dt class="sig sig-object py" id="rubato.utils.error.RemovedError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemovedError</span></span><a class="reference internal" href="../_modules/rubato/utils/error/#RemovedError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.error.RemovedError" title="Permalink to this definition">#</a></dt>
+<dd><p>An error that is raised when you try to use a removed function.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.error.RemovalWarning.with_traceback">
-<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.utils.error.RemovalWarning.with_traceback" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.utils.error.RemovedError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.utils.error.RemovedError.with_traceback" title="Permalink to this definition">#</a></dt>
 <dd><p>Exception.with_traceback(tb) --
 set self.__traceback__ to tb and return self.</p>
 </dd></dl>
@@ -9314,22 +9313,33 @@ set self.__traceback__ to tb and return self.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="rubato.utils.error.deprecated">
-<span class="sig-name descname"><span class="pre">deprecated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/error/#deprecated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.error.deprecated" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">deprecated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deprecated_ver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removal_ver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/error/#deprecated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.error.deprecated" title="Permalink to this definition">#</a></dt>
 <dd><p>This is a decorator which can be used to mark functions as deprecated.
 It will result in a warning being emitted when the function is used.</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="rubato.utils.error.deprecated_no_replacement">
-<span class="sig-name descname"><span class="pre">deprecated_no_replacement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/error/#deprecated_no_replacement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.error.deprecated_no_replacement" title="Permalink to this definition">#</a></dt>
-<dd><p>This is a decorator which can be used to mark functions as deprecated.
-It will result in a warning being emitted when the function is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>deprecated_ver</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The version that the function was deprecated in (without the v, i.e. &quot;1.0.0&quot;).</p></li>
+<li><p><strong>removal_ver</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The version that the function will be removed in (without the v, i.e. &quot;1.0.0&quot;). Use an empty
+string if there are no removal plans yet. Defaults to &quot;&quot;.</p></li>
+<li><p><strong>other_func</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) -- The function that replaces the deprecated function. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="rubato.utils.error.removed">
-<span class="sig-name descname"><span class="pre">removed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/error/#removed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.error.removed" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">removed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">removed_ver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/error/#removed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.error.removed" title="Permalink to this definition">#</a></dt>
 <dd><p>This is a decorator which can be used to mark functions as removed, they will no longer work.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>removed_ver</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The version that the function was removed in (without the v, i.e. &quot;1.0.0&quot;).</p></li>
+<li><p><strong>other_func</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) -- The function that replaces the removed function. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
