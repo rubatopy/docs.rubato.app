@@ -367,6 +367,16 @@
 <span class="sd">    Fired when the mouse is moved.</span>
 <span class="sd">    Responds with a :func:`MouseMotionResponse &lt;rubato.utils.events.MouseMotionResponse&gt;` object.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">JOYSTICKCONNECT</span> <span class="o">=</span> <span class="s2">&quot;JOYSTICKCONNECT&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fired when a controller joystick is connected.</span>
+<span class="sd">    Responds with a :func:`JoystickConnectResponse &lt;rubato.utils.events.JoystickConnectResponse&gt;` object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">JOYSTICKDISCONNECT</span> <span class="o">=</span> <span class="s2">&quot;JOYSTICKDISCONNECT&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fired when a controller joystick is disconnected.</span>
+<span class="sd">    Responds with a :func:`JoystickDisconnectResponse &lt;rubato.utils.events.JoystickDisconnectResponse&gt;` object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">JOYAXISMOTION</span> <span class="o">=</span> <span class="s2">&quot;JOYAXISMOTION&quot;</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Fired when a controller joystick axis is moved.</span>
@@ -481,6 +491,20 @@
     <span class="sd">&quot;&quot;&quot;The change in y position of the mouse&quot;&quot;&quot;</span>
     <span class="n">which</span><span class="p">:</span> <span class="nb">int</span>
     <span class="sd">&quot;&quot;&quot;The mouse that was used&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="JoystickConnectResponse"><a class="viewcode-back" href="../../../../../api/#rubato.utils.radio.events.JoystickConnectResponse">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">JoystickConnectResponse</span><span class="p">(</span><span class="n">EventResponse</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A response to a joystick connection event&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;The id of the joystick that was connected&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="JoystickDisconnectResponse"><a class="viewcode-back" href="../../../../../api/#rubato.utils.radio.events.JoystickDisconnectResponse">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">JoystickDisconnectResponse</span><span class="p">(</span><span class="n">EventResponse</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A response to a joystick disconnection event&quot;&quot;&quot;</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="sd">&quot;&quot;&quot;The id of the joystick that was disconnected&quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="JoyAxisMotionResponse"><a class="viewcode-back" href="../../../../../api/#rubato.utils.radio.events.JoyAxisMotionResponse">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

@@ -2386,198 +2386,6 @@ move the text so that it's top left corner is at the game object's center.</p>
 </dd></dl>
 
 </section>
-<section id="module-rubato.struct.gameobject.ui.slider">
-<span id="slider"></span><h4>Slider<a class="headerlink" href="#module-rubato.struct.gameobject.ui.slider" title="Permalink to this heading">#</a></h4>
-<p>A slider component that can be used in UI.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Slider</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slider_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slider_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector(0,</span> <span class="pre">-1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onclick</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onrelease</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onhover</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onexit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Vector()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/slider/#Slider"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider" title="Permalink to this definition">#</a></dt>
-<dd><p>A Slider component. Still needs to be added to a <code class="xref py py-func docutils literal notranslate"><span class="pre">GameObject</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>button_width</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The width of the clickable area. Defaults to 10.</p></li>
-<li><p><strong>button_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The height of the clickable area. Defaults to 10.</p></li>
-<li><p><strong>slider_length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The length of the slider. Defaults to 10.</p></li>
-<li><p><strong>slider_direction</strong> (<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) -- The direction of the slider. Defaults to Vector(0, -1).</p></li>
-<li><p><strong>onclick</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) -- The function to call when the button is clicked. Defaults to lambda: None.</p></li>
-<li><p><strong>onrelease</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) -- The function to call when the button is released. Defaults to lambda: None.</p></li>
-<li><p><strong>onhover</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) -- The function to call when the mouse enters the button. Defaults to lambda: None.</p></li>
-<li><p><strong>onexit</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) -- The function to call when the mouse exits the button. Defaults to lambda: None.</p></li>
-<li><p><strong>offset</strong> (<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>) -- The offset of the component from the game object. Defaults to Vector(0, 0).</p></li>
-<li><p><strong>rot_offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The rotation offset of the component from the game object. Defaults to 0.</p></li>
-<li><p><strong>z_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The z-index of the component. Defaults to 0.</p></li>
-<li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the slider is hidden. Defaults to False.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.dims">
-<span class="sig-name descname"><span class="pre">dims</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.dims" title="Permalink to this definition">#</a></dt>
-<dd><p>The dimensions of the button.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.pressed">
-<span class="sig-name descname"><span class="pre">pressed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.pressed" title="Permalink to this definition">#</a></dt>
-<dd><p>Whether the button is currently pressed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.hover">
-<span class="sig-name descname"><span class="pre">hover</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.hover" title="Permalink to this definition">#</a></dt>
-<dd><p>Whether the mouse is hovering over the button.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.onclick">
-<span class="sig-name descname"><span class="pre">onclick</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.onclick" title="Permalink to this definition">#</a></dt>
-<dd><p>The function to call when the button is clicked.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.onrelease">
-<span class="sig-name descname"><span class="pre">onrelease</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.onrelease" title="Permalink to this definition">#</a></dt>
-<dd><p>The function to call when the button is released.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.onhover">
-<span class="sig-name descname"><span class="pre">onhover</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.onhover" title="Permalink to this definition">#</a></dt>
-<dd><p>The function to call when the mouse enters the button.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.clone">
-<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.clone" title="Permalink to this definition">#</a></dt>
-<dd><p>Clones the component.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#rubato.struct.gameobject.component.Component" title="rubato.struct.gameobject.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.fixed_update">
-<span class="sig-name descname"><span class="pre">fixed_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.fixed_update" title="Permalink to this definition">#</a></dt>
-<dd><p>The physics function for a component.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.setup">
-<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.setup" title="Permalink to this definition">#</a></dt>
-<dd><p>The setup function for a component.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.true_pos">
-<span class="sig-name descname"><span class="pre">true_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.true_pos" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns the world position of the component.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.true_rotation">
-<span class="sig-name descname"><span class="pre">true_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.true_rotation" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns the rotation of the component offset by its parent gameobject rotation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.true_z">
-<span class="sig-name descname"><span class="pre">true_z</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.true_z" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns the z_index of the component offset by its parent gameobject z_index.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.singular">
-<span class="sig-name descname"><span class="pre">singular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.singular" title="Permalink to this definition">#</a></dt>
-<dd><p>Whether multiple components of the same type are allowed on a game object.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.offset">
-<span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.offset" title="Permalink to this definition">#</a></dt>
-<dd><p>The offset from the center of the game object that the hitbox should be placed.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.rot_offset">
-<span class="sig-name descname"><span class="pre">rot_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.rot_offset" title="Permalink to this definition">#</a></dt>
-<dd><p>The rotational offset from the game object's rotation.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.z_index">
-<span class="sig-name descname"><span class="pre">z_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.z_index" title="Permalink to this definition">#</a></dt>
-<dd><p>Where to draw the component in the z direction.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.gameobj">
-<span class="sig-name descname"><span class="pre">gameobj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.struct.gameobject.game_object.GameObject" title="rubato.struct.gameobject.game_object.GameObject"><span class="pre">GameObject</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.gameobj" title="Permalink to this definition">#</a></dt>
-<dd><p>The game object this component is attached to.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.hidden">
-<span class="sig-name descname"><span class="pre">hidden</span></span><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.hidden" title="Permalink to this definition">#</a></dt>
-<dd><p>Whether the component is hidden (not drawn).</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.onexit">
-<span class="sig-name descname"><span class="pre">onexit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.onexit" title="Permalink to this definition">#</a></dt>
-<dd><p>The function to call when the mouse exits the button.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.slider_length">
-<span class="sig-name descname"><span class="pre">slider_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.slider_length" title="Permalink to this definition">#</a></dt>
-<dd><p>The length of the slider.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.slider_direction">
-<span class="sig-name descname"><span class="pre">slider_direction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.slider_direction" title="Permalink to this definition">#</a></dt>
-<dd><p>The direction of the slider.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.button">
-<span class="sig-name descname"><span class="pre">button</span></span><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.button" title="Permalink to this definition">#</a></dt>
-<dd><p>The button component.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/slider/#Slider.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.update" title="Permalink to this definition">#</a></dt>
-<dd><p>The update function for buttons.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.ui.slider.Slider.draw">
-<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/ui/slider/#Slider.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.ui.slider.Slider.draw" title="Permalink to this definition">#</a></dt>
-<dd><p>The draw function for buttons.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-rubato.struct.gameobject.sprites.animation">
 <span id="animation"></span><h4>Animation<a class="headerlink" href="#module-rubato.struct.gameobject.sprites.animation" title="Permalink to this heading">#</a></h4>
 <p>This is the animation component module for game objects.</p>
@@ -5302,29 +5110,18 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Input</span></span><a class="reference internal" href="../_modules/rubato/utils/hardware/rb_input/#Input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.hardware.rb_input.Input" title="Permalink to this definition">#</a></dt>
 <dd><p>The input class, handling keyboard, mouse, and controller functionality.</p>
 <p>Go <a class="reference internal" href="../key-names/"><span class="doc">here</span></a> for a list of all the available keys.</p>
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.hardware.rb_input.Input.controllers">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">controllers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.hardware.rb_input.Input.controllers" title="Permalink to this definition">#</a></dt>
-<dd><p>The number of controllers currently registered. (get-only)</p>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">controllers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/hardware/rb_input/#Input.controllers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.hardware.rb_input.Input.controllers" title="Permalink to this definition">#</a></dt>
+<dd><p>A list of the controllers currently registered.</p>
 <p>If non-zero, the controllers are registered from 0 to n-1 where n is the number of controllers.
 This number index is passed to events that are propagated when controllers are inputted to.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The total number of controllers.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.hardware.rb_input.Input.update_controllers">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_controllers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/hardware/rb_input/#Input.update_controllers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.hardware.rb_input.Input.update_controllers" title="Permalink to this definition">#</a></dt>
-<dd><p>Register or deregister controllers as needed. Called automatically.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></p>
+<dd class="field-even"><p>A list of the integer indexes of the controllers currently registered.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5338,13 +5135,13 @@ This number index is passed to events that are propagated when controllers are i
 <dd class="field-odd"><p><strong>index</strong> -- The index of the controller to get the name of.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- If the index is out of range. Note that no error is thrown if controller is negative.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The controller for the given index is not registered.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The name of the controller. If controller is less than 0, returns an empty string.</p>
+<dd class="field-even"><p>The name of the controller.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5361,14 +5158,13 @@ This number index is passed to events that are propagated when controllers are i
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The given controller index is out of range.
-    Note that no error is thrown if controller is negative.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The controller for the given index is not registered.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The value of the axis. If controller is less than 0, returns 0.</p>
+<dd class="field-even"><p>The value of the axis.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5393,7 +5189,7 @@ This number index is passed to events that are propagated when controllers are i
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.hardware.rb_input.Input.controller_button">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">controller_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">button</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/hardware/rb_input/#Input.controller_button"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.hardware.rb_input.Input.controller_button" title="Permalink to this definition">#</a></dt>
-<dd><p>Get whether a given button on a controller is pressed.</p>
+<dd><p>Check whether a given button on a controller is pressed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -5402,14 +5198,13 @@ This number index is passed to events that are propagated when controllers are i
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The given controller index is out of range.
-    Note that no error is thrown if controller is negative.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The controller for the given index is not registered.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether the button is pressed. If controller is less than 0, returns False.</p>
+<dd class="field-even"><p>Whether the button is pressed.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5426,15 +5221,10 @@ This number index is passed to events that are propagated when controllers are i
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The given controller index is out of range.
-    Note that no error is thrown if controller is negative.</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The controller for the given index is not registered.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The value of the hat, which you can translate with <cite>translate_hat()</cite>.</dt><dd><p>If controller is less than 0, returns 0.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-odd"><p>The value of the hat, which you can translate with <cite>translate_hat()</cite>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
@@ -8617,6 +8407,20 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.Events.JOYSTICKCONNECT">
+<span class="sig-name descname"><span class="pre">JOYSTICKCONNECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Events.JOYSTICKCONNECT:</span> <span class="pre">'JOYSTICKCONNECT'&gt;</span></em><a class="headerlink" href="#rubato.utils.radio.events.Events.JOYSTICKCONNECT" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when a controller joystick is connected.
+Responds with a <code class="xref py py-func docutils literal notranslate"><span class="pre">JoystickConnectResponse</span></code> object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.Events.JOYSTICKDISCONNECT">
+<span class="sig-name descname"><span class="pre">JOYSTICKDISCONNECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Events.JOYSTICKDISCONNECT:</span> <span class="pre">'JOYSTICKDISCONNECT'&gt;</span></em><a class="headerlink" href="#rubato.utils.radio.events.Events.JOYSTICKDISCONNECT" title="Permalink to this definition">#</a></dt>
+<dd><p>Fired when a controller joystick is disconnected.
+Responds with a <code class="xref py py-func docutils literal notranslate"><span class="pre">JoystickDisconnectResponse</span></code> object.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.Events.JOYAXISMOTION">
 <span class="sig-name descname"><span class="pre">JOYAXISMOTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Events.JOYAXISMOTION:</span> <span class="pre">'JOYAXISMOTION'&gt;</span></em><a class="headerlink" href="#rubato.utils.radio.events.Events.JOYAXISMOTION" title="Permalink to this definition">#</a></dt>
 <dd><p>Fired when a controller joystick axis is moved.
@@ -8766,15 +8570,15 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.utils.radio.events.MouseWheelResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseWheelResponse.timestamp" title="Permalink to this definition">#</a></dt>
-<dd><p>The timestamp of the event in seconds.</p>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.MouseWheelResponse.which">
 <span class="sig-name descname"><span class="pre">which</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseWheelResponse.which" title="Permalink to this definition">#</a></dt>
 <dd><p>The mouse that was used</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.MouseWheelResponse.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseWheelResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
 </dd></dl>
@@ -8817,6 +8621,42 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dt class="sig sig-object py" id="rubato.utils.radio.events.MouseMotionResponse.which">
 <span class="sig-name descname"><span class="pre">which</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseMotionResponse.which" title="Permalink to this definition">#</a></dt>
 <dd><p>The mouse that was used</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.JoystickConnectResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">JoystickConnectResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/radio/events/#JoystickConnectResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.radio.events.JoystickConnectResponse" title="Permalink to this definition">#</a></dt>
+<dd><p>A response to a joystick connection event</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.JoystickConnectResponse.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoystickConnectResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<dd><p>The timestamp of the event in seconds.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.JoystickConnectResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoystickConnectResponse.id" title="Permalink to this definition">#</a></dt>
+<dd><p>The id of the joystick that was connected</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.JoystickDisconnectResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">JoystickDisconnectResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/radio/events/#JoystickDisconnectResponse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.radio.events.JoystickDisconnectResponse" title="Permalink to this definition">#</a></dt>
+<dd><p>A response to a joystick disconnection event</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.JoystickDisconnectResponse.timestamp">
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoystickDisconnectResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<dd><p>The timestamp of the event in seconds.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.utils.radio.events.JoystickDisconnectResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoystickDisconnectResponse.id" title="Permalink to this definition">#</a></dt>
+<dd><p>The id of the joystick that was disconnected</p>
 </dd></dl>
 
 </dd></dl>
@@ -9235,7 +9075,6 @@ string if there are no removal plans yet. Defaults to &quot;&quot;.</p></li>
 <li><a class="reference internal" href="#image">Image</a></li>
 <li><a class="reference internal" href="#module-rubato.struct.gameobject.ui.text">Text</a></li>
 <li><a class="reference internal" href="#module-rubato.struct.gameobject.ui.button">Button</a></li>
-<li><a class="reference internal" href="#module-rubato.struct.gameobject.ui.slider">Slider</a></li>
 <li><a class="reference internal" href="#module-rubato.struct.gameobject.sprites.animation">Animation</a><ul>
 <li><a class="reference internal" href="#module-rubato.struct.gameobject.sprites.spritesheet">Spritesheet</a></li>
 </ul>

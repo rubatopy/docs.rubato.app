@@ -331,49 +331,21 @@
 
     <span class="c1"># CONTROLLER METHODS</span>
 
-    <span class="n">_controllers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Joystick</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_controllers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Joystick</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">_joystick_max</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32768</span>
 
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">controllers</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<div class="viewcode-block" id="Input.controllers"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.controllers">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">controllers</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The number of controllers currently registered. (get-only)</span>
+<span class="sd">        A list of the controllers currently registered.</span>
 
 <span class="sd">        If non-zero, the controllers are registered from 0 to n-1 where n is the number of controllers.</span>
 <span class="sd">        This number index is passed to events that are propagated when controllers are inputted to.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            The total number of controllers.</span>
+<span class="sd">            A list of the integer indexes of the controllers currently registered.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">)</span>
-
-<div class="viewcode-block" id="Input.update_controllers"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.update_controllers">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">update_controllers</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Register or deregister controllers as needed. Called automatically.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">conts</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_NumJoysticks</span><span class="p">()</span>
-        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">conts</span> <span class="o">==</span> <span class="n">length</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="k">elif</span> <span class="n">conts</span> <span class="o">&gt;</span> <span class="n">length</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickEventState</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_ENABLE</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">conts</span><span class="p">):</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickOpen</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-            <span class="k">return</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickClose</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-
-        <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">conts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">conts</span><span class="p">):</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickOpen</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickEventState</span><span class="p">(</span><span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_DISABLE</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Input.controller_name"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.controller_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">controller_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -384,15 +356,13 @@
 <span class="sd">            index: The index of the controller to get the name of.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            IndexError: If the index is out of range. Note that no error is thrown if controller is negative.</span>
+<span class="sd">            IndexError: The controller for the given index is not registered.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            The name of the controller. If controller is less than 0, returns an empty string.</span>
+<span class="sd">            The name of the controller.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Controller </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> is not registered.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickNameForIndex</span><span class="p">(</span><span class="n">controller</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Input.controller_axis"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.controller_axis">[docs]</a>    <span class="nd">@classmethod</span>
@@ -405,16 +375,13 @@
 <span class="sd">            axis: The index of the joystick axis.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            IndexError: The given controller index is out of range.</span>
-<span class="sd">                Note that no error is thrown if controller is negative.</span>
+<span class="sd">            IndexError: The controller for the given index is not registered.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            The value of the axis. If controller is less than 0, returns 0.</span>
+<span class="sd">            The value of the axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Controller </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> is not registered.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickGetAxis</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="n">axis</span><span class="p">)</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_joystick_max</span></div>
 
 <div class="viewcode-block" id="Input.axis_centered"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.axis_centered">[docs]</a>    <span class="nd">@classmethod</span>
@@ -433,23 +400,20 @@
 <div class="viewcode-block" id="Input.controller_button"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.controller_button">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">controller_button</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">controller</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">button</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get whether a given button on a controller is pressed.</span>
+<span class="sd">        Check whether a given button on a controller is pressed.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            controller: The index of the controller.</span>
 <span class="sd">            button: The index of the button.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            IndexError: The given controller index is out of range.</span>
-<span class="sd">                Note that no error is thrown if controller is negative.</span>
+<span class="sd">            IndexError: The controller for the given index is not registered.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Whether the button is pressed. If controller is less than 0, returns False.</span>
+<span class="sd">            Whether the button is pressed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Controller </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> is not registered.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickGetButton</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="n">button</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span></div>
 
 <div class="viewcode-block" id="Input.controller_hat"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.controller_hat">[docs]</a>    <span class="nd">@classmethod</span>
@@ -462,17 +426,13 @@
 <span class="sd">            hat: The index of the hat.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            IndexError: The given controller index is out of range.</span>
-<span class="sd">                Note that no error is thrown if controller is negative.</span>
+<span class="sd">            IndexError: The controller for the given index is not registered.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            int: The value of the hat, which you can translate with `translate_hat()`.</span>
-<span class="sd">                If controller is less than 0, returns 0.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">controller</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="n">controller</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Index </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> out of range.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">controller</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Controller </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2"> is not registered.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickGetHat</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">controller</span><span class="p">],</span> <span class="n">hat</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Input.translate_hat"><a class="viewcode-back" href="../../../../../api/#rubato.utils.hardware.rb_input.Input.translate_hat">[docs]</a>    <span class="nd">@classmethod</span>
