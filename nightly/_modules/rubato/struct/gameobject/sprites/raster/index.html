@@ -578,6 +578,29 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">()</span></div>
 
+<div class="viewcode-block" id="Raster.save_as"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.save_as">[docs]</a>    <span class="k">def</span> <span class="nf">save_as</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span>
+        <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;png&quot;</span><span class="p">,</span>
+        <span class="n">save_to_temp_path</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">quality</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the raster to a file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename: The name of the file to save to.</span>
+<span class="sd">            path: Path to output folder.</span>
+<span class="sd">            extension: The extension to save the file as. (png, jpg, bmp supported)</span>
+<span class="sd">            save_to_temp_path: Whether to save the file to a temporary path (i.e. MEIPASS used in exe).</span>
+<span class="sd">            quality: The quality of the jpg 0-100 (only used for jpgs).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            If save was successful.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">save_as</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">extension</span><span class="p">,</span> <span class="n">save_to_temp_path</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="Raster.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Raster</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Clones the current raster.</span>

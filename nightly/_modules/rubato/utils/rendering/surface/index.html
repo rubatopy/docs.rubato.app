@@ -309,7 +309,8 @@
 <span></span><span class="sd">&quot;&quot;&quot;An abstraction for a grid of pixels that can be drawn onto.&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
-<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span><span class="o">,</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span><span class="o">,</span> <span class="nn">sdl2.sdlimage</span><span class="o">,</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">from</span> <span class="nn">...c_src</span> <span class="kn">import</span> <span class="n">c_draw</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">get_path</span>
@@ -438,7 +439,7 @@
     <span class="k">def</span> <span class="nf">_regen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Updates the texture.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">c_draw</span><span class="o">.</span><span class="n">colokey_copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pixels_colorkey</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color_key</span><span class="p">)</span>
+            <span class="n">c_draw</span><span class="o">.</span><span class="n">colorkey_copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pixels_colorkey</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color_key</span><span class="p">)</span>
 
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_UpdateTexture</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pixels_colorkey</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="mi">4</span>
@@ -718,6 +719,71 @@
         <span class="n">y</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint8</span><span class="p">()</span>
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetTextureAlphaMod</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tx</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="Surface.save_as"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.save_as">[docs]</a>    <span class="k">def</span> <span class="nf">save_as</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span>
+        <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;png&quot;</span><span class="p">,</span>
+        <span class="n">save_to_temp_path</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">quality</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the surface to a file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename: The name of the file to save to.</span>
+<span class="sd">            path: Path to output folder.</span>
+<span class="sd">            extension: The extension to save the file as. (png, jpg, bmp supported)</span>
+<span class="sd">            save_to_temp_path: Whether to save the file to a temporary path (i.e. MEIPASS used in exe).</span>
+<span class="sd">            quality: The quality of the jpg 0-100 (only used for jpgs).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            If save was successful.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extension</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="s2">&quot;jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;bmp&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid extension. Only png, jpg, bmp are supported.&quot;</span><span class="p">)</span>
+
+        <span class="n">render_surface</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_surf</span><span class="p">()</span>
+
+        <span class="n">path_bytes</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">save_to_temp_path</span><span class="p">:</span>
+            <span class="n">path_bytes</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">get_path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">extension</span><span class="p">)),</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">path_bytes</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">extension</span><span class="p">),</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+        <span class="n">succeeded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;png&quot;</span><span class="p">:</span>
+            <span class="n">succeeded</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlimage</span><span class="o">.</span><span class="n">IMG_SavePNG</span><span class="p">(</span><span class="n">render_surface</span><span class="p">,</span> <span class="n">path_bytes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;jpg&quot;</span><span class="p">:</span>
+            <span class="n">succeeded</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlimage</span><span class="o">.</span><span class="n">IMG_SaveJPG</span><span class="p">(</span><span class="n">render_surface</span><span class="p">,</span> <span class="n">path_bytes</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">succeeded</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SaveBMP</span><span class="p">(</span><span class="n">render_surface</span><span class="p">,</span> <span class="n">path_bytes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">render_surface</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">succeeded</span></div>
+
+    <span class="k">def</span> <span class="nf">_as_surf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts the underlying texture to a SDL_Surface.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The SDL_Surface.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
+
+        <span class="n">surf</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_CreateRGBSurfaceWithFormatFrom</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pixels_colorkey</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pixels_colorkey</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">,</span>
+            <span class="mi">32</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="n">Display</span><span class="o">.</span><span class="n">pixel_format</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_SetSurfaceAlphaMod</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">surf</span>
 
 <div class="viewcode-block" id="Surface.from_file"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.from_file">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span>
