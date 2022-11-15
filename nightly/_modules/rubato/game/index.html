@@ -466,11 +466,11 @@
                 <span class="n">curr</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>
 
                 <span class="c1"># fixed update</span>
-                <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">+=</span> <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span>
+                <span class="n">Time</span><span class="o">.</span><span class="n">_physics_counter</span> <span class="o">+=</span> <span class="n">Time</span><span class="o">.</span><span class="n">delta_time</span>
 
-                <span class="k">while</span> <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">&gt;=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">Time</span><span class="o">.</span><span class="n">_physics_counter</span> <span class="o">&gt;=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span><span class="p">:</span>
                     <span class="n">curr</span><span class="o">.</span><span class="n">_fixed_update</span><span class="p">()</span>
-                    <span class="n">Time</span><span class="o">.</span><span class="n">physics_counter</span> <span class="o">-=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
+                    <span class="n">Time</span><span class="o">.</span><span class="n">_physics_counter</span> <span class="o">-=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
 
             <span class="n">curr</span><span class="o">.</span><span class="n">_draw</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>

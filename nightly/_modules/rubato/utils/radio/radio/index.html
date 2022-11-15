@@ -363,7 +363,7 @@
                         <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                             <span class="n">Events</span><span class="o">.</span><span class="n">RESIZE</span><span class="p">,</span>
                             <span class="n">ResizeResponse</span><span class="p">(</span>
-                                <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                                <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
                                 <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data1</span><span class="p">,</span>
                                 <span class="n">event</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">data2</span><span class="p">,</span>
                                 <span class="n">Display</span><span class="o">.</span><span class="n">window_size</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>  <span class="c1"># type: ignore</span>
@@ -388,7 +388,7 @@
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">event_name</span><span class="p">,</span>
                         <span class="n">KeyResponse</span><span class="p">(</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">key</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
                             <span class="n">Input</span><span class="o">.</span><span class="n">get_name</span><span class="p">(</span><span class="n">key_info</span><span class="o">.</span><span class="n">sym</span><span class="p">),</span>
                             <span class="n">unicode</span><span class="p">,</span>
                             <span class="nb">int</span><span class="p">(</span><span class="n">key_info</span><span class="o">.</span><span class="n">sym</span><span class="p">),</span>
@@ -405,7 +405,7 @@
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">event_name</span><span class="p">,</span>
                         <span class="n">MouseButtonResponse</span><span class="p">(</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">button</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">Display</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                             <span class="n">Display</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
@@ -418,7 +418,7 @@
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEWHEEL</span><span class="p">,</span>
                         <span class="n">MouseWheelResponse</span><span class="p">(</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseX</span><span class="p">,</span>
                             <span class="o">-</span><span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">preciseY</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">wheel</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
@@ -429,7 +429,7 @@
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">Events</span><span class="o">.</span><span class="n">MOUSEMOTION</span><span class="p">,</span>
                         <span class="n">MouseMotionResponse</span><span class="p">(</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">Display</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                             <span class="n">Display</span><span class="o">.</span><span class="n">_half_res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">xrel</span><span class="p">,</span>
@@ -442,7 +442,7 @@
                 <span class="k">if</span> <span class="n">Events</span><span class="o">.</span><span class="n">JOYSTICKCONNECT</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">Events</span><span class="o">.</span><span class="n">JOYSTICKCONNECT</span><span class="p">,</span>
-                        <span class="n">JoystickConnectResponse</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">which</span><span class="p">),</span>
+                        <span class="n">JoystickConnectResponse</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">which</span><span class="p">),</span>
                     <span class="p">)</span>
             <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYDEVICEREMOVED</span><span class="p">:</span>
                 <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JoystickClose</span><span class="p">(</span><span class="n">Input</span><span class="o">.</span><span class="n">_controllers</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">which</span><span class="p">])</span>
@@ -450,7 +450,7 @@
                 <span class="k">if</span> <span class="n">Events</span><span class="o">.</span><span class="n">JOYSTICKDISCONNECT</span><span class="o">.</span><span class="n">value</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">Events</span><span class="o">.</span><span class="n">JOYSTICKDISCONNECT</span><span class="p">,</span>
-                        <span class="n">JoystickDisconnectResponse</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">which</span><span class="p">),</span>
+                        <span class="n">JoystickDisconnectResponse</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">jdevice</span><span class="o">.</span><span class="n">which</span><span class="p">),</span>
                     <span class="p">)</span>
             <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_JOYAXISMOTION</span><span class="p">:</span>
                 <span class="n">mag</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">Input</span><span class="o">.</span><span class="n">_joystick_max</span>
@@ -458,7 +458,7 @@
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">Events</span><span class="o">.</span><span class="n">JOYAXISMOTION</span><span class="p">,</span>
                         <span class="n">JoyAxisMotionResponse</span><span class="p">(</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">jaxis</span><span class="o">.</span><span class="n">axis</span><span class="p">,</span>
                             <span class="n">mag</span><span class="p">,</span>
@@ -475,7 +475,7 @@
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">event_name</span><span class="p">,</span>
                         <span class="n">JoyButtonResponse</span><span class="p">(</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">jbutton</span><span class="o">.</span><span class="n">button</span><span class="p">,</span>
                         <span class="p">)</span>
@@ -485,7 +485,7 @@
                     <span class="bp">cls</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span>
                         <span class="n">Events</span><span class="o">.</span><span class="n">JOYHATMOTION</span><span class="p">,</span>
                         <span class="n">JoyHatMotionResponse</span><span class="p">(</span>
-                            <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span>
+                            <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">timestamp</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">which</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">hat</span><span class="p">,</span>
                             <span class="n">event</span><span class="o">.</span><span class="n">jhat</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>

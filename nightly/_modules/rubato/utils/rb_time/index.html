@@ -319,20 +319,20 @@
 <div class="viewcode-block" id="DelayedTask"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.DelayedTask">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">DelayedTask</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A task that is run after a specified number of milliseconds.</span>
+<span class="sd">    A task that is run after a specified number of seconds.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        task: The task to invoke.</span>
-<span class="sd">        delay: The number of milliseconds to wait before invoking the task.</span>
+<span class="sd">        delay: The number of seconds to wait before invoking the task.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">task</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;The task to run.&quot;&quot;&quot;</span>
-    <span class="n">delay</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="sd">&quot;&quot;&quot;The delay until the task is run, in milliseconds.&quot;&quot;&quot;</span>
+    <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="sd">&quot;&quot;&quot;The delay until the task is run, in seconds.&quot;&quot;&quot;</span>
     <span class="n">is_stopped</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;Whether the DelayedTask is stopped.&quot;&quot;&quot;</span>
-    <span class="n">next_run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="sd">&quot;&quot;&quot;The time at which the task will be run next, in milliseconds.&quot;&quot;&quot;</span>
+    <span class="n">next_run</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The time at which the task will be run next, in seconds.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DelayedTask.stop"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.DelayedTask.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stop the DelayedTask from invoking.&quot;&quot;&quot;</span>
@@ -365,23 +365,23 @@
 <div class="viewcode-block" id="RecurrentTask"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.RecurrentTask">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">RecurrentTask</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A task that is run every specified number of milliseconds.</span>
+<span class="sd">    A task that is run every specified number of seconds.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        task: The task to invoke.</span>
-<span class="sd">        interval: The number of milliseconds between task invocations.</span>
-<span class="sd">        delay: The number of milliseconds to wait before starting the invocations.</span>
+<span class="sd">        interval: The number of seconds between task invocations.</span>
+<span class="sd">        delay: The number of seconds to wait before starting the invocations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">task</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="s2">&quot;RecurrentTask&quot;</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;The task to run.&quot;&quot;&quot;</span>
-    <span class="n">interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="sd">&quot;&quot;&quot;The interval between task invocations, in milliseconds.&quot;&quot;&quot;</span>
-    <span class="n">delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="sd">&quot;&quot;&quot;The initial delay until the task is run, in milliseconds.&quot;&quot;&quot;</span>
+    <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The interval between task invocations, in seconds.&quot;&quot;&quot;</span>
+    <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The initial delay until the task is run, in seconds.&quot;&quot;&quot;</span>
     <span class="n">is_stopped</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="sd">&quot;&quot;&quot;Whether the RecurrentTask is stopped.&quot;&quot;&quot;</span>
-    <span class="n">next_run</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="sd">&quot;&quot;&quot;The time at which the task will be run next, in milliseconds.&quot;&quot;&quot;</span>
+    <span class="n">next_run</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot;The time at which the task will be run next, in seconds.&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RecurrentTask.stop"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.RecurrentTask.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stop the RecurrentTask from invoking.&quot;&quot;&quot;</span>
@@ -396,6 +396,10 @@
 
     <span class="n">frames</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="sd">&quot;&quot;&quot;The total number of elapsed frames since the start of the game.&quot;&quot;&quot;</span>
+    <span class="n">fixed_delta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="sd">&quot;&quot;&quot;The number of seconds since the last fixed update.&quot;&quot;&quot;</span>
+    <span class="n">fps</span> <span class="o">=</span> <span class="mi">60</span>
+    <span class="sd">&quot;&quot;&quot;The fps estimate using the last frame.&quot;&quot;&quot;</span>
 
     <span class="n">_frame_queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">FramesTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">_task_queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">DelayedTask</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -404,25 +408,19 @@
     <span class="n">_next_queue</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="n">_delta_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.001</span>
-    <span class="n">fixed_delta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
-    <span class="sd">&quot;&quot;&quot;The number of seconds since the last fixed update.&quot;&quot;&quot;</span>
     <span class="n">_normal_delta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">fps</span> <span class="o">=</span> <span class="mi">60</span>
-    <span class="sd">&quot;&quot;&quot;The fps estimate using the last frame.&quot;&quot;&quot;</span>
-    <span class="n">_frame_start</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">_frame_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="n">physics_counter</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">_physics_counter</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="n">_fps_history</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">120</span>
-    <span class="n">_past_fps</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">_fps_history</span>
+    <span class="n">_past_fps</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">120</span>
     <span class="n">_fps_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="n">target_fps</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># this means no cap</span>
+    <span class="n">target_fps</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="sd">&quot;&quot;&quot;The fps that the game should try to run at. 0 means that the game&#39;s fps will not be capped. Defaults to 0.&quot;&quot;&quot;</span>
-    <span class="n">capped</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="n">physics_fps</span> <span class="o">=</span> <span class="mi">60</span>
-    <span class="sd">&quot;&quot;&quot;The fps that the physics should run at. Defaults to 60.&quot;&quot;&quot;</span>
+    <span class="n">_physics_fps</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="sd">&quot;&quot;&quot;The fps that the physics should run at.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -430,27 +428,25 @@
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">delta_time</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The number of seconds between the last frame and the current frame.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;The number of seconds between the last frame and the current frame (get-only).&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_delta_time</span>
 
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
+<div class="viewcode-block" id="Time.smooth_fps"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.smooth_fps">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">smooth_fps</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The average fps over the past 120 frames. (get-only).&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_past_fps</span><span class="p">)</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_fps_history</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;The average fps over the past 120 frames.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_past_fps</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_past_fps</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Time.frame_start"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.frame_start">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">frame_start</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Time from the start of the game to the start of the current frame, in seconds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_frame_start</span></div>
 
 <div class="viewcode-block" id="Time.now"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.now">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">now</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The time since the start of the game, in milliseconds.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetTicks64</span><span class="p">()</span></div>
-
-    <span class="nd">@classmethod</span>
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">frame_start</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Time from the start of the game to the start of the current frame, in milliseconds. (get-only)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_frame_start</span>
+    <span class="k">def</span> <span class="nf">now</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The time since the start of the game, in seconds.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_GetTicks64</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span></div>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">_start_frame</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
@@ -458,7 +454,7 @@
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">_end_frame</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">capped</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Time</span><span class="o">.</span><span class="n">target_fps</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">delay</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_normal_delta</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">delta_time</span>
             <span class="k">if</span> <span class="n">delay</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Delay</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">delay</span><span class="p">))</span>
@@ -466,7 +462,7 @@
         <span class="k">while</span> <span class="bp">cls</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_frame_start</span><span class="p">:</span>
             <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Delay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-        <span class="bp">cls</span><span class="o">.</span><span class="n">_delta_time</span> <span class="o">=</span> <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_frame_start</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_delta_time</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_frame_start</span>
 
 <div class="viewcode-block" id="Time.next_frame"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.next_frame">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">next_frame</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]):</span>
@@ -491,27 +487,29 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">FramesTask</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">delay</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Time.delayed_call"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.delayed_call">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">delayed_call</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">],</span> <span class="n">delay</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">delayed_call</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">],</span> <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calls the function func to be called at a later time.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            task: The function to call.</span>
-<span class="sd">            delay: The time from now (in milliseconds) to run the function at.</span>
+<span class="sd">            delay: The time from now (in seconds) to run the function at.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">cls</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">DelayedTask</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">delay</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Time.recurrent_call"><a class="viewcode-back" href="../../../../api/#rubato.utils.rb_time.Time.recurrent_call">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">recurrent_call</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">RecurrentTask</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">recurrent_call</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">task</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">RecurrentTask</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">delay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Schedules the function func to be repeatedly called every interval.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            task: The function to call.</span>
 <span class="sd">                This method may take a RecurrentTask as an argument, which will be passed to it when it is invoked.</span>
-<span class="sd">            interval: The interval (in milliseconds) to run the function at.</span>
-<span class="sd">            delay: The delay (in milliseconds) to wait before starting the task.</span>
+<span class="sd">            interval: The interval (in seconds) to run the function at.</span>
+<span class="sd">            delay: The delay (in seconds) to wait before starting the task.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">cls</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">RecurrentTask</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">interval</span><span class="p">,</span> <span class="n">delay</span><span class="p">))</span></div>
@@ -563,7 +561,7 @@
         <span class="bp">cls</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">cls</span><span class="o">.</span><span class="n">delta_time</span>
 
         <span class="bp">cls</span><span class="o">.</span><span class="n">_past_fps</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">_fps_index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">fps</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">_fps_index</span> <span class="o">=</span> <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_fps_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_fps_history</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_fps_index</span> <span class="o">=</span> <span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_fps_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_past_fps</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_next_queue</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_next_queue</span><span class="p">:</span>

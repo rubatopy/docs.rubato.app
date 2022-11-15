@@ -321,7 +321,7 @@
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="rubato.init">
-<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Untitled</span> <span class="pre">Rubato</span> <span class="pre">App'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1080,</span> <span class="pre">1080)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fullscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'off'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physics_fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Time.physics_fps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/#init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.init" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Untitled</span> <span class="pre">Rubato</span> <span class="pre">App'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1080,</span> <span class="pre">1080)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fullscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'off'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physics_fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/#init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.init" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes rubato.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -336,7 +336,7 @@ Defaults to None.</p></li>
 <li><p><strong>fullscreen</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>['off', 'desktop', 'exclusive']) -- Whether the game should be fullscreen. Can be one of &quot;off&quot;, &quot;desktop&quot;, or &quot;exclusive&quot;.
 Defaults to &quot;off&quot;.</p></li>
 <li><p><strong>target_fps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The target frames per second. If set to 0, the target fps will be uncapped. Defaults to 0.</p></li>
-<li><p><strong>physics_fps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The physics simulation's frames per second. Defaults to 60.</p></li>
+<li><p><strong>physics_fps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The physics simulation's frames per second. Defaults to 50.</p></li>
 <li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the window should be hidden. Defaults to False.</p></li>
 </ul>
 </dd>
@@ -7344,12 +7344,12 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.DelayedTask">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DelayedTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#DelayedTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.DelayedTask" title="Permalink to this definition">#</a></dt>
-<dd><p>A task that is run after a specified number of milliseconds.</p>
+<dd><p>A task that is run after a specified number of seconds.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>task</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[], <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]) -- The task to invoke.</p></li>
-<li><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The number of milliseconds to wait before invoking the task.</p></li>
+<li><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The number of seconds to wait before invoking the task.</p></li>
 </ul>
 </dd>
 </dl>
@@ -7361,8 +7361,8 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.DelayedTask.delay">
-<span class="sig-name descname"><span class="pre">delay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.DelayedTask.delay" title="Permalink to this definition">#</a></dt>
-<dd><p>The delay until the task is run, in milliseconds.</p>
+<span class="sig-name descname"><span class="pre">delay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.DelayedTask.delay" title="Permalink to this definition">#</a></dt>
+<dd><p>The delay until the task is run, in seconds.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -7373,8 +7373,8 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.DelayedTask.next_run">
-<span class="sig-name descname"><span class="pre">next_run</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.DelayedTask.next_run" title="Permalink to this definition">#</a></dt>
-<dd><p>The time at which the task will be run next, in milliseconds.</p>
+<span class="sig-name descname"><span class="pre">next_run</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.DelayedTask.next_run" title="Permalink to this definition">#</a></dt>
+<dd><p>The time at which the task will be run next, in seconds.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -7432,13 +7432,13 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.RecurrentTask">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RecurrentTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#RecurrentTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.RecurrentTask" title="Permalink to this definition">#</a></dt>
-<dd><p>A task that is run every specified number of milliseconds.</p>
+<dd><p>A task that is run every specified number of seconds.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>task</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[], <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference internal" href="#rubato.utils.rb_time.RecurrentTask" title="rubato.utils.rb_time.RecurrentTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecurrentTask</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]]) -- The task to invoke.</p></li>
-<li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The number of milliseconds between task invocations.</p></li>
-<li><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The number of milliseconds to wait before starting the invocations.</p></li>
+<li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The number of seconds between task invocations.</p></li>
+<li><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The number of seconds to wait before starting the invocations.</p></li>
 </ul>
 </dd>
 </dl>
@@ -7450,14 +7450,14 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.RecurrentTask.interval">
-<span class="sig-name descname"><span class="pre">interval</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.RecurrentTask.interval" title="Permalink to this definition">#</a></dt>
-<dd><p>The interval between task invocations, in milliseconds.</p>
+<span class="sig-name descname"><span class="pre">interval</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.RecurrentTask.interval" title="Permalink to this definition">#</a></dt>
+<dd><p>The interval between task invocations, in seconds.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.RecurrentTask.delay">
-<span class="sig-name descname"><span class="pre">delay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#rubato.utils.rb_time.RecurrentTask.delay" title="Permalink to this definition">#</a></dt>
-<dd><p>The initial delay until the task is run, in milliseconds.</p>
+<span class="sig-name descname"><span class="pre">delay</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#rubato.utils.rb_time.RecurrentTask.delay" title="Permalink to this definition">#</a></dt>
+<dd><p>The initial delay until the task is run, in seconds.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -7468,8 +7468,8 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.RecurrentTask.next_run">
-<span class="sig-name descname"><span class="pre">next_run</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.RecurrentTask.next_run" title="Permalink to this definition">#</a></dt>
-<dd><p>The time at which the task will be run next, in milliseconds.</p>
+<span class="sig-name descname"><span class="pre">next_run</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.RecurrentTask.next_run" title="Permalink to this definition">#</a></dt>
+<dd><p>The time at which the task will be run next, in seconds.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -7508,16 +7508,10 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 <dd><p>The fps that the game should try to run at. 0 means that the game's fps will not be capped. Defaults to 0.</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.physics_fps">
-<span class="sig-name descname"><span class="pre">physics_fps</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60</span></em><a class="headerlink" href="#rubato.utils.rb_time.Time.physics_fps" title="Permalink to this definition">#</a></dt>
-<dd><p>The fps that the physics should run at. Defaults to 60.</p>
-</dd></dl>
-
 <dl class="py property">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time.delta_time">
 <em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delta_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.Time.delta_time" title="Permalink to this definition">#</a></dt>
-<dd><p>The number of seconds between the last frame and the current frame.</p>
+<dd><p>The number of seconds between the last frame and the current frame (get-only).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
@@ -7525,10 +7519,10 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 </dl>
 </dd></dl>
 
-<dl class="py property">
+<dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rb_time.Time.smooth_fps">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smooth_fps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.Time.smooth_fps" title="Permalink to this definition">#</a></dt>
-<dd><p>The average fps over the past 120 frames. (get-only).</p>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smooth_fps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#Time.smooth_fps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.Time.smooth_fps" title="Permalink to this definition">#</a></dt>
+<dd><p>The average fps over the past 120 frames.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
@@ -7537,23 +7531,23 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.now">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">now</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#Time.now"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.Time.now" title="Permalink to this definition">#</a></dt>
-<dd><p>The time since the start of the game, in milliseconds.</p>
+<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.frame_start">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#Time.frame_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.Time.frame_start" title="Permalink to this definition">#</a></dt>
+<dd><p>Time from the start of the game to the start of the current frame, in seconds.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.frame_start">
-<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame_start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.rb_time.Time.frame_start" title="Permalink to this definition">#</a></dt>
-<dd><p>Time from the start of the game to the start of the current frame, in milliseconds. (get-only)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.rb_time.Time.now">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">now</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rb_time/#Time.now"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rb_time.Time.now" title="Permalink to this definition">#</a></dt>
+<dd><p>The time since the start of the game, in seconds.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -7591,7 +7585,7 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>task</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[], <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]) -- The function to call.</p></li>
-<li><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The time from now (in milliseconds) to run the function at.</p></li>
+<li><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The time from now (in seconds) to run the function at.</p></li>
 </ul>
 </dd>
 </dl>
@@ -7606,8 +7600,8 @@ This is identical to <code class="xref py py-func docutils literal notranslate">
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>task</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[], <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference internal" href="#rubato.utils.rb_time.RecurrentTask" title="rubato.utils.rb_time.RecurrentTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">RecurrentTask</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]]) -- The function to call.
 This method may take a RecurrentTask as an argument, which will be passed to it when it is invoked.</p></li>
-<li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The interval (in milliseconds) to run the function at.</p></li>
-<li><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The delay (in milliseconds) to wait before starting the task.</p></li>
+<li><p><strong>interval</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The interval (in seconds) to run the function at.</p></li>
+<li><p><strong>delay</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The delay (in seconds) to wait before starting the task.</p></li>
 </ul>
 </dd>
 </dl>
@@ -8538,7 +8532,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dd><p>A response to an event. This class behaves like a dict, but is immutable.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.EventResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.EventResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.EventResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8574,7 +8568,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.KeyResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.KeyResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.KeyResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8616,7 +8610,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.MouseButtonResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseButtonResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseButtonResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8646,7 +8640,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.MouseWheelResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseWheelResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseWheelResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8658,7 +8652,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dd><p>A response to a mouse motion event</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.MouseMotionResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseMotionResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.MouseMotionResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8700,7 +8694,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dd><p>A response to a joystick connection event</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.JoystickConnectResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoystickConnectResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoystickConnectResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8718,7 +8712,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dd><p>A response to a joystick disconnection event</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.JoystickDisconnectResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoystickDisconnectResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoystickDisconnectResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8736,7 +8730,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dd><p>A response to a joystick axis event</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.JoyAxisMotionResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoyAxisMotionResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoyAxisMotionResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8772,7 +8766,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dd><p>A response to a joystick button event</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.JoyButtonResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoyButtonResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoyButtonResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8796,7 +8790,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dd><p>A response to a joystick hat event</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.JoyHatMotionResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoyHatMotionResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.JoyHatMotionResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 
@@ -8832,7 +8826,7 @@ Responds with a <code class="xref py py-func docutils literal notranslate"><span
 <dd><p>A response to a resize event</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.utils.radio.events.ResizeResponse.timestamp">
-<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.ResizeResponse.timestamp" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.utils.radio.events.ResizeResponse.timestamp" title="Permalink to this definition">#</a></dt>
 <dd><p>The timestamp of the event in seconds.</p>
 </dd></dl>
 

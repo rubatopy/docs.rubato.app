@@ -414,7 +414,7 @@
 <div class="viewcode-block" id="EventResponse"><a class="viewcode-back" href="../../../../../api/#rubato.utils.radio.events.EventResponse">[docs]</a><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">EventResponse</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A response to an event. This class behaves like a dict, but is immutable.&quot;&quot;&quot;</span>
-    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">float</span>
     <span class="sd">&quot;&quot;&quot;The timestamp of the event in seconds.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
