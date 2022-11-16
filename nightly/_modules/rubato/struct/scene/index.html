@@ -384,29 +384,33 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Scene.remove"><a class="viewcode-back" href="../../../../api/#rubato.struct.scene.Scene.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">GameObject</span> <span class="o">|</span> <span class="n">Group</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="Scene.remove"><a class="viewcode-back" href="../../../../api/#rubato.struct.scene.Scene.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">GameObject</span> <span class="o">|</span> <span class="n">Group</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Removes an item from the root group.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            item: The item to remove.</span>
+<span class="sd">            items: The items to remove.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Whether it was removed successfully.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Scene.remove_ui"><a class="viewcode-back" href="../../../../api/#rubato.struct.scene.Scene.remove_ui">[docs]</a>    <span class="k">def</span> <span class="nf">remove_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">GameObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="Scene.remove_ui"><a class="viewcode-back" href="../../../../api/#rubato.struct.scene.Scene.remove_ui">[docs]</a>    <span class="k">def</span> <span class="nf">remove_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">GameObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Removes an item from the ui group.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            item: The item to remove.</span>
+<span class="sd">            items: The items to remove.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Whether it was removed successfully.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_dump</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">_dump</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">_dump</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">True</span>
@@ -471,7 +475,13 @@
 <div class="viewcode-block" id="Scene.draw"><a class="viewcode-back" href="../../../../api/#rubato.struct.scene.Scene.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The draw loop for this scene. It is run once every frame.</span>
-<span class="sd">        Is empty by default and can beoverridden.</span>
+<span class="sd">        Is empty by default and can be overridden.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Scene.on_switch"><a class="viewcode-back" href="../../../../api/#rubato.struct.scene.Scene.on_switch">[docs]</a>    <span class="k">def</span> <span class="nf">on_switch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An overridable method that is called whenever this scene is switched to.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
