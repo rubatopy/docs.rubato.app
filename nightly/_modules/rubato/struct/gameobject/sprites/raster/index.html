@@ -410,7 +410,19 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">color</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Raster.draw_point"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.draw_point">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Raster.get_pixel"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.get_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the color of a pixel on the surface.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pos: The position of the pixel.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The color of the pixel.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Raster.set_pixel"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.set_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draws a point on the surface.</span>
 
@@ -419,7 +431,7 @@
 <span class="sd">            color: The color of the point. Defaults to black.</span>
 <span class="sd">            blending: Whether to use blending. Defaults to False.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">draw_point</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">blending</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">blending</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Raster.draw_line"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.draw_line">[docs]</a>    <span class="k">def</span> <span class="nf">draw_line</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -521,30 +533,6 @@
 <span class="sd">            The size of the surface</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">size_scaled</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Raster.get_pixel"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.get_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the color of a pixel on the surface.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            pos: The position of the pixel.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The color of the pixel.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Raster.get_pixel_tuple"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.get_pixel_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the color of a pixel on the surface.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            pos: The position of the pixel.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The color of the pixel.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">get_pixel_tuple</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Raster.switch_color"><a class="viewcode-back" href="../../../../../../api/#rubato.struct.gameobject.sprites.raster.Raster.switch_color">[docs]</a>    <span class="k">def</span> <span class="nf">switch_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">,</span> <span class="n">new_color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

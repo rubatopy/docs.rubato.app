@@ -411,8 +411,8 @@
 
         <span class="bp">cls</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
-<div class="viewcode-block" id="Draw.queue_point"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.queue_point">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">queue_point</span><span class="p">(</span>
+<div class="viewcode-block" id="Draw.queue_pixel"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.queue_pixel">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">queue_pixel</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
         <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span>
@@ -430,10 +430,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">camera</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">camera</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;</span> <span class="n">z_index</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_push</span><span class="p">(</span><span class="n">z_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">pixel</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">camera</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="Draw.point"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.point">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">point</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Draw.pixel"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.draw.Draw.pixel">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">pixel</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draw a point onto the renderer immediately.</span>
 
@@ -444,7 +444,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">surf</span> <span class="o">:=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_pt_surfs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">surf</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">surf</span><span class="o">.</span><span class="n">draw_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>
+            <span class="n">surf</span><span class="o">.</span><span class="n">set_pixel</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">_pt_surfs</span><span class="p">[</span><span class="n">color</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf</span>
 
         <span class="bp">cls</span><span class="o">.</span><span class="n">surface</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">camera</span><span class="p">)</span></div>

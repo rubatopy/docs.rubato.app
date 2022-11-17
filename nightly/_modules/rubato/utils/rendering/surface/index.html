@@ -467,7 +467,23 @@
         <span class="sd">&quot;&quot;&quot;Simple function that converts cartesian coordinates to surface space.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Surface.draw_point"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.draw_point">[docs]</a>    <span class="k">def</span> <span class="nf">draw_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Surface.get_pixel"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.get_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the color of a pixel on the surface.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            pos: The position of the pixel.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The color of the pixel.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">from_argb32</span><span class="p">(</span><span class="n">c_draw</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position is outside of the $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Surface.set_pixel"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.set_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">set_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span> <span class="n">blending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Draws a point on the surface.</span>
 
@@ -624,34 +640,6 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Surface.get_pixel"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.get_pixel">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the color of a pixel on the surface.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            pos: The position of the pixel.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The color of the pixel.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">round</span><span class="p">(</span><span class="n">pos</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">from_argb32</span><span class="p">(</span><span class="n">c_draw</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pixels</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Position is outside of the $</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Surface.get_pixel_tuple"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.get_pixel_tuple">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Gets the color of a pixel on the surface.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            pos: The position of the pixel.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            The color of the pixel.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_pixel</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">()</span></div>
-
 <div class="viewcode-block" id="Surface.switch_color"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.surface.Surface.switch_color">[docs]</a>    <span class="k">def</span> <span class="nf">switch_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">,</span> <span class="n">new_color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Switches a color in the surface.</span>
@@ -700,6 +688,9 @@
             <span class="n">af</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">af</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">new</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">_pixels_colorkey</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pixels_colorkey</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">_color_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color_key</span>
+        <span class="n">new</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">())</span>
 
         <span class="k">return</span> <span class="n">new</span></div>
 

@@ -322,7 +322,7 @@
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="rubato.init">
-<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Untitled</span> <span class="pre">Rubato</span> <span class="pre">App'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1080,</span> <span class="pre">1080)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fullscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'off'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physics_fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/#init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.init" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Untitled</span> <span class="pre">Rubato</span> <span class="pre">App'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1080,</span> <span class="pre">1080)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">icon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fullscreen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physics_fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/#init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.init" title="Permalink to this definition">#</a></dt>
 <dd><p>Initializes rubato.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -334,8 +334,9 @@ This is usually the sweet spot between performance and image quality.</p></li>
 <li><p><strong>window_pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]) -- The position of the window, cast to int Vector. Set to None to let the computer decide.
 Defaults to None.</p></li>
 <li><p><strong>icon</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The path to the icon that will appear in the window. Defaults to &quot;&quot; (the rubato logo).</p></li>
-<li><p><strong>fullscreen</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>['off', 'desktop', 'exclusive']) -- Whether the game should be fullscreen. Can be one of &quot;off&quot;, &quot;desktop&quot;, or &quot;exclusive&quot;.
-Defaults to &quot;off&quot;.</p></li>
+<li><p><strong>fullscreen</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the game should be fullscreen. Defaults to False.</p></li>
+<li><p><strong>maximize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the game should be maximized. If fullscreen is set to True, that will take priority.
+Defaults to False.</p></li>
 <li><p><strong>target_fps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The target frames per second. If set to 0, the target fps will be uncapped. Defaults to 0.</p></li>
 <li><p><strong>physics_fps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The physics simulation's frames per second. Defaults to 50.</p></li>
 <li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the window should be hidden. Defaults to False.</p></li>
@@ -1311,8 +1312,25 @@ Defaults to the whole surface.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Raster.draw_point">
-<span class="sig-name descname"><span class="pre">draw_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/raster/#Raster.draw_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Raster.draw_point" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Raster.get_pixel">
+<span class="sig-name descname"><span class="pre">get_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/raster/#Raster.get_pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Raster.get_pixel" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the color of a pixel on the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the pixel.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The color of the pixel.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Raster.set_pixel">
+<span class="sig-name descname"><span class="pre">set_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/raster/#Raster.set_pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Raster.set_pixel" title="Permalink to this definition">#</a></dt>
 <dd><p>Draws a point on the surface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1409,40 +1427,6 @@ Defaults to the whole surface.</p></li>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The size of the surface</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Raster.get_pixel">
-<span class="sig-name descname"><span class="pre">get_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/raster/#Raster.get_pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Raster.get_pixel" title="Permalink to this definition">#</a></dt>
-<dd><p>Gets the color of a pixel on the surface.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the pixel.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The color of the pixel.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Raster.get_pixel_tuple">
-<span class="sig-name descname"><span class="pre">get_pixel_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/struct/gameobject/sprites/raster/#Raster.get_pixel_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Raster.get_pixel_tuple" title="Permalink to this definition">#</a></dt>
-<dd><p>Gets the color of a pixel on the surface.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the pixel.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The color of the pixel.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1724,21 +1708,6 @@ Defaults to the whole surface.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Image.draw_point">
-<span class="sig-name descname"><span class="pre">draw_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Image.draw_point" title="Permalink to this definition">#</a></dt>
-<dd><p>Draws a point on the surface.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position to draw the point.</p></li>
-<li><p><strong>color</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) -- The color of the point. Defaults to black.</p></li>
-<li><p><strong>blending</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether to use blending. Defaults to False.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Image.draw_poly">
 <span class="sig-name descname"><span class="pre">draw_poly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Image.draw_poly" title="Permalink to this definition">#</a></dt>
 <dd><p>Draws a polygon on the surface.</p>
@@ -1813,23 +1782,6 @@ Defaults to the whole surface.</p></li>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The color of the pixel.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Image.get_pixel_tuple">
-<span class="sig-name descname"><span class="pre">get_pixel_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Image.get_pixel_tuple" title="Permalink to this definition">#</a></dt>
-<dd><p>Gets the color of a pixel on the surface.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the pixel.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The color of the pixel.</p>
@@ -1916,6 +1868,21 @@ Defaults to the whole surface.</p></li>
 <dd><p>Sets the colorkey of the surface.
 :type color: <a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>
 :param color: Color to set as the colorkey.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.struct.gameobject.sprites.raster.Image.set_pixel">
+<span class="sig-name descname"><span class="pre">set_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rubato.struct.gameobject.sprites.raster.Image.set_pixel" title="Permalink to this definition">#</a></dt>
+<dd><p>Draws a point on the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position to draw the point.</p></li>
+<li><p><strong>color</strong> (<a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>) -- The color of the point. Defaults to black.</p></li>
+<li><p><strong>blending</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether to use blending. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -4978,14 +4945,11 @@ If you wish to achieve scaling across an entire scene, simply utilize the
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.hardware.display.Display.set_fullscreen">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_fullscreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'desktop'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/hardware/display/#Display.set_fullscreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.hardware.display.Display.set_fullscreen" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_fullscreen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/hardware/display/#Display.set_fullscreen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.hardware.display.Display.set_fullscreen" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the window to fullscreen.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>on</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether to set the window to fullscreen.</p></li>
-<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>['desktop', 'exclusive']) -- The type of fullscreen to use. Can be either &quot;desktop&quot; or &quot;exclusive&quot;.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>on</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether to set the window to fullscreen.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -5895,8 +5859,25 @@ Defaults to the whole surface.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.draw_point">
-<span class="sig-name descname"><span class="pre">draw_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.draw_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.draw_point" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.get_pixel">
+<span class="sig-name descname"><span class="pre">get_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.get_pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.get_pixel" title="Permalink to this definition">#</a></dt>
+<dd><p>Gets the color of a pixel on the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the pixel.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The color of the pixel.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.set_pixel">
+<span class="sig-name descname"><span class="pre">set_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.set_pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.set_pixel" title="Permalink to this definition">#</a></dt>
 <dd><p>Draws a point on the surface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -5979,40 +5960,6 @@ Defaults to the whole surface.</p></li>
 <li><p><strong>aa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether to use anti-aliasing. Defaults to False.</p></li>
 <li><p><strong>blending</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether to use blending. Defaults to False.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.get_pixel">
-<span class="sig-name descname"><span class="pre">get_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.get_pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.get_pixel" title="Permalink to this definition">#</a></dt>
-<dd><p>Gets the color of a pixel on the surface.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the pixel.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The color of the pixel.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.get_pixel_tuple">
-<span class="sig-name descname"><span class="pre">get_pixel_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.get_pixel_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.get_pixel_tuple" title="Permalink to this definition">#</a></dt>
-<dd><p>Gets the color of a pixel on the surface.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the pixel.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The color of the pixel.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -6155,8 +6102,8 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.draw.Draw.queue_point">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queue_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.cyan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/draw/#Draw.queue_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.draw.Draw.queue_point" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.utils.rendering.draw.Draw.queue_pixel">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queue_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.cyan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/draw/#Draw.queue_pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.draw.Draw.queue_pixel" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a point onto the renderer at the end of the frame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -6171,8 +6118,8 @@ Shown when the aspect ratio of the game does not match the aspect ratio of the w
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="rubato.utils.rendering.draw.Draw.point">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.cyan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/draw/#Draw.point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.draw.Draw.point" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="rubato.utils.rendering.draw.Draw.pixel">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Color.cyan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/draw/#Draw.pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.draw.Draw.pixel" title="Permalink to this definition">#</a></dt>
 <dd><p>Draw a point onto the renderer immediately.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

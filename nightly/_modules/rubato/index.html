@@ -345,7 +345,8 @@
     <span class="n">window_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">window_pos</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">icon</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="n">fullscreen</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;off&quot;</span><span class="p">,</span> <span class="s2">&quot;desktop&quot;</span><span class="p">,</span> <span class="s2">&quot;exclusive&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;off&quot;</span><span class="p">,</span>
+    <span class="n">fullscreen</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">maximize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">target_fps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">physics_fps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span>
     <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># test: skip</span>
@@ -361,8 +362,9 @@
 <span class="sd">        window_pos: The position of the window, cast to int Vector. Set to None to let the computer decide.</span>
 <span class="sd">            Defaults to None.</span>
 <span class="sd">        icon: The path to the icon that will appear in the window. Defaults to &quot;&quot; (the rubato logo).</span>
-<span class="sd">        fullscreen: Whether the game should be fullscreen. Can be one of &quot;off&quot;, &quot;desktop&quot;, or &quot;exclusive&quot;.</span>
-<span class="sd">            Defaults to &quot;off&quot;.</span>
+<span class="sd">        fullscreen: Whether the game should be fullscreen. Defaults to False.</span>
+<span class="sd">        maximize: Whether the game should be maximized. If fullscreen is set to True, that will take priority.</span>
+<span class="sd">            Defaults to False.</span>
 <span class="sd">        target_fps: The target frames per second. If set to 0, the target fps will be uncapped. Defaults to 0.</span>
 <span class="sd">        physics_fps: The physics simulation&#39;s frames per second. Defaults to 50.</span>
 <span class="sd">        hidden: Whether the window should be hidden. Defaults to False.</span>
@@ -403,8 +405,10 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">Display</span><span class="o">.</span><span class="n">set_window_icon</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">files</span><span class="p">(</span><span class="s2">&quot;rubato.static.png&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;logo_filled.png&quot;</span><span class="p">)))</span>
 
-    <span class="k">if</span> <span class="n">fullscreen</span> <span class="o">!=</span> <span class="s2">&quot;off&quot;</span><span class="p">:</span>
-        <span class="n">Display</span><span class="o">.</span><span class="n">set_fullscreen</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">fullscreen</span><span class="p">)</span>
+    <span class="n">Display</span><span class="o">.</span><span class="n">set_fullscreen</span><span class="p">(</span><span class="n">fullscreen</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">maximize</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">fullscreen</span><span class="p">:</span>
+        <span class="n">Display</span><span class="o">.</span><span class="n">maximize_window</span><span class="p">()</span>
 
     <span class="n">Display</span><span class="o">.</span><span class="n">hidden</span> <span class="o">=</span> <span class="n">hidden</span>
 
