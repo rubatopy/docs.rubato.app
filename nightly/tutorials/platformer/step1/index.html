@@ -246,8 +246,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../step5/">Step 5 - Finishing Touches</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage_guidelines/">Usage Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/custom_components/">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage_guidelines/">Best Practices / Usage Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -320,62 +319,67 @@
 <p>Before we can design our game, we need to do a few things to set rubato up.</p>
 <p>First, follow the <a class="reference internal" href="../../../intro/"><span class="doc">setup guide</span></a>, naming your file <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p>
 <p>Then, download and extract these
-<a class="reference external" href="https://raw.githubusercontent.com/rubatopy/rubato/main/demo/files/files.zip">files</a>
+<a class="reference external" href="https://raw.githubusercontent.com/rubatopy/rubato/main/demo/platformer_stripped/files.zip">files</a>
 into the same directory as your <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file (so you have <code class="docutils literal notranslate"><span class="pre">main.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">files</span></code> folder in the same directory.)</p>
 <p>At this point, your <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file should look like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
-
-<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
-
-<span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c1"># initialize a new game</span>
+<span class="linenos">4</span><span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="c1"># begin the game</span>
+<span class="linenos">7</span><span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 <p>Running <code class="docutils literal notranslate"><span class="pre">main.py</span></code> using <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">main.py</span></code> should result in a window similar to this appearing:</p>
 <a class="reference internal image-reference" href="../../../_images/1.png"><img alt="../../../_images/1.png" class="align-center" src="../../../_images/1.png" style="width: 25%;" /></a>
-<p><code class="code docutils literal notranslate"><span class="pre">rb.init()</span></code> is the initializer function for the library.
+<p><a class="reference internal" href="../../../api/#rubato.init" title="rubato.init"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.init()</span></code></a> is the initializer function for the library.
 It will ensure that rubato can communicate with the computer hardware and
 set up a window for you.</p>
-<p><code class="code docutils literal notranslate"><span class="pre">rb.begin()</span></code> actually runs the game loop. The loop will
+<p><a class="reference internal" href="../../../api/#rubato.begin" title="rubato.begin"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.begin()</span></code></a> actually runs the game loop. The loop will
 handle all of the rendering, player logic, etc. Without calling it, nothing happens.</p>
 <dl class="simple">
 <dt>To customize your game window, you can pass in a few parameters. For now, let's:</dt><dd><ul class="simple">
 <li><p>Give our window a name</p></li>
 <li><p>Change its resolution</p></li>
+<li><p>Make it fullscreen</p></li>
 </ul>
 </dd>
 </dl>
-<p>Replace the previous <code class="code docutils literal notranslate"><span class="pre">rb.init()</span></code> call with this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize a new game</span>
-<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
-    <span class="n">res</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (pixel length and height).</span>
-        <span class="c1"># note that since we didn&#39;t also specify a window size,</span>
-        <span class="c1"># the window will be automatically resized to half of the resolution.</span>
-<span class="p">)</span>
+<p>Replace the previous <a class="reference internal" href="../../../api/#rubato.init" title="rubato.init"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.init()</span></code></a> call with this:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">3</span><span class="c1"># initialize a new game</span>
+<span class="linenos">4</span><span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+<span class="hll"><span class="linenos">5</span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+</span><span class="hll"><span class="linenos">6</span>    <span class="n">res</span><span class="o">=</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (in pixels).</span>
+</span><span class="hll"><span class="linenos">7</span>    <span class="n">fullscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Set the window to be fullscreen</span>
+</span><span class="linenos">8</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here we're introducing a new class: <code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Vector</span></code>.</p>
-<p>A rubato <code class="xref py py-func docutils literal notranslate"><span class="pre">Vector</span></code> is an object that contains two numbers, x and y.
-A Vector can represent a point, dimensions, a mathematical vector, or anything else that has x and y
-parameters. The <code class="xref py py-func docutils literal notranslate"><span class="pre">Vector</span></code> class comes loaded with
-many useful transformation functions and also allows super intuitive math using operator overloading. We'll take a
-deeper look at what that means in a bit.</p>
-<p>At this point, running the game should look like this:</p>
+</div>
+<p>At this point, running the game should look like this (full screen and white). To quit the game either quit like any
+other program or press <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> in the terminal.</p>
 <a class="reference internal image-reference" href="../../../_images/2.png"><img alt="../../../_images/2.png" class="align-center" src="../../../_images/2.png" style="width: 75%;" /></a>
 <p>Here is what your main.py should look like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
-
-<span class="c1"># initialize a new game</span>
-<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
-    <span class="n">res</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (pixel length and height).</span>
-        <span class="c1"># note that since we didn&#39;t also specify a window size,</span>
-        <span class="c1"># the window will be automatically resized to half of the resolution.</span>
-<span class="p">)</span>
-
-<span class="c1"># begin the game</span>
-<span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
-</pre></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
+</span><span class="hll"><span class="linenos"> 2</span>
+</span><span class="hll"><span class="linenos"> 3</span><span class="c1"># initialize a new game</span>
+</span><span class="hll"><span class="linenos"> 4</span><span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos"> 5</span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+</span><span class="hll"><span class="linenos"> 6</span>    <span class="n">res</span><span class="o">=</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (in pixels).</span>
+</span><span class="hll"><span class="linenos"> 7</span>    <span class="n">fullscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Set the window to be fullscreen</span>
+</span><span class="hll"><span class="linenos"> 8</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 9</span>
+</span><span class="hll"><span class="linenos">10</span><span class="c1"># begin the game</span>
+</span><span class="hll"><span class="linenos">11</span><span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+</span></pre></div>
+</div>
 </div>
 <p>If you made it here, great! We're ready to build the platformer.
 Next, we'll create a player and add him to the game.</p>

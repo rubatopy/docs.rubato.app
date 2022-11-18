@@ -8,7 +8,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/tutorials/platformer/step2.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="Welcome to the second part of making a platformer in rubato. In this step, we will be building a simple animated character. At this point, you should have a white window with a resolution of 1920 by 1080 pixels. First, we need to understand the rubato heirarchy (we'll explain it first, then walk ..." />
+  <meta property="og:description" content="Welcome to the second part of making a platformer in rubato. In this step, we will be building a simple animated character. At this point, you should have a white window with a resolution of 1920 by 1080 pixels. Before we continue, we first need to understand the rubato heirarchy (we'll explain i..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../../../search/" /><link rel="next" title="Step 3 - Adding Player Behavior" href="../step3/" /><link rel="prev" title="Step 1 - Basic Structure" href="../step1/" />
@@ -246,8 +246,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../step5/">Step 5 - Finishing Touches</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../usage_guidelines/">Usage Guidelines</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced/custom_components/">Custom Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../usage_guidelines/">Best Practices / Usage Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../advanced/pyinstaller/">Bundling to an Application</a></li>
 </ul>
 
@@ -320,111 +319,171 @@
 <p>Welcome to the second part of making a platformer in rubato. In this step, we will be building a simple
 animated character.</p>
 <p>At this point, you should have a white window with a resolution of 1920 by 1080 pixels.</p>
-<p>First, we need to understand the rubato heirarchy (we'll explain it first, then walk you
+<p>Before we continue, we first need to understand the rubato heirarchy (we'll explain it first, then walk you
 through it). rubato has 4 levels of structure, in order: Scenes, Groups, Game Objects, and Components.</p>
-<p><a class="reference internal" href="../../../api/#rubato.struct.scene.Scene" title="rubato.struct.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> hold 2 Groups. One for menu items (the UI) and
-one for the main Game Objects. It also manages a <code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code>.
+<p><a class="reference internal" href="../../../api/#rubato.structure.scene.Scene" title="rubato.structure.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> hold two premade Groups. One for menu items (the UI) and
+one for the main Game Objects. It also manages a <a class="reference internal" href="../../../api/#rubato.utils.rendering.camera.Camera" title="rubato.utils.rendering.camera.Camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code></a>.
 Scenes are used to separate different sections of a game. For example, you could have each game
-level in a different scene. Then to move between levels, you would simply switch scenes, and rubato will
-automatically change which scene is updated and drawn to the window.</p>
-<p><a class="reference internal" href="../../../api/#rubato.struct.group.Group" title="rubato.struct.group.Group"><code class="xref py py-func docutils literal notranslate"><span class="pre">Groups</span></code></a> are the next layer down. They can hold either Game Objects or other Groups.
+level in a different scene. To move between levels, you would simply switch scenes.</p>
+<p><a class="reference internal" href="../../../api/#rubato.structure.group.Group" title="rubato.structure.group.Group"><code class="xref py py-func docutils literal notranslate"><span class="pre">Groups</span></code></a> are the next layer down. They can hold either Game Objects or other Groups.
 Their main purpose is divide different &quot;groups&quot; of items (hence the name!). For example,
-items in 2 different groups won't automatically collide with each other, but items sharing a Group will (even if the group is a shared ancestor of both!).
-We won't explicitly use Groups in this tutorial as because their functionality isn't necessary for the platformer.</p>
-<p><a class="reference internal" href="../../../api/#rubato.struct.gameobject.game_object.GameObject" title="rubato.struct.gameobject.game_object.GameObject"><code class="xref py py-func docutils literal notranslate"><span class="pre">Game</span> <span class="pre">Objects</span></code></a> are the main objects in a game.
-They have a position and z-index, and represent a &quot;thing&quot;, such as a player, or an enemy, or a platform. Their behavior is almost entirely
+items in two different groups won't automatically collide with each other, but items sharing a Group will.
+We won't be making any new Groups in this tutorial because their functionality isn't necessary for the platformer.</p>
+<p><a class="reference internal" href="../../../api/#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-func docutils literal notranslate"><span class="pre">Game</span> <span class="pre">Objects</span></code></a> are the main objects in a game.
+They have a position and z-index, and represent a &quot;thing&quot;, such as a player, an enemy, or a platform. Their behavior is almost entirely
 determined by the Components that are assigned to them.</p>
-<p><a class="reference internal" href="../../../api/#rubato.struct.gameobject.component.Component" title="rubato.struct.gameobject.component.Component"><code class="xref py py-func docutils literal notranslate"><span class="pre">Components</span></code></a> are lightweight &quot;modules&quot; that add to the behavior of a Game Object.
-For example, an Image component draws an image from your filesystem at the Game Object's position. A RigidBody
-component registers the Game Object into the built-in physics engine. A Hitbox component gives a Game Object shape.</p>
-<p>If this explanation was confusing, it'll hopefully make more sense seeing the system in action.
-Let's create a scene right after <code class="code docutils literal notranslate"><span class="pre">rb.init()</span></code> but before <code class="code docutils literal notranslate"><span class="pre">rb.begin()</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a scene</span>
-<span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
+<p><a class="reference internal" href="../../../api/#rubato.structure.gameobject.component.Component" title="rubato.structure.gameobject.component.Component"><code class="xref py py-func docutils literal notranslate"><span class="pre">Components</span></code></a> are lightweight &quot;modules&quot; that add to the behavior of a Game Object.
+For example, an <a class="reference internal" href="../../../api/#rubato.structure.gameobject.sprites.raster.Image" title="rubato.structure.gameobject.sprites.raster.Image"><code class="xref py py-func docutils literal notranslate"><span class="pre">Image</span></code></a> component draws an image from your
+filesystem at the Game Object's position. A <a class="reference internal" href="../../../api/#rubato.structure.gameobject.physics.rigidbody.RigidBody" title="rubato.structure.gameobject.physics.rigidbody.RigidBody"><code class="xref py py-func docutils literal notranslate"><span class="pre">RigidBody</span></code></a> component registers the Game Object
+into the built-in physics engine. A <a class="reference internal" href="../../../api/#rubato.structure.gameobject.physics.hitbox.Hitbox" title="rubato.structure.gameobject.physics.hitbox.Hitbox"><code class="xref py py-func docutils literal notranslate"><span class="pre">Hitbox</span></code></a> component gives
+a Game Object shape and enables collision.</p>
+<p>If this explanation was confusing, hopefully it'll make more sense seeing the system in action.
+We'll start by making a scene:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 3</span><span class="c1"># initialize a new game</span>
+<span class="linenos"> 4</span><span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+<span class="linenos"> 5</span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+<span class="linenos"> 6</span>    <span class="n">res</span><span class="o">=</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (in pixels).</span>
+<span class="linenos"> 7</span>    <span class="n">fullscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Set the window to be fullscreen</span>
+<span class="linenos"> 8</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="hll"><span class="linenos">10</span><span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
+</span><span class="linenos">11</span>
+<span class="linenos">12</span><span class="c1"># begin the game</span>
+<span class="linenos">13</span><span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 <p>Here we introduce the <a class="reference internal" href="../../../api/#rubato.utils.color.Color" title="rubato.utils.color.Color"><code class="xref py py-func docutils literal notranslate"><span class="pre">Color</span></code></a> class. Colors
 are stored in RGBA format but can be loaded from HSV and HEX. The class comes
 preloaded with pastel-inspired <a class="reference internal" href="../../../api/#rubato.utils.color.Color.random" title="rubato.utils.color.Color.random"><code class="xref py py-func docutils literal notranslate"><span class="pre">default</span> <span class="pre">colors</span></code></a> as
 well as several methods to mix and manipulate them. In the code above, we use <a class="reference internal" href="../../../api/#rubato.utils.color.Color.lighter" title="rubato.utils.color.Color.lighter"><code class="xref py py-func docutils literal notranslate"><span class="pre">lighter()</span></code></a>
 to lighten the shade a little.</p>
-<p>Next, we need to create a player and add it to the scene.
-Remember to insert the following code before the <code class="docutils literal notranslate"><span class="pre">begin()</span></code> call but after creating the scene.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the player and set its starting position</span>
-<span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
-    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Add the player to the scene</span>
-<span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+<p>Note that we did not have to actually add our scene to the game after creating it.
+That's because it happens automatically every time a scene is initialized!</p>
+<p>Next, we need to create a player and add it to the scene. Create a new file next to <code class="code docutils literal notranslate"><span class="pre">main.py</span></code> called <code class="code docutils literal notranslate"><span class="pre">shared.py</span></code>
+and add the following code:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">shared.py</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="c1"># Create the player and set its starting position</span>
+<span class="linenos">4</span><span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
+<span class="linenos">5</span>    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<span class="linenos">6</span>    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="linenos">7</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Display.center_left</span></code> is just the Vector position for the center of the
-left side of the screen.</p>
-<p>If we ran this now, we won't see our player because Game Objects don't draw anything by themselves. Let's change that
-by adding a simple Animation to the player.</p>
+</div>
+<p>Here we're introducing a new class: <a class="reference internal" href="../../../api/#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Vector</span></code></a>.</p>
+<p>A rubato <a class="reference internal" href="../../../api/#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">Vector</span></code></a> is an object that contains two numbers, x and y.
+A Vector can represent a point, dimensions, a mathematical vector, or anything else that has x and y
+parameters. The <a class="reference internal" href="../../../api/#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-func docutils literal notranslate"><span class="pre">Vector</span></code></a> class comes loaded with
+many useful transformation functions and lets you utilize intuitive operators like <code class="code docutils literal notranslate"><span class="pre">+</span></code> as shown above to do quick vector math.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>rubato uses the cartesian coordinate system, where the origin is in the center of the screen and positive y is up.</p>
+</div>
+<p><a class="reference internal" href="../../../api/#rubato.utils.hardware.display.Display.center_left" title="rubato.utils.hardware.display.Display.center_left"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Display.center_left</span></code></a> is just the Vector position for the center of the
+left side of the screen (i.e. y = 0, x = -screen resolution / 2).</p>
+<p>Now in the main file we need to import <code class="code docutils literal notranslate"><span class="pre">shared.py</span></code> and add it to the scene (above the call to begin()):</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You need to import the shared file <strong>after</strong> having called the rubato init method, so that you can use rubato functions in shared.</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos">10</span><span class="kn">import</span> <span class="nn">shared</span>
+</span><span class="linenos">11</span>
+<span class="linenos">12</span><span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
+<span class="linenos">13</span>
+<span class="hll"><span class="linenos">14</span><span class="c1"># Add the player to the scene</span>
+</span><span class="hll"><span class="linenos">15</span><span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">shared</span><span class="o">.</span><span class="n">player</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<p>If we ran this now, we won't see our player. That's because Game Objects don't draw anything by themselves.
+Let's change that by adding a simple Animation to the player.</p>
 <p>You will see a few image files inside the <code class="docutils literal notranslate"><span class="pre">files/dino</span></code> directory. Each of these image
 files is a spritesheet for a single animation. Instead of loading each frame and image ourselves, we can use
-<a class="reference internal" href="../../../api/#rubato.struct.gameobject.sprites.spritesheet.Spritesheet.from_folder" title="rubato.struct.gameobject.sprites.spritesheet.Spritesheet.from_folder"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Spritesheet.from_folder()</span></code></a> to load them
+<a class="reference internal" href="../../../api/#rubato.structure.gameobject.sprites.spritesheet.Spritesheet.from_folder" title="rubato.structure.gameobject.sprites.spritesheet.Spritesheet.from_folder"><code class="xref py py-func docutils literal notranslate"><span class="pre">rb.Spritesheet.from_folder()</span></code></a> to load them
 all at once. This function takes the path to a folder and returns an
-<a class="reference internal" href="../../../api/#rubato.struct.gameobject.sprites.animation.Animation" title="rubato.struct.gameobject.sprites.animation.Animation"><code class="xref py py-func docutils literal notranslate"><span class="pre">Animation</span></code></a> component that can then be added to a GameObject.</p>
+<a class="reference internal" href="../../../api/#rubato.structure.gameobject.sprites.animation.Animation" title="rubato.structure.gameobject.sprites.animation.Animation"><code class="xref py py-func docutils literal notranslate"><span class="pre">Animation</span></code></a> component that can then be added to a GameObject.</p>
 <p>Our spritesheets have a couple of frames. Each frame is 24 pixels by 24 pixels. Be sure to specify the sprite size
 when you load them. This will let rubato correctly subdivide the spritesheet into frames.</p>
 <p>Animations are made up of different states which we'll be able to switch between. When loading from a folder, the
 state names are the names of the files. Some states we have in our example are idle, jump, crouch, and run.</p>
 <p>We also should specify the default state. This is the state that the animation will start at and the one that it will
 return to when other states finish. In our case, this will be the idle state.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create animation and initialize states</span>
-<span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
-    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
-    <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
-    <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">p_animation</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">p_animation</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># The frames will change 10 times a second</span>
-<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p_animation</span><span class="p">)</span> <span class="c1"># Add the animation component to the player</span>
-</pre></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">shared.py</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 3</span><span class="c1"># Create the player and set its starting position</span>
+<span class="linenos"> 4</span><span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
+<span class="linenos"> 5</span>    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<span class="linenos"> 6</span>    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="linenos"> 7</span><span class="p">)</span>
+<span class="linenos"> 8</span>
+<span class="hll"><span class="linenos"> 9</span><span class="c1"># Create animation and initialize states</span>
+</span><span class="hll"><span class="linenos">10</span><span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">11</span>    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">12</span>    <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">13</span>    <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">14</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">15</span><span class="n">p_animation</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">16</span><span class="n">p_animation</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># The frames will change 10 times a second</span>
+</span><span class="hll"><span class="linenos">17</span><span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p_animation</span><span class="p">)</span>  <span class="c1"># Add the animation component to the player</span>
+</span></pre></div>
+</div>
 </div>
 <p>Now you should have a cute dinosaur bobbing up and down on the left side of the screen:</p>
 <a class="reference internal image-reference" href="../../../_images/11.png"><img alt="../../../_images/11.png" class="align-center" src="../../../_images/11.png" style="width: 75%;" /></a>
 <p>Adorable :)</p>
-<p>Here is what you should have so far if you've been following along:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
-
-<span class="c1"># initialize a new game</span>
-<span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
-    <span class="n">res</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (pixel length and height).</span>
-        <span class="c1"># note that since we didn&#39;t also specify a window size,</span>
-        <span class="c1"># the window will be automatically resized to half of the resolution.</span>
-<span class="p">)</span>
-
-<span class="c1"># Create a scene</span>
-<span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
-
-<span class="c1"># Create the player and set its starting position</span>
-<span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
-    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Create animation and initialize states</span>
-<span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
-    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
-    <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
-    <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">p_animation</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">p_animation</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># The frames will change 10 times a second</span>
-<span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p_animation</span><span class="p">)</span> <span class="c1"># Add the animation component to the player</span>
-
-<span class="c1"># Add the player to the scene</span>
-<span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
-
-<span class="c1"># begin the game</span>
-<span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+<p>Here is what you should have so far if you've been following along (cleaned up a bit):</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">main.py</span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
+<span class="linenos"> 2</span>
+<span class="hll"><span class="linenos"> 3</span><span class="c1"># initialize a new game</span>
+</span><span class="linenos"> 4</span><span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+<span class="linenos"> 5</span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Platformer Demo&quot;</span><span class="p">,</span>  <span class="c1"># Set a name</span>
+<span class="linenos"> 6</span>    <span class="n">res</span><span class="o">=</span><span class="p">(</span><span class="mi">1920</span><span class="p">,</span> <span class="mi">1080</span><span class="p">),</span>  <span class="c1"># Set the window resolution (in pixels).</span>
+<span class="linenos"> 7</span>    <span class="n">fullscreen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Set the window to be fullscreen</span>
+<span class="linenos"> 8</span><span class="p">)</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="kn">import</span> <span class="nn">shared</span>
+<span class="linenos">11</span>
+<span class="hll"><span class="linenos">12</span><span class="n">main</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Scene</span><span class="p">(</span><span class="n">background_color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">cyan</span><span class="o">.</span><span class="n">lighter</span><span class="p">())</span>
+</span><span class="hll"><span class="linenos">13</span>
+</span><span class="hll"><span class="linenos">14</span><span class="c1"># Add the player to the scene</span>
+</span><span class="hll"><span class="linenos">15</span><span class="n">main</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">shared</span><span class="o">.</span><span class="n">player</span><span class="p">)</span>
+</span><span class="linenos">16</span>
+<span class="linenos">17</span><span class="c1"># begin the game</span>
+<span class="linenos">18</span><span class="n">rb</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">shared.py</span><a class="headerlink" href="#id6" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">rubato</span> <span class="k">as</span> <span class="nn">rb</span>
+</span><span class="hll"><span class="linenos"> 2</span>
+</span><span class="hll"><span class="linenos"> 3</span><span class="c1"># Create the player and set its starting position</span>
+</span><span class="hll"><span class="linenos"> 4</span><span class="n">player</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">GameObject</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos"> 5</span>    <span class="n">pos</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">center_left</span> <span class="o">+</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos"> 6</span>    <span class="n">z_index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos"> 7</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos"> 8</span>
+</span><span class="hll"><span class="linenos"> 9</span><span class="c1"># Create animation and initialize states</span>
+</span><span class="hll"><span class="linenos">10</span><span class="n">p_animation</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Spritesheet</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">11</span>    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;files/dino&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">12</span>    <span class="n">sprite_size</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">13</span>    <span class="n">default_state</span><span class="o">=</span><span class="s2">&quot;idle&quot;</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">14</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">15</span><span class="n">p_animation</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">16</span><span class="n">p_animation</span><span class="o">.</span><span class="n">fps</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># The frames will change 10 times a second</span>
+</span><span class="hll"><span class="linenos">17</span><span class="n">player</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p_animation</span><span class="p">)</span>  <span class="c1"># Add the animation component to the player</span>
+</span></pre></div>
+</div>
 </div>
 </section>
  
