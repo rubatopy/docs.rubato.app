@@ -61,6 +61,48 @@
         <loc>https://docs.rubato.app/nightly/py-modindex/</loc>
     </url>
     <url>
+        <loc>https://docs.rubato.app/v0.4.0/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/search/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/key-names/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/intro/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/tutorials/platformer/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/tutorials/platformer/step1/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/tutorials/platformer/step4/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/tutorials/platformer/step2/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/tutorials/platformer/step5/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/tutorials/platformer/step3/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/tutorials/usage_guidelines/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/tutorials/advanced/pyinstaller/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/api/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/v0.4.0/py-modindex/</loc>
+    </url>
+    <url>
         <loc>https://docs.rubato.app/latest/</loc>
     </url>
     <url>
@@ -97,13 +139,7 @@
         <loc>https://docs.rubato.app/latest/tutorials/advanced/pyinstaller/</loc>
     </url>
     <url>
-        <loc>https://docs.rubato.app/latest/tutorials/advanced/custom_components/</loc>
-    </url>
-    <url>
         <loc>https://docs.rubato.app/latest/api/</loc>
-    </url>
-    <url>
-        <loc>https://docs.rubato.app/latest/events/</loc>
     </url>
     <url>
         <loc>https://docs.rubato.app/latest/py-modindex/</loc>
