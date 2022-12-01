@@ -1263,23 +1263,40 @@ not be used directly. Instead, create another class and extend from this one.</p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Raster.blit">
-<span class="sig-name descname"><span class="pre">blit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/sprites/raster/#Raster.blit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Raster.blit" title="Permalink to this definition">#</a></dt>
-<dd><p>Blits (merges / copies) another Raster onto this one.</p>
+<span class="sig-name descname"><span class="pre">blit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/sprites/raster/#Raster.blit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Raster.blit" title="Permalink to this definition">#</a></dt>
+<dd><p>Blits (merges / copies) another Surface onto this one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>other</strong> (<a class="reference internal" href="#rubato.structure.gameobject.sprites.raster.Raster" title="rubato.structure.gameobject.sprites.raster.Raster"><code class="xref py py-class docutils literal notranslate"><span class="pre">Raster</span></code></a>) -- The Raster to blit onto this one.</p></li>
-<li><p><strong>src_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (x, y, width, height) to blit from in the source raster (other).
+<li><p><strong>other</strong> (<a class="reference internal" href="#rubato.structure.gameobject.sprites.raster.Raster" title="rubato.structure.gameobject.sprites.raster.Raster"><code class="xref py py-class docutils literal notranslate"><span class="pre">Raster</span></code></a>) -- The Surface to blit onto this one.</p></li>
+<li><p><strong>src_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (center_x, center_y, width, height) to crop from the source surface (other).
 Defaults to the whole surface.</p></li>
-<li><p><strong>dst_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (x, y, width, height) to blit to in the destination raster (self).
-Defaults to the whole surface.</p></li>
+<li><p><strong>dst</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The position to place the other surface. Defaults to (0, 0).</p></li>
 </ul>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Will not stretch the other raster to fit the destination rectangle.</p>
+<p>Will not stretch the other surface to fit the destination rectangle.</p>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Raster.flip_x">
+<span class="sig-name descname"><span class="pre">flip_x</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/sprites/raster/#Raster.flip_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Raster.flip_x" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the raster along the x-axis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Raster.flip_y">
+<span class="sig-name descname"><span class="pre">flip_y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/sprites/raster/#Raster.flip_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Raster.flip_y" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the raster along the y-axis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Raster.flip_anti_diagonal">
+<span class="sig-name descname"><span class="pre">flip_anti_diagonal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/sprites/raster/#Raster.flip_anti_diagonal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Raster.flip_anti_diagonal" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the surface along the anti-diagonal.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1633,22 +1650,21 @@ Defaults to the whole surface.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Image.blit">
-<span class="sig-name descname"><span class="pre">blit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Image.blit" title="Permalink to this definition">#</a></dt>
-<dd><p>Blits (merges / copies) another Raster onto this one.</p>
+<span class="sig-name descname"><span class="pre">blit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Image.blit" title="Permalink to this definition">#</a></dt>
+<dd><p>Blits (merges / copies) another Surface onto this one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>other</strong> (<a class="reference internal" href="#rubato.structure.gameobject.sprites.raster.Raster" title="rubato.structure.gameobject.sprites.raster.Raster"><code class="xref py py-class docutils literal notranslate"><span class="pre">Raster</span></code></a>) -- The Raster to blit onto this one.</p></li>
-<li><p><strong>src_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (x, y, width, height) to blit from in the source raster (other).
+<li><p><strong>other</strong> (<a class="reference internal" href="#rubato.structure.gameobject.sprites.raster.Raster" title="rubato.structure.gameobject.sprites.raster.Raster"><code class="xref py py-class docutils literal notranslate"><span class="pre">Raster</span></code></a>) -- The Surface to blit onto this one.</p></li>
+<li><p><strong>src_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (center_x, center_y, width, height) to crop from the source surface (other).
 Defaults to the whole surface.</p></li>
-<li><p><strong>dst_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (x, y, width, height) to blit to in the destination raster (self).
-Defaults to the whole surface.</p></li>
+<li><p><strong>dst</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The position to place the other surface. Defaults to (0, 0).</p></li>
 </ul>
 </dd>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Will not stretch the other raster to fit the destination rectangle.</p>
+<p>Will not stretch the other surface to fit the destination rectangle.</p>
 </div>
 </dd></dl>
 
@@ -1758,6 +1774,24 @@ Defaults to the whole surface.</p></li>
 <dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Image.fixed_update">
 <span class="sig-name descname"><span class="pre">fixed_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Image.fixed_update" title="Permalink to this definition">#</a></dt>
 <dd><p>The physics function for a component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Image.flip_anti_diagonal">
+<span class="sig-name descname"><span class="pre">flip_anti_diagonal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Image.flip_anti_diagonal" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the surface along the anti-diagonal.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Image.flip_x">
+<span class="sig-name descname"><span class="pre">flip_x</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Image.flip_x" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the raster along the x-axis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.sprites.raster.Image.flip_y">
+<span class="sig-name descname"><span class="pre">flip_y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.sprites.raster.Image.flip_y" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the raster along the y-axis.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -3286,6 +3320,302 @@ direction of Particles.</p>
 </dd></dl>
 
 </section>
+</section>
+<section id="module-rubato.structure.gameobject.tilemap.tiled">
+<span id="tilemap"></span><h4>Tilemap<a class="headerlink" href="#module-rubato.structure.gameobject.tilemap.tiled" title="Permalink to this heading">#</a></h4>
+<p>A Tiled tilemap.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Tilemap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collider_tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/tilemap/tiled/#Tilemap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap" title="Permalink to this definition">#</a></dt>
+<dd><p>A tilemap that is loaded from a Tiled map file. Once a tilemap component is created, it won't stay updated with the
+map file. To automatically add hitboxes to the gameobject, use Tiled Objects. We support Rectangles and Polygons in
+layers or on the individual tiles.</p>
+<p>We do not support all of Tiled's features, but we do support the most common ones. Here is a list of major features
+that we DO NOT support:</p>
+<ul class="simple">
+<li><p>Infinite maps</p></li>
+<li><p>Non-orthogonal maps</p></li>
+<li><p>Non-rectangular tiles</p></li>
+<li><p>Animated tiles</p></li>
+<li><p>Multiple tilesets per map</p></li>
+<li><p>Image layers</p></li>
+<li><p>Tile and layer opacity</p></li>
+<li><p>Parallax scrolling</p></li>
+<li><p>Worlds</p></li>
+<li><p>Terrain</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>map_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The path to the map file.</p></li>
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The scale of the tilemap.</p></li>
+<li><p><strong>collider_tag</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The tag of the colliders.</p></li>
+<li><p><strong>z_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The z index of the tilemap.</p></li>
+<li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the tilemap is hidden.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/tilemap/tiled/#Tilemap.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.setup" title="Permalink to this definition">#</a></dt>
+<dd><p>The setup function for a component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/tilemap/tiled/#Tilemap.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.draw" title="Permalink to this definition">#</a></dt>
+<dd><p>The draw function for a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>camera</strong> -- The camera to draw the component with.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/tilemap/tiled/#Tilemap.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.clone" title="Permalink to this definition">#</a></dt>
+<dd><p>Clones the component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap" title="rubato.structure.gameobject.tilemap.tiled.Tilemap"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tilemap</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.fixed_update">
+<span class="sig-name descname"><span class="pre">fixed_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.fixed_update" title="Permalink to this definition">#</a></dt>
+<dd><p>The physics function for a component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.true_pos">
+<span class="sig-name descname"><span class="pre">true_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.true_pos" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the world position of the component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.true_rotation">
+<span class="sig-name descname"><span class="pre">true_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.true_rotation" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the rotation of the component offset by its parent gameobject rotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.true_z">
+<span class="sig-name descname"><span class="pre">true_z</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.true_z" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the z_index of the component offset by its parent gameobject z_index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.update" title="Permalink to this definition">#</a></dt>
+<dd><p>The update function for a component.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.singular">
+<span class="sig-name descname"><span class="pre">singular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.singular" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether multiple components of the same type are allowed on a game object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.offset" title="Permalink to this definition">#</a></dt>
+<dd><p>The offset from the center of the game object that the hitbox should be placed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.rot_offset">
+<span class="sig-name descname"><span class="pre">rot_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.rot_offset" title="Permalink to this definition">#</a></dt>
+<dd><p>The rotational offset from the game object's rotation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.z_index">
+<span class="sig-name descname"><span class="pre">z_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.z_index" title="Permalink to this definition">#</a></dt>
+<dd><p>Where to draw the component in the z direction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.gameobj">
+<span class="sig-name descname"><span class="pre">gameobj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><span class="pre">GameObject</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.gameobj" title="Permalink to this definition">#</a></dt>
+<dd><p>The game object this component is attached to.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.tiled.Tilemap.hidden">
+<span class="sig-name descname"><span class="pre">hidden</span></span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.tiled.Tilemap.hidden" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether the component is hidden (not drawn).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-rubato.structure.gameobject.tilemap.simple">
+<span id="simple-tilemap"></span><h4>Simple Tilemap<a class="headerlink" href="#module-rubato.structure.gameobject.tilemap.simple" title="Permalink to this heading">#</a></h4>
+<p>A simple tilemap doesn't need to use the Tiled editor. It uses an array of
+numbers to keep track of tile types.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SimpleTilemap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tilemap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tiles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tile_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(32,</span> <span class="pre">32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collider_tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rot_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/tilemap/simple/#SimpleTilemap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap" title="Permalink to this definition">#</a></dt>
+<dd><p>A simple tilemap doesn't need to use the Tiled editor. It uses an array of numbers to keep track of tile types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tilemap</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- A 2D array of integers representing the tilemap.</p></li>
+<li><p><strong>tiles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="#rubato.utils.rendering.surface.Surface" title="rubato.utils.rendering.surface.Surface"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>]) -- A list of surfaces representing the tiles. The index of the surface in the list is the number used in the
+tilemap array.</p></li>
+<li><p><strong>tile_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The size of each tile in the tilemap.</p></li>
+<li><p><strong>collision</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]) -- A list of integers representing the tiles that should have collision.</p></li>
+<li><p><strong>collider_tag</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) -- A list of strings representing the tags of the colliders. The index of the tag in the list is the
+number used in the tilemap array.</p></li>
+<li><p><strong>scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The scale of the tilemap.</p></li>
+<li><p><strong>offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The offset of the tilemap.</p></li>
+<li><p><strong>rot_offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The rotation offset of the tilemap.</p></li>
+<li><p><strong>z_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The z-index of the tilemap.</p></li>
+<li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the tilemap is hidden.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.scale" title="Permalink to this definition">#</a></dt>
+<dd><p>The scale of the tilemap.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.uptodate">
+<span class="sig-name descname"><span class="pre">uptodate</span></span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.uptodate" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether the tilemap is up to date.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/tilemap/simple/#SimpleTilemap.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.update" title="Permalink to this definition">#</a></dt>
+<dd><p>The update function for a component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/tilemap/simple/#SimpleTilemap.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.draw" title="Permalink to this definition">#</a></dt>
+<dd><p>The draw function for a component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>camera</strong> -- The camera to draw the component with.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.fixed_update">
+<span class="sig-name descname"><span class="pre">fixed_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.fixed_update" title="Permalink to this definition">#</a></dt>
+<dd><p>The physics function for a component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.setup" title="Permalink to this definition">#</a></dt>
+<dd><p>The setup function for a component.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.true_pos">
+<span class="sig-name descname"><span class="pre">true_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.true_pos" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the world position of the component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.true_rotation">
+<span class="sig-name descname"><span class="pre">true_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.true_rotation" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the rotation of the component offset by its parent gameobject rotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.true_z">
+<span class="sig-name descname"><span class="pre">true_z</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.true_z" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the z_index of the component offset by its parent gameobject z_index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.singular">
+<span class="sig-name descname"><span class="pre">singular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.singular" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether multiple components of the same type are allowed on a game object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.offset" title="Permalink to this definition">#</a></dt>
+<dd><p>The offset from the center of the game object that the hitbox should be placed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.rot_offset">
+<span class="sig-name descname"><span class="pre">rot_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><span class="pre">float</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.rot_offset" title="Permalink to this definition">#</a></dt>
+<dd><p>The rotational offset from the game object's rotation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.z_index">
+<span class="sig-name descname"><span class="pre">z_index</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.z_index" title="Permalink to this definition">#</a></dt>
+<dd><p>Where to draw the component in the z direction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.gameobj">
+<span class="sig-name descname"><span class="pre">gameobj</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><span class="pre">GameObject</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.gameobj" title="Permalink to this definition">#</a></dt>
+<dd><p>The game object this component is attached to.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.hidden">
+<span class="sig-name descname"><span class="pre">hidden</span></span><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.hidden" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether the component is hidden (not drawn).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.tilemap.simple.SimpleTilemap.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/tilemap/simple/#SimpleTilemap.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.clone" title="Permalink to this definition">#</a></dt>
+<dd><p>Clones the component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#rubato.structure.gameobject.tilemap.simple.SimpleTilemap" title="rubato.structure.gameobject.tilemap.simple.SimpleTilemap"><code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTilemap</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="hitbox">
 <h4>Hitbox<a class="headerlink" href="#hitbox" title="Permalink to this heading">#</a></h4>
@@ -5821,16 +6151,15 @@ Can be set to False to trigger a texture regeneration at the next draw cycle.</p
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.blit">
-<span class="sig-name descname"><span class="pre">blit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.blit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.blit" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">blit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_rect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.blit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.blit" title="Permalink to this definition">#</a></dt>
 <dd><p>Blits (merges / copies) another Surface onto this one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>other</strong> (<a class="reference internal" href="#rubato.utils.rendering.surface.Surface" title="rubato.utils.rendering.surface.Surface"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) -- The Surface to blit onto this one.</p></li>
-<li><p><strong>src_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (x, y, width, height) to blit from in the source surface (other).
+<li><p><strong>src_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (center_x, center_y, width, height) to crop from the source surface (other).
 Defaults to the whole surface.</p></li>
-<li><p><strong>dst_rect</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The area (x, y, width, height) to blit to in the destination surface (self).
-Defaults to the whole surface.</p></li>
+<li><p><strong>dst</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) -- The position to place the other surface. Defaults to (0, 0).</p></li>
 </ul>
 </dd>
 </dl>
@@ -5838,6 +6167,24 @@ Defaults to the whole surface.</p></li>
 <p class="admonition-title">Note</p>
 <p>Will not stretch the other surface to fit the destination rectangle.</p>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.flip_x">
+<span class="sig-name descname"><span class="pre">flip_x</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.flip_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.flip_x" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the surface horizontally.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.flip_y">
+<span class="sig-name descname"><span class="pre">flip_y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.flip_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.flip_y" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the surface vertically.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.utils.rendering.surface.Surface.flip_anti_diagonal">
+<span class="sig-name descname"><span class="pre">flip_anti_diagonal</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/utils/rendering/surface/#Surface.flip_anti_diagonal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.utils.rendering.surface.Surface.flip_anti_diagonal" title="Permalink to this definition">#</a></dt>
+<dd><p>Flips the surface along the anti diagonal.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -8215,7 +8562,8 @@ Defaults to -1.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>font</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>['Comfortaa', 'Fredoka', 'Merriweather', 'Roboto', 'SourceCodePro', 'Mozart']]) -- The font to use. Can also be a path to a font file. Defaults to Roboto.</p></li>
+<li><p><strong>font</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>['Comfortaa', 'Fredoka', 'Merriweather', 'Roboto', 'SourceCodePro', 'Mozart']]) -- The font to use. Can also be a path to a font file. Defaults to Roboto.
+Included fonts are &quot;Comfortaa&quot;, &quot;Fredoka&quot;, &quot;Merriweather&quot;, &quot;Roboto&quot;, &quot;SourceCodePro&quot;, &quot;Mozart&quot;</p></li>
 <li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The size of the font in pixels. Defaults to 16.</p></li>
 <li><p><strong>styles</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) -- The styles to apply to the font. Defaults to [].
 Fill with only the following: bold, italic, underline, strikethrough.</p></li>
@@ -9146,6 +9494,8 @@ string if there are no removal plans yet. Defaults to &quot;&quot;.</p></li>
 <li><a class="reference internal" href="#module-rubato.structure.gameobject.particles.particle">Particle</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-rubato.structure.gameobject.tilemap.tiled">Tilemap</a></li>
+<li><a class="reference internal" href="#module-rubato.structure.gameobject.tilemap.simple">Simple Tilemap</a></li>
 <li><a class="reference internal" href="#hitbox">Hitbox</a><ul>
 <li><a class="reference internal" href="#rectangle">Rectangle</a></li>
 <li><a class="reference internal" href="#polygon">Polygon</a></li>

@@ -373,22 +373,39 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">other</span><span class="p">:</span> <span class="n">Raster</span><span class="p">,</span>
         <span class="n">src_rect</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">dst_rect</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dst</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Blits (merges / copies) another Raster onto this one.</span>
+<span class="sd">        Blits (merges / copies) another Surface onto this one.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            other: The Raster to blit onto this one.</span>
-<span class="sd">            src_rect: The area (x, y, width, height) to blit from in the source raster (other).</span>
+<span class="sd">            other: The Surface to blit onto this one.</span>
+<span class="sd">            src_rect: The area (center_x, center_y, width, height) to crop from the source surface (other).</span>
 <span class="sd">                Defaults to the whole surface.</span>
-<span class="sd">            dst_rect: The area (x, y, width, height) to blit to in the destination raster (self).</span>
-<span class="sd">                Defaults to the whole surface.</span>
+<span class="sd">            dst: The position to place the other surface. Defaults to (0, 0).</span>
 
 <span class="sd">        Note:</span>
-<span class="sd">            Will not stretch the other raster to fit the destination rectangle.</span>
+<span class="sd">            Will not stretch the other surface to fit the destination rectangle.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">surf</span><span class="p">,</span> <span class="n">src_rect</span><span class="p">,</span> <span class="n">dst_rect</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">surf</span><span class="p">,</span> <span class="n">src_rect</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Raster.flip_x"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.sprites.raster.Raster.flip_x">[docs]</a>    <span class="k">def</span> <span class="nf">flip_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flips the raster along the x-axis.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">flip_x</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Raster.flip_y"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.sprites.raster.Raster.flip_y">[docs]</a>    <span class="k">def</span> <span class="nf">flip_y</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flips the raster along the y-axis.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">flip_y</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Raster.flip_anti_diagonal"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.sprites.raster.Raster.flip_anti_diagonal">[docs]</a>    <span class="k">def</span> <span class="nf">flip_anti_diagonal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flips the surface along the anti-diagonal.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">flip_anti_diagonal</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Raster.draw"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.sprites.raster.Raster.draw">[docs]</a>    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surf</span><span class="o">.</span><span class="n">rotation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">true_rotation</span><span class="p">()</span>
