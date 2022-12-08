@@ -427,16 +427,12 @@
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">PrintError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
             <span class="k">raise</span> <span class="n">e</span>
         <span class="k">except</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">,)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
             <span class="k">raise</span> <span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)(</span>
                 <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Rubato Error-ed. Was it our fault? Issue tracker: &quot;</span>
                 <span class="s2">&quot;https://github.com/rubatopy/rubato/issues&quot;</span>
             <span class="p">)</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">_tick</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
