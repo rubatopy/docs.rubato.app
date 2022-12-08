@@ -313,12 +313,12 @@
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.ext</span>
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Component</span>
-<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">Surface</span>
+<span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Camera</span><span class="p">,</span> <span class="n">Surface</span>
 
 
 <div class="viewcode-block" id="Text"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.ui.text.Text">[docs]</a><span class="k">class</span> <span class="nc">Text</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A text component. Add this to game objects or UI elements to give them text.</span>
+<span class="sd">    A text component. Add this to game objects or UI elements to give them text. Takes a font object to render the text.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        text: The text to display. Defaults to &quot;&quot;.</span>
@@ -372,6 +372,11 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span> <span class="o">=</span> <span class="kc">False</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_font</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_styles</span>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">af</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Whether to use anisotropic filtering.&quot;&quot;&quot;</span>
@@ -418,41 +423,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="n">new</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">font_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The font size.</span>
-
-<span class="sd">        Warning:</span>
-<span class="sd">            Don&#39;t set this too high or font smoothing may misbehave on some systems.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">size</span>
-
-    <span class="nd">@font_size</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">font_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span> <span class="o">=</span> <span class="kc">False</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Color</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The font color.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">color</span>
-
-    <span class="nd">@font_color</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span> <span class="o">=</span> <span class="kc">False</span>
-
-<div class="viewcode-block" id="Text.add_style"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.ui.text.Text.add_style">[docs]</a>    <span class="k">def</span> <span class="nf">add_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add a style to the font (bold, italic, underline, strikethrough, normal).&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">add_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
-
-<div class="viewcode-block" id="Text.remove_style"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.ui.text.Text.remove_style">[docs]</a>    <span class="k">def</span> <span class="nf">remove_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Remove a style from a font.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">remove_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span> <span class="o">=</span> <span class="kc">False</span></div>
-
     <span class="k">def</span> <span class="nf">_regen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;(Re)generates the surface of the text.&quot;&quot;&quot;</span>
         <span class="n">surf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span>
@@ -464,6 +434,15 @@
         <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_FreeSurface</span><span class="p">(</span><span class="n">surf</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Text.update"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.ui.text.Text.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># For developer: We need to check if the font object has changed compared to what we are rendering,</span>
+        <span class="c1"># but a font object can be shared between different texts.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_font</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_size</span> <span class="ow">or</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_color</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_styles</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_font</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_color</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">font_object</span><span class="o">.</span><span class="n">_styles</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_regen</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_uptodate</span> <span class="o">=</span> <span class="kc">True</span></div>

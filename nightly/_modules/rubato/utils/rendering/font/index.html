@@ -324,8 +324,8 @@
 <span class="sd">        font: The font to use. Can also be a path to a font file. Defaults to Roboto.</span>
 <span class="sd">            Included fonts are &quot;Comfortaa&quot;, &quot;Fredoka&quot;, &quot;Merriweather&quot;, &quot;Roboto&quot;, &quot;SourceCodePro&quot;, &quot;Mozart&quot;</span>
 <span class="sd">        size: The size of the font in pixels. Defaults to 16.</span>
-<span class="sd">        styles: The styles to apply to the font. Defaults to [].</span>
-<span class="sd">            Fill with only the following: bold, italic, underline, strikethrough.</span>
+<span class="sd">        styles: The styles to apply to the font. Set multiple styles by | them together. Defaults to 0.</span>
+<span class="sd">            These are the values you can use: Font.BOLD, Font.ITALIC, Font.UNDERLINE, Font.STRIKETHROUGH.</span>
 <span class="sd">        color: The color of the font. Defaults to Color(0, 0, 0).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -338,18 +338,16 @@
         <span class="s2">&quot;Mozart&quot;</span><span class="p">:</span> <span class="s2">&quot;Mozart-Regular.ttf&quot;</span><span class="p">,</span>
     <span class="p">}</span>
 
-    <span class="n">_text_styles</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;bold&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_BOLD</span><span class="p">,</span>
-        <span class="s2">&quot;italic&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_ITALIC</span><span class="p">,</span>
-        <span class="s2">&quot;underline&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_UNDERLINE</span><span class="p">,</span>
-        <span class="s2">&quot;strikethrough&quot;</span><span class="p">:</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_STRIKETHROUGH</span><span class="p">,</span>
-    <span class="p">}</span>
+    <span class="n">BOLD</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_BOLD</span>
+    <span class="n">ITALIC</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_ITALIC</span>
+    <span class="n">UNDERLINE</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_UNDERLINE</span>
+    <span class="n">STRIKETHROUGH</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_STYLE_STRIKETHROUGH</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Comfortaa&quot;</span><span class="p">,</span> <span class="s2">&quot;Fredoka&quot;</span><span class="p">,</span> <span class="s2">&quot;Merriweather&quot;</span><span class="p">,</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span> <span class="s2">&quot;SourceCodePro&quot;</span><span class="p">,</span> <span class="s2">&quot;Mozart&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Roboto&quot;</span><span class="p">,</span>
         <span class="n">size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
-        <span class="n">styles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">styles</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
@@ -387,6 +385,7 @@
     <span class="k">def</span> <span class="nf">color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="n">Color</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_color</span> <span class="o">=</span> <span class="n">new</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_font</span> <span class="o">=</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">FontTTF</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color</span><span class="o">.</span><span class="n">to_tuple</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_styles</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">align</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sdl2</span><span class="o">.</span><span class="n">SDL_Surface</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -426,39 +425,41 @@
         <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SizeText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">text_w</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">text_h</span><span class="p">))</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">text_w</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">text_h</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Font.add_style"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.add_style">[docs]</a>    <span class="k">def</span> <span class="nf">add_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="Font.add_style"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.add_style">[docs]</a>    <span class="k">def</span> <span class="nf">add_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">styles</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Adds a style to the font.</span>
+<span class="sd">        Style can be one of the following: Font.BOLD, Font.ITALIC, Font.UNDERLINE, Font.STRIKETHROUGH.</span>
+
 
 <span class="sd">        Args:</span>
-<span class="sd">            style: The style to add. Can be one of the following: bold, italic, underline, strikethrough.</span>
+<span class="sd">            style: The style to add.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">Font</span><span class="o">.</span><span class="n">_text_styles</span> <span class="ow">and</span> <span class="n">style</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">apply_styles</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Style </span><span class="si">{</span><span class="n">style</span><span class="si">}</span><span class="s2"> is not valid or is already applied.&quot;</span><span class="p">)</span></div>
+        <span class="c1"># For developer: now that style is an bit map, 0000, each bit represents a style</span>
+        <span class="k">for</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">styles</span><span class="p">:</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">style</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span> <span class="o">|=</span> <span class="n">style</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">apply_styles</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Style is not valid.&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Font.remove_style"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.remove_style">[docs]</a>    <span class="k">def</span> <span class="nf">remove_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="Font.remove_style"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.remove_style">[docs]</a>    <span class="k">def</span> <span class="nf">remove_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">styles</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Removes a style from the font.</span>
+<span class="sd">        Style can be one of the following: Font.BOLD, Font.ITALIC, Font.UNDERLINE, Font.STRIKETHROUGH.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            style: The style to remove. Can be one of the following: bold, italic, underline, strikethrough.</span>
+<span class="sd">            style: The style to remove.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">style</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">apply_styles</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Style </span><span class="si">{</span><span class="n">style</span><span class="si">}</span><span class="s2"> is not currently applied.&quot;</span><span class="p">)</span></div>
+        <span class="k">for</span> <span class="n">style</span> <span class="ow">in</span> <span class="n">styles</span><span class="p">:</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">style</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="n">style</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">apply_styles</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Style is not valid.&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Font.apply_styles"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.apply_styles">[docs]</a>    <span class="k">def</span> <span class="nf">apply_styles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Applies the styles to the font.&quot;&quot;&quot;</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="mh">0x00</span>
-        <span class="k">for</span> <span class="n">style</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">|=</span> <span class="n">Font</span><span class="o">.</span><span class="n">_text_styles</span><span class="p">[</span><span class="n">style</span><span class="p">]</span>
-
-        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SetFontStyle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="n">s</span><span class="p">)</span></div>
+        <span class="n">sdl2</span><span class="o">.</span><span class="n">sdlttf</span><span class="o">.</span><span class="n">TTF_SetFontStyle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_font</span><span class="o">.</span><span class="n">get_ttf_font</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styles</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Font.clone"><a class="viewcode-back" href="../../../../../api/#rubato.utils.rendering.font.Font.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
