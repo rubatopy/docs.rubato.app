@@ -8,7 +8,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://docs.rubato.app/api.html" />
   <meta property="og:site_name" content="rubato docs" />
-  <meta property="og:description" content="This page describes all user-accessible API components to the rubato project. Game: An abstraction surrounding the main game loop in rubato. Scenes and Their Management: Scenes holds two Groups. It also manages a Camera. Scenes are used to compartmentalize code. For example, you could have each l..." />
+  <meta property="og:description" content="This page describes all user-accessible API components to the rubato project. Game: An abstraction surrounding the main game loop in rubato. Scenes and Their Management: Scenes manages a set of GameObjects and a Camera. Scenes are used to compartmentalize code. For example, you could have each le..." />
   <meta property="og:image" content="https://raw.githubusercontent.com/rubatopy/rubato/main/docs/source/_static/full.png" />
   <meta property="og:image:alt" content="rubato docs" />
   <meta property="og:title" content="rubato docs"><link rel="search" title="Search" href="../search/" /><link rel="next" title="Key Names" href="../key-names/" /><link rel="prev" title="Getting Started" href="../intro/" />
@@ -440,12 +440,9 @@ Defaults to False.</p></li>
 </section>
 <section id="scenes-and-their-management">
 <h2>Scenes and Their Management<a class="headerlink" href="#scenes-and-their-management" title="Permalink to this heading">#</a></h2>
-<p><a class="reference internal" href="#rubato.structure.scene.Scene" title="rubato.structure.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> holds two Groups. It also manages a
+<p><a class="reference internal" href="#rubato.structure.scene.Scene" title="rubato.structure.scene.Scene"><code class="xref py py-func docutils literal notranslate"><span class="pre">Scenes</span></code></a> manages a set of <a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-func docutils literal notranslate"><span class="pre">GameObjects</span></code></a> and a
 <a class="reference internal" href="#rubato.utils.rendering.camera.Camera" title="rubato.utils.rendering.camera.Camera"><code class="xref py py-func docutils literal notranslate"><span class="pre">Camera</span></code></a>. Scenes are used to compartmentalize code. For example,
 you could have each level of your game on a different scene. Then to switch levels you would switch scenes.</p>
-<p><a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><code class="xref py py-func docutils literal notranslate"><span class="pre">Groups</span></code></a> hold a collection of Game Objects and/or other Groups. Their main purpose is to
-further compartmentalize items. For example, items in 2 different groups won't collide with each other. In this tutorial,
-we won't be using Groups as we don't need this functionality here.</p>
 <section id="module-rubato.structure.scene">
 <span id="scene"></span><h3>Scene<a class="headerlink" href="#module-rubato.structure.scene" title="Permalink to this heading">#</a></h3>
 <p>An abstraction for a &quot;level&quot;, or scene, in rubato.</p>
@@ -464,19 +461,6 @@ Once this is set, it cannot be changed.</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.structure.scene.Scene.root">
-<span class="sig-name descname"><span class="pre">root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><span class="pre">Group</span></a></em><a class="headerlink" href="#rubato.structure.scene.Scene.root" title="Permalink to this definition">#</a></dt>
-<dd><p>The base group of game objects in the scene.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.structure.scene.Scene.ui">
-<span class="sig-name descname"><span class="pre">ui</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><span class="pre">Group</span></a></em><a class="headerlink" href="#rubato.structure.scene.Scene.ui" title="Permalink to this definition">#</a></dt>
-<dd><p>The ui elements of this scene. These are drawn on top of everything else and do not interact with the other
-game objects.</p>
-</dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.structure.scene.Scene.camera">
 <span class="sig-name descname"><span class="pre">camera</span></span><a class="headerlink" href="#rubato.structure.scene.Scene.camera" title="Permalink to this definition">#</a></dt>
@@ -509,58 +493,29 @@ game objects.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.structure.scene.Scene.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/scene/#Scene.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.scene.Scene.add" title="Permalink to this definition">#</a></dt>
-<dd><p>Adds an item to the root group.</p>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">gos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/scene/#Scene.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.scene.Scene.add" title="Permalink to this definition">#</a></dt>
+<dd><p>Adds gameobject(s) to the scene.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>*items</strong> -- The items to add to the scene.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.scene.Scene.add_ui">
-<span class="sig-name descname"><span class="pre">add_ui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/scene/#Scene.add_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.scene.Scene.add_ui" title="Permalink to this definition">#</a></dt>
-<dd><p>Adds Game Objects as UI to the scene. When a game object is added as a UI, they draw as they normally would, but
-they don't collide with other game objects, they draw on top of everything else, and they are unaffected by the
-camera.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>*items</strong> -- The items to add to the scene.</p>
+<dd class="field-odd"><p><strong>*gos</strong> -- The gameobjects to add to the scene.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.structure.scene.Scene.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/scene/#Scene.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.scene.Scene.remove" title="Permalink to this definition">#</a></dt>
-<dd><p>Removes an item from the root group.</p>
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">gos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/scene/#Scene.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.scene.Scene.remove" title="Permalink to this definition">#</a></dt>
+<dd><p>Removes gameobject(s) from the scene. This will return false if any of the gameobjects are not in the scene,
+but it will guarantee that all the gameobjects are removed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>items</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>, <a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]) -- The items to remove.</p>
+<dd class="field-odd"><p><strong>*gos</strong> -- The gameobjects to remove.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether it was removed successfully.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.scene.Scene.remove_ui">
-<span class="sig-name descname"><span class="pre">remove_ui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/scene/#Scene.remove_ui"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.scene.Scene.remove_ui" title="Permalink to this definition">#</a></dt>
-<dd><p>Removes an item from the ui group.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>items</strong> (<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>) -- The items to remove.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether it was removed successfully.</p>
+<dd class="field-odd"><p>True if all gameobjects were present in the scene, False otherwise.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -616,11 +571,25 @@ Is empty by default and can be overridden.</p>
 <dd><p>Clones this scene.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This is a relatively expensive operation as it clones every group in the scene.</p>
+<p>This is a relatively expensive operation as it clones every gameobject in the scene.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#rubato.structure.scene.Scene" title="rubato.structure.scene.Scene"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.scene.Scene.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">go</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/scene/#Scene.contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.scene.Scene.contains" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks if the scene contains a gameobject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>go</strong> (<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>) -- The gameobject to check for.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -707,156 +676,6 @@ GameObjects only render if their z-index is not more than that of the camera's.<
 
 </section>
 </section>
-<section id="module-rubato.structure.group">
-<span id="group"></span><h3>Group<a class="headerlink" href="#module-rubato.structure.group" title="Permalink to this heading">#</a></h3>
-<p>Groups contain game objects or other groups and allow separation between game objects.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="rubato.structure.group.Group">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/group/#Group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.group.Group" title="Permalink to this definition">#</a></dt>
-<dd><p>A divider between separate categories of game objects.
-Can be used to differentiate between different &quot;groups&quot; of elements that you don't want to interact;
-i.e. you don't want a gameobject representing an enemy to collide with the coins in the scene.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The name of the group. Defaults to &quot;&quot; and is set to &quot;Group #&quot; when it is added to another Group or Scene.</p></li>
-<li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the group is active or not. Defaults to True.</p></li>
-<li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the group is hidden or not. Defaults to False.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#rubato.structure.group.Group.name" title="Permalink to this definition">#</a></dt>
-<dd><p>The name of the group.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.active">
-<span class="sig-name descname"><span class="pre">active</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.structure.group.Group.active" title="Permalink to this definition">#</a></dt>
-<dd><p>Whether to update and draw this group's contents.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.groups">
-<span class="sig-name descname"><span class="pre">groups</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><span class="pre">rubato.structure.group.Group</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rubato.structure.group.Group.groups" title="Permalink to this definition">#</a></dt>
-<dd><p>A list of groups that are children of this group.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.game_objects">
-<span class="sig-name descname"><span class="pre">game_objects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><span class="pre">rubato.structure.gameobject.game_object.GameObject</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#rubato.structure.group.Group.game_objects" title="Permalink to this definition">#</a></dt>
-<dd><p>A list of game objects that are children of this group.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.hidden">
-<span class="sig-name descname"><span class="pre">hidden</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.structure.group.Group.hidden" title="Permalink to this definition">#</a></dt>
-<dd><p>Whether to hide (not draw) this group's contents.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/group/#Group.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.group.Group.add" title="Permalink to this definition">#</a></dt>
-<dd><p>Adds an item to the group.
-Keep in mind that if this is called after the game has begun,
-the items wont be added until the end of the frame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>items</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>, <a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]) -- The item(s) you wish to add to the group</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="#rubato.utils.error.Error" title="rubato.utils.error.Error"><strong>Error</strong></a> -- The item being added is already in the group.</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.11)"><strong>ValueError</strong></a> -- The group can only hold game objects or other groups.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>This group.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group">Group</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/group/#Group.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.group.Group.remove" title="Permalink to this definition">#</a></dt>
-<dd><p>Remove an item shallowly from the group.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>items</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>, <a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]) -- The groups or gameobjects to remove.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Whether it was removed successfully.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.all_gameobjects">
-<span class="sig-name descname"><span class="pre">all_gameobjects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">include_self</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/group/#Group.all_gameobjects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.group.Group.all_gameobjects" title="Permalink to this definition">#</a></dt>
-<dd><p>Returns a list of all game objects in the group and all of its children.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>include_self</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) -- Whether to include this group's direct children. Defaults to False.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The resultant list.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject">GameObject</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.count">
-<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/group/#Group.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.group.Group.count" title="Permalink to this definition">#</a></dt>
-<dd><p>Counts all the GameObjects and subgroups in this group.
-:returns: The total number of GameObjects and subgroups contained in this group.
-:rtype: int</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.clone">
-<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/group/#Group.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.group.Group.clone" title="Permalink to this definition">#</a></dt>
-<dd><p>Clones the group and all of its children.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is a relatively expensive operation as it clones every game object and component in the group.</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.group.Group.contains">
-<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/group/#Group.contains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.group.Group.contains" title="Permalink to this definition">#</a></dt>
-<dd><p>Checks if the group contains the given object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>other</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>, <a class="reference internal" href="#rubato.structure.group.Group" title="rubato.structure.group.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a>]) -- The object to check for.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether the group contains the object or not.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 </section>
 <section id="game-object-and-components">
 <h2>Game Object and Components<a class="headerlink" href="#game-object-and-components" title="Permalink to this heading">#</a></h2>
@@ -871,15 +690,18 @@ Game Object's position.</p>
 Its functionality is defined by the components it holds.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GameObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GameObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_cam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject" title="Permalink to this definition">#</a></dt>
 <dd><p>An element describing a set of functionality grouped as a &quot;thing&quot;, such as a player or a wall.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The name of the game object. Defaults to &quot;&quot;.</p></li>
 <li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the game object. Defaults to (0, 0).</p></li>
 <li><p><strong>rotation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The rotation of the game object. Defaults to 0.</p></li>
 <li><p><strong>z_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The z-index of the game object. Defaults to 0.</p></li>
+<li><p><strong>ignore_cam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the game object ignores the scene's camera when drawing or not. If set, all children will
+ignore the scene's camera. Defaults to False.</p></li>
+<li><p><strong>parent</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>]) -- The parent of the game object. Defaults to None.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The name of the game object. Defaults to &quot;&quot;.</p></li>
 <li><p><strong>debug</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether to draw the center of the game object. Defaults to False.</p></li>
 <li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the game object is active or not. Defaults to True.</p></li>
 <li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the game object is hidden or not. Defaults to False.</p></li>
@@ -889,7 +711,7 @@ Its functionality is defined by the components it holds.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.name" title="Permalink to this definition">#</a></dt>
-<dd><p>&quot;Game Object {number in group}&quot;</p>
+<dd><p>&quot;&quot;</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The name of the game object. Will default to</p>
@@ -901,6 +723,12 @@ Its functionality is defined by the components it holds.</p>
 <dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.pos">
 <span class="sig-name descname"><span class="pre">pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><span class="pre">Vector</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.pos" title="Permalink to this definition">#</a></dt>
 <dd><p>The current position of the game object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.ignore_cam">
+<span class="sig-name descname"><span class="pre">ignore_cam</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.ignore_cam" title="Permalink to this definition">#</a></dt>
+<dd><p>Whether the game object ignores the scene's camera when drawing or not.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -933,6 +761,73 @@ Its functionality is defined by the components it holds.</p>
 <dd><p>Whether the game object should update and draw.</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.parent">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><span class="pre">rubato.structure.gameobject.game_object.GameObject</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></em><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.parent" title="Permalink to this definition">#</a></dt>
+<dd><p>The parent of the game object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.true_z">
+<span class="sig-name descname"><span class="pre">true_z</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject.true_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.true_z" title="Permalink to this definition">#</a></dt>
+<dd><p>The true z-index of the game object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The true z-index of the game object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.true_pos">
+<span class="sig-name descname"><span class="pre">true_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject.true_pos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.true_pos" title="Permalink to this definition">#</a></dt>
+<dd><p>The position of the game object relative to the scene.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The true position of the game object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector">Vector</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.true_rotation">
+<span class="sig-name descname"><span class="pre">true_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject.true_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.true_rotation" title="Permalink to this definition">#</a></dt>
+<dd><p>The rotation of the game object relative to the scene.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The true rotation of the game object.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.children">
+<span class="sig-name descname"><span class="pre">children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject.children"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.children" title="Permalink to this definition">#</a></dt>
+<dd><p>The children of the game object. Note that this is an immutable tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The children of the game object.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.add">
 <span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">components</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.add" title="Permalink to this definition">#</a></dt>
@@ -957,7 +852,7 @@ Its functionality is defined by the components it holds.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.remove">
 <span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.remove" title="Permalink to this definition">#</a></dt>
-<dd><p>Removes the first instance of a component from the game object.</p>
+<dd><p>Removes the first instance of a type of component from the game object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>comp_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.component.Component" title="rubato.structure.gameobject.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>]) -- The type of the component to remove.</p>
@@ -981,23 +876,6 @@ Its functionality is defined by the components it holds.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Whether the component was removed.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="rubato.structure.gameobject.game_object.GameObject.remove_ind">
-<span class="sig-name descname"><span class="pre">remove_ind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/structure/gameobject/game_object/#GameObject.remove_ind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.structure.gameobject.game_object.GameObject.remove_ind" title="Permalink to this definition">#</a></dt>
-<dd><p>Removes a component from the game object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>comp_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.component.Component" title="rubato.structure.gameobject.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>]) -- The Type of component to remove</p></li>
-<li><p><strong>ind</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The index of the component to remove.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#IndexError" title="(in Python v3.11)"><strong>IndexError</strong></a> -- The component was not in the game object and nothing was removed or the index was out of bounds.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -9357,16 +9235,18 @@ string if there are no removal plans yet. Defaults to &quot;&quot;.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="rubato.misc.wrap">
-<span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/misc/#wrap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.misc.wrap" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_cam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rubato/misc/#wrap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rubato.misc.wrap" title="Permalink to this definition">#</a></dt>
 <dd><p>Wraps a component or list of components in a GameObject.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>comp</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.component.Component" title="rubato.structure.gameobject.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.component.Component" title="rubato.structure.gameobject.component.Component"><code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></a>]]) -- The component or list of components to wrap.</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The name of the GameObject. Defaults to &quot;&quot;.</p></li>
 <li><p><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/types.html#types.UnionType" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnionType</span></code></a>[<a class="reference internal" href="#rubato.utils.computation.vector.Vector" title="rubato.utils.computation.vector.Vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]) -- The position of the GameObject. Defaults to (0, 0).</p></li>
 <li><p><strong>rotation</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) -- The rotation of the GameObject. Defaults to 0.</p></li>
 <li><p><strong>z_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) -- The z_index of the GameObject. Defaults to 0.</p></li>
+<li><p><strong>ignore_cam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the GameObject ignores the scene's camera when drawing or not. Defaults to False.</p></li>
+<li><p><strong>parent</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="#rubato.structure.gameobject.game_object.GameObject" title="rubato.structure.gameobject.game_object.GameObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">GameObject</span></code></a>]) -- The parent GameObject of the GameObject. Defaults to None.</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) -- The name of the GameObject. Defaults to &quot;&quot;.</p></li>
 <li><p><strong>debug</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the GameObject is in debug mode. Defaults to False.</p></li>
 <li><p><strong>active</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the GameObject is active. Defaults to True.</p></li>
 <li><p><strong>hidden</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) -- Whether the GameObject is hidden. Defaults to False.</p></li>
@@ -9448,7 +9328,6 @@ string if there are no removal plans yet. Defaults to &quot;&quot;.</p></li>
 <li><a class="reference internal" href="#module-rubato.utils.rendering.camera">Camera</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#module-rubato.structure.group">Group</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#game-object-and-components">Game Object and Components</a><ul>

@@ -315,7 +315,7 @@
 <span class="kn">import</span> <span class="nn">sdl2</span><span class="o">,</span> <span class="nn">sdl2.sdlttf</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Radio</span><span class="p">,</span> <span class="n">Events</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">IdError</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">InitError</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Time</span><span class="p">,</span> <span class="n">Display</span><span class="p">,</span> <span class="n">Radio</span><span class="p">,</span> <span class="n">Events</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="n">PrintError</span><span class="p">,</span> <span class="n">IdError</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">InitError</span><span class="p">,</span> <span class="n">Camera</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Scene</span>
@@ -351,6 +351,8 @@
     <span class="n">_scenes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Scene</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">_scene_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">_current</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="n">_zero_cam</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">InitError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -471,8 +473,6 @@
                     <span class="n">Time</span><span class="o">.</span><span class="n">_physics_counter</span> <span class="o">-=</span> <span class="n">Time</span><span class="o">.</span><span class="n">fixed_delta</span>
 
             <span class="n">curr</span><span class="o">.</span><span class="n">_draw</span><span class="p">()</span>
-
-            <span class="n">curr</span><span class="o">.</span><span class="n">_dump</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">Draw</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 

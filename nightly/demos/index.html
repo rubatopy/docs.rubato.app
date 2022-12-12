@@ -671,9 +671,9 @@ asteroids.py<div class="sd-summary-down docutils">
                 <span class="p">),</span>
                 <span class="n">BoundsChecker</span><span class="p">(),</span>
             <span class="p">],</span>
-            <span class="s2">&quot;asteroid&quot;</span><span class="p">,</span>
-            <span class="n">pos</span><span class="p">,</span>
-            <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">),</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;asteroid&quot;</span><span class="p">,</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span>
+            <span class="n">rotation</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">),</span>
         <span class="p">)</span>
     <span class="p">)</span>
 
@@ -718,9 +718,9 @@ asteroids.py<div class="sd-summary-down docutils">
                         <span class="n">BoundsChecker</span><span class="p">(),</span>
                         <span class="n">Timer</span><span class="p">(</span><span class="mf">0.75</span><span class="p">),</span>
                     <span class="p">],</span>
-                    <span class="s2">&quot;bullet&quot;</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bullet&quot;</span><span class="p">,</span>
+                    <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span>
+                    <span class="n">rotation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">allowed_to_shoot</span> <span class="o">=</span> <span class="kc">False</span>
@@ -771,8 +771,8 @@ asteroids.py<div class="sd-summary-down docutils">
             <span class="n">Polygon</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">trigger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
             <span class="n">player_spr</span><span class="p">,</span>
         <span class="p">],</span>
-        <span class="s2">&quot;player&quot;</span><span class="p">,</span>
-        <span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
+        <span class="n">pos</span><span class="o">=</span><span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="p">,</span>
     <span class="p">)</span>
 <span class="p">)</span>
 

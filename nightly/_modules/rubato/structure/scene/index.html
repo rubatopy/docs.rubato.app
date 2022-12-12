@@ -312,7 +312,8 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Group</span><span class="p">,</span> <span class="n">GameObject</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">GameObject</span><span class="p">,</span> <span class="n">Hitbox</span>
+<span class="kn">from</span> <span class="nn">.gameobject.physics.qtree</span> <span class="kn">import</span> <span class="n">_QTree</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Game</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Draw</span><span class="p">,</span> <span class="n">Camera</span>
 
 
@@ -334,16 +335,10 @@
         <span class="n">background_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">white</span><span class="p">,</span>
         <span class="n">border_color</span><span class="p">:</span> <span class="n">Color</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">black</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">:</span> <span class="n">Group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;root&quot;</span><span class="p">)</span>
-        <span class="sd">&quot;&quot;&quot;The base group of game objects in the scene.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="p">:</span> <span class="n">Group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ui&quot;</span><span class="p">)</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The ui elements of this scene. These are drawn on top of everything else and do not interact with the other</span>
-<span class="sd">        game objects.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">GameObject</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="sd">&quot;&quot;&quot;The list of gameobjects in this scene.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
         <span class="sd">&quot;&quot;&quot;The camera of this scene.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_ui_cam</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">border_color</span> <span class="o">=</span> <span class="n">border_color</span>
         <span class="sd">&quot;&quot;&quot;The color of the border of the window.&quot;&quot;&quot;</span>
@@ -365,53 +360,33 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Game</span><span class="o">.</span><span class="n">set_scene</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Scene.add"><a class="viewcode-back" href="../../../../api/#rubato.structure.scene.Scene.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">GameObject</span> <span class="o">|</span> <span class="n">Group</span><span class="p">):</span>
+<div class="viewcode-block" id="Scene.add"><a class="viewcode-back" href="../../../../api/#rubato.structure.scene.Scene.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">gos</span><span class="p">:</span> <span class="n">GameObject</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Adds an item to the root group.</span>
+<span class="sd">        Adds gameobject(s) to the scene.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            *items: The items to add to the scene.</span>
+<span class="sd">            *gos: The gameobjects to add to the scene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">gos</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Scene.add_ui"><a class="viewcode-back" href="../../../../api/#rubato.structure.scene.Scene.add_ui">[docs]</a>    <span class="k">def</span> <span class="nf">add_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">GameObject</span><span class="p">):</span>
+<div class="viewcode-block" id="Scene.remove"><a class="viewcode-back" href="../../../../api/#rubato.structure.scene.Scene.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">gos</span><span class="p">:</span> <span class="n">GameObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Adds Game Objects as UI to the scene. When a game object is added as a UI, they draw as they normally would, but</span>
-<span class="sd">        they don&#39;t collide with other game objects, they draw on top of everything else, and they are unaffected by the</span>
-<span class="sd">        camera.</span>
+<span class="sd">        Removes gameobject(s) from the scene. This will return false if any of the gameobjects are not in the scene,</span>
+<span class="sd">        but it will guarantee that all the gameobjects are removed.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            *items: The items to add to the scene.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Scene.remove"><a class="viewcode-back" href="../../../../api/#rubato.structure.scene.Scene.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">GameObject</span> <span class="o">|</span> <span class="n">Group</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Removes an item from the root group.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            items: The items to remove.</span>
+<span class="sd">            *gos: The gameobjects to remove.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Whether it was removed successfully.</span>
+<span class="sd">            True if all gameobjects were present in the scene, False otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Scene.remove_ui"><a class="viewcode-back" href="../../../../api/#rubato.structure.scene.Scene.remove_ui">[docs]</a>    <span class="k">def</span> <span class="nf">remove_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">GameObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Removes an item from the ui group.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            items: The items to remove.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Whether it was removed successfully.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="o">*</span><span class="n">items</span><span class="p">)</span></div>
-
-    <span class="k">def</span> <span class="nf">_dump</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">_dump</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">_dump</span><span class="p">()</span>
+        <span class="n">success</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="n">gos</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">go</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">success</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">success</span></div>
 
     <span class="k">def</span> <span class="nf">_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">started</span> <span class="o">=</span> <span class="kc">True</span>
@@ -422,8 +397,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_setup</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">_update</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_paused_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">started</span><span class="p">:</span>
@@ -433,14 +409,23 @@
 
     <span class="k">def</span> <span class="nf">_fixed_update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fixed_update</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">_fixed_update</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">_fixed_update</span><span class="p">()</span>
+
+        <span class="n">all_hts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span>
+            <span class="n">go</span><span class="o">.</span><span class="n">_fixed_update</span><span class="p">()</span>
+            <span class="n">hts</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">_deep_get_all</span><span class="p">(</span><span class="n">Hitbox</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">hts</span><span class="p">:</span>
+                <span class="n">all_hts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hts</span><span class="p">)</span>
+
+        <span class="n">_QTree</span><span class="p">(</span><span class="n">all_hts</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_draw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">Draw</span><span class="o">.</span><span class="n">clear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">background_color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">border_color</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">_draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">_draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ui_cam</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">go</span><span class="o">.</span><span class="n">z_index</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">z_index</span><span class="p">:</span>
+                <span class="n">go</span><span class="o">.</span><span class="n">_draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Scene.setup"><a class="viewcode-back" href="../../../../api/#rubato.structure.scene.Scene.setup">[docs]</a>    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -491,15 +476,23 @@
 <span class="sd">        Clones this scene.</span>
 
 <span class="sd">        Warning:</span>
-<span class="sd">            This is a relatively expensive operation as it clones every group in the scene.</span>
+<span class="sd">            This is a relatively expensive operation as it clones every gameobject in the scene.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">new_scene</span> <span class="o">=</span> <span class="n">Scene</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (clone)&quot;</span><span class="p">,</span> <span class="n">background_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">background_color</span><span class="p">,</span> <span class="n">border_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">border_color</span>
         <span class="p">)</span>
-        <span class="n">new_scene</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
-        <span class="n">new_scene</span><span class="o">.</span><span class="n">ui</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="n">new_scene</span><span class="o">.</span><span class="n">_root</span> <span class="o">=</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="k">for</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">new_scene</span></div></div>
+        <span class="k">return</span> <span class="n">new_scene</span></div>
+
+<div class="viewcode-block" id="Scene.contains"><a class="viewcode-back" href="../../../../api/#rubato.structure.scene.Scene.contains">[docs]</a>    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">go</span><span class="p">:</span> <span class="n">GameObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks if the scene contains a gameobject.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            go: The gameobject to check for.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">go</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_root</span></div></div>
 </pre></div> 
         </article>
       </div>
