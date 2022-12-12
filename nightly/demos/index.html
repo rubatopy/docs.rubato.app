@@ -482,6 +482,11 @@ physics_demo.py<div class="sd-summary-down docutils">
 <span class="c1"># Add the walls to the scene</span>
 <span class="n">main_scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
 
+
+<span class="k">def</span> <span class="nf">should_collide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">b</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">a</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">b</span><span class="o">.</span><span class="n">tag</span>
+
+
 <span class="c1"># Create and add all our objects</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_obj</span> <span class="o">//</span> <span class="mi">2</span><span class="p">):</span>
     <span class="n">main_scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
@@ -490,6 +495,8 @@ physics_demo.py<div class="sd-summary-down docutils">
                 <span class="n">rb</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span>
                     <span class="n">radius</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">//</span> <span class="n">num_obj</span><span class="p">,</span>
                     <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">random_default</span><span class="p">(),</span>
+                    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;circle&quot;</span><span class="p">,</span>
+                    <span class="n">should_collide</span><span class="o">=</span><span class="n">should_collide</span><span class="p">,</span>
                 <span class="p">),</span>
                 <span class="n">rb</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">(</span>
                     <span class="n">mass</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
@@ -512,6 +519,8 @@ physics_demo.py<div class="sd-summary-down docutils">
                 <span class="n">rb</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
                     <span class="n">rb</span><span class="o">.</span><span class="n">Vector</span><span class="o">.</span><span class="n">poly</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">rb</span><span class="o">.</span><span class="n">Display</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">x</span> <span class="o">//</span> <span class="n">num_obj</span><span class="p">),</span>
                     <span class="n">color</span><span class="o">=</span><span class="n">rb</span><span class="o">.</span><span class="n">Color</span><span class="o">.</span><span class="n">random_default</span><span class="p">(),</span>
+                    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;not_circle&quot;</span><span class="p">,</span>
+                    <span class="n">should_collide</span><span class="o">=</span><span class="n">should_collide</span><span class="p">,</span>
                 <span class="p">),</span>
                 <span class="n">rb</span><span class="o">.</span><span class="n">RigidBody</span><span class="p">(</span>
                     <span class="n">mass</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>

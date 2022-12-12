@@ -449,6 +449,9 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Returns a collision info object if a collision is detected or None if no collision is detected.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">hitbox_a</span><span class="o">.</span><span class="n">should_collide</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">hitbox_b</span><span class="o">.</span><span class="n">should_collide</span><span class="p">(</span><span class="n">hitbox_b</span><span class="p">,</span> <span class="n">hitbox_a</span><span class="p">):</span>
+            <span class="k">return</span>
+
         <span class="n">col</span> <span class="o">=</span> <span class="n">_Engine</span><span class="o">.</span><span class="n">overlap</span><span class="p">(</span><span class="n">hitbox_a</span><span class="p">,</span> <span class="n">hitbox_b</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">col</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">hitbox_b</span> <span class="ow">in</span> <span class="n">hitbox_a</span><span class="o">.</span><span class="n">colliding</span><span class="p">:</span>
