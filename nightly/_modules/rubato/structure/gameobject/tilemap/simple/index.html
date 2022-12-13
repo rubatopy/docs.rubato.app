@@ -314,6 +314,7 @@
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">Component</span><span class="p">,</span> <span class="n">Rectangle</span>
 <span class="kn">from</span> <span class="nn">....</span> <span class="kn">import</span> <span class="n">Vector</span><span class="p">,</span> <span class="n">Surface</span><span class="p">,</span> <span class="n">Draw</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 
 
 <div class="viewcode-block" id="SimpleTilemap"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.tilemap.simple.SimpleTilemap">[docs]</a><span class="k">class</span> <span class="nc">SimpleTilemap</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
@@ -324,15 +325,15 @@
 <span class="sd">        tilemap: A 2D array of integers representing the tilemap.</span>
 <span class="sd">        tiles: A list of surfaces representing the tiles. The index of the surface in the list is the number used in the</span>
 <span class="sd">            tilemap array.</span>
-<span class="sd">        tile_size: The size of each tile in the tilemap.</span>
-<span class="sd">        collision: A list of integers representing the tiles that should have collision.</span>
+<span class="sd">        tile_size: The size of each tile in the tilemap. Defaults to (32, 32).</span>
+<span class="sd">        collision: A list of integers representing the tiles that should have collision. Defaults to [].</span>
 <span class="sd">        collider_tag: A list of strings representing the tags of the colliders. The index of the tag in the list is the</span>
-<span class="sd">            number used in the tilemap array.</span>
-<span class="sd">        scale: The scale of the tilemap.</span>
-<span class="sd">        offset: The offset of the tilemap.</span>
-<span class="sd">        rot_offset: The rotation offset of the tilemap.</span>
-<span class="sd">        z_index: The z-index of the tilemap.</span>
-<span class="sd">        hidden: Whether the tilemap is hidden.</span>
+<span class="sd">            number used in the tilemap array. Defaults to [].</span>
+<span class="sd">        scale: The scale of the tilemap. Defaults to (1, 1).</span>
+<span class="sd">        offset: The offset of the tilemap. Defaults to (0, 0).</span>
+<span class="sd">        rot_offset: The rotation offset of the tilemap. Defaults to 0.</span>
+<span class="sd">        z_index: The z-index of the tilemap. Defaults to 0.</span>
+<span class="sd">        hidden: Whether the tilemap is hidden. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -340,8 +341,8 @@
         <span class="n">tilemap</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
         <span class="n">tiles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Surface</span><span class="p">],</span>
         <span class="n">tile_size</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>
-        <span class="n">collision</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
-        <span class="n">collider_tag</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">collision</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">collider_tag</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
         <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -353,8 +354,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_map</span> <span class="o">=</span> <span class="n">tilemap</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tiles</span> <span class="o">=</span> <span class="n">tiles</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tile_size</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">tile_size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_collision</span> <span class="o">=</span> <span class="n">collision</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_collider_tag</span> <span class="o">=</span> <span class="n">collider_tag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_collision</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">collision</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">collision</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_collider_tag</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">collider_tag</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">collider_tag</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
         <span class="sd">&quot;&quot;&quot;The scale of the tilemap.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
@@ -392,11 +393,11 @@
 
 <div class="viewcode-block" id="SimpleTilemap.clone"><a class="viewcode-back" href="../../../../../../api/#rubato.structure.gameobject.tilemap.simple.SimpleTilemap.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SimpleTilemap</span><span class="p">:</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">SimpleTilemap</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_tiles</span><span class="p">,</span>
+            <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_map</span><span class="p">),</span>
+            <span class="p">[</span><span class="n">surf</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="k">for</span> <span class="n">surf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tiles</span><span class="p">],</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tile_size</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_collision</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_collider_tag</span><span class="p">,</span>
+            <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_collision</span><span class="p">),</span>
+            <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_collider_tag</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">offset</span><span class="o">.</span><span class="n">clone</span><span class="p">(),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rot_offset</span><span class="p">,</span>

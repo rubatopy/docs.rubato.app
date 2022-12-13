@@ -328,9 +328,9 @@
 <span class="sd">            none, or right (-1, 0, 1). y component is whether to shift top, none, or bottom (-1, 0, 1).</span>
 <span class="sd">            Defaults to Vector(0, 0).</span>
 <span class="sd">        width: The width of the text. Defaults to 0.</span>
+<span class="sd">        af: Whether to use anisotropic filtering. Defaults to True.</span>
 <span class="sd">        offset: The offset of the text from the game object. Defaults to Vector(0, 0).</span>
 <span class="sd">        rot_offset: The rotation offset of the text from the game object. Defaults to 0.</span>
-<span class="sd">        af: Whether to use anisotropic filtering. Defaults to True.</span>
 <span class="sd">        z_index: The z index of the text. Defaults to 0.</span>
 <span class="sd">        hidden: Whether the text is hidden. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -342,9 +342,9 @@
         <span class="n">justify</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span><span class="p">,</span>
         <span class="n">anchor</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">offset</span><span class="p">:</span> <span class="n">Vector</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
         <span class="n">rot_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="n">af</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">z_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">hidden</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>

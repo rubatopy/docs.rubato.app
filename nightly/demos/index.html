@@ -348,9 +348,9 @@ donut.py<div class="sd-summary-down docutils">
 <span class="n">surf_dim</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># diameter of the surface holding the shape</span>
 
 <span class="n">rb</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
-    <span class="s2">&quot;Donut Demo&quot;</span><span class="p">,</span>
-    <span class="n">res</span><span class="o">=</span><span class="p">(</span><span class="n">surf_dim</span><span class="p">,</span> <span class="n">surf_dim</span><span class="p">),</span>
-    <span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="p">(</span><span class="n">surf_dim</span><span class="p">,</span> <span class="n">surf_dim</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Donut Demo&quot;</span><span class="p">,</span>
     <span class="n">target_fps</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">surf</span> <span class="o">=</span> <span class="n">rb</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span><span class="n">surf_dim</span><span class="p">,</span> <span class="n">surf_dim</span><span class="p">)</span>
@@ -671,9 +671,9 @@ asteroids.py<div class="sd-summary-down docutils">
                 <span class="p">),</span>
                 <span class="n">BoundsChecker</span><span class="p">(),</span>
             <span class="p">],</span>
-            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;asteroid&quot;</span><span class="p">,</span>
             <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span>
             <span class="n">rotation</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">),</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;asteroid&quot;</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="p">)</span>
 
@@ -718,9 +718,9 @@ asteroids.py<div class="sd-summary-down docutils">
                         <span class="n">BoundsChecker</span><span class="p">(),</span>
                         <span class="n">Timer</span><span class="p">(</span><span class="mf">0.75</span><span class="p">),</span>
                     <span class="p">],</span>
-                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bullet&quot;</span><span class="p">,</span>
                     <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span>
                     <span class="n">rotation</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gameobj</span><span class="o">.</span><span class="n">rotation</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bullet&quot;</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">allowed_to_shoot</span> <span class="o">=</span> <span class="kc">False</span>
@@ -771,8 +771,8 @@ asteroids.py<div class="sd-summary-down docutils">
             <span class="n">Polygon</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">trigger</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
             <span class="n">player_spr</span><span class="p">,</span>
         <span class="p">],</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
         <span class="n">pos</span><span class="o">=</span><span class="n">Display</span><span class="o">.</span><span class="n">center</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;player&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 <span class="p">)</span>
 
@@ -992,7 +992,7 @@ surface_demo.py<div class="sd-summary-down docutils">
 <span class="n">main_c</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">red</span>
 <span class="n">second_c</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">green</span>
 <span class="n">bg_c</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">blue</span>
-<span class="n">init</span><span class="p">(</span><span class="s2">&quot;Surface Demo&quot;</span><span class="p">,</span> <span class="n">V</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">gridx</span><span class="p">,</span> <span class="n">height</span> <span class="o">*</span> <span class="n">gridy</span><span class="p">),</span> <span class="n">V</span><span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">640</span><span class="p">))</span>
+<span class="n">init</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">gridx</span><span class="p">,</span> <span class="n">height</span> <span class="o">*</span> <span class="n">gridy</span><span class="p">),</span> <span class="n">V</span><span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">640</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Surface Demo&quot;</span><span class="p">)</span>
 
 <span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span><span class="n">Surface</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">gridx</span> <span class="o">*</span> <span class="n">gridy</span><span class="p">)]</span>
 
