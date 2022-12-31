@@ -142,10 +142,16 @@
         <loc>https://docs.rubato.app/latest/tutorials/platformer/step3/</loc>
     </url>
     <url>
+        <loc>https://docs.rubato.app/latest/tutorials/pyinstaller/</loc>
+    </url>
+    <url>
         <loc>https://docs.rubato.app/latest/api/</loc>
     </url>
     <url>
         <loc>https://docs.rubato.app/latest/py-modindex/</loc>
+    </url>
+    <url>
+        <loc>https://docs.rubato.app/latest/demos/</loc>
     </url>
     <url>
         <loc>https://docs.rubato.app/latest/intro/</loc>
